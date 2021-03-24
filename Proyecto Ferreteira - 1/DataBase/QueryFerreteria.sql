@@ -122,6 +122,23 @@ Primary Key Clustered (Codigo_Empleado)
 )
 Go
 
+-- Tabla de Categorias
+create Table Productos.Categoria
+(
+Codigo_Categoria int not null identity(1,1),
+Nombre_Categoria nvarchar(50) not null,
+constraint Pk_Codigo_Categoria
+primary key clustered(Codigo_Categoria)
+)
+Go
+
+-- Llave Foranea de Codigo_Categoria para Productos.Producto 
+alter Table Productos.Productos
+  add constraint Fk_Productos_Producto$TieneUna$Productos_Categoria
+  foreign key(Codigo_Categoria) references Productos.Categoria(Codigo_Categoria)
+  on update no action
+  on delete no action
+Go
 
 -- llave fóranea de Codigo_Proveedor para Compras.Compras
 ALTER TABLE Compras.Compras
