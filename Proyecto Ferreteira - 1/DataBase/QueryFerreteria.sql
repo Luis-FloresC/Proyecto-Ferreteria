@@ -132,6 +132,44 @@ primary key clustered(Codigo_Categoria)
 )
 Go
 
+--Tabla de Puestos
+CREATE TABLE Recursos_humanos.Puestos
+(
+Codigo_Puesto int not null IDENTITY(1,1),
+Descripcion nvarchar(150) not null
+CONSTRAINT PK_Codigo_Puesto
+PRIMARY KEY CLUSTERED(Codigo_Puesto)
+)
+Go
+
+--Tabla de Usuarios
+CREATE TABLE Recursos_humanos.Usuario
+(
+Codigo_Usuario int not null IDENTITY(1,1),
+Nick_Name nvarchar(50) not null,
+Contrasenia nvarchar(50) not null,
+Codigo_Empleado int not null 
+CONSTRAINT PK_Codigo_Usuario
+PRIMARY KEY CLUSTERED(Codigo_Usuario)
+)
+Go
+
+--Llave Fóranea de Codigo_Empleado para Recursos_humanos.Usuario
+ALTER TABLE Recursos_humanos.Usuario
+ADD CONSTRAINT FK_Recursos_humanos_Usuario$TieneUn$Codigo_Empleado
+FOREIGN KEY(Codigo_Empleado) REFERENCES Recursos_humanos.Empleados(Codigo_Empleado)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION
+Go
+
+--Llave Fóranea de Codigo_Puesto para Recursos_humanos.Empleados
+ALTER TABLE	Recursos_humanos.Empleados
+ADD CONSTRAINT FK_Recursos_humanos_Empleados$TieneUn$Codigo_Puesto
+FOREIGN KEY(Codigo_Puesto) REFERENCES Recursos_humanos.Puestos(Codigo_Puesto)
+ON UPDATE NO ACTION
+ON DELETE NO ACTION
+Go
+
 -- Llave Foranea de Codigo_Categoria para Productos.Producto 
 alter Table Productos.Productos
   add constraint Fk_Productos_Producto$TieneUna$Productos_Categoria
@@ -151,7 +189,7 @@ Go
 -- llave fóranea de Codigo_Empleados para Compras.Compras !Se realiza teniendo la creacion de la tabla empleados
 ALTER TABLE Compras.Compras
 	Add Constraint FK_Compras_Compras$TieneUna$Recursos_humanos_Empleado
-	Foreign Key(Codigo_Empleado) References Recursos_humanos.Empleado(Codigo_Empleado)
+	Foreign Key(Codigo_Empleado) References Recursos_humanos.Empleados(Codigo_Empleado)
 	On UPDATE No Action
 	On DELETE No Action
 Go
