@@ -171,3 +171,8 @@ ALTER TABLE Compras.Detalle_Compras
 	On UPDATE No Action
 	On DELETE No Action
 
+
+--Creacion de llave Compuesta en la tabla de Detalle de Compra
+ALTER TABLE Compras.Detalle_Compras
+	Add Constraint PK_LlaveCCompuesta_Detalle_Compra
+	primary key(Codigo_Compra,Codigo_Producto)
