@@ -4,9 +4,51 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
-        mc:Ignorable="d"
+        xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
         Title="Login" Height="450" Width="800">
-    <Grid>
-        
+    <Grid MouseDown="Border_MouseDown">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                <GradientStop Color="#007DB7" Offset="1"/>
+                <GradientStop Color="#1E3F83" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Border Height="390" VerticalAlignment="Top" 
+                CornerRadius="0 0 180 0" Background="#31324A" MouseDown="Border_MouseDown" >
+
+        </Border>
+
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="350">
+                <Image Source="Recursos/img/Logo.png" Width="300" Height="300" VerticalAlignment="Top" Margin="30" Stretch="Fill"/>
+            </StackPanel>
+            <StackPanel Width="350">
+                <StackPanel Margin="20 40">
+                    <TextBlock Text="Iniciar Sesion" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
+                        <TextBox Margin="10 0" x:Name="txtuser" materialDesing:HintAssist.Hint="Usuario" Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <materialDesing:PackIcon Kind="Password" Width="25" Height="25" Foreground="White"/>
+                        <PasswordBox Margin="10 0" x:Name="txtpass" materialDesing:HintAssist.Hint="Contraseña" Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" materialDesing:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#007DB7" Background="#007DB7" Foreground="White" ToolTip="Iniciar sesion" x:Name="btnLogin" Content="Aceptar" Click="btnLogin_Click">
+
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Width="100" >
+                <Button Margin="10 20" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                        Background="{x:Null}" ToolTip="Salir" x:Name="btnSalir" Click="btnSalir_Click" >
+                    <materialDesing:PackIcon Kind="Close" Foreground="White" Width="30" Height="30"/>
+                </Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
