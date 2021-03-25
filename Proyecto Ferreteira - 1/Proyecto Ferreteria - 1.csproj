@@ -97,5 +97,8 @@
   <ItemGroup>
     <Folder Include="DataBase\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\img\Logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
