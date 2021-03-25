@@ -12,8 +12,10 @@ namespace Proyecto_Ferreteira___1.Clases
         public static int IdUsuario { get; set; }
         public static string NombreCompleto { get; set; }
         
+        public static string ApellidoCompleto { get; set; }
         public static string Cargo { get; set; }
         public static string Email { get; set; }
+        public static bool Estado { get; set; }
 
         public static string Usuario { get; set; }
 

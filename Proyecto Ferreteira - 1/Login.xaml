@@ -23,7 +23,7 @@
 
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="350">
-                <Image Source="Recursos/img/Logo.png" Width="300" Height="300" VerticalAlignment="Top" Margin="30" Stretch="Fill"/>
+                <Image Source="Recursos/img/Logo.png" Width="320" Height="320" VerticalAlignment="Top" Margin="30" Stretch="Fill"/>
             </StackPanel>
             <StackPanel Width="350">
                 <StackPanel Margin="20 40">

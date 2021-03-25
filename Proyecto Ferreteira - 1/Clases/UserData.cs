@@ -43,8 +43,10 @@ namespace Proyecto_Ferreteira___1.Clases
                             CacheUsuario.Usuario = reader.GetString(1);
                             CacheUsuario.Contraseña = reader.GetString(2);
                             CacheUsuario.NombreCompleto = reader.GetString(3);
-                            CacheUsuario.Cargo = reader.GetString(4);
-                            CacheUsuario.Email = reader.GetString(5);
+                            CacheUsuario.ApellidoCompleto = reader.GetString(4);
+                            CacheUsuario.Cargo = reader.GetString(5);
+                            CacheUsuario.Email = reader.GetString(6);
+                            CacheUsuario.Estado = reader.GetBoolean(7);
                            
                         }
                         return true;
