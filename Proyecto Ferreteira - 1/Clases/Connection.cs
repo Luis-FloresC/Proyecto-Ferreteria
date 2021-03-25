@@ -16,7 +16,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
         public Connection()
         {
-            Connection_st = ConfigurationManager.ConnectionStrings["System_Lf.Properties.Settings.SystemLfDb"].ConnectionString;
+            Connection_st = ConfigurationManager.ConnectionStrings["Proyecto_Ferreteira___1.Properties.Settings.FerreteriaDb"].ConnectionString;
 
         }
 
