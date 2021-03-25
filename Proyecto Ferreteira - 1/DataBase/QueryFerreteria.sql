@@ -30,6 +30,8 @@ tipo_pago nvarchar(100) not null,
 subtotal money not null,
 isv float not null,
 descuento float not null
+Constraint PK_codigo_venta
+Primary Key Clustered (codigo_venta)
 )
 Go
 
@@ -47,7 +49,9 @@ codigo_venta int not null,
 fecha_entrega datetime not null,
 estado_envio nvarchar(50) not null,
 direccion nvarchar(255) not null,
-codigo_repartidor int not null
+codigo_empleado int not null
+Constraint PK_codigo_envio
+Primary Key Clustered (codigo_envio)
 )
 Go
 
@@ -58,10 +62,12 @@ apellidos nvarchar(100) not null,
 fecha_nacimiento datetime not null,
 telefono varchar(20),
 rtn varchar(20)
+Constraint PK_codigo_cliente
+Primary Key Clustered (codigo_cliente)
 )
 Go
 
-CREATE TABLE Compras.Compras(
+CREATE TABLE Compras.Compra(
 Codigo_Compra int not null IDENTITY (1,1),
 Fecha_Compra datetime not null,
 Codigo_Proveedor int not null,
@@ -75,7 +81,7 @@ Primary Key Clustered (Codigo_Compra)
 )
 Go
 
-CREATE TABLE Compras.Detalle_Compras(
+CREATE TABLE Compras.Detalle_Compra(
 Codigo_Compra int not null,
 Codigo_Producto int not null,
 Precio_Unitario money not null,
@@ -94,7 +100,7 @@ Primary Key Clustered (Codigo_Proveedor)
 )
 Go
 
-CREATE TABLE Productos.Productos(
+CREATE TABLE Productos.Producto(
 Codigo_Producto int not null IDENTITY (1,1),
 Nombre_Producto nvarchar(100) not null,
 Existencia int not null,
@@ -106,7 +112,7 @@ Primary Key Clustered (Codigo_Producto)
 )
 Go
 
-CREATE TABLE Recursos_humanos.Empleados(
+CREATE TABLE Recursos_humanos.Empleado(
 Codigo_Empleado int not null IDENTITY(1,1),
 Nombre_Empleado nvarchar(75)not null,
 Apellido_empleado nvarchar(75)not null,
@@ -133,7 +139,7 @@ primary key clustered(Codigo_Categoria)
 Go
 
 --Tabla de Puestos
-CREATE TABLE Recursos_humanos.Puestos
+CREATE TABLE Recursos_humanos.Puesto
 (
 Codigo_Puesto int not null IDENTITY(1,1),
 Descripcion nvarchar(150) not null
@@ -154,24 +160,66 @@ PRIMARY KEY CLUSTERED(Codigo_Usuario)
 )
 Go
 
+--Llave fóranea para venta (Codigo_empleado) hace referencia a la tabla Empleado
+ALTER TABLE Ventas.venta
+	Add Constraint FK_Ventas_venta$TieneUn$Recursos_humanos_Empleado
+	Foreign Key(codigo_empleado) References Recursos_humanos.Empleado(Codigo_Empleado)
+	On UPDATE No Action
+	On DELETE No Action
+
+--Llave fóranea para venta (Codigo_cliente) hace referencia a la tabla cliente
+ALTER TABLE Ventas.venta
+	Add Constraint FK_Ventas_venta$TieneUn$Ventas_Cliente
+	Foreign Key(codigo_cliente) References Ventas.Cliente(codigo_cliente)
+	On UPDATE No Action
+	On DELETE No Action
+
+--Llave fóranea para detalle_venta (codigo_venta) hace referencia a la tabla venta
+ALTER TABLE Ventas.detalle_venta
+	Add Constraint FK_Ventas_detalle_venta$TieneUn$Ventas_venta
+	Foreign Key(codigo_venta) References Ventas.venta(codigo_venta)
+	On UPDATE No Action
+	On DELETE No Action
+
+--Llave fóranea para detalle_venta (codigo_producto) hace referencia a la tabla productos
+ALTER TABLE Ventas.detalle_venta
+	Add Constraint FK_Ventas_detalle_venta$TieneUn$Productos_producto
+	Foreign Key(codigo_producto) References Productos.producto(codigo_producto)
+	On UPDATE No Action
+	On DELETE No Action
+
+--Llave fóranea para Envio (codigo_venta) hace referencia a la tabla venta
+ALTER TABLE Ventas.envio
+	Add Constraint FK_Ventas_Envio$TieneUn$Ventas_venta
+	Foreign Key(codigo_venta) References Ventas.venta(codigo_venta)
+	On UPDATE No Action
+	On DELETE No Action
+
+--Llave fóranea para Envio (codigo_empleado) hace referencia a la tabla empleado
+ALTER TABLE Ventas.envio
+	Add Constraint FK_Ventas_Envio$TieneUn$Recursos_humanos_Empleado
+	Foreign Key(codigo_empleado) References Recursos_humanos.Empleado(codigo_empleado)
+	On UPDATE No Action
+	On DELETE No Action
+
 --Llave Fóranea de Codigo_Empleado para Recursos_humanos.Usuario
 ALTER TABLE Recursos_humanos.Usuario
 ADD CONSTRAINT FK_Recursos_humanos_Usuario$TieneUn$Codigo_Empleado
-FOREIGN KEY(Codigo_Empleado) REFERENCES Recursos_humanos.Empleados(Codigo_Empleado)
+FOREIGN KEY(Codigo_Empleado) REFERENCES Recursos_humanos.Empleado(Codigo_Empleado)
 ON UPDATE NO ACTION
 ON DELETE NO ACTION
 Go
 
 --Llave Fóranea de Codigo_Puesto para Recursos_humanos.Empleados
-ALTER TABLE	Recursos_humanos.Empleados
-ADD CONSTRAINT FK_Recursos_humanos_Empleados$TieneUn$Codigo_Puesto
-FOREIGN KEY(Codigo_Puesto) REFERENCES Recursos_humanos.Puestos(Codigo_Puesto)
+ALTER TABLE	Recursos_humanos.Empleado
+ADD CONSTRAINT FK_Recursos_humanos_Empleado$TieneUn$Codigo_Puesto
+FOREIGN KEY(Codigo_Puesto) REFERENCES Recursos_humanos.Puesto(Codigo_Puesto)
 ON UPDATE NO ACTION
 ON DELETE NO ACTION
 Go
 
 -- Llave Foranea de Codigo_Categoria para Productos.Producto 
-alter Table Productos.Productos
+alter Table Productos.Producto
   add constraint Fk_Productos_Producto$TieneUna$Productos_Categoria
   foreign key(Codigo_Categoria) references Productos.Categoria(Codigo_Categoria)
   on update no action
@@ -179,38 +227,45 @@ alter Table Productos.Productos
 Go
 
 -- llave fóranea de Codigo_Proveedor para Compras.Compras
-ALTER TABLE Compras.Compras
-	Add Constraint FK_Compras_Compras$TieneUna$Compras_Proveedor
+ALTER TABLE Compras.Compra
+	Add Constraint FK_Compras_Compra$TieneUna$Compras_Proveedor
 	Foreign Key(Codigo_Proveedor) References Compras.Proveedor(Codigo_Proveedor)
 	On UPDATE No Action
 	On DELETE No Action
 Go
 
 -- llave fóranea de Codigo_Empleados para Compras.Compras !Se realiza teniendo la creacion de la tabla empleados
-ALTER TABLE Compras.Compras
-	Add Constraint FK_Compras_Compras$TieneUna$Recursos_humanos_Empleado
-	Foreign Key(Codigo_Empleado) References Recursos_humanos.Empleados(Codigo_Empleado)
+ALTER TABLE Compras.Compra
+	Add Constraint FK_Compras_Compra$TieneUna$Recursos_humanos_Empleado
+	Foreign Key(Codigo_Empleado) References Recursos_humanos.Empleado(Codigo_Empleado)
 	On UPDATE No Action
 	On DELETE No Action
 Go
 
 --Llave fóranea para detalle_compras (Codigo_Compra)
-ALTER TABLE Compras.Detalle_Compras
-	Add Constraint FK_Compras_Detalle_Compras$TieneUn$Compras_Compras
-	Foreign Key(Codigo_Compra) References Compras.Compras(Codigo_Compra)
+ALTER TABLE Compras.Detalle_Compra
+	Add Constraint FK_Compras_Detalle_Compra$TieneUn$Compras_Compra
+	Foreign Key(Codigo_Compra) References Compras.Compra(Codigo_Compra)
 	On UPDATE No Action
 	On DELETE No Action
 Go
 
 --Llave fóranea para detalle_compras (Codigo_Producto)
-ALTER TABLE Compras.Detalle_Compras
-	Add Constraint FK_Compras_Detalle_Compras$TieneUn$Productos_Nombre_Producto
-	Foreign Key(Codigo_Producto) References Productos.Productos(Codigo_Producto)
+ALTER TABLE Compras.Detalle_Compra
+	Add Constraint FK_Compras_Detalle_Compra$TieneUn$Productos_Nombre_Producto
+	Foreign Key(Codigo_Producto) References Productos.Producto(Codigo_Producto)
 	On UPDATE No Action
 	On DELETE No Action
-
+Go
 
 --Creacion de llave Compuesta en la tabla de Detalle de Compra
-ALTER TABLE Compras.Detalle_Compras
-	Add Constraint PK_LlaveCCompuesta_Detalle_Compra
+ALTER TABLE Compras.Detalle_Compra
+	Add Constraint PK_LlaveCompuesta_Detalle_Compra
 	primary key(Codigo_Compra,Codigo_Producto)
+Go
+
+--Creacion de llave Compuesta en la tabla de Detalle de Compra
+ALTER TABLE Ventas.detalle_venta
+	Add Constraint PK_LlaveCompuesta_Detalle_Venta
+	primary key(codigo_venta,codigo_producto)
+Go
