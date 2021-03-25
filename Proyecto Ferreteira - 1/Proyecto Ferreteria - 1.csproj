@@ -90,7 +90,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Clases\CacheUsuario.cs" />
     <Compile Include="Clases\Connection.cs" />
+    <Compile Include="Clases\UserData.cs" />
+    <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
