@@ -153,6 +153,9 @@
   <ItemGroup>
     <Resource Include="Recursos\img\Logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Icons\Salir2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

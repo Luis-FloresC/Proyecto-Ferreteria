@@ -24,5 +24,6 @@ namespace Proyecto_Ferreteira___1
         {
             InitializeComponent();
         }
+
     }
 }
