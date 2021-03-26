@@ -64,8 +64,8 @@ namespace Proyecto_Ferreteira___1
                     //GridPrincipal.Children.Add(new UserControlInicio());
                     break;
                 case 1:
-                    //GridPrincipal.Children.Clear();
-                    //GridPrincipal.Children.Add(new UserControlEscolha());
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new Clientes());
                     break;
                 case 2:
                     //GridPrincipal.Children.Clear();

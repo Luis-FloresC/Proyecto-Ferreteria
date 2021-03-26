@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="MenuPrincipal" Height="600" Width="1050" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
+        Title="MenuPrincipal" Height="650" Width="1050" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
     <Grid Background="#242222" MouseDown="Grid_MouseDown">
         <StackPanel VerticalAlignment="Top" Background="#363636">
             <Grid Background="#0061D2" Height="10"/>
@@ -62,7 +62,7 @@
                 <ListViewItem Height="60" >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Início" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                        <TextBlock Text="Início" FontSize="17" VerticalAlignment="Center" Margin="20 0" />
                     </StackPanel>
                 </ListViewItem>
 
@@ -83,8 +83,8 @@
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="TruckDelivery" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Envios" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                        <materialDesign:PackIcon Kind="Package" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Productos" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
 
@@ -100,6 +100,15 @@
                         <TextBlock Text="Empleados" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
+
+
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Accounts" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Proveedores" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
