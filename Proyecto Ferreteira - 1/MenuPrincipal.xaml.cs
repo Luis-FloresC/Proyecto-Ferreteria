@@ -76,8 +76,8 @@ namespace Proyecto_Ferreteira___1
                     //GridPrincipal.Children.Add(new prueba3());
                     break;
                 case 4:
-                    //GridPrincipal.Children.Clear();
-                    //GridPrincipal.Children.Add(new prueba3());
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new Compra());
                     break;
                 case 5:
                     //GridPrincipal.Children.Clear();
