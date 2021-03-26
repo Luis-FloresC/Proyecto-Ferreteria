@@ -48,13 +48,15 @@ namespace Proyecto_Ferreteira___1
             if ((ResultadoValidacion == true) && (txtuser.Text == Clases.CacheUsuario.Usuario) && (txtpass.Password == Clases.CacheUsuario.Contraseña) && (Clases.CacheUsuario.Estado == true))
             {
                 MessageBox.Show(string.Format("Bienvenido al sistema! {0},{1}", Clases.CacheUsuario.NombreCompleto,Clases.CacheUsuario.ApellidoCompleto));
-                //Menu_Principal menu_Principal = new Menu_Principal();
-                //menu_Principal.Show();
+                MenuPrincipal menuPrincipal = new MenuPrincipal();
+                menuPrincipal.Show();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Usuario Incorrecto o Contraseña\nIntente de nuevo", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Usuario o Contraseña Incorrecto\nIntente de nuevo", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtpass.Password = string.Empty;
+                txtpass.Focus();
             }
         }
 

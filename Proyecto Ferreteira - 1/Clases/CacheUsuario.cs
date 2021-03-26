@@ -21,5 +21,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
         public static string Contraseña { get; set; }
 
+        public CacheUsuario() { }
+
     }
 }
