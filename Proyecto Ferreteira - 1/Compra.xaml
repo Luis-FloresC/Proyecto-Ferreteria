@@ -39,7 +39,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <materialDesign:Card Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"
             Background="#363636"
             Foreground="White"
@@ -79,12 +79,44 @@
                     FontSize="16"
                     Text="Fecha de Compra" />
         </materialDesign:Card>
-        
-        <TextBox  Margin="5" Grid.Row="2" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
-        <TextBox  Margin="5" Grid.Row="3" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
-        <TextBox  Margin="5" Grid.Row="1" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
+
+        <TextBox ToolTip="Nombre del Producto" Margin="5" Grid.Row="2" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
+        <TextBox ToolTip="Cantidad de Producto"  Margin="5" Grid.Row="3" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
+        <TextBox  ToolTip="Formato de fecha Año/Mes/Día" Margin="5" Grid.Row="1" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
         <TextBox Background="WhiteSmoke" Foreground="#363636" FontSize="13" Margin="10 0 0 0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  />
+        
         <Label Content="Productos Por Proveedor" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0 10 0 0" 
                FontSize="18" FontFamily="Champagne &amp; Limousines"/>
+
+
+        <!-- ListBox que contendran los datos de Proveedores y la informacion de productos-->
+        <ListBox Margin="5" Background="WhiteSmoke" Grid.Row="1" Grid.Column="3" Grid.RowSpan="5"  >
+        </ListBox>
+
+        <ListBox Margin="5"  Background="WhiteSmoke" Grid.Row="1" Grid.Column="4"  Grid.RowSpan="5" >
+        </ListBox>
+
+        <ListBox Margin="5" Background="WhiteSmoke" Grid.Row="1" Grid.Column="5" Grid.RowSpan="5" Grid.ColumnSpan="2" >
+        </ListBox>
+
+        <Label Content="Proveedores" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Margin="0 10 0 0" 
+               FontSize="18" FontFamily="Champagne &amp; Limousines"/>
+
+        <Label Content="Productos" Grid.Row="0" Grid.Column="4"  HorizontalAlignment="Center" Margin="0 10 0 0" 
+               FontSize="18" FontFamily="Champagne &amp; Limousines"/>
+
+        <Label Content="Cantidad." Grid.Row="0" Grid.Column="5"  HorizontalAlignment="Center" Margin="0 10 0 0" 
+               FontSize="18" FontFamily="Champagne &amp; Limousines"/>
+
+        <!--Boton de comprar boton -->
+        <Button Grid.Column="3" Grid.Row="8"
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="Hacer la compra"
+             Content="Comprar" />
+        
+        <!--Textbox de descuento-->
+        <TextBox Grid.Column="1" Grid.Row="8" Margin="5" Text=" Descuento" FontSize="14" FontFamily="Champagne &amp; Limousines" />
+        <TextBox Grid.Column="2" Grid.Row="8" Margin="5" Text="15% de Descuento" FontSize="14" FontFamily="Champagne &amp; Limousines" />
+
     </Grid>
 </UserControl>
