@@ -7,31 +7,39 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              
-                 Width="800" Height="600"
+                 Width="1000" Height="600"
               TextElement.Foreground="{DynamicResource MaterialDesignBody}"
               TextElement.FontWeight="Regular"
               TextElement.FontSize="13"
               TextOptions.TextFormattingMode="Ideal"
               TextOptions.TextRenderingMode="Auto"
               FontFamily="{DynamicResource MaterialDesignFont}"          
-              Background="#656c72"            
+              Background="#363636"            
              >
     <Grid >
         
          <!-- Creacion de los respectivas filas y columnas necesarias para la pantalla-->
         <Grid.ColumnDefinitions>
 
+            <ColumnDefinition />
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
             <ColumnDefinition/>
 
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions >
             <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -41,110 +49,39 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <!--Creacion de tarjetas de informacion-->
-        <materialDesign:Card Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"
-            Background="#363636"
-            Foreground="White"
-            Width="200"
-            Padding="8">
-            <TextBlock
-                    FontSize="16"
-                    Text="Sistema de Compras" />
-        </materialDesign:Card>
-        <materialDesign:Card Grid.Row="2" Grid.Column="0"  Margin="5"
-                Background="#363636"
-                Foreground="White"
-                Width="150"
-                Padding="8">
-            <TextBlock
-                    FontSize="16"
-                    Text="Producto" />
-        </materialDesign:Card>
-        <materialDesign:Card Grid.Row="3" Grid.Column="0"  Margin="5"
-            Background="#363636"
-            Foreground="White"
-            Width="150"
-            Padding="8">
-            <TextBlock 
-                    FontSize="16"
-                    Text="Cantidad" />
-        </materialDesign:Card>
-        <materialDesign:Card  Grid.Row="1" Grid.Column="0"  Margin="5" 
-            Background="#363636"
-            Foreground="White"
-            Width="150"
-            Padding="8">
-            <TextBlock 
-                    FontSize="16"
-                    Text="Fecha de Compra" />
-        </materialDesign:Card>
-        
-        <!--Creacion de los textos de capturacion de datos-->
-        <TextBox ToolTip="Nombre del Producto" Margin="5" Grid.Row="2" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
-        <TextBox ToolTip="Cantidad de Producto"  Margin="5" Grid.Row="3" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
-        <TextBox  ToolTip="Formato de fecha Año/Mes/Día" Margin="5" Grid.Row="1" Grid.Column="1" Foreground="#363636" BorderBrush="#363636" FontSize="15"></TextBox>
-        <TextBox IsEnabled="False" Background="WhiteSmoke" Foreground="#363636" FontSize="13" Margin="10 0 0 0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"  />
-        
-        <!--Etiqueta para el listbox Productos por proveedor-->
-        <Label Content="Productos Por Proveedor" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0 25 0 0" 
-               FontSize="18" FontFamily="Champagne &amp; Limousines"/>
+
+        <Label Foreground="WhiteSmoke" Margin="10" Grid.ColumnSpan="3"  Content="Sistema de Compra" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" FontSize="30"/>
+        <Label Foreground="WhiteSmoke" Content="Proveedor" Grid.Row="1" Grid.Column="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Foreground="WhiteSmoke"  Content="Nombre" Grid.Row="2" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Foreground="WhiteSmoke" Content="Producto" Grid.Row="3" Grid.Column="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Foreground="WhiteSmoke" Content="Nombre" Grid.Row="4" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
 
-        <!-- ListBox que contendran los datos de Proveedores y la informacion de productos-->
-        <ListBox Margin="5" Background="WhiteSmoke" Grid.Row="1" Grid.Column="3" Grid.RowSpan="5"  >
-        </ListBox>
+        <DataGrid Margin="5" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="5"/>
 
-        <ListBox Margin="5"  Background="WhiteSmoke" Grid.Row="1" Grid.Column="4"  Grid.RowSpan="5" >
-        </ListBox>
+        <Button FontSize="18" Content="Realizar Compra" Grid.Column="7" Grid.Row="7" Grid.RowSpan="2" Margin="5" Width="200" Height="60"/>
+        <Button FontSize="18" Content="Modificar Compra" Grid.Column="7" Grid.Row="9" Grid.RowSpan="2" Margin="5"  Width="200" Height="60" />
+        <ComboBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Background="WhiteSmoke"/>
+        <ComboBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Background="WhiteSmoke"/>
+        <StackPanel Margin="0 0 10 0" Orientation="Horizontal" Grid.ColumnSpan="34" Grid.Row="4" Grid.Column="4">
+            <Label Foreground="WhiteSmoke"  Margin="10 0 0 0"  Content="Precio:"  FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox FontSize="15" Background="WhiteSmoke" Margin="10 0 10 0" Width="200"/>
+            <Label  Foreground="WhiteSmoke" Content="Cantidad:"  FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox FontSize="15" Margin="10 0 0 0" Background="WhiteSmoke" Width="200"/>
+        </StackPanel>
 
-        <ListBox Margin="5" Background="WhiteSmoke" Grid.Row="1" Grid.Column="5" Grid.RowSpan="5" Grid.ColumnSpan="2" >
-        </ListBox>
+        <StackPanel Margin="40 0 0 0" Grid.ColumnSpan="9" Orientation="Horizontal" Grid.Row="12" Grid.Column="0">
 
-        <Label Content="Proveedores" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Margin="0 10 0 0" 
-               FontSize="18" FontFamily="Champagne &amp; Limousines"/>
+            <Label Foreground="WhiteSmoke" Content="Subtotal:"  Grid.Column="1"  Grid.Row="12" FontSize="18" />
+            <TextBox FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
+            <Label Foreground="WhiteSmoke" Content="Descuento:"  Grid.Column="3"  Grid.Row="12" FontSize="18" />
+            <TextBox FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
+            <Label Foreground="WhiteSmoke" Content="ISV:"  Grid.Column="5"  Grid.Row="12" FontSize="18" />
+            <TextBox FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
+            <Label Foreground="WhiteSmoke" Content="Total:"  Grid.Column="7"  Grid.Row="12" FontSize="18" />
+            <TextBox FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
 
-        <Label Content="Productos" Grid.Row="0" Grid.Column="4"  HorizontalAlignment="Center" Margin="0 10 0 0" 
-               FontSize="18" FontFamily="Champagne &amp; Limousines"/>
-
-        <Label Content="Cantidad." Grid.Row="0" Grid.Column="5"  HorizontalAlignment="Center" Margin="0 10 0 0" 
-               FontSize="18" FontFamily="Champagne &amp; Limousines"/>
-
-        <!--Boton de comprar boton -->
-        <Button Margin="5" Grid.Column="4" Grid.Row="8"
-            Style="{StaticResource MaterialDesignFlatLightBgButton}"
-            ToolTip="Hacer la compra"
-             Content="Comprar" />
-        
-        <!--Textbox de informacion de datos-->
-      
-        <TextBox Foreground="Black" Grid.Column="0" Grid.Row="8" FontSize="18"
-        materialDesign:HintAssist.Hint="Descuento"
-        materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-        materialDesign:HintAssist.FloatingScale="0.50"
-        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-         />
-
-        <TextBox Foreground="Black"  Grid.Column="1" Grid.Row="8" FontSize="18"
-        materialDesign:HintAssist.Hint="ISV"
-        materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-        materialDesign:HintAssist.FloatingScale="0.50"
-        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-         />
-
-        <TextBox Foreground="Black" Grid.Column="2" Grid.Row="8" FontSize="18"
-        materialDesign:HintAssist.Hint="Subtotal"
-        materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-        materialDesign:HintAssist.FloatingScale="0.50"
-        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-         />
-
-        <TextBox Foreground="Black"  Grid.Column="3" Grid.Row="8" FontSize="18"
-        materialDesign:HintAssist.Hint="Flete"
-        materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
-        materialDesign:HintAssist.FloatingScale="0.50"
-        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-         />
-
+        </StackPanel>
     </Grid>
+  
 </UserControl>
