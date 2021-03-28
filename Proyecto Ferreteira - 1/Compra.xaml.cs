@@ -20,10 +20,22 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class Compra : UserControl
     {
+        
+     
         public Compra()
         {
-            InitializeComponent();
+            InitializeComponent();  
+            
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Clases.Compras compra = new Clases.Compras();
+            compra.MostrarProveedores();
+            cmbProveedor.Items.Add(compra.NombreProveedor);
+            txtIdProveedor.Text = compra.IdProveedor.ToString();
+        }
+
+ 
     }
 }

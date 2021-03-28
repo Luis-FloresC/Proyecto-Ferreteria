@@ -99,6 +99,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Clases\CacheUsuario.cs" />
+    <Compile Include="Clases\Compras.cs" />
     <Compile Include="Clases\Connection.cs" />
     <Compile Include="Clases\UserData.cs" />
     <Compile Include="Clases\Usuarios.cs" />
