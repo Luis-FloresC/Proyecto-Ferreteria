@@ -36,21 +36,15 @@ namespace Proyecto_Ferreteira___1
             txtIdProveedor.Text = compra.IdProveedor.ToString();
            */
         }
-        
-        //private List<Clases.Compras> Proveedores;
+
+        private List<string> Proveedores;
         private void MostrarProveedores()
         {
-         
-            //Proveedores = compra.Proveedores();
-            //foreach (string i in Proveedores)
-            //{
-            //    MessageBox.Show(i);
-            //}
-
-            cmbProveedor.ItemsSource = compra.Proveedores();
-
+            Proveedores = compra.Proveedores();
+            cmbProveedor.ItemsSource = Proveedores;
         }
 
- 
+
+
     }
 }

@@ -54,6 +54,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        
         <Label Foreground="WhiteSmoke" Margin="10" Grid.ColumnSpan="3"  Content="Sistema de Compra" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" FontSize="30"/>
         <Label Foreground="WhiteSmoke" Margin="10 0 0 0" Content="Proveedor" Grid.Row="1" Grid.Column="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Label Foreground="WhiteSmoke"  Content="Nombre" Grid.Row="2" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -62,11 +63,11 @@
 
 
         <DataGrid Margin="5" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="5"/>
-
         <Button FontSize="18" Content="Realizar Compra" Grid.Column="7" Grid.Row="7" Grid.RowSpan="2" Margin="5" Width="200" Height="60"/>
         <Button FontSize="18" Content="Modificar Compra" Grid.Column="7" Grid.Row="9" Grid.RowSpan="2" Margin="5"  Width="200" Height="60" />
         <ComboBox Name="cmbProveedor" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Background="WhiteSmoke"/>
         <ComboBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Background="WhiteSmoke"/>
+        
         <StackPanel Margin="0 0 10 0" Orientation="Horizontal" Grid.ColumnSpan="34" Grid.Row="4" Grid.Column="4">
             <Label Foreground="WhiteSmoke"  Margin="10 0 0 0"  Content="Precio:"  FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBox FontSize="15" Background="WhiteSmoke" Margin="10 0 10 0" Width="200"/>
@@ -75,7 +76,6 @@
         </StackPanel>
 
         <StackPanel Margin="40 0 0 0" Grid.ColumnSpan="9" Orientation="Horizontal" Grid.Row="12" Grid.Column="0">
-
             <Label Foreground="WhiteSmoke" Content="Subtotal:"  Grid.Column="1"  Grid.Row="12" FontSize="18" />
             <TextBox FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
             <Label Foreground="WhiteSmoke" Content="Descuento:"  Grid.Column="3"  Grid.Row="12" FontSize="18" />
@@ -84,12 +84,9 @@
             <TextBox FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
             <Label Foreground="WhiteSmoke" Content="Total:"  Grid.Column="7"  Grid.Row="12" FontSize="18" />
             <TextBox FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
-
         </StackPanel>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="WhiteSmoke" Content="ID:"  Grid.Column="4"  Grid.Row="2" FontSize="18" />
-        <TextBox Name="txtIdProveedor" IsEnabled="False" Grid.Row="2" Grid.Column="5" FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
 
-        <Button Content="Llenar ComboBox" Grid.Column="7" Grid.Row="3" Click="Button_Click"/>
+
 
     </Grid>
   
