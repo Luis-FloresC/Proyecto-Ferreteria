@@ -38,15 +38,34 @@ namespace Proyecto_Ferreteira___1
         }
 
         private List<string> Proveedores;
+        private List<int> ObtenerIdentificador;
+        private List<string> Productos;
+
+
         private void MostrarProveedores()
         {
             Proveedores = compra.Proveedores();
+            ObtenerIdentificador = compra.Identificador;
             cmbProveedor.ItemsSource = Proveedores;
+        }
+
+        private void MostrarProductos()
+        {
+            cmbProducto.ItemsSource = Productos;
         }
 
         private void cmbProveedor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            compra.ObtenerProductos();
+            int c = 0;
+            foreach (int i in ObtenerIdentificador)
+            {
+                if (cmbProveedor.SelectedIndex == c)
+                {
+                    Productos = compra.ObtenerProductos(i);
+                    MostrarProductos();
+                }
+                c++;
+            }
         }
     }
 }

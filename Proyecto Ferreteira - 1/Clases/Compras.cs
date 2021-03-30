@@ -16,7 +16,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
         //Propiedades
 
-        public string IdProveedor { get; set; }
+        public int IdProveedor { get; set; }
 
         public string NombreProveedor { get; set; }
 
@@ -29,7 +29,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
         //Constructores
         public Compras() { }
-        public Compras(string idProveedor, string nombreProveedor)
+        public Compras(int idProveedor, string nombreProveedor)
         {
             IdProveedor = idProveedor;
             NombreProveedor = nombreProveedor;
@@ -42,7 +42,10 @@ namespace Proyecto_Ferreteira___1.Clases
             Cantidad = cantidad;
         }
 
-        //Lista
+
+        public List<int> Identificador = new List<int>();
+
+        //Lista 
         public List<String> Proveedores()
         {
 
@@ -68,6 +71,7 @@ namespace Proyecto_Ferreteira___1.Clases
                     while (reader.Read())
                     {
                         ObtenerProveedores.Add(NombreProveedor = reader.GetString(1));
+                        Identificador.Add(IdProveedor = reader.GetInt32(0));
                     }
                 }
 
@@ -83,15 +87,21 @@ namespace Proyecto_Ferreteira___1.Clases
                 connection.Close();
             }
         }
-
-        public void ObtenerProductos()
+        /// <summary>
+        /// Obtiene los productos segun que proveedor se seleccione.
+        /// </summary>
+        /// <param name="codigo">Es el id del proveedor que sirve como parametro para mostrar los productos</param>
+        /// <returns></returns>
+        public List<String> ObtenerProductos(int codigo)
         {
-            Compra compra = new Compra();
 
+            List<String> productos = new List<String>();
+
+            //Conexion
             var connection = GetConnection();
-
             try
-            {            
+            {
+                //Consulta SQL
                 string query = @"SELECT   Productos.Producto.Nombre_Producto, Compras.Proveedor.Codigo_Proveedor
                                 FROM   Compras.Compra INNER JOIN
                                        Compras.Detalle_Compra ON Compras.Compra.Codigo_Compra = Compras.Detalle_Compra.Codigo_Compra INNER JOIN
@@ -99,35 +109,35 @@ namespace Proyecto_Ferreteira___1.Clases
                                        Compras.Proveedor ON Compras.Compra.Codigo_Proveedor = Compras.Proveedor.Codigo_Proveedor AND Compras.Compra.Codigo_Proveedor = Compras.Proveedor.Codigo_Proveedor
                                 WHERE (Compras.Proveedor.Codigo_Proveedor = @Proveedor)";
 
+                //Creacion del comando de consulta
+
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
 
+                //Dandole el valor al parametro
+                command.Parameters.AddWithValue("@Proveedor", codigo);
 
                 //Obtencion de datos y almacenamiento en las propiedades
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-
-                using (dataAdapter)
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    command.Parameters.AddWithValue("@Proveedor", compra.cmbProveedor.SelectedValue);
 
-                    DataTable Productos = new DataTable();
+                    while (reader.Read())
+                    {
+                        productos.Add(NombreProveedor = reader.GetString(0));
 
-                    dataAdapter.Fill(Productos);
-                    compra.cmbProveedor.DisplayMemberPath = "Nombre_Producto";
-                    compra.cmbProveedor.SelectedValuePath = "Codigo_Proveedor";
-                    compra.cmbProveedor.ItemsSource = Productos.DefaultView;
+                    }
                 }
-        
-            }
 
-            catch (Exception ex)
+                return productos;
+            }
+            catch (Exception e)
             {
-                MessageBox.Show(ex.Message.ToString());
+                throw e;
             }
-
             finally
-            { 
-                connection.Close();               
+            {
+
+                connection.Close();
             }
         }
     }
