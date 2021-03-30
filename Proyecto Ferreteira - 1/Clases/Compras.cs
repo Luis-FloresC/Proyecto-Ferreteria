@@ -16,7 +16,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
         //Propiedades
 
-        public int IdProveedor { get; set; }
+        public string IdProveedor { get; set; }
 
         public string NombreProveedor { get; set; }
 
@@ -29,7 +29,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
         //Constructores
         public Compras() { }
-        public Compras(int idProveedor, string nombreProveedor)
+        public Compras(string idProveedor, string nombreProveedor)
         {
             IdProveedor = idProveedor;
             NombreProveedor = nombreProveedor;
@@ -47,6 +47,7 @@ namespace Proyecto_Ferreteira___1.Clases
         {
 
             List<String> ObtenerProveedores = new List<String>();
+
             //Conexion
             var connection = GetConnection();
             try
@@ -56,8 +57,10 @@ namespace Proyecto_Ferreteira___1.Clases
                                 ,[Nombre_Proveedor] FROM [Compras].[Proveedor]";
 
                 //Creacion del comando de consulta
+
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
+
                 //Obtencion de datos y almacenamiento en las propiedades
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -67,8 +70,6 @@ namespace Proyecto_Ferreteira___1.Clases
                         ObtenerProveedores.Add(NombreProveedor = reader.GetString(1));
                     }
                 }
-
-
 
                 return ObtenerProveedores;
             }
@@ -82,8 +83,58 @@ namespace Proyecto_Ferreteira___1.Clases
                 connection.Close();
             }
         }
+
+        public void ObtenerProductos()
+        {
+            Compra compra = new Compra();
+
+            var connection = GetConnection();
+
+            try
+            {            
+                string query = @"SELECT   Productos.Producto.Nombre_Producto, Compras.Proveedor.Codigo_Proveedor
+                                FROM   Compras.Compra INNER JOIN
+                                       Compras.Detalle_Compra ON Compras.Compra.Codigo_Compra = Compras.Detalle_Compra.Codigo_Compra INNER JOIN
+                                       Productos.Producto ON Compras.Detalle_Compra.Codigo_Producto = Productos.Producto.Codigo_Producto INNER JOIN
+                                       Compras.Proveedor ON Compras.Compra.Codigo_Proveedor = Compras.Proveedor.Codigo_Proveedor AND Compras.Compra.Codigo_Proveedor = Compras.Proveedor.Codigo_Proveedor
+                                WHERE (Compras.Proveedor.Codigo_Proveedor = @Proveedor)";
+
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+
+
+                //Obtencion de datos y almacenamiento en las propiedades
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+
+                using (dataAdapter)
+                {
+                    command.Parameters.AddWithValue("@Proveedor", compra.cmbProveedor.SelectedValue);
+
+                    DataTable Productos = new DataTable();
+
+                    dataAdapter.Fill(Productos);
+                    compra.cmbProveedor.DisplayMemberPath = "Nombre_Producto";
+                    compra.cmbProveedor.SelectedValuePath = "Codigo_Proveedor";
+                    compra.cmbProveedor.ItemsSource = Productos.DefaultView;
+                }
+        
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
+            finally
+            { 
+                connection.Close();               
+            }
+        }
     }
 }
+
+    
+
 
         
     

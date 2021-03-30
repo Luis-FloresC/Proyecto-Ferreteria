@@ -44,7 +44,9 @@ namespace Proyecto_Ferreteira___1
             cmbProveedor.ItemsSource = Proveedores;
         }
 
-
-
+        private void cmbProveedor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            compra.ObtenerProductos();
+        }
     }
 }
