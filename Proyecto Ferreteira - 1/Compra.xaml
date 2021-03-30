@@ -64,8 +64,8 @@
 
         <DataGrid Name="dgbInformacion" Margin="10" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="6"/>
         <Button FontSize="18" Content="Realizar Compra" Grid.Column="7" Grid.Row="8" Grid.RowSpan="2" Margin="5" Width="200" Height="60"/>
-        <Button FontSize="18" Content="Agregar al Carrito" Grid.Column="7" Grid.Row="6" Grid.RowSpan="2" Margin="5" Width="200" Height="60"/>
-        <Button FontSize="18" Content="Modificar Compra" Grid.Column="7" Grid.Row="10" Grid.RowSpan="2" Margin="5"  Width="200" Height="60" />
+        <Button FontSize="18" Content="Agregar Pedido" Grid.Column="7" Grid.Row="6" Grid.RowSpan="2" Margin="5" Width="200" Height="60"/>
+        <Button FontSize="18" Content="Eliminar Pedido" Grid.Column="7" Grid.Row="10" Grid.RowSpan="2" Margin="5"  Width="200" Height="60" />
         <ComboBox Name="cmbProveedor" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Background="WhiteSmoke"  SelectionChanged="cmbProveedor_SelectionChanged" />
         <ComboBox Name="cmbProducto" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Background="WhiteSmoke" />
         
