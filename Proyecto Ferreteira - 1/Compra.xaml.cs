@@ -20,11 +20,18 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class Compra : UserControl
     {
+        public  Clases.Calculos Calculo { get; set; }
+
         Clases.Compras compra = new Clases.Compras();
+
         public Compra()
         {
             InitializeComponent();
             MostrarProveedores();
+
+            Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0" };
+            this.DataContext = Calculo;
+
         }
 
         
@@ -66,6 +73,23 @@ namespace Proyecto_Ferreteira___1
                 }
                 c++;
             }
+        }
+
+        private void MostrarSubtotal()
+        {
+            txtCantidad.Text = 0.ToString();
+            txtPrecio.Text = 0.ToString();
+
+            double cantidad = Convert.ToDouble(txtCantidad.Text);
+            double precio = Convert.ToDouble(txtPrecio.Text);
+
+            double subtotal = compra.ObtenerSubtotal(cantidad, precio);
+            txtSubtotal.Text = subtotal.ToString();
+        }
+
+        private void txtPrecio_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            MostrarSubtotal();
         }
     }
 }

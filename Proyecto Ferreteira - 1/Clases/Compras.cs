@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
-    class Compras : Connection
+   class Compras : Connection
     {
 
         //Propiedades
@@ -140,6 +140,15 @@ namespace Proyecto_Ferreteira___1.Clases
                 connection.Close();
             }
         }
+
+        public double ObtenerSubtotal(double cantidad, double precio)
+        {
+            double subtotal;
+            subtotal = cantidad * precio;
+            return subtotal;
+        }
+
+
     }
 }
 

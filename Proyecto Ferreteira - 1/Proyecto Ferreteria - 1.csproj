@@ -99,6 +99,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Clases\CacheUsuario.cs" />
+    <Compile Include="Clases\Calculos.cs" />
     <Compile Include="Clases\Compras.cs" />
     <Compile Include="Clases\Connection.cs" />
     <Compile Include="Clases\UserData.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="MenuPrincipal.xaml.cs">
       <DependentUpon>MenuPrincipal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Operaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
