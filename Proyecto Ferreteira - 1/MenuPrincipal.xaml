@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="MenuPrincipal" Height="650" Width="1050" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
+        Title="MenuPrincipal" Height="650" Width="1250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
     <Grid Background="#242222" MouseDown="Grid_MouseDown">
         <StackPanel VerticalAlignment="Top" Background="#363636">
             <Grid Background="#0061D2" Height="10"/>
@@ -45,6 +45,9 @@
                 <StackPanel Orientation="Horizontal" >
                     <materialDesign:PackIcon Foreground="#0061D2" Kind="Account"  Width="20" Height="20" VerticalAlignment="Stretch" Margin="5"/>
                     <TextBlock x:Name="txtUsuario" Text="Usuario" FontSize="18" Foreground="White" Margin="5"/>
+                    <Button x:Name="BtnEditarPerfil" Background="{x:Null}" Height="auto" Width="auto" BorderBrush="{x:Null}" Margin="5 0" ToolTip="Editar Usuario" Click="BtnEditarPerfil_Click">
+                        <materialDesign:PackIcon Foreground="#0061D2" Kind="Edit" Width="20"  Height="20"/>
+                    </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" >

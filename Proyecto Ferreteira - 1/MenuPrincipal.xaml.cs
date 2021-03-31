@@ -61,7 +61,7 @@ namespace Proyecto_Ferreteira___1
             {
                 case 0:
                     //GridPrincipal.Children.Clear();
-                    //GridPrincipal.Children.Add(new UserControlInicio());
+                    //GridPrincipal.Children.Add(new FormUsuarios());
                     break;
                 case 1:
                     GridPrincipal.Children.Clear();
@@ -127,6 +127,12 @@ namespace Proyecto_Ferreteira___1
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void BtnEditarPerfil_Click(object sender, RoutedEventArgs e)
+        {
+            GridPrincipal.Children.Clear();
+            GridPrincipal.Children.Add(new FormUsuarios());
         }
     }
 }

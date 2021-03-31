@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Proyecto_Ferreteira___1.FormCrearUsuario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
+             xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="auto" Width="auto">
+    <Grid>
+        <StackPanel Width="350" Background="#363636" x:Name="Panel2">
+
+            <TextBlock Text="Nuevo Usuario" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+
+                <materialDesing:PackIcon Kind="User" VerticalAlignment="Center"   Width="25" Height="30" Foreground="White"/>
+                <ComboBox Margin="10 0" x:Name="cmbNombreEmpleado" materialDesing:HintAssist.Hint="Empleado" 
+                             Foreground="White" Width="276" 
+                             BorderBrush="white" 
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                             materialDesing:ColorZoneAssist.Mode="Inverted"/>
+
+
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <materialDesing:PackIcon Kind="Account" VerticalAlignment="Center"  x:Name="iconNombre" Width="25" Height="25" Foreground="White"/>
+                <TextBox Margin="10 0" x:Name="txtNombre" materialDesing:HintAssist.Hint="Nombre del Usuario" 
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Foreground="White" Width="276" 
+                             BorderBrush="white" 
+                             CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+            </StackPanel>
+
+
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <materialDesing:PackIcon Kind="Password" VerticalAlignment="Center"  Width="25" Height="25" Foreground="White"/>
+                <PasswordBox Margin="10 0" x:Name="txtPassWord" materialDesing:HintAssist.Hint="Contraseña" 
+                             Foreground="White" Width="280" 
+                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <materialDesing:PackIcon Kind="Password" VerticalAlignment="Center" Width="25" Height="25" Foreground="White"/>
+                <PasswordBox Margin="10 0" x:Name="txtConfirmPassWord" materialDesing:HintAssist.Hint="Confirmar Contraseña" 
+                             Foreground="White" Width="280" 
+                               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+
+
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                            BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
+                            Foreground="White" 
+                            ToolTip="Iniciar sesion"
+                            x:Name="btnAceptar"
+                            Content="Aceptar" />
+
+
+
+                <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                            BorderThickness="2" BorderBrush="#242222" 
+                            Background="#242222"
+                            Foreground="White" 
+                            ToolTip="Cancelar Operacion"
+                            x:Name="btnCancelar"
+                            Margin="10 5"
+                            Content="Cancelar" />
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

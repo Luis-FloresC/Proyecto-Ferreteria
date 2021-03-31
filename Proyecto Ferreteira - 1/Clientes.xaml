@@ -9,7 +9,7 @@
              Width="auto" Height="auto" Background="#ffffff">
     <Grid>
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-            <Button Content="Hola" />
+            <Button Content="Hola" Click="Button_Click" />
         </materialDesign:TransitioningContent>
     </Grid>
 </UserControl>

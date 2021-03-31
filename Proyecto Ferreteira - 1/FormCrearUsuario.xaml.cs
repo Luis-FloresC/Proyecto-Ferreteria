@@ -16,20 +16,25 @@ using System.Windows.Shapes;
 namespace Proyecto_Ferreteira___1
 {
     /// <summary>
-    /// Lógica de interacción para Clientes.xaml
+    /// Lógica de interacción para FormCrearUsuario.xaml
     /// </summary>
-    public partial class Clientes : UserControl
+    public partial class FormCrearUsuario : UserControl
     {
-
-        public Clientes()
+        public FormCrearUsuario()
         {
             InitializeComponent();
-           
+            MostrarEmpleados();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        Clases.Usuarios usuarios = new Clases.Usuarios();
+        private List<string> ListaDeEmpleados;
+
+        private void MostrarEmpleados()
         {
+            ListaDeEmpleados = usuarios.ListaEmpleados();
 
+            cmbNombreEmpleado.ItemsSource = ListaDeEmpleados;
         }
+
     }
 }

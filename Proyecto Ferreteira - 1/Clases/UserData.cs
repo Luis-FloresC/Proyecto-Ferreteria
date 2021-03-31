@@ -59,6 +59,48 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+        private string NombreEmpleado { get; set; }
+
+        public List<string> MostrarEmpleados()
+        {
+            // Inicializar una lista vacía de habitaciones
+            List<string> empleados = new List<string>();
+            var connection = GetConnection();
+
+            try
+            {
+                // Query de selección
+                string query = @"select Codigo_Empleado,Nombre_Empleado from [Recursos_humanos].[Empleado]";
+
+                // Establecer la conexión
+
+                connection.Open();
+
+                // Crear el comando SQL
+                SqlCommand sqlCommand = new SqlCommand(query, connection);
+
+                // Obtener los datos de las habitaciones
+                using (SqlDataReader rdr = sqlCommand.ExecuteReader())
+                {
+                    while (rdr.Read())
+                        empleados.Add(NombreEmpleado = rdr["Nombre_Empleado"].ToString());
+                }
+
+                return empleados;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                // Cerrar la conexión
+
+                connection.Close();
+            }
+        }
+
+
 
     }
 }
