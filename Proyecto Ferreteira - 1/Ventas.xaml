@@ -5,8 +5,52 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
              mc:Ignorable="d" 
-             d:DesignHeight="595" d:DesignWidth="800" >
+             d:DesignHeight="595" d:DesignWidth="800" Background="#242222" >
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Content="VENTAS" Grid.ColumnSpan="11" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
+
+        <Label Content="Cliente" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="0 5" FontSize="18" Foreground="White"/>
+        <Label Content="Nombre:" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="0 3" FontSize="18" Foreground="White"/>
+        <TextBox Name="txtNombreCliente" Grid.Row="3" Grid.Column="2" FontSize="18" Margin="0 8"  Background="White"/>
+        <Label Content="ID:" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
+        <TextBox Name="txtIdCliente" Grid.Row="3" Grid.Column="4" FontSize="18" Margin="0 8"  Background="White"/>
+
+        <Label Content="Producto" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="0 5" FontSize="18" Foreground="White"/>
+        <Label Content="Nombre:" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="0 3" FontSize="18" Foreground="White"/>
+        <TextBox Name="txtNombreProducto" Grid.Row="5" Grid.Column="2" FontSize="18" Margin="0 8"  Background="White"/>
+        <Label Content="ID:" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
+        <TextBox Name="txtIdProducto" Grid.Row="5" Grid.Column="4" FontSize="18" Margin="0 8"  Background="White"/>
+
+
     </Grid>
 </UserControl>
