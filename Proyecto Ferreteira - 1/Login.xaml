@@ -27,7 +27,7 @@
             </StackPanel>
             <StackPanel Width="350">
                 <StackPanel Margin="20 40">
-                    <TextBlock Text="Iniciar Sesion" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
+                    <TextBlock Text="Iniciar Sesión" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                         <TextBox Margin="10 0" x:Name="txtuser" materialDesing:HintAssist.Hint="Usuario" Foreground="White" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"/>
