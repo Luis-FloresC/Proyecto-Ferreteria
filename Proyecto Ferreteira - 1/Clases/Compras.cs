@@ -92,7 +92,7 @@ namespace Proyecto_Ferreteira___1.Clases
         /// </summary>
         /// <param name="codigo">Es el id del proveedor que sirve como parametro para mostrar los productos</param>
         /// <returns></returns>
-        public List<String> ObtenerProductos(int codigo)
+        public List<String> ObtenerProductos()
         {
 
             List<String> productos = new List<String>();
@@ -102,20 +102,14 @@ namespace Proyecto_Ferreteira___1.Clases
             try
             {
                 //Consulta SQL
-                string query = @"SELECT   Productos.Producto.Nombre_Producto, Compras.Proveedor.Codigo_Proveedor
-                                FROM   Compras.Compra INNER JOIN
-                                       Compras.Detalle_Compra ON Compras.Compra.Codigo_Compra = Compras.Detalle_Compra.Codigo_Compra INNER JOIN
-                                       Productos.Producto ON Compras.Detalle_Compra.Codigo_Producto = Productos.Producto.Codigo_Producto INNER JOIN
-                                       Compras.Proveedor ON Compras.Compra.Codigo_Proveedor = Compras.Proveedor.Codigo_Proveedor AND Compras.Compra.Codigo_Proveedor = Compras.Proveedor.Codigo_Proveedor
-                                WHERE (Compras.Proveedor.Codigo_Proveedor = @Proveedor)";
+                string query = @"SELECT   Productos.Producto.Nombre_Producto
+                                FROM   Productos.Producto";
+                                     
 
                 //Creacion del comando de consulta
 
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-
-                //Dandole el valor al parametro
-                command.Parameters.AddWithValue("@Proveedor", codigo);
 
                 //Obtencion de datos y almacenamiento en las propiedades
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -123,7 +117,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
                     while (reader.Read())
                     {
-                        productos.Add(NombreProveedor = reader.GetString(0));
+                        productos.Add(NombreProducto = reader.GetString(0));
 
                     }
                 }
@@ -140,15 +134,6 @@ namespace Proyecto_Ferreteira___1.Clases
                 connection.Close();
             }
         }
-
-        public double ObtenerSubtotal(double cantidad, double precio)
-        {
-            double subtotal;
-            subtotal = cantidad * precio;
-            return subtotal;
-        }
-
-
     }
 }
 

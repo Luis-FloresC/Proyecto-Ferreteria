@@ -28,6 +28,7 @@ namespace Proyecto_Ferreteira___1
         {
             InitializeComponent();
             MostrarProveedores();
+            MostrarProductos();
 
             Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0" };
             this.DataContext = Calculo;
@@ -58,38 +59,23 @@ namespace Proyecto_Ferreteira___1
 
         private void MostrarProductos()
         {
+            Productos = compra.ObtenerProductos();
             cmbProducto.ItemsSource = Productos;
         }
 
-        private void cmbProveedor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Agregar_Click_1(object sender, RoutedEventArgs e)
         {
-            int c = 0;
-            foreach (int i in ObtenerIdentificador)
-            {
-                if (cmbProveedor.SelectedIndex == c)
-                {
-                    Productos = compra.ObtenerProductos(i);
-                    MostrarProductos();
-                }
-                c++;
-            }
+            
         }
 
-        private void MostrarSubtotal()
+        private void Realizar_Click_2(object sender, RoutedEventArgs e)
         {
-            txtCantidad.Text = 0.ToString();
-            txtPrecio.Text = 0.ToString();
-
-            double cantidad = Convert.ToDouble(txtCantidad.Text);
-            double precio = Convert.ToDouble(txtPrecio.Text);
-
-            double subtotal = compra.ObtenerSubtotal(cantidad, precio);
-            txtSubtotal.Text = subtotal.ToString();
+           
         }
 
-        private void txtPrecio_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void Eliminar_Click_3(object sender, RoutedEventArgs e)
         {
-            MostrarSubtotal();
+
         }
     }
 }
