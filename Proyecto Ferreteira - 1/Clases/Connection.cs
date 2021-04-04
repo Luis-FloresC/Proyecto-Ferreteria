@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
-   public class Connection
+    public class Connection
     {
 
         private readonly String Connection_st;

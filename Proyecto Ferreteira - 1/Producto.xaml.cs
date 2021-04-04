@@ -28,7 +28,9 @@ namespace Proyecto_Ferreteira___1
             Categoria = producto.Categoria();
             cbNombreCategoria.ItemsSource = Categoria;
         }
-
+        /// <summary>
+        /// Llena el Datagrid con los datos obtenidos de SQL server
+        /// </summary>
         private void MostrarDatos()
         {
             var connection = conexion.GetConnection();
