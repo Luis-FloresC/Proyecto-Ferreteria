@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -21,9 +13,12 @@ namespace Proyecto_Ferreteira___1
     public partial class Producto : UserControl
     {
         Clases.Producto producto = new Clases.Producto();
+        Clases.Connection conexion = new Clases.Connection();
         public Producto()
         {
             InitializeComponent();
+            MostrarCategorias();
+            MostrarDatos();
         }
 
         //Creacion de la lista privada
@@ -32,6 +27,41 @@ namespace Proyecto_Ferreteira___1
         {
             Categoria = producto.Categoria();
             cbNombreCategoria.ItemsSource = Categoria;
+        }
+
+        private void MostrarDatos()
+        {
+            var connection = conexion.GetConnection();
+            try
+            {
+                string query = @"Select Productos.Producto.Codigo_Producto [Código], Productos.Producto.Nombre_Producto [Nombre del Producto],
+                                Productos.Producto.Precio_Estandar [Precio], Productos.Producto.Existencia [Cantidad del Producto],
+                                Productos.Categoria.Nombre_Categoria [Nombre de la Categoria] 
+                                From Productos.Categoria INNER JOIN Productos.Producto 
+                                ON Productos.Categoria.Codigo_Categoria = Productos.Producto.Codigo_Categoria"; //Consulta SQL
+
+                //Abrir la conexión
+                connection.Open();
+                //Creación del comando SQL
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
+                DataTable informacionProductos = new DataTable();
+
+                sqlDataAdapter.Fill(informacionProductos);
+                dgvInventario.ItemsSource = informacionProductos.DefaultView;
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

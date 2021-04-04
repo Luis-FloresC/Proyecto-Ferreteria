@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
-    class Connection
+   public class Connection
     {
 
         private readonly String Connection_st;
@@ -20,7 +20,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
         }
 
-        protected SqlConnection GetConnection()
+        public SqlConnection GetConnection()
         {
             return new SqlConnection(Connection_st);
         }

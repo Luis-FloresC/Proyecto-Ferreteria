@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 //Namespace Requerido
-using System.Data;
 using System.Data.SqlClient;
 
 namespace Proyecto_Ferreteira___1.Clases
@@ -33,7 +29,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
             try
             {
-                string query = @"Select * Productos.Categoria.Codigo_Categoria, Productos.Producto.Nombre_Producto 
+                string query = @"Select Productos.Categoria.Codigo_Categoria, Productos.Producto.Nombre_Producto 
                                 From Productos.Categoria INNER JOIN Productos.Producto 
                                 ON Productos.Categoria.Codigo_Categoria = Productos.Producto.Codigo_Categoria"; //Consulta SQL
 
@@ -42,9 +38,9 @@ namespace Proyecto_Ferreteira___1.Clases
                 SqlCommand command = new SqlCommand(query, connection);
 
                 //Obtencion de datos 
-                using(SqlDataReader reader = command.ExecuteReader())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         Categoria.Add(NombreDeLaCategoria = reader.GetString(1));
                     }
