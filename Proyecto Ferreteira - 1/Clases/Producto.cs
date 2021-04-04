@@ -18,7 +18,11 @@ namespace Proyecto_Ferreteira___1.Clases
         //Constructor
         public Producto() { }
 
+        /// <summary>
+        /// Lista encargada de guardar el codigo de producto.
+        /// </summary>
         public List<int> IdCategoria = new List<int>();
+
         /// <summary>
         /// Obtiene la lista de categorias de la base de datos
         /// </summary>
@@ -60,6 +64,13 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+        /// <summary>
+        /// Inserta productos a la base de datos.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="existencia"></param>
+        /// <param name="precio"></param>
+        /// <param name="codigoCategoria"></param>
         public void InsertarProducto(string nombre, int existencia, int precio, int codigoCategoria)
         {
             var connection = GetConnection();
@@ -85,8 +96,6 @@ namespace Proyecto_Ferreteira___1.Clases
             finally
             {
                 connection.Close();
-                Productos nombreProducto = new Productos();
-                nombreProducto.MostrarDatos();
             }
 
         }

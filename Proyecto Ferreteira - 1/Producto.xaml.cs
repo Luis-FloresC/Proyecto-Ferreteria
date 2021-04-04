@@ -67,7 +67,23 @@ namespace Proyecto_Ferreteira___1
                 connection.Close();
             }
         }
+        /// <summary>
+        /// Limpia los textbox y el combobox.
+        /// </summary>
+        private void LimpiarPantalla()
+        {
+            txtCantidadProducto.Text = String.Empty;
+            txtNombreProducto.Text = String.Empty;
+            txtPrecioProducto.Text = String.Empty;
+            cbNombreCategoria.SelectedValue = null;
+            txtNombreProducto.Focus();
+        }
 
+        /// <summary>
+        /// Inserta los datos solicitados en el datagridview.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsertar_Click(object sender, RoutedEventArgs e)
         {
             int c = 0;
@@ -82,6 +98,9 @@ namespace Proyecto_Ferreteira___1
                 }
                 c++;
             }
+            MessageBox.Show("Se ha insertado correctamente el producto");
+            MostrarDatos();
+            LimpiarPantalla();
         }
     }
 }
