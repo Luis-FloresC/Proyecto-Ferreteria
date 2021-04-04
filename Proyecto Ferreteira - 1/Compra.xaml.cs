@@ -35,16 +35,6 @@ namespace Proyecto_Ferreteira___1
 
         }
 
-        
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           /*
-            compra.MostrarProveedores();
-            cmbProveedor.Items
-            txtIdProveedor.Text = compra.IdProveedor.ToString();
-           */
-        }
-
         private List<string> Proveedores;
         private List<int> ObtenerIdentificador;
         private List<string> Productos;
@@ -53,7 +43,6 @@ namespace Proyecto_Ferreteira___1
         private void MostrarProveedores()
         {
             Proveedores = compra.Proveedores();
-            ObtenerIdentificador = compra.Identificador;
             cmbProveedor.ItemsSource = Proveedores;
         }
 
