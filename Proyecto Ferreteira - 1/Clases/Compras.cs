@@ -134,6 +134,12 @@ namespace Proyecto_Ferreteira___1.Clases
                 connection.Close();
             }
         }
+
+        public void MostrarDatos()
+        {
+
+
+        }
     }
 }
 

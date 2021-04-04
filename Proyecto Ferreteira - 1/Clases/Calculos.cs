@@ -12,6 +12,10 @@ namespace Proyecto_Ferreteira___1.Clases
         private string precio;
         private string cantidad;
         private string subtotal;
+        private string descuento;
+        private string isv;
+        private string total;
+
 
         public Calculos()
         { }
@@ -28,6 +32,9 @@ namespace Proyecto_Ferreteira___1.Clases
                 // La propiedad cambia, avisar a la interfaz
                 OnPropertyChanged("Precio");
                 OnPropertyChanged("Subtotal");
+                OnPropertyChanged("Descuento");
+                OnPropertyChanged("ISV");
+                OnPropertyChanged("Total");
             }
         }
 
@@ -42,6 +49,10 @@ namespace Proyecto_Ferreteira___1.Clases
                 // La propiedad cambia, avisar a la interfaz
                 OnPropertyChanged("Cantidad");
                 OnPropertyChanged("Subtotal");
+                OnPropertyChanged("Descuento");
+                OnPropertyChanged("ISV");
+                OnPropertyChanged("Total");
+
             }
         }
 
@@ -59,7 +70,64 @@ namespace Proyecto_Ferreteira___1.Clases
 
                 // La propiedad cambia, avisar a la interfaz
                 OnPropertyChanged("Subtotal");
+
+
             }
+        }
+
+        public string Descuento
+        {
+            get
+            {
+                Double respuesta = (Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10 ;
+                return respuesta.ToString();
+            }
+            set
+            {
+                Double respuesta = (Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10;
+                descuento = respuesta.ToString();
+                // La propiedad cambia, avisar a la interfaz
+                OnPropertyChanged("Descuento");
+            }
+
+        }
+
+        public string ISV
+        {
+            get
+            {
+                Double respuesta = ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad))*0.10)) * 0.12;
+                return respuesta.ToString();
+            }
+            set
+            {
+                Double respuesta = ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10)) * 0.12;
+                isv = respuesta.ToString();
+                // La propiedad cambia, avisar a la interfaz
+                OnPropertyChanged("ISV");
+            }
+
+        }
+
+        public string Total
+        {
+            get
+            {
+                Double respuesta = (Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10) + 
+                    ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10)) * 0.12;
+
+                return respuesta.ToString();
+            }
+            set
+            {
+                Double respuesta = (Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10) +
+                    ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10)) * 0.12;
+
+                total = respuesta.ToString();
+                // La propiedad cambia, avisar a la interfaz
+                OnPropertyChanged("Total");
+            }
+
         }
 
 

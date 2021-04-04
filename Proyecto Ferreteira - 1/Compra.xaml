@@ -80,11 +80,11 @@
             <Label Foreground="WhiteSmoke" Content="Subtotal:"  Grid.Column="1"  Grid.Row="12" FontSize="18" />
             <TextBox Name="txtSubtotal" FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150" Text="{Binding Path=Subtotal, Mode=TwoWay}"/>
             <Label Foreground="WhiteSmoke" Content="Descuento:"  Grid.Column="3"  Grid.Row="12" FontSize="18" />
-            <TextBox Name="txtDescuento" FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
+            <TextBox Name="txtDescuento" FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150" Text="{Binding Path=Descuento,Mode=TwoWay}"/>
             <Label Foreground="WhiteSmoke" Content="ISV:"  Grid.Column="5"  Grid.Row="12" FontSize="18" />
-            <TextBox Name="txtISV" FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
+            <TextBox Name="txtISV" FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150" Text="{Binding Path=ISV, Mode=TwoWay}"/>
             <Label Foreground="WhiteSmoke" Content="Total:"  Grid.Column="7"  Grid.Row="12" FontSize="18" />
-            <TextBox Name="txtTotal" FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150"/>
+            <TextBox Name="txtTotal" FontSize="15" Margin="10 0 10 0" Background="WhiteSmoke" Width="150" Text="{Binding Path=Total,Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
   
