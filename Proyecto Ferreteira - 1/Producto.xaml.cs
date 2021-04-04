@@ -10,11 +10,11 @@ namespace Proyecto_Ferreteira___1
     /// <summary>
     /// Lógica de interacción para Producto.xaml
     /// </summary>
-    public partial class Producto : UserControl
+    public partial class Productos : UserControl
     {
         Clases.Producto producto = new Clases.Producto();
         Clases.Connection conexion = new Clases.Connection();
-        public Producto()
+        public Productos()
         {
             InitializeComponent();
             MostrarCategorias();
@@ -23,15 +23,17 @@ namespace Proyecto_Ferreteira___1
 
         //Creacion de la lista privada
         private List<string> Categoria;
+        private List<int> IdCategoria;
         private void MostrarCategorias()
         {
             Categoria = producto.Categoria();
+            IdCategoria = producto.IdCategoria;
             cbNombreCategoria.ItemsSource = Categoria;
         }
         /// <summary>
         /// Llena el Datagrid con los datos obtenidos de SQL server
         /// </summary>
-        private void MostrarDatos()
+        public void MostrarDatos()
         {
             var connection = conexion.GetConnection();
             try
@@ -63,6 +65,22 @@ namespace Proyecto_Ferreteira___1
             finally
             {
                 connection.Close();
+            }
+        }
+
+        private void btnInsertar_Click(object sender, RoutedEventArgs e)
+        {
+            int c = 0;
+            foreach (int i in IdCategoria)
+            {
+                if (cbNombreCategoria.SelectedIndex == c)
+                {
+                    string nombre = txtNombreProducto.Text;
+                    int existencia = Convert.ToInt32(txtCantidadProducto.Text);
+                    int precio = Convert.ToInt32(txtPrecioProducto.Text);
+                    producto.InsertarProducto(nombre, existencia, precio, i);
+                }
+                c++;
             }
         }
     }
