@@ -102,5 +102,10 @@ namespace Proyecto_Ferreteira___1
             MostrarDatos();
             LimpiarPantalla();
         }
+
+        private void btnModificar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

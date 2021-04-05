@@ -38,10 +38,10 @@
         <TextBox Name="txtNombreProducto" Background="White" Grid.Row="2" Grid.Column="1" FontSize="17" Margin="10" FontFamily="Georgia"/>
         <TextBox Name="txtCantidadProducto" Background="White" Grid.Row="3" Grid.Column="1" FontSize="17" Margin="10" FontFamily="Georgia"/>
         <TextBox Name="txtPrecioProducto" Background="White" Grid.Row="4" Grid.Column="1" FontSize="17" Margin="10" FontFamily="Georgia"/>
-        <DataGrid Name ="dgvInventario" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="20" FontSize="17" FontFamily="Georgia" IsEnabled="False"/>
+        <DataGrid Name ="dgvInventario" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="20" FontSize="17" FontFamily="Georgia" IsReadOnly="True"/>
 
         <Button Name="btnInsertar" Content="Insertar" Grid.Column="1" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Georgia" Background="#2196F3" Foreground="White" Click="btnInsertar_Click"/>
-        <Button Name="btnModificar" Content="Modificar" Grid.Column="2" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Georgia" Background="#2196F3" Foreground="White"/>
+        <Button Name="btnModificar" Content="Modificar" Grid.Column="2" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Georgia" Background="#2196F3" Foreground="White" Click="btnModificar_Click"/>
         <Button Name="btnEliminar" Content="Eliminar" Grid.Column="3" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Georgia" Background="#2196F3" Foreground="White"/>
 
     </Grid>

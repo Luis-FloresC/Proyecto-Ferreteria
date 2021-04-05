@@ -34,9 +34,8 @@ namespace Proyecto_Ferreteira___1.Clases
 
             try
             {
-                string query = @"Select Productos.Categoria.Codigo_Categoria, Productos.Categoria.Nombre_Categoria [Nombre de la Categoria] 
-                                From Productos.Categoria INNER JOIN Productos.Producto 
-                                ON Productos.Categoria.Codigo_Categoria = Productos.Producto.Codigo_Categoria"; //Consulta SQL
+                string query = @"SELECT Codigo_Categoria, Nombre_Categoria
+                                FROM Productos.Categoria"; //Consulta SQL
 
                 //Creacion de la consulta
                 connection.Open();
@@ -99,6 +98,11 @@ namespace Proyecto_Ferreteira___1.Clases
             }
 
         }
+
+      /*  public void ModificarProducto()
+        {
+
+        }*/
 
     }
 }
