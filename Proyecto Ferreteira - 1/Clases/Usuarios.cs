@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Data;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
@@ -11,6 +12,68 @@ namespace Proyecto_Ferreteira___1.Clases
     {
         public Usuarios() { }
 
+
+
+       
+      
+
+        public string EditarDatos(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo)
+        {
+            string DatosActualizados = "";
+            try
+            {
+                
+                DatosActualizados = UserData.EditarDatosPerfil(nombreEmpleado, apellidoEmpleado, nombreUsuario, contraseña, correo);
+                VerficarInicioSesion(nombreUsuario, contraseña);
+                return DatosActualizados;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
+        public string GuardarDatos(string nombreUsuario, string contraseña, int codigo)
+        {
+            string DatosGuardados = "";
+            try
+            {
+
+                DatosGuardados = UserData.RegistrarUsuario(nombreUsuario, contraseña, codigo);
+                return DatosGuardados;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
+        public bool ObtenerEstadoUsuario(int codigo)
+        {
+            try
+            {
+                return UserData.EstadoEmpleado(codigo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        public string EliminarUsuario(int codigo ,bool estado)
+        {
+            try
+            {
+                return UserData.DesactivarUsuario(estado, codigo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         /// <summary>
         /// Instancia para llmar ala Clase de UserData
         /// </summary>
@@ -26,7 +89,7 @@ namespace Proyecto_Ferreteira___1.Clases
             return UserData.Login(user, pass);
         }
 
-        public List<string> ListaEmpleados()
+        public List<UserData> ListaEmpleados()
         {
             return UserData.MostrarEmpleados();
         }
@@ -129,6 +192,6 @@ namespace Proyecto_Ferreteira___1.Clases
         }
 
 
-
+      
     }
 }

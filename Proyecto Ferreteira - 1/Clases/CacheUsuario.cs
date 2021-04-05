@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
-    class CacheUsuario
+  public  class CacheUsuario
     {
 
         public static int IdUsuario { get; set; }

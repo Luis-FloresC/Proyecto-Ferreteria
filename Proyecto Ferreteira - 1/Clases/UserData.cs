@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
-    class UserData:Connection
+    public class UserData : Connection
     {
         /// <summary>
         /// Constractor para crear una instancia
@@ -47,7 +44,7 @@ namespace Proyecto_Ferreteira___1.Clases
                             CacheUsuario.Cargo = reader.GetString(5);
                             CacheUsuario.Email = reader.GetString(6);
                             CacheUsuario.Estado = reader.GetBoolean(7);
-                           
+
                         }
                         return true;
                     }
@@ -59,31 +56,154 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
-        private string NombreEmpleado { get; set; }
 
-        public List<string> MostrarEmpleados()
+        public bool EstadoEmpleado(int codigo)
+        {
+            bool EstadoEmpleado = false;
+            using (var conexion = GetConnection())
+            {
+                conexion.Open();
+                using (var comando = new SqlCommand())
+                {
+                    comando.Connection = conexion;
+                    comando.CommandText = "select Estado from [Recursos_humanos].[Empleado] where Codigo_Empleado = @codigo";
+                    comando.Parameters.AddWithValue("@codigo", codigo);
+
+                    comando.CommandType = CommandType.Text;
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        EstadoEmpleado = reader.GetBoolean(0);
+                 
+                    }
+
+                    return EstadoEmpleado;
+
+                }
+            }
+
+           
+
+
+        }
+
+
+        public DataTable DataTableEmpleado()
+        {
+            DataTable dataTable = new DataTable();
+            using (var conexion = GetConnection())
+            {
+                string query = "select Codigo_Empleado,Nombre_Empleado from [Recursos_humanos].[Empleado]";
+
+                SqlCommand cmd = new SqlCommand(query, conexion);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dataTable);
+                return dataTable;
+            }
+        }
+
+
+        public string RegistrarUsuario(string nombreUsuario, string contraseña, int codigoEmpleado)
+        {
+            using (var CN = GetConnection())
+            {
+                CN.Open();
+                using (var CMD = new SqlCommand())
+                {
+                    CMD.Connection = CN;
+                    CMD.CommandText = "RegistrarUsuario";
+                    CMD.Parameters.AddWithValue("@codigo", codigoEmpleado);
+                    CMD.Parameters.AddWithValue("@usuario", nombreUsuario);
+                    CMD.Parameters.AddWithValue("@contraseña", contraseña);
+                    CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                    CMD.CommandType = CommandType.StoredProcedure;
+                    CMD.ExecuteNonQuery();
+                    return CMD.Parameters["@mensaje"].Value.ToString();
+                }
+            }
+        }
+
+
+        public string DesactivarUsuario(bool estado,int codigo)
+        {
+            using (var CN = GetConnection())
+            {
+                CN.Open();
+                using (var CMD = new SqlCommand())
+                {
+                    CMD.Connection = CN;
+                    CMD.CommandText = @"UPDATE [Recursos_humanos].[Empleado]
+                                      SET[Estado] = @Estado
+                                      WHERE Codigo_Empleado = @codigo";
+                    CMD.Parameters.AddWithValue("@codigo", codigo);
+                    CMD.Parameters.AddWithValue("@Estado", estado);
+                  
+                
+                    CMD.CommandType = CommandType.Text;
+                    CMD.ExecuteNonQuery();
+                    return "la Cuenta de Usuario quedo inactiva";
+                }
+            }
+        }
+
+
+        public string EditarDatosPerfil(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo)
+        {
+            using (var CN = GetConnection())
+            {
+                CN.Open();
+                using (var CMD = new SqlCommand())
+                {
+                    CMD.Connection = CN;
+                    CMD.CommandText = "EditarPerfilUsuario";
+                    CMD.Parameters.AddWithValue("@id_Empleado", CacheUsuario.IdUsuario);
+                    CMD.Parameters.AddWithValue("@Nombre_Empleado", nombreEmpleado);
+                    CMD.Parameters.AddWithValue("@Apellido_empleado", apellidoEmpleado);
+                    CMD.Parameters.AddWithValue("@Correo", correo);
+                    CMD.Parameters.AddWithValue("@Usuario", nombreUsuario);
+                    CMD.Parameters.AddWithValue("@Contraseña", contraseña);
+                    CMD.Parameters.AddWithValue("@Estado", CacheUsuario.Estado);
+                    CMD.Parameters.Add("@Mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                    CMD.CommandType = CommandType.StoredProcedure;
+                    CMD.ExecuteNonQuery();
+                    return CMD.Parameters["@Mensaje"].Value.ToString();
+                }
+            }
+        }
+
+        public int Id { get; set; }
+
+        public string NombreEmpleado { get; set; }
+
+
+
+        public List<UserData> MostrarEmpleados()
         {
             // Inicializar una lista vacía de habitaciones
-            List<string> empleados = new List<string>();
-            var connection = GetConnection();
-
+            List<UserData> empleados = new List<UserData>();
+            var conexion = GetConnection();
             try
             {
                 // Query de selección
-                string query = @"select Codigo_Empleado,Nombre_Empleado from [Recursos_humanos].[Empleado]";
+                string query = @"select
+                                [Codigo_Empleado] [id],
+                                CONCAT([Nombre_Empleado],' ',[Apellido_empleado])[Nombre]
+                                from [Recursos_humanos].[Empleado]";
+
 
                 // Establecer la conexión
-
-                connection.Open();
+                conexion.Open();
 
                 // Crear el comando SQL
-                SqlCommand sqlCommand = new SqlCommand(query, connection);
+                SqlCommand sqlCommand = new SqlCommand(query, conexion);
 
                 // Obtener los datos de las habitaciones
                 using (SqlDataReader rdr = sqlCommand.ExecuteReader())
                 {
                     while (rdr.Read())
-                        empleados.Add(NombreEmpleado = rdr["Nombre_Empleado"].ToString());
+                        empleados.Add(new UserData { Id = rdr.GetInt32(0), NombreEmpleado = rdr.GetString(1) });
                 }
 
                 return empleados;
@@ -95,11 +215,9 @@ namespace Proyecto_Ferreteira___1.Clases
             finally
             {
                 // Cerrar la conexión
-
-                connection.Close();
+                conexion.Close();
             }
         }
-
 
 
     }
