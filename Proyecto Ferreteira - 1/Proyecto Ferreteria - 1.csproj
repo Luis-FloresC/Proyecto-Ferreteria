@@ -86,6 +86,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FormEditarPerfil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormEliminarUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +116,9 @@
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="FormCrearUsuario.xaml.cs">
       <DependentUpon>FormCrearUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditarPerfil.xaml.cs">
+      <DependentUpon>FormEditarPerfil.xaml</DependentUpon>
     </Compile>
     <Compile Include="FormEliminarUsuario.xaml.cs">
       <DependentUpon>FormEliminarUsuario.xaml</DependentUpon>

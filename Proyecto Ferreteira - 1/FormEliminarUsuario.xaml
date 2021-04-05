@@ -19,7 +19,7 @@
                              Foreground="White" Width="276" 
                              BorderBrush="white" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                             materialDesing:ColorZoneAssist.Mode="Inverted"/>
+                             materialDesing:ColorZoneAssist.Mode="Inverted" SelectionChanged="cmbNombreEmpleado_SelectionChanged"/>
 
 
 
@@ -31,8 +31,9 @@
                 <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" 
                           Foreground="White" BorderBrush="White"
                           HorizontalAlignment="Center"
-                          Width="120" IsChecked="True"  
+                          Width="120" IsChecked="False"  
                           Margin="100,0"
+                          x:Name="chEstado"
                           Content="Activo" Checked="CheckBox_Checked" />
 
             </StackPanel>
@@ -48,7 +49,8 @@
                 <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
-                            Foreground="White" 
+                            Foreground="White"
+                            Click="btnAceptar_Click"
                             ToolTip="Iniciar sesion"
                             x:Name="btnAceptar"
                             Content="Aceptar" />

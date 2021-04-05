@@ -20,7 +20,7 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Mi Perfil" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"/>
                     <Button Background="{x:Null}" Height="32" Width="55" Click="linkEditarPerfil_Click" >
-                        <materialDesing:PackIcon Kind="Edit" Width="20" Height="20" Foreground="White"/>
+                        <materialDesing:PackIcon Kind="Edit" Width="20" Height="20" Foreground="White" />
                     </Button>
                 </StackPanel>
 
@@ -28,7 +28,7 @@
                     <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                     <Label Margin="10 0" Content="Usuario:"
                              Foreground="White"  />
-                    <Label Margin="0 0" x:Name="lbUsuario" Content="{Binding Path=NombreUsuario,Mode=OneWay}"
+                    <Label Margin="0 0" x:Name="lbUsuario" Content="{Binding Path=NombreUsuario,Mode=OneWay ,UpdateSourceTrigger=PropertyChanged}"
                              Foreground="White"  />
 
 
@@ -48,7 +48,7 @@
                     <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                     <Label Margin="10 0" Content="Apellido:"
                              Foreground="White"  />
-                    <Label Margin="0 0" x:Name="lbApellido" Content="{Binding Path=Apellido,Mode=OneWay}"
+                    <Label Margin="0 0" x:Name="lbApellido" Content="{Binding Path=Apellido,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                              Foreground="White"  />
 
 

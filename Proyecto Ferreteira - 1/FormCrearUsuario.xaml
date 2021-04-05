@@ -27,9 +27,10 @@
 
             <StackPanel Orientation="Horizontal" Margin="10">
                 <materialDesing:PackIcon Kind="Account" VerticalAlignment="Center"  x:Name="iconNombre" Width="25" Height="25" Foreground="White"/>
-                <TextBox Margin="10 0" x:Name="txtNombre" materialDesing:HintAssist.Hint="Nombre del Usuario" 
+                <TextBox Margin="10 0" x:Name="txtNombreUsuario" materialDesing:HintAssist.Hint="Nombre del Usuario" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Foreground="White" Width="276" 
+                             
                              BorderBrush="white" 
                              CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -65,6 +66,7 @@
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
+                            Click="btnAceptar_Click"
                             ToolTip="Iniciar sesion"
                             x:Name="btnAceptar"
                             Content="Aceptar" />

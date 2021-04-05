@@ -24,6 +24,7 @@ namespace Proyecto_Ferreteira___1
         {
             InitializeComponent();
             LoadEditarPerfil();
+            Panel2.Visibility = Visibility.Hidden;
         }
 
         //private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,7 +33,7 @@ namespace Proyecto_Ferreteira___1
         //}
 
         public Clases.Usuarios usuarios { get; set; }
-        private void LoadEditarPerfil()
+        public void LoadEditarPerfil()
         {
             usuarios = new Clases.Usuarios
             {
@@ -89,6 +90,8 @@ namespace Proyecto_Ferreteira___1
         private void linkEditarPerfil_Click(object sender, RoutedEventArgs e)
         {
             Panel2.Visibility = Visibility.Visible;
+            Panel2.Children.Clear();
+            Panel2.Children.Add(new FormEditarPerfil());
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)

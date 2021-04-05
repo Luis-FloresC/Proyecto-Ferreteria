@@ -30,24 +30,62 @@ namespace Proyecto_Ferreteira___1
 
 
         Clases.Usuarios usuarios = new Clases.Usuarios();
-        private List<string> ListaDeEmpleados;
+        List<Clases.UserData> ListaDeEmpleados;
+
+        //private void MostrarEmpleados()
+        //{
+        //    ListaDeEmpleados = usuarios.ListaEmpleados();
+
+        //    cmbNombreEmpleado.ItemsSource = ListaDeEmpleados;
+        //}
 
         private void MostrarEmpleados()
         {
             ListaDeEmpleados = usuarios.ListaEmpleados();
-
+            cmbNombreEmpleado.DisplayMemberPath = "NombreEmpleado";
+            cmbNombreEmpleado.SelectedValuePath = "Id";
             cmbNombreEmpleado.ItemsSource = ListaDeEmpleados;
         }
 
 
+
         private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void cmbNombreEmpleado_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int codigo = Convert.ToInt32(cmbNombreEmpleado.SelectedValue);
+            chEstado.IsChecked = usuarios.ObtenerEstadoUsuario(codigo);
+        }
+
+        private bool VerificarDatos()
+        {
+            bool datosCorrectos = true;
+            if(cmbNombreEmpleado.SelectedValue == null)
+            {
+                MessageBox.Show("por favor seleccione una opcion...");
+                cmbNombreEmpleado.Focus();
+                datosCorrectos = false;
+            }
+            return datosCorrectos;
+        }
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+
+            if(VerificarDatos())
+            {
+                int codigo = Convert.ToInt32(cmbNombreEmpleado.SelectedValue);
+                var resultado = usuarios.EliminarUsuario(codigo, chEstado.IsChecked.HasValue);
+                MessageBox.Show(resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }
