@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
+
 
 namespace Proyecto_Ferreteira___1.Clases
 {
@@ -143,7 +145,7 @@ namespace Proyecto_Ferreteira___1.Clases
                 
                     CMD.CommandType = CommandType.Text;
                     CMD.ExecuteNonQuery();
-                    return "la Cuenta de Usuario quedo inactiva";
+                    return "La Cuenta de Usuario Esta Inactiva";
                 }
             }
         }
@@ -216,6 +218,8 @@ namespace Proyecto_Ferreteira___1.Clases
             {
                 // Cerrar la conexión
                 conexion.Close();
+                
+
             }
         }
 

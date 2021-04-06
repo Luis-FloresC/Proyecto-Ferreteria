@@ -83,7 +83,8 @@ namespace Proyecto_Ferreteira___1
             if(VerificarDatos())
             {
                 int codigo = Convert.ToInt32(cmbNombreEmpleado.SelectedValue);
-                var resultado = usuarios.EliminarUsuario(codigo, chEstado.IsChecked.HasValue);
+                var resultado = usuarios.EliminarUsuario(codigo, chEstado.IsChecked.Value);
+                
                 MessageBox.Show(resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
