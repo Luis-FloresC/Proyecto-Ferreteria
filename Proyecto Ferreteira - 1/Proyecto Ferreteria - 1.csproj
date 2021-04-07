@@ -94,6 +94,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FormEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +126,9 @@
     </Compile>
     <Compile Include="FormEliminarUsuario.xaml.cs">
       <DependentUpon>FormEliminarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpleados.xaml.cs">
+      <DependentUpon>FormEmpleados.xaml</DependentUpon>
     </Compile>
     <Compile Include="FormUsuarios.xaml.cs">
       <DependentUpon>FormUsuarios.xaml</DependentUpon>
