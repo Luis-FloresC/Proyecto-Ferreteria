@@ -16,7 +16,7 @@
 
             <StackPanel Width="650" Background="#242222">
 
-                <TextBlock Text="Lista de Empleados" Foreground="White" FontSize="20"/>
+                <TextBlock Text="Lista de Empleados" Margin="10 0" Foreground="White" FontSize="20"/>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
 
@@ -36,8 +36,11 @@
 
                     </DataGrid>
 
+                   
                 </StackPanel>
-
+                
+                <TextBlock Text="Total: " Name="txtTotal" Margin="10 0" Foreground="White" FontSize="20"/>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
 
 
@@ -105,7 +108,7 @@
                 <StackPanel Orientation="Horizontal" Margin="10">
 
                     <materialDesing:PackIcon Kind="BirthdayCake" Width="25" Height="25" Foreground="White"/>
-                    <DatePicker x:Name="FutureDatePicker" Width="280" Margin="10 0" 
+                    <DatePicker x:Name="FechaNac" Width="280" Margin="10 0" 
                                 materialDesing:HintAssist.Hint="Fecha de Naciemiento" 
                                 materialDesing:CalendarAssist.IsHeaderVisible="True"
                                 
@@ -121,9 +124,9 @@
 
                 <StackPanel Orientation="Horizontal" Margin="10">
 
-                    <materialDesing:PackIcon Kind="User" VerticalAlignment="Center"   Width="25" Height="30" Foreground="White"/>
+                    <materialDesing:PackIcon Kind="User" VerticalAlignment="Center"   Width="25" Height="30" Foreground="White" />
                     <ComboBox Margin="10 0" x:Name="cmbCargo" materialDesing:HintAssist.Hint="Cargo del Empleado" 
-                             Foreground="White" Width="276" 
+                             Foreground="White" Width="280" 
                              BorderBrush="white" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                              materialDesing:ColorZoneAssist.Mode="Inverted"/>
@@ -132,15 +135,27 @@
 
                 </StackPanel>
 
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <materialDesing:PackIcon Kind="AddressMarker" Width="25" Height="25" Foreground="White"/>
+                    <TextBox Margin="10 0" x:Name="txtDireccion" materialDesing:HintAssist.Hint="Direccion" 
+                             Foreground="White" Width="280" 
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"
+                             SpellCheck.IsEnabled="True"
+                             Text=""
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+                </StackPanel>
 
 
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20" >
                     <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
-                            ToolTip="Iniciar sesion"
+                            ToolTip="Registrar Empleado"
+                            Click="btnGuardar_Click"
                             x:Name="btnGuardar"
                             Content="Guardar" />
 

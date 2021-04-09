@@ -22,45 +22,64 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class FormEmpleados : UserControl
     {
+
+        private List<Clases.UserData> ListaTotalEmpleados;
+        Clases.Empleados Empleados = new Clases.Empleados();
+        private List<Clases.UserData> ListaCargos;
+
         public FormEmpleados()
         {
             InitializeComponent();
-            MOSTRAR_DATOS();
+            CargarDatosComboBoxCargo();
+            CargarDatosDataGrid();
         }
 
-        Clases.Connection conexion = new Clases.Connection();
+       
 
-        public void MOSTRAR_DATOS()
+
+        /// <summary>
+        /// Obtener los Datos del Personales del Empleado
+        /// </summary>
+        private void CargarDatosDataGrid()
         {
-            var connection = conexion.GetConnection();
-            DataTable DT = new DataTable();
-            try
-            {
-                string query = @"select
-                               E.Codigo_Empleado [Id],
-                               concat(E.Nombre_Empleado,' ',E.Apellido_empleado)[Nombre Completo],
-                               P.Descripcion [Cargo],
-                               E.Telefono,
-                               E.Correo,
-                               Datediff(YEAR,E.Fecha_Nacimiento,Getdate()) [Edad]
-                               from [Recursos_humanos].[Empleado] E
-                               join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto";
-                connection.Open();
-                SqlDataAdapter DTA = new SqlDataAdapter(query, connection);
-                DT.Clear();
-                DTA.Fill(DT);
-                DataGridEmpleados.ItemsSource = DT.DefaultView;
-               
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Alerta", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            ListaTotalEmpleados = Empleados.ListaTotalEmpleados();
+            DataGridEmpleados.ItemsSource = ListaTotalEmpleados;
+            var TotalRows = DataGridEmpleados.Items.Count;
+            txtTotal.Text = "Total: " + TotalRows;
         }
 
+        /// <summary>
+        /// Obtiene el los valores de los cargos
+        /// </summary>
+        private void CargarDatosComboBoxCargo()
+        {
+            ListaCargos = Empleados.Cargos();
+            cmbCargo.SelectedValuePath = "Id";
+            cmbCargo.DisplayMemberPath = "Cargo";
+            cmbCargo.ItemsSource = ListaCargos;
+        }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(FechaNac.SelectedDate.ToString());
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            int codigo = (int)cmbCargo.SelectedValue;
+            var Resultado = Empleados.AñadirNuevoEmpleado(
+                                                           txtNombreEmpleado.Text,
+                                                           txtApellidoEmpleado.Text,
+                                                           codigo,
+                                                           txtTelefono.Text,
+                                                           txtEmail.Text,
+                                                           txtDireccion.Text,
+                                                           true,
+                                                           FechaNac.SelectedDate.ToString());
+
+            MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+            CargarDatosDataGrid();
+
 
         }
     }

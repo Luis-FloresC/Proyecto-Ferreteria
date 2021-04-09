@@ -107,6 +107,33 @@ namespace Proyecto_Ferreteira___1.Clases
         }
 
 
+
+        public string RegistrarEmpleados(string nombre, string apellido, int codigoCargo,string telefono,string correo,string direccion,bool estado,string fechaNac)
+        {
+            using (var CN = GetConnection())
+            {
+                CN.Open();
+                using (var CMD = new SqlCommand())
+                {
+                    CMD.Connection = CN;
+                    CMD.CommandText = "RegistrarEmpleado";
+                    CMD.Parameters.AddWithValue("@nombre", nombre);
+                    CMD.Parameters.AddWithValue("@apellido", apellido);
+                    CMD.Parameters.AddWithValue("@codigoPuesto", codigoCargo);
+                    CMD.Parameters.AddWithValue("@correo", correo);
+                    CMD.Parameters.AddWithValue("@telefono", telefono);
+                    CMD.Parameters.AddWithValue("@fechaNacimiento", fechaNac);
+                    CMD.Parameters.AddWithValue("@estado", estado);
+                    CMD.Parameters.AddWithValue("@direccion", direccion);
+                    CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                    CMD.CommandType = CommandType.StoredProcedure;
+                    CMD.ExecuteNonQuery();
+                    return CMD.Parameters["@mensaje"].Value.ToString();
+                }
+            }
+        }
+
+
         public string RegistrarUsuario(string nombreUsuario, string contraseña, int codigoEmpleado)
         {
             using (var CN = GetConnection())
@@ -178,6 +205,94 @@ namespace Proyecto_Ferreteira___1.Clases
         public int Id { get; set; }
 
         public string NombreEmpleado { get; set; }
+
+        public string Cargo { get; set; }
+        public string Telefono { get; set; }
+        public string Email { get; set; }
+        public int Edad { get; set; }
+
+        public List<UserData> DataGridEmpleados()
+        {
+            List<UserData> allEmpleados = new List<UserData>();
+            var conecction = GetConnection();
+            try
+            {
+                string query = @"select
+                               E.Codigo_Empleado [Id],
+                               concat(E.Nombre_Empleado,' ',E.Apellido_empleado)[Nombre Completo],
+                               P.Descripcion [Cargo],
+                               E.Telefono,
+                               E.Correo,
+                               Datediff(YEAR,E.Fecha_Nacimiento,Getdate()) [Edad]
+                               from [Recursos_humanos].[Empleado] E
+                               join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto";
+
+                conecction.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, conecction);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        allEmpleados.Add(new UserData
+                        {
+                            Id = reader.GetInt32(0),
+                            NombreEmpleado = reader.GetString(1),
+                            Cargo = reader.GetString(2),
+                            Telefono = reader.GetString(3),
+                            Email = reader.GetString(4),
+                            Edad = reader.GetInt32(5)
+                        });
+                    }
+
+                }
+                return allEmpleados;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            { conecction.Close(); }
+        
+        }
+
+
+        public List<UserData> ComboBoxCargo()
+        {
+            List<UserData> allCargos = new List<UserData>();
+            var connection = GetConnection();
+            try
+            {
+                string query = @"SELECT [Codigo_Puesto],[Descripcion] FROM [Recursos_humanos].[Puesto]";
+
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        allCargos.Add(new UserData
+                        {
+                            Id = reader.GetInt32(0),
+                            Cargo = reader.GetString(1)
+                        });
+                    }
+
+                }
+                return allCargos;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            { connection.Close(); }
+
+        }
 
 
 

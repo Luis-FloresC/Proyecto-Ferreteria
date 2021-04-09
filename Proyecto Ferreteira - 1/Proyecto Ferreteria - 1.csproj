@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="Clases\CacheUsuario.cs" />
     <Compile Include="Clases\Connection.cs" />
+    <Compile Include="Clases\Empleados.cs" />
     <Compile Include="Clases\UserData.cs" />
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="FormCrearUsuario.xaml.cs">
