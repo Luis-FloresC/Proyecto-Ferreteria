@@ -44,6 +44,7 @@
         <TextBox Name="txtIdCliente" Grid.Row="3" Grid.Column="2" FontSize="18" Margin="0 8"  Background="White"/>
         <Label Content="Nombre:" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" Margin="2 3" FontSize="18" Foreground="White"/>
         <TextBox Name="txtNombreCliente" Grid.Row="3" Grid.Column="4" FontSize="18" Margin="0 8"  Background="White"/>
+        <Button Name="btnBuscarCliente" Content="B" Grid.Row="3" Grid.Column="5" Margin="8"/>
 
         <Label Content="Tipo de pago" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0 5" FontSize="18" Foreground="White"/>
         <Label Content="Tipo:" Grid.Row="3" Grid.Column="6" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
@@ -59,6 +60,7 @@
         <TextBox Name="txtPrecio" Grid.Row="5" Grid.Column="6" FontSize="18" Margin="0 8"  Background="White"/>
         <Label Content="Cantidad:" Grid.Row="5" Grid.Column="7" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
         <TextBox Name="txtCantidad" Grid.Row="5" Grid.Column="8" FontSize="18" Margin="0 8"  Background="White"/>
+        <Button Name="btnBuscarProducto" Content="B" Grid.Row="5" Grid.Column="9" Margin="8"/>
         <DataGrid Name="dgDetalleVenta" Grid.ColumnSpan="8" Grid.Column="1" HorizontalAlignment="Left" Height="251" Grid.Row="6" Grid.RowSpan="6" VerticalAlignment="Top" Width="584" Margin="0,2,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="60"/>

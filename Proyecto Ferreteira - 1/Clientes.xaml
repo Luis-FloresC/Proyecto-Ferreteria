@@ -6,10 +6,8 @@
              xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             Width="auto" Height="auto" Background="#ffffff">
+             Width="800" Height="595" Background="#242222">
     <Grid>
-        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-            <Button Content="Hola" />
-        </materialDesign:TransitioningContent>
+        
     </Grid>
 </UserControl>
