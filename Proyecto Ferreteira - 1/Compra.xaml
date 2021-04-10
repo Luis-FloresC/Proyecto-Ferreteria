@@ -17,12 +17,6 @@
              >
     <Grid >
         
-         <!-- Creacion de los respectivas filas y columnas necesarias para la pantalla
-        
-                     xmlns:local="clr-namespace:Proyecto_Ferreteira___1" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        
-        -->
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="auto" />
@@ -61,8 +55,15 @@
         <Label Foreground="WhiteSmoke" Margin = "10 0 0 0 " Content="Producto" Grid.Row="3" Grid.Column="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Label Foreground="WhiteSmoke" Content="Nombre" Grid.Row="4" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-
-        <DataGrid Name="dgbInformacion" Margin="10" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="6"/>
+        <DataGrid Name="dgbInformacion" Margin="10" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="6" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Codigo" IsReadOnly="True" Binding="{Binding Path=IdProducto}" Width="100" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Producto" IsReadOnly="True"  Binding="{Binding Path=NombreProducto}" Width="200"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cantidad" IsReadOnly="True"  Binding="{Binding Path=Cantidad}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="Precio" IsReadOnly="True"  Binding="{Binding Path=Precio}" Width="200"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
         <Button FontSize="18" Content="Realizar Compra" Grid.Column="7" Grid.Row="8" Grid.RowSpan="2" Margin="5" Width="200" Height="60" Click="Realizar_Click_2"/>
         <Button  FontSize="18" Content="Agregar Pedido" Grid.Column="7" Grid.Row="6" Grid.RowSpan="2" Margin="5" Width="200" Height="60" Click="Agregar_Click_1"/>
         <Button FontSize="18" Content="Eliminar Pedido" Grid.Column="7" Grid.Row="10" Grid.RowSpan="2" Margin="5"  Width="200" Height="60" Click="Eliminar_Click_3"/>

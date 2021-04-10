@@ -25,6 +25,7 @@ namespace Proyecto_Ferreteira___1.Clases
         public string NombreProducto { get; set; }
 
         public int Cantidad { get; set; }
+        public double Precio { get; set; }
 
 
         //Constructores
@@ -42,14 +43,54 @@ namespace Proyecto_Ferreteira___1.Clases
             Cantidad = cantidad;
         }
 
-
-        public List<int> Identificador = new List<int>();
-
-        //Lista 
-        public List<String> Proveedores()
+        public List<Compras> LlenarComboProductos()
         {
 
-            List<String> ObtenerProveedores = new List<String>();
+            List<Compras> productos = new List<Compras>();
+
+            //Conexion
+            var connection = GetConnection();
+            try
+            {
+                //Consulta SQL
+                string query = @"SELECT [Codigo_Producto],[Nombre_Producto]
+                                FROM [Ferreteria].[Productos].[Producto]";
+
+
+                //Creacion del comando de consulta
+
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+
+                //Obtencion de datos y almacenamiento en las propiedades
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        productos.Add(new Compras { IdProducto = reader.GetInt32(0), NombreProducto = reader.GetString(1) });
+
+                    }
+                }
+
+                return productos;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+
+        }
+
+        public List<Compras> LlenarComboProveedores()
+        {
+
+            List<Compras> proveedores = new List<Compras>();
 
             //Conexion
             var connection = GetConnection();
@@ -70,12 +111,12 @@ namespace Proyecto_Ferreteira___1.Clases
 
                     while (reader.Read())
                     {
-                        ObtenerProveedores.Add(NombreProveedor = reader.GetString(1));
-                        Identificador.Add(IdProveedor = reader.GetInt32(0));
+                        proveedores.Add(new Compras { IdProveedor = reader.GetInt32(0), NombreProveedor = reader.GetString(1) });
+
                     }
                 }
 
-                return ObtenerProveedores;
+                return proveedores;
             }
             catch (Exception e)
             {
@@ -86,60 +127,10 @@ namespace Proyecto_Ferreteira___1.Clases
 
                 connection.Close();
             }
-        }
-        /// <summary>
-        /// Obtiene los productos segun que proveedor se seleccione.
-        /// </summary>
-        /// <param name="codigo">Es el id del proveedor que sirve como parametro para mostrar los productos</param>
-        /// <returns></returns>
-        public List<String> ObtenerProductos()
-        {
-
-            List<String> productos = new List<String>();
-
-            //Conexion
-            var connection = GetConnection();
-            try
-            {
-                //Consulta SQL
-                string query = @"SELECT   Productos.Producto.Nombre_Producto
-                                FROM   Productos.Producto";
-                                     
-
-                //Creacion del comando de consulta
-
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-
-                //Obtencion de datos y almacenamiento en las propiedades
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-
-                    while (reader.Read())
-                    {
-                        productos.Add(NombreProducto = reader.GetString(0));
-
-                    }
-                }
-
-                return productos;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-
-                connection.Close();
-            }
-        }
-
-        public void MostrarDatos()
-        {
-
 
         }
+
+
     }
 }
 
