@@ -59,11 +59,14 @@ CREATE TABLE Ventas.Cliente(
 codigo_cliente int not null IDENTITY(1,1),
 nombres nvarchar(100) not null,
 apellidos nvarchar(100) not null,
+identidad varchar(20) not null,
 fecha_nacimiento datetime not null,
 telefono varchar(20),
-rtn varchar(20)
+rtn varchar(20),
+estado bit
 Constraint PK_codigo_cliente
-Primary Key Clustered (codigo_cliente)
+Primary Key Clustered (codigo_cliente),
+Constraint AK_Cliente_Identidadunique nonclustered (identidad)
 )
 Go
 
@@ -116,6 +119,7 @@ CREATE TABLE Recursos_humanos.Empleado(
 Codigo_Empleado int not null IDENTITY(1,1),
 Nombre_Empleado nvarchar(75)not null,
 Apellido_empleado nvarchar(75)not null,
+identidad varchar(20) not null,
 Codigo_Puesto int not null,
 Telefono nvarchar(20)not null,
 Correo nvarchar(75)not null,
@@ -124,7 +128,8 @@ Fecha_Contratacion datetime not null,
 Estado bit not null,
 Direccion nvarchar(75) not null,
 Constraint PK_Codigo_Empleado
-Primary Key Clustered (Codigo_Empleado)
+Primary Key Clustered (Codigo_Empleado),
+Constraint AK_Empleado_Identidadunique nonclustered (identidad)
 )
 Go
 

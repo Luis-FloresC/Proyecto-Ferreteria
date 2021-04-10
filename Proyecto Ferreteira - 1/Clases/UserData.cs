@@ -38,7 +38,6 @@ namespace Proyecto_Ferreteira___1.Clases
                     {
                         while (reader.Read())
                         {
-
                             CacheUsuario.IdUsuario = reader.GetInt32(0);
                             CacheUsuario.Usuario = reader.GetString(1);
                             CacheUsuario.Contraseña = reader.GetString(2);

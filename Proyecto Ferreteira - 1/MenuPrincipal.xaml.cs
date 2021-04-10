@@ -65,11 +65,11 @@ namespace Proyecto_Ferreteira___1
                     break;
                 case 1:
                     GridPrincipal.Children.Clear();
-                    GridPrincipal.Children.Add(new Clientes());
+                    GridPrincipal.Children.Add(new Ventas());
                     break;
                 case 2:
-                    //GridPrincipal.Children.Clear();
-                    //GridPrincipal.Children.Add(new prueba3());
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new Clientes());
                     break;
                 case 3:
                     //GridPrincipal.Children.Clear();

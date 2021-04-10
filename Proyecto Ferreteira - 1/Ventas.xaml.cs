@@ -24,5 +24,10 @@ namespace Proyecto_Ferreteira___1
         {
             InitializeComponent();
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

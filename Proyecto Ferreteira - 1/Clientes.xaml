@@ -43,7 +43,7 @@
         <Label Content="Apellido:" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,72,0" />
         <TextBox Name="txtApellido" HorizontalAlignment="Left" Height="28" Margin="43,5,0,0" Grid.Row="7" TextWrapping="Wrap" Background="White" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2"/>
         <Label Content="Fecha de nacimiento:" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,142,0" Grid.ColumnSpan="2" Width="215" />
-        <DatePicker Name="tpFechaNacimiento" HorizontalAlignment="Left" Margin="43,5,0,0" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="250" Height="30" BorderBrush="#FFFBFBFB"/>
+        <DatePicker Name="tpFechaNacimiento" HorizontalAlignment="Left" Margin="43,5,0,0" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="250" Height="30" BorderBrush="#FFFBFBFB" Foreground="#FF00AEFF"/>
         <Label Content="RTN:" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,108,0" />
         <TextBox Name="txtRtn" HorizontalAlignment="Left" Height="28" Margin="43,5,0,0" Grid.Row="11" TextWrapping="Wrap" Background="White" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2"/>
         <Label Content="Telefono:" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,60,0" Width="97" />
