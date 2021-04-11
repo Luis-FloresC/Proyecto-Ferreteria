@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 //Namespace Requeridos
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
-   class Compras : Connection
+    class Compras : Connection
     {
 
         //Propiedades
@@ -26,6 +22,13 @@ namespace Proyecto_Ferreteira___1.Clases
 
         public int Cantidad { get; set; }
         public double Precio { get; set; }
+        public double Descuento { get; set; }
+        public double ISV { get; set; }
+
+        public double SubTotal { get; set; }
+        private static int CodigoCompras { get; set; }
+
+        public double Flete { get; set; }
 
 
         //Constructores
@@ -43,6 +46,23 @@ namespace Proyecto_Ferreteira___1.Clases
             Cantidad = cantidad;
         }
 
+        public Compras(int idProveedor, int idProducto, int cantidad, double precioUnitario, double subtotal, double isv, double descuento, int codigoCompra, double flete)
+        {
+            this.IdProveedor = idProveedor;
+            this.IdProducto = idProducto;
+            CodigoCompras = codigoCompra;
+            this.Cantidad = cantidad;
+            this.Descuento = descuento;
+            this.ISV = isv;
+            this.Precio = precioUnitario;
+            this.SubTotal = subtotal;
+            this.Flete = flete;
+
+        }
+        /// <summary>
+        /// Se Encarga de llenar el combo box de producto 
+        /// </summary>
+        /// <returns> Una lista con los productos de la base de datos </returns>
         public List<Compras> LlenarComboProductos()
         {
 
@@ -86,7 +106,10 @@ namespace Proyecto_Ferreteira___1.Clases
             }
 
         }
-
+        /// <summary>
+        /// Se Encarga de llenar el combo box de proveedores
+        /// </summary>
+        /// <returns>Una lista con los proveedores de la base de datos</returns>
         public List<Compras> LlenarComboProveedores()
         {
 
@@ -108,11 +131,9 @@ namespace Proyecto_Ferreteira___1.Clases
                 //Obtencion de datos y almacenamiento en las propiedades
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-
                     while (reader.Read())
                     {
                         proveedores.Add(new Compras { IdProveedor = reader.GetInt32(0), NombreProveedor = reader.GetString(1) });
-
                     }
                 }
 
@@ -129,14 +150,95 @@ namespace Proyecto_Ferreteira___1.Clases
             }
 
         }
+        /// <summary>
+        /// Se encarga de la insercion de los registros de compras de la Base de Datos
+        /// </summary>
+        /// <returns> Un mensaje de confirmacion si se realizo correctamente </returns>
+        public string GuardarCompras()
+        {
+            try
+            {
+
+                using (var CN = GetConnection())
+                {
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "RegistrarCompras";
+                        CMD.Parameters.Clear();
+                        CMD.Parameters.AddWithValue("@codigoProveedor", IdProveedor);
+                        CMD.Parameters.AddWithValue("@codigoEmpleado", 1);
+                        CMD.Parameters.AddWithValue("@codigoCompra", CodigoCompras);
+                        CMD.Parameters.AddWithValue("@subTotal", SubTotal);
+                        CMD.Parameters.AddWithValue("@isv", ISV);
+                        CMD.Parameters.AddWithValue("@descuento", Descuento);
+                        CMD.Parameters.AddWithValue("@codigoProducto", IdProducto);
+                        CMD.Parameters.AddWithValue("@precionUnitario", Precio);
+                        CMD.Parameters.AddWithValue("@cantidad", Cantidad);
+                        CMD.Parameters.AddWithValue("@flete", Flete);
+                        CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        return CMD.Parameters["@mensaje"].Value.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        /// <summary>
+        /// Obtiene el codigo de la compra 
+        /// </summary>
+        /// <returns> El codigo de la compra iterando en uno cada vez </returns>
+        public int CodigoCompra()
+        {
+            var connection = GetConnection();
+            int codigoComprar = 0;
+            try
+            {
+                //Consulta SQL
+                string query = @"select COAlesce(max([Codigo_Compra]),0)[Codi] from [Compras].[Compra]
+";
+
+                //Creacion del comando de consulta
+
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+
+                //Obtencion de datos y almacenamiento en las propiedades
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        codigoComprar = reader.GetInt32(0);
+                    }
+                }
+
+                return codigoComprar + 1;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+        }
 
 
     }
 }
 
-    
 
 
-        
-    
+
+
+
 
