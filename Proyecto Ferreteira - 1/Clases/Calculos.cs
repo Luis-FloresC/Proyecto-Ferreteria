@@ -15,6 +15,7 @@ namespace Proyecto_Ferreteira___1.Clases
         private string descuento;
         private string isv;
         private string total;
+        private string flete;
 
 
         public Calculos()
@@ -51,6 +52,20 @@ namespace Proyecto_Ferreteira___1.Clases
                 OnPropertyChanged("Subtotal");
                 OnPropertyChanged("Descuento");
                 OnPropertyChanged("ISV");
+                OnPropertyChanged("Total");
+
+            }
+        }
+
+        public string Flete
+        {
+            get { return flete; }
+            set
+            {
+                int numero;
+                if (int.TryParse(value, out numero)) flete = numero.ToString();
+
+                // La propiedad cambia, avisar a la interfaz
                 OnPropertyChanged("Total");
 
             }
@@ -113,15 +128,15 @@ namespace Proyecto_Ferreteira___1.Clases
         {
             get
             {
-                Double respuesta = (Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10) + 
-                    ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10)) * 0.12;
+                Double respuesta = ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10) + 
+                    ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10)) * 0.12) + Double.Parse(Flete);
 
                 return respuesta.ToString();
             }
             set
             {
-                Double respuesta = (Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10) +
-                    ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10)) * 0.12;
+                Double respuesta = ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10) +
+                    ((Double.Parse(Precio) * Double.Parse(Cantidad)) - ((Double.Parse(Precio) * Double.Parse(Cantidad)) * 0.10)) * 0.12) + Double.Parse(Flete);
 
                 total = respuesta.ToString();
                 // La propiedad cambia, avisar a la interfaz
