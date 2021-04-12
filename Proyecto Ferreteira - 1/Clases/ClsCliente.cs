@@ -21,6 +21,7 @@ namespace Proyecto_Ferreteira___1.Clases
         private string telefono;
         private string rtn;
 
+        //Propiedades
         public int Codigo { get => codigo; set => codigo = value; }
         public string Nombres { get => nombres; set => nombres = value; }
         public string Apellidos { get => apellidos; set => apellidos = value; }
@@ -29,6 +30,9 @@ namespace Proyecto_Ferreteira___1.Clases
         public string Telefono { get => telefono; set => telefono = value; }
         public string Rtn { get => rtn; set => rtn = value; }
 
+        /// <summary>
+        /// Agrega un cliente a la base de datos
+        /// </summary>
         public void AgregarCliente()
         {
             //Variable miembro para obtener la conexión
@@ -72,6 +76,10 @@ namespace Proyecto_Ferreteira___1.Clases
 
         }
 
+        /// <summary>
+        /// Consulta un cliente en la base de datos para su edicion
+        /// </summary>
+        /// <param name="codigoCliente"></param>
         public void consultarCliente(int codigoCliente)
         {
             //Variable miembro para obtener la conexión
@@ -117,6 +125,9 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+        /// <summary>
+        /// Edita el cliente consultado en la base de datos
+        /// </summary>
         public void editarCliente()
         {
             //Variable miembro para obtener la conexión
@@ -156,6 +167,10 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+        /// <summary>
+        /// Pone en estado inactivo al cliente en la base de datos
+        /// </summary>
+        /// <param name="codigoCliente"></param>
         public void eliminarCliente(int codigoCliente)
         {
             //Variable miembro para obtener la conexión

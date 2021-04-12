@@ -42,7 +42,7 @@ namespace Proyecto_Ferreteira___1
         /// <summary>
         /// Guarda los datos del formulario en la clase ClsCliente
         /// </summary>
-        public void guardarDatos()
+        private void guardarDatos()
         {
             cliente.Nombres = txtNombre.Text;
             cliente.Apellidos = txtApellido.Text;
@@ -52,7 +52,10 @@ namespace Proyecto_Ferreteira___1
             cliente.Rtn = txtRtn.Text;
         }
 
-        public void limpiar()
+        /// <summary>
+        /// Limpia los texBox y el time picker del formulario
+        /// </summary>
+        private void limpiar()
         {
             txtIdentidad.Text = null;
             txtNombre.Text = null;
@@ -62,12 +65,37 @@ namespace Proyecto_Ferreteira___1
             tpFechaNacimiento.SelectedDate = null;
         }
 
+        /// <summary>
+        /// Pone visible o ocultos los botones del formulario al momento de editar
+        /// oculta los botones al momento de editar para mostrar los botones de aceptar y cancelar
+        /// vuelve a mostrar los botones al momento de aceptar o cancelar la edición
+        /// </summary>
+        /// <param name="estado"></param>
         private void estadoBotones(Visibility estado)
         {
             btnAgregar.Visibility = estado;
             btnEditar.Visibility = estado;
             btnEliminar.Visibility = estado;
             btnLimpiar.Visibility = estado;
+        }
+
+        /// <summary>
+        /// Valida el estado de los textBox y del time picker
+        /// retorna true si todos los campos estan llenos y false si hay alguno sin llenar
+        /// </summary>
+        /// <returns></returns>
+        private bool validaciones()
+        {
+            bool estado = false;
+
+            if (txtNombre.Text.Equals("") || txtApellido.Text.Equals("")
+                || txtIdentidad.Text.Equals("") || txtRtn.Text.Equals("")
+                || txtTelefono.Text.Equals("") || tpFechaNacimiento.SelectedDate == null)
+                estado = false;
+            else
+                estado = true;
+
+            return estado;
         }
 
         /// <summary>
@@ -109,14 +137,31 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+        /// <summary>
+        /// Manda la tarea de ingresar un cliente a la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            guardarDatos();
-            cliente.AgregarCliente();
-            cargarTabla();
-            limpiar();
+            if (validaciones())
+            {
+                guardarDatos();
+                cliente.AgregarCliente();
+                cargarTabla();
+                limpiar();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, llene todos los campos.");
+            }
         }
 
+        /// <summary>
+        /// Consulta el cliente seleccionado para su edicion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
             if(lbClientes.SelectedValue == null)
@@ -138,26 +183,53 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+        /// <summary>
+        /// Cancela la edicion y devuelve el formulario a su estado original
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             limpiar();
             estadoBotones(Visibility.Visible);
         }
 
+        /// <summary>
+        /// Limpia los campos del formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
             limpiar();
         }
 
+        /// <summary>
+        /// Ejecuta la edicion del cliente en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            guardarDatos();
-            cliente.editarCliente();
-            estadoBotones(Visibility.Visible);
-            limpiar();
-            cargarTabla();
+            if (validaciones())
+            {
+                guardarDatos();
+                cliente.editarCliente();
+                estadoBotones(Visibility.Visible);
+                limpiar();
+                cargarTabla();
+            }
+            else
+            {
+                MessageBox.Show("Por favor! Llene todos los campos.");
+            }
         }
 
+        /// <summary>
+        /// Elimina (desactiva) un cliente en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (lbClientes.SelectedValue == null)
@@ -166,8 +238,11 @@ namespace Proyecto_Ferreteira___1
             }
             else
             {
-                cliente.eliminarCliente(Convert.ToInt32(lbClientes.SelectedValue));
-                cargarTabla();
+                if(MessageBox.Show("¿Seguro que quieres eliminar el cliente?","Eliminar cliente",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    cliente.eliminarCliente(Convert.ToInt32(lbClientes.SelectedValue));
+                    cargarTabla();
+                }
             }
         }
     }
