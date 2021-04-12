@@ -20,6 +20,7 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class Ventas : UserControl
     {
+
         public Ventas()
         {
             InitializeComponent();

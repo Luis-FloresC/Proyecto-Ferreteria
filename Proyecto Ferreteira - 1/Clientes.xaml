@@ -49,9 +49,11 @@
         <Label Content="Telefono:" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,60,0" Width="97" />
         <TextBox Name="txtTelefono" HorizontalAlignment="Left" Height="28" Margin="43,5,0,0" Grid.Row="13" TextWrapping="Wrap" Background="White" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2"/>
         
-        <Button Name="btnAgregar" Content="Agregar" Grid.Row="14" Grid.Column="0" Margin="15 5" />
-        <Button Name="btnEditar" Content="Editar" Grid.Row="14" Grid.Column="1" Margin="15 5" />
-        <Button Name="btnEliminar" Content="Eliminar" Grid.Row="14" Grid.Column="2" Margin="15 5" />
-        <Button Name="btnLimpiar" Content="Limpiar" Grid.Row="14" Grid.Column="3" Margin="15 5" />
+        <Button Name="btnAgregar" Content="Agregar" Grid.Row="14" Grid.Column="0" Margin="15 5" Click="btnAgregar_Click"/>
+        <Button Name="btnAceptar" Content="Aceptar" Grid.Row="14" Grid.Column="1" Margin="15 5" Click="btnAceptar_Click"/>
+        <Button Name="btnEditar" Content="Editar" Grid.Row="14" Grid.Column="1" Margin="15 5" Click="btnEditar_Click"/>
+        <Button Name="btnCancelar" Content="Cancelar" Grid.Row="14" Grid.Column="2" Margin="15 5" Click="btnCancelar_Click"/>
+        <Button Name="btnEliminar" Content="Eliminar" Grid.Row="14" Grid.Column="2" Margin="15 5" Click="btnEliminar_Click" />
+        <Button Name="btnLimpiar" Content="Limpiar" Grid.Row="14" Grid.Column="3" Margin="15 5" Click="btnLimpiar_Click"/>
     </Grid>
 </UserControl>
