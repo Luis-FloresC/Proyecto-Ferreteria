@@ -12,7 +12,7 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -36,13 +36,13 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <Label Content="VENTAS" Grid.Row="0" Grid.ColumnSpan="11" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
+        <Label Content="VENTAS" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="11" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
 
         <Label Content="Cliente" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 5" FontSize="18" Foreground="White"/>
         <Label Content="ID:" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
-        <TextBox Name="txtIdCliente" Grid.Row="3" Grid.Column="2" FontSize="18" Margin="0 8"  Background="White"/>
+        <TextBox Name="txtIdCliente" Grid.Row="3" Grid.Column="2" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Label Content="Nombre:" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" Margin="2 3" FontSize="18" Foreground="White"/>
-        <TextBox Name="txtNombreCliente" Grid.Row="3" Grid.Column="4" FontSize="18" Margin="0 8"  Background="White"/>
+        <TextBox Name="txtNombreCliente" Grid.Row="3" Grid.Column="4" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Button Name="btnBuscarCliente" Content="B" Grid.Row="3" Grid.Column="5" Margin="8 0"/>
 
         <Label Content="Tipo de pago" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0 5" FontSize="18" Foreground="White"/>
@@ -52,13 +52,13 @@
 
         <Label Content="Producto" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 5" FontSize="18" Foreground="White"/>
         <Label Content="ID:" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
-        <TextBox Name="txtIdProducto" Grid.Row="5" Grid.Column="2" FontSize="18" Margin="0 8"  Background="White"/>
+        <TextBox Name="txtIdProducto" Grid.Row="5" Grid.Column="2" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Label Content="Nombre:" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Left" Margin="2 3" FontSize="18" Foreground="White"/>
-        <TextBox Name="txtNombreProducto" Grid.Row="5" Grid.Column="4" FontSize="18" Margin="0 8"  Background="White"/>
+        <TextBox Name="txtNombreProducto" Grid.Row="5" Grid.Column="4" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Label Content="Precio:" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
-        <TextBox Name="txtPrecio" Grid.Row="5" Grid.Column="6" FontSize="18" Margin="0 8"  Background="White"/>
+        <TextBox Name="txtPrecio" Grid.Row="5" Grid.Column="6" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Label Content="Cantidad:" Grid.Row="5" Grid.Column="7" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
-        <TextBox Name="txtCantidad" Grid.Row="5" Grid.Column="8" FontSize="18" Margin="0 8"  Background="White"/>
+        <TextBox Name="txtCantidad" Grid.Row="5" Grid.Column="8" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Button Name="btnBuscarProducto" Content="B" Grid.Row="5" Grid.Column="9" Margin="8 0" />
         <DataGrid Name="dgDetalleVenta" Grid.ColumnSpan="8" Grid.Column="1" HorizontalAlignment="Left" Height="251" Grid.Row="6" Grid.RowSpan="6" VerticalAlignment="Top" Width="584" Margin="0,2,0,0">
             <DataGrid.Columns>
@@ -74,13 +74,13 @@
         <Button Name="btnFactura" Grid.ColumnSpan="2" Content="Facturar" Grid.Column="9" HorizontalAlignment="Left" Margin="14,15,0,0" Grid.Row="10" VerticalAlignment="Top" Width="94" Height="42" Grid.RowSpan="2"/>
 
         <Label Content="Subtotal:" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"  Margin="0,8,0,0" FontSize="18" Foreground="White" />
-        <TextBox Name="txtSubtotal" Grid.Row="12" Grid.Column="3" FontSize="18" Margin="0,10"  Background="White"/>
+        <TextBox Name="txtSubtotal" Grid.Row="12" Grid.Column="3" FontSize="16" Margin="0,10"  Background="White"/>
         <Label Content="Descuento:" Grid.Row="12" Grid.Column="4" Margin="2,8,2,0" FontSize="18" Foreground="White" />
-        <TextBox Name="txtDescuento" Grid.Row="12" Grid.Column="5" FontSize="18" Margin="0,10"  Background="White"/>
+        <TextBox Name="txtDescuento" Grid.Row="12" Grid.Column="5" FontSize="16" Margin="0,10"  Background="White"/>
         <Label Content="ISV:" Grid.Row="12" Grid.Column="6" Margin="0,8,0,0" FontSize="18" Foreground="White" HorizontalAlignment="Center" />
-        <TextBox Name="txtIsv" Grid.Row="12" Grid.Column="7" FontSize="18" Margin="0,8,0,10"  Background="White"/>
+        <TextBox Name="txtIsv" Grid.Row="12" Grid.Column="7" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Label Content="Total:" Grid.Row="12" Grid.Column="8" Margin="0,8,0,0" FontSize="18" Foreground="White" HorizontalAlignment="Center" />
-        <TextBox Name="txtTotal" Grid.Row="12" Grid.Column="9" FontSize="18" Margin="14,8,36,10"  Background="White" Grid.ColumnSpan="2"/>
+        <TextBox Name="txtTotal" Grid.Row="12" Grid.Column="9" FontSize="16" Margin="14,8,36,10"  Background="White" Grid.ColumnSpan="2"/>
 
     </Grid>
 </UserControl>
