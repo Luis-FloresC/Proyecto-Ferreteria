@@ -47,7 +47,11 @@
 
         <Label Content="Tipo de pago" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0 5" FontSize="18" Foreground="White"/>
         <Label Content="Tipo:" Grid.Row="3" Grid.Column="6" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
-        <ComboBox Name="cbTipoPago" Grid.ColumnSpan="3" Grid.Column="7" HorizontalAlignment="Left" Margin="0 8" Grid.Row="3" Background="White" Width="217" Height="27"/>
+        <ComboBox Name="cbTipoPago" Grid.ColumnSpan="3" Grid.Column="7" HorizontalAlignment="Left" Margin="0 8" Grid.Row="3" Background="White" Width="217" Height="27">
+            <ComboBoxItem Content="Efectivo" HorizontalAlignment="Left" Width="215" />
+            <ComboBoxItem Content="Tarjeta" HorizontalAlignment="Left" Width="215"/>
+            <ComboBoxItem Content="Transferencia" HorizontalAlignment="Left" Width="215"/>
+        </ComboBox>
 
 
         <Label Content="Producto" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0 5" FontSize="18" Foreground="White"/>
