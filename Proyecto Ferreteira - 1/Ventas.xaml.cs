@@ -29,10 +29,21 @@ namespace Proyecto_Ferreteira___1
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            var producto = new Clases.ClsProducto();
-            productos.Add(new Clases.ClsProducto() { ID = 1, PRODUCTO = "Martillo", PRECIO = 120, CANTIDAD = 2, IMPORTE = 120 * 2 });
-
-            dgDetalleVenta.ItemsSource = productos;
+            var Item = new Clases.ClsProducto
+            {
+                ID = Convert.ToInt32(txtIdProducto.Text),
+                PRODUCTO = txtNombreProducto.Text,
+                PRECIO = double.Parse(txtPrecio.Text),
+                CANTIDAD = int.Parse(txtCantidad.Text),
+                IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
+            };
+            productos.Add(new Clases.ClsProducto
+            {
+                ID = Convert.ToInt32(txtIdProducto.Text),
+                PRECIO = double.Parse(txtPrecio.Text),
+                CANTIDAD = int.Parse(txtCantidad.Text)
+            });
+            dgDetalleVenta.Items.Add(Item);
 
         }
 

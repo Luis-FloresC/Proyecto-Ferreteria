@@ -64,15 +64,7 @@
         <Label Content="Cantidad:" Grid.Row="5" Grid.Column="7" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
         <TextBox Name="txtCantidad" Grid.Row="5" Grid.Column="8" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Button Name="btnBuscarProducto" Content="B" Grid.Row="5" Grid.Column="9" Margin="8 0" />
-        <DataGrid Name="dgDetalleVenta" Grid.ColumnSpan="8" Grid.Column="1" HorizontalAlignment="Left" Height="251" Grid.Row="6" Grid.RowSpan="6" VerticalAlignment="Top" Width="584" Margin="0,2,0,0" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="60"/>
-                <DataGridTextColumn Header="PRODUCTO" Width="*"/>
-                <DataGridTextColumn Header="PRECIO" Width="*"/>
-                <DataGridTextColumn Header="CANTIDAD" Width="*"/>
-                <DataGridTextColumn Header="IMPORTE" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <DataGrid Name="dgDetalleVenta" Grid.ColumnSpan="8" Grid.Column="1" HorizontalAlignment="Left" Height="251" Grid.Row="6" Grid.RowSpan="6" VerticalAlignment="Top" Width="584" Margin="0,2,0,0" />
         <Button Name="btnAgregar" Grid.ColumnSpan="2" Content="Agregar" Grid.Column="9" HorizontalAlignment="Left" Margin="10,16,0,0" Grid.Row="6" VerticalAlignment="Top" Width="98" Height="42" Grid.RowSpan="2" Click="btnAgregar_Click"/>
         <Button Name="btnEliminar" Grid.ColumnSpan="2" Content="Eliminar" Grid.Column="9" HorizontalAlignment="Left" Margin="12,15,0,0" Grid.Row="8" VerticalAlignment="Top" Width="96" Height="42" Grid.RowSpan="2"/>
         <Button Name="btnFactura" Grid.ColumnSpan="2" Content="Facturar" Grid.Column="9" HorizontalAlignment="Left" Margin="14,15,0,0" Grid.Row="10" VerticalAlignment="Top" Width="94" Height="42" Grid.RowSpan="2"/>
