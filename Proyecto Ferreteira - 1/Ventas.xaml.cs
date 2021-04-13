@@ -28,7 +28,11 @@ namespace Proyecto_Ferreteira___1
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            
+            List<Clases.ClsProducto> productos = new List<Clases.ClsProducto>();
+            productos.Add(new Clases.ClsProducto() { ID = 1, PRODUCTO = "Martillo", PRECIO = 120, CANTIDAD = 2, IMPORTE = 120 * 2 });
+
+            dgDetalleVenta.ItemsSource = productos;
+
         }
 
 

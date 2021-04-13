@@ -64,7 +64,7 @@
         <Label Content="Cantidad:" Grid.Row="5" Grid.Column="7" HorizontalAlignment="Center" Margin="0 3" FontSize="18" Foreground="White"/>
         <TextBox Name="txtCantidad" Grid.Row="5" Grid.Column="8" FontSize="16" Margin="0,8,0,10"  Background="White"/>
         <Button Name="btnBuscarProducto" Content="B" Grid.Row="5" Grid.Column="9" Margin="8 0" />
-        <DataGrid Name="dgDetalleVenta" Grid.ColumnSpan="8" Grid.Column="1" HorizontalAlignment="Left" Height="251" Grid.Row="6" Grid.RowSpan="6" VerticalAlignment="Top" Width="584" Margin="0,2,0,0">
+        <DataGrid Name="dgDetalleVenta" Grid.ColumnSpan="8" Grid.Column="1" HorizontalAlignment="Left" Height="251" Grid.Row="6" Grid.RowSpan="6" VerticalAlignment="Top" Width="584" Margin="0,2,0,0" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="60"/>
                 <DataGridTextColumn Header="PRODUCTO" Width="*"/>
