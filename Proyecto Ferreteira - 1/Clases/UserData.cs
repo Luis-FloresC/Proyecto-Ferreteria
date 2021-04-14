@@ -96,7 +96,15 @@ namespace Proyecto_Ferreteira___1.Clases
             DataTable dataTable = new DataTable();
             using (var conexion = GetConnection())
             {
-                string query = "select Codigo_Empleado,Nombre_Empleado from [Recursos_humanos].[Empleado]";
+                string query = @"select
+                               E.Codigo_Empleado [Id],
+                               E.identidad [Identidad],
+                               concat(E.Nombre_Empleado,' ',E.Apellido_empleado)[Nombre Completo],
+                               E.Telefono,
+                               E.Correo,
+                               Datediff(YEAR,E.Fecha_Nacimiento,Getdate()) [Edad]
+                               from [Recursos_humanos].[Empleado] E
+                               join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto";
 
                 SqlCommand cmd = new SqlCommand(query, conexion);
 
@@ -205,60 +213,16 @@ namespace Proyecto_Ferreteira___1.Clases
         }
 
         public int Id { get; set; }
+        public string DNI { get; set; }
 
-        public string NombreEmpleado { get; set; }
+        public string Nombre { get; set; }
 
         public string Cargo { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
         public int Edad { get; set; }
 
-        public List<UserData> DataGridEmpleados()
-        {
-            List<UserData> allEmpleados = new List<UserData>();
-            var conecction = GetConnection();
-            try
-            {
-                string query = @"select
-                               E.Codigo_Empleado [Id],
-                               concat(E.Nombre_Empleado,' ',E.Apellido_empleado)[Nombre Completo],
-                               P.Descripcion [Cargo],
-                               E.Telefono,
-                               E.Correo,
-                               Datediff(YEAR,E.Fecha_Nacimiento,Getdate()) [Edad]
-                               from [Recursos_humanos].[Empleado] E
-                               join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto";
-
-                conecction.Open();
-                SqlCommand sqlCommand = new SqlCommand(query, conecction);
-                using (SqlDataReader reader = sqlCommand.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-
-                        allEmpleados.Add(new UserData
-                        {
-                            Id = reader.GetInt32(0),
-                            NombreEmpleado = reader.GetString(1),
-                            Cargo = reader.GetString(2),
-                            Telefono = reader.GetString(3),
-                            Email = reader.GetString(4),
-                            Edad = reader.GetInt32(5)
-                        });
-                    }
-
-                }
-                return allEmpleados;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            { conecction.Close(); }
-        
-        }
+       
 
 
         public List<UserData> ComboBoxCargo()
@@ -304,8 +268,8 @@ namespace Proyecto_Ferreteira___1.Clases
                 using (var comando = new SqlCommand())
                 {
                     comando.Connection = conexion;
-                    comando.CommandText = "Verificar_Usuario";
-                   
+                    comando.CommandText = "BuscarEmpleado";
+                    comando.Parameters.AddWithValue("@codigo", codigoEmpleado);
                  
                     comando.CommandType = CommandType.StoredProcedure;
                     SqlDataReader reader = comando.ExecuteReader();
@@ -358,7 +322,7 @@ namespace Proyecto_Ferreteira___1.Clases
                 using (SqlDataReader rdr = sqlCommand.ExecuteReader())
                 {
                     while (rdr.Read())
-                        empleados.Add(new UserData { Id = rdr.GetInt32(0), NombreEmpleado = rdr.GetString(1) });
+                        empleados.Add(new UserData { Id = rdr.GetInt32(0), Nombre = rdr.GetString(1) });
                 }
 
                 return empleados;

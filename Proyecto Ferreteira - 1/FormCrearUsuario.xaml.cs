@@ -33,7 +33,7 @@ namespace Proyecto_Ferreteira___1
         private void MostrarEmpleados()
         {
             ListaDeEmpleados = usuarios.ListaEmpleados();
-            cmbNombreEmpleado.DisplayMemberPath = "NombreEmpleado";
+            cmbNombreEmpleado.DisplayMemberPath = "Nombre";
             cmbNombreEmpleado.SelectedValuePath = "Id";
             cmbNombreEmpleado.ItemsSource = ListaDeEmpleados;
         }

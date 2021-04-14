@@ -32,23 +32,23 @@ namespace Proyecto_Ferreteira___1
             InitializeComponent();
             CargarDatosComboBoxCargo();
             CargarDatosDataGrid();
+            
         }
 
-        
-       
 
 
-        /// <summary>
-        /// Obtener los Datos del Personales del Empleado
-        /// </summary>
+        private DataTable DataTable;
+
+     
+
+
         private void CargarDatosDataGrid()
         {
-            ListaTotalEmpleados = Empleados.ListaTotalEmpleados();
-            DataGridEmpleados.ItemsSource = ListaTotalEmpleados;
+            DataTable = Empleados.MostarDataTableEmpleado();
+            DataGridEmpleados.ItemsSource = DataTable.DefaultView;
             var TotalRows = DataGridEmpleados.Items.Count;
             txtTotal.Text = "Total: " + TotalRows;
         }
-
         /// <summary>
         /// Obtiene el los valores de los cargos
         /// </summary>
@@ -85,14 +85,14 @@ namespace Proyecto_Ferreteira___1
 
         }
 
-        public int Codigo;
-        private void LlenarCampos(Clases.UserData ObjUserData)
-        {
-            txtNombreEmpleado.Text = ObjUserData.NombreEmpleado;
-            txtEmail.Text = ObjUserData.Email;
-            txtApellidoEmpleado.Text = ObjUserData.Email;
-            Codigo = ObjUserData.Id;
-        }
+        //public int Codigo;
+        //private void LlenarCampos(Clases.UserData ObjUserData)
+        //{
+        //    txtNombreEmpleado.Text = ObjUserData.Nombre;
+        //    txtEmail.Text = ObjUserData.Email;
+        //    txtApellidoEmpleado.Text = ObjUserData.Email;
+        //    Codigo = ObjUserData.Id;
+        //}
 
 
         private List<FormEmpleados> Lista;
@@ -107,9 +107,15 @@ namespace Proyecto_Ferreteira___1
             if (DataGridEmpleados.SelectedIndex != -1)
             {
 
-                Clases.UserData Fila = this.DataGridEmpleados.SelectedItem as Clases.UserData;
-                LlenarCampos(Fila);
-             
+
+                int id = Convert.ToInt32((DataGridEmpleados.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
+
+                MessageBox.Show(id.ToString());
+
+
+                //Clases.UserData Fila = this.DataGridEmpleados.SelectedItem as Clases.UserData;
+                //LlenarCampos(Fila);
+
             }
             else
             {

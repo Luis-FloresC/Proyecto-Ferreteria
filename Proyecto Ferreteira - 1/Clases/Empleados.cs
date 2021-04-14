@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
@@ -18,17 +19,20 @@ namespace Proyecto_Ferreteira___1.Clases
         
         UserData UserData = new UserData();
 
-        public List<UserData> ListaTotalEmpleados()
+      
+
+        public DataTable MostarDataTableEmpleado()
         {
             try
             {
-                return UserData.DataGridEmpleados();
+                return UserData.DataTableEmpleado();
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+            
         }
 
         public List<UserData> Cargos()
