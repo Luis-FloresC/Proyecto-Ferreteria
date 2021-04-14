@@ -130,15 +130,17 @@ namespace Proyecto_Ferreteira___1
                         btnRealizarCompra.IsEnabled = false;
                         btnEliminarPedido.IsEnabled = false;
                 }
-                catch (Exception )
+                catch (Exception ex )
                 {
-                    MessageBox.Show("Ten en cuenta que no puedes hacer multiples compras de un producto en un mismo carrito." +
+                    MessageBox.Show( ex.Message.ToString()+"Ten en cuenta que no puedes hacer multiples compras de un producto en un mismo carrito." +
                         "\nSi ese no es tu problema verifica los datos ingresados","ADVERTENCIA",MessageBoxButton.OK,MessageBoxImage.Warning);
                 }
                 finally
                 {
                     Limpieza();
-                }           
+                    dgbInformacion.Items.Clear();
+                    Carrito.Clear();
+            }           
         }
         /// <summary>
         /// Se encarga de la elimanacion de datos del data Grid
@@ -147,10 +149,18 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void Eliminar_Click_3(object sender, RoutedEventArgs e)
         {
+            int index = dgbInformacion.SelectedIndex;
+            for (int i = 0; i < Carrito.Count; i++)
+            {
+                if (i == (index))
+                {
+                    Carrito.RemoveAt(i);
+
+                }
+            }
+            dgbInformacion.Items.RemoveAt(index);
             btnAgregarPedido.IsEnabled = true;
-            btnRealizarCompra.IsEnabled = false;
             btnEliminarPedido.IsEnabled = false;
-            Limpieza();
         }
         /// <summary>
         /// Se encarga de la establecer el valor de las entradas de datos a su estado original
