@@ -30,15 +30,13 @@
 
 
         <Label Content="Nombre del producto" Grid.Row="2" Margin="10" Foreground="White" FontSize="17" FontFamily="Georgia"/>
-        <Label Content="Cantidad del producto" Grid.Row="3" Margin="10" Foreground="White" FontSize="17" FontFamily="Georgia"/>
         <Label Content="Precio del producto" Grid.Row="4" Margin="10" Foreground="White" FontSize="17" FontFamily="Georgia"/>
         <Label Content="Nombre de la categoria" Grid.Row="2" Grid.Column="2" Foreground="White" FontSize="17" FontFamily="Georgia" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <ComboBox Name="cbNombreCategoria" Background="White" Grid.Row="2" Grid.Column="3" FontSize="17" Margin="10" FontFamily="Georgia" Width="Auto"/>
         <TextBox Name="txtNombreProducto" Background="White" Grid.Row="2" Grid.Column="1" FontSize="17" Margin="10" FontFamily="Georgia"/>
-        <TextBox Name="txtCantidadProducto" Background="White" Grid.Row="3" Grid.Column="1" FontSize="17" Margin="10" FontFamily="Georgia"/>
         <TextBox Name="txtPrecioProducto" Background="White" Grid.Row="4" Grid.Column="1" FontSize="17" Margin="10" FontFamily="Georgia"/>
-        <DataGrid Name ="dgvInventario" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="20" FontSize="17" FontFamily="Georgia" IsReadOnly="True"/>
+        <DataGrid Name ="dgvInventario" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="20" FontSize="17" FontFamily="Georgia" IsReadOnly="True" SelectionChanged="dgvInventario_SelectionChanged"/>
 
         <Button Name="btnInsertar" Content="Insertar" Grid.Column="1" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Georgia" Background="#2196F3" Foreground="White" Click="btnInsertar_Click"/>
         <Button Name="btnModificar" Content="Modificar" Grid.Column="2" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Georgia" Background="#2196F3" Foreground="White" Click="btnModificar_Click"/>
