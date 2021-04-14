@@ -39,7 +39,7 @@ namespace Proyecto_Ferreteira___1
             try
             {
                 string query = @"Select Productos.Producto.Codigo_Producto [Código], Productos.Producto.Nombre_Producto [Nombre del Producto],
-                                Productos.Producto.Precio_Estandar [Precio], Productos.Producto.Existencia [Cantidad del Producto],
+                                Productos.Producto.Precio_Estandar [Precio],
                                 Productos.Categoria.Nombre_Categoria [Nombre de la Categoria] 
                                 From Productos.Categoria INNER JOIN Productos.Producto 
                                 ON Productos.Categoria.Codigo_Categoria = Productos.Producto.Codigo_Categoria"; //Consulta SQL
@@ -104,20 +104,29 @@ namespace Proyecto_Ferreteira___1
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
+            int c = 0;
             foreach (int i in IdCategoria)
             {
-                string nombre = txtNombreProducto.Text;
-                int precio = Convert.ToInt32(txtPrecioProducto.Text);
-                int productos = dgvInventario.SelectedIndex + 1;
-                producto.ModificarProductos(nombre, precio, i, productos);
+                if (cbNombreCategoria.SelectedIndex == c)
+                {
+                    string nombre = txtNombreProducto.Text;
+                    int precio = Convert.ToInt32(txtPrecioProducto.Text);
+                    int productos = dgvInventario.SelectedIndex + 1;
+                    producto.ModificarProductos(nombre, precio, i, productos);
+                }
+                c++;
             }
+            MessageBox.Show("Se ha actualizado correctamente el producto");
+            MostrarDatos();
         }
 
         private void dgvInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgvInventario.SelectedIndex != -1)
             {
-                txtNombreProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[0].ToString();
+                txtNombreProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[1].ToString();
+                txtPrecioProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[2].ToString();
+                cbNombreCategoria.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[3].ToString();
             }
         }
     }

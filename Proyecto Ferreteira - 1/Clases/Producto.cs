@@ -105,7 +105,7 @@ namespace Proyecto_Ferreteira___1.Clases
                                 SET Nombre_Producto = @nombre,
                                 Precio_Estandar = @precio,
                                 Codigo_Categoria = @codigo,
-                                Estado = @estado
+                                Estado = 1
                                 WHERE Codigo_Producto = @codigoProducto";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
