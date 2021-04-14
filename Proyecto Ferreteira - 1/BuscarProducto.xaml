@@ -1,0 +1,16 @@
+﻿<Window x:Class="Proyecto_Ferreteira___1.BuscarProducto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
+        mc:Ignorable="d"
+        Title="Buscar Producto" Height="450" Width="800" Background="#242222">
+    <Grid>
+        <DataGrid Name="dgProductos" HorizontalAlignment="Left" Height="272" Margin="122,77,0,0" VerticalAlignment="Top" Width="547" IsReadOnly="True"/>
+        <Label Content="Buscar:" HorizontalAlignment="Left" Margin="122,32,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24"/>
+        <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="26" Margin="209,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="451" Background="White" KeyUp="txtBuscar_KeyUp"/>
+        <Button Name="btnSeleccionar" Content="Seleccionar" HorizontalAlignment="Left" Margin="354,368,0,0" VerticalAlignment="Top" Width="115" Click="btnSeleccionar_Click"/>
+
+    </Grid>
+</Window>

@@ -85,6 +85,9 @@
     <Compile Include="BuscarCliente.xaml.cs">
       <DependentUpon>BuscarCliente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BuscarProducto.xaml.cs">
+      <DependentUpon>BuscarProducto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Clases\ClsCliente.cs" />
     <Compile Include="Clases\ClsProducto.cs" />
     <Compile Include="Clases\ClsVenta.cs" />
@@ -92,6 +95,10 @@
       <DependentUpon>Ventas.xaml</DependentUpon>
     </Compile>
     <Page Include="BuscarCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BuscarProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
