@@ -72,7 +72,6 @@ namespace Proyecto_Ferreteira___1
         /// </summary>
         private void LimpiarPantalla()
         {
-            txtCantidadProducto.Text = String.Empty;
             txtNombreProducto.Text = String.Empty;
             txtPrecioProducto.Text = String.Empty;
             cbNombreCategoria.SelectedValue = null;
@@ -92,7 +91,7 @@ namespace Proyecto_Ferreteira___1
                 if (cbNombreCategoria.SelectedIndex == c)
                 {
                     string nombre = txtNombreProducto.Text;
-                    int existencia = Convert.ToInt32(txtCantidadProducto.Text);
+                    int existencia = 0;
                     int precio = Convert.ToInt32(txtPrecioProducto.Text);
                     producto.InsertarProducto(nombre, existencia, precio, i);
                 }
@@ -105,7 +104,21 @@ namespace Proyecto_Ferreteira___1
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
+            foreach (int i in IdCategoria)
+            {
+                string nombre = txtNombreProducto.Text;
+                int precio = Convert.ToInt32(txtPrecioProducto.Text);
+                int productos = dgvInventario.SelectedIndex + 1;
+                producto.ModificarProductos(nombre, precio, i, productos);
+            }
+        }
 
+        private void dgvInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgvInventario.SelectedIndex != -1)
+            {
+                txtNombreProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[0].ToString();
+            }
         }
     }
 }

@@ -77,15 +77,13 @@ namespace Proyecto_Ferreteira___1.Clases
             try
             {
                 string query = @"INSERT INTO Productos.Producto(Nombre_Producto, Existencia, Precio_Estandar,
-                                Codigo_Categoria, Estado) VALUES (@nombre, @existencia,@precio, @codigo, 1)";
+                                Codigo_Categoria, Estado) VALUES (@nombre, 0 ,@precio, @codigo, 1)";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@nombre", nombre);
-                sqlCommand.Parameters.AddWithValue("@existencia", existencia);
                 sqlCommand.Parameters.AddWithValue("@precio", precio);
                 sqlCommand.Parameters.AddWithValue("@codigo", codigoCategoria);
                 sqlCommand.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
@@ -98,11 +96,35 @@ namespace Proyecto_Ferreteira___1.Clases
             }
 
         }
-
-      /*  public void ModificarProducto()
+        public void ModificarProductos(string nombre, int precio, int codigoCategoria, int codigo_Producto)
         {
+            var connection = GetConnection();
+            try
+            {
+                string query = @"UPDATE Productos.Producto
+                                SET Nombre_Producto = @nombre,
+                                Precio_Estandar = @precio,
+                                Codigo_Categoria = @codigo,
+                                Estado = @estado
+                                WHERE Codigo_Producto = @codigoProducto";
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, connection);
+                sqlCommand.Parameters.AddWithValue("@nombre", nombre);
+                sqlCommand.Parameters.AddWithValue("@precio", precio);
+                sqlCommand.Parameters.AddWithValue("@codigo", codigoCategoria);
+                sqlCommand.Parameters.AddWithValue("@codigoProducto", codigo_Producto);
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
 
-        }*/
+                MessageBox.Show(ex.Message.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
     }
 }
