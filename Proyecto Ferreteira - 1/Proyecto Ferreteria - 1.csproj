@@ -82,12 +82,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BuscarCliente.xaml.cs">
+      <DependentUpon>BuscarCliente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Clases\ClsCliente.cs" />
     <Compile Include="Clases\ClsProducto.cs" />
     <Compile Include="Clases\ClsVenta.cs" />
     <Compile Include="Ventas.xaml.cs">
       <DependentUpon>Ventas.xaml</DependentUpon>
     </Compile>
+    <Page Include="BuscarCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Clientes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

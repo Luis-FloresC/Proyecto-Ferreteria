@@ -33,7 +33,7 @@ namespace Proyecto_Ferreteira___1
         public Clientes()
         {
             InitializeComponent();
-            // Realizar la conexión con el servidor de base de datos (SQL Server Express)
+            // Realizar la conexión con el servidor de base de datos
             string connectionString = ConfigurationManager.ConnectionStrings["Proyecto_Ferreteira___1.Properties.Settings.FerreteriaDb"].ConnectionString;
             sqlConnection = new SqlConnection(connectionString);
             cargarTabla();

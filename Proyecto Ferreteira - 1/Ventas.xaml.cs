@@ -37,16 +37,38 @@ namespace Proyecto_Ferreteira___1
                 CANTIDAD = int.Parse(txtCantidad.Text),
                 IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
             };
-            productos.Add(new Clases.ClsProducto
+            /*productos.Add(new Clases.ClsProducto
             {
                 ID = Convert.ToInt32(txtIdProducto.Text),
                 PRECIO = double.Parse(txtPrecio.Text),
                 CANTIDAD = int.Parse(txtCantidad.Text)
-            });
+            });*/
             dgDetalleVenta.Items.Add(Item);
-
         }
 
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if(dgDetalleVenta.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione el producto a eliminar");
+            }
+            else
+            {
+                dgDetalleVenta.Items.RemoveAt(dgDetalleVenta.SelectedIndex);
+            }
+        }
 
+        private void btnBuscarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarCliente buscarCliente = new BuscarCliente();
+            buscarCliente.pasar += BuscarCliente_pasar;
+            buscarCliente.Visibility = Visibility.Visible;
+        }
+
+        private void BuscarCliente_pasar(string codigoCliente, string nombreCliente)
+        {
+            txtIdCliente.Text = codigoCliente;
+            txtNombreCliente.Text = nombreCliente;
+        }
     }
 }
