@@ -46,7 +46,7 @@ namespace Proyecto_Ferreteira___1.Clases
                             CacheUsuario.Cargo = reader.GetString(5);
                             CacheUsuario.Email = reader.GetString(6);
                             CacheUsuario.Estado = reader.GetBoolean(7);
-
+                            CacheUsuario.DNI = reader.GetString(8);
                         }
                         return true;
                     }
@@ -108,7 +108,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
 
 
-        public string RegistrarEmpleados(string nombre, string apellido, int codigoCargo,string telefono,string correo,string direccion,bool estado,string fechaNac)
+        public string RegistrarEmpleados(string nombre, string apellido, int codigoCargo,string telefono,string correo,string direccion,bool estado,string fechaNac,string DNI)
         {
             using (var CN = GetConnection())
             {
@@ -118,6 +118,7 @@ namespace Proyecto_Ferreteira___1.Clases
                     CMD.Connection = CN;
                     CMD.CommandText = "RegistrarEmpleado";
                     CMD.Parameters.AddWithValue("@nombre", nombre);
+                    CMD.Parameters.AddWithValue("@DNI", DNI);
                     CMD.Parameters.AddWithValue("@apellido", apellido);
                     CMD.Parameters.AddWithValue("@codigoPuesto", codigoCargo);
                     CMD.Parameters.AddWithValue("@correo", correo);
@@ -178,7 +179,7 @@ namespace Proyecto_Ferreteira___1.Clases
         }
 
 
-        public string EditarDatosPerfil(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo)
+        public string EditarDatosPerfil(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo,string DNI)
         {
             using (var CN = GetConnection())
             {
@@ -191,6 +192,7 @@ namespace Proyecto_Ferreteira___1.Clases
                     CMD.Parameters.AddWithValue("@Nombre_Empleado", nombreEmpleado);
                     CMD.Parameters.AddWithValue("@Apellido_empleado", apellidoEmpleado);
                     CMD.Parameters.AddWithValue("@Correo", correo);
+                    CMD.Parameters.AddWithValue("@DNI", DNI);
                     CMD.Parameters.AddWithValue("@Usuario", nombreUsuario);
                     CMD.Parameters.AddWithValue("@Contraseña", contraseña);
                     CMD.Parameters.AddWithValue("@Estado", CacheUsuario.Estado);
@@ -294,7 +296,43 @@ namespace Proyecto_Ferreteira___1.Clases
 
         }
 
+        public bool BuscarEmpleado(int codigoEmpleado)
+        {
+            using (var conexion = GetConnection())
+            {
+                conexion.Open();
+                using (var comando = new SqlCommand())
+                {
+                    comando.Connection = conexion;
+                    comando.CommandText = "Verificar_Usuario";
+                   
+                 
+                    comando.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader reader = comando.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
 
+                            CacheUsuario.IdUsuario = reader.GetInt32(0);
+                            CacheUsuario.Usuario = reader.GetString(1);
+                            CacheUsuario.Contraseña = reader.GetString(2);
+                            CacheUsuario.NombreCompleto = reader.GetString(3);
+                            CacheUsuario.ApellidoCompleto = reader.GetString(4);
+                            CacheUsuario.Cargo = reader.GetString(5);
+                            CacheUsuario.Email = reader.GetString(6);
+                            CacheUsuario.Estado = reader.GetBoolean(7);
+
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
 
         public List<UserData> MostrarEmpleados()
         {

@@ -12,6 +12,16 @@
 
             <TextBlock Text="Editar Perfil" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
 
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <materialDesing:PackIcon Kind="BadgeAccount" Width="25" Height="25" Foreground="White"/>
+                <TextBox Margin="10 0" x:Name="txtDNI" materialDesing:HintAssist.Hint="Numero de Identidad" 
+                             Foreground="White" Width="280" 
+                             Text="{Binding Path=DNI,Mode=OneWay}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal" Margin="10">
                 <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                 <TextBox Margin="10 0" x:Name="txtUsuario" materialDesing:HintAssist.Hint="Usuario" 

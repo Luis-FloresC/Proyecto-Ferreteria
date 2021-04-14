@@ -8,7 +8,14 @@ namespace Proyecto_Ferreteira___1.Clases
 {
   public class Empleados
     {
+
+       
+
+
         public Empleados() { }
+
+    
+        
         UserData UserData = new UserData();
 
         public List<UserData> ListaTotalEmpleados()
@@ -38,11 +45,11 @@ namespace Proyecto_Ferreteira___1.Clases
         }
 
 
-        public string AñadirNuevoEmpleado(string nombre, string apellido, int codigoCargo, string telefono, string correo, string direccion, bool estado, string fechaNac)
+        public string AñadirNuevoEmpleado(string nombre, string apellido, int codigoCargo, string telefono, string correo, string direccion, bool estado, string fechaNac,string Dni)
         {
             try
             {
-                return UserData.RegistrarEmpleados(nombre,apellido,codigoCargo,telefono,correo,direccion,estado,fechaNac);
+                return UserData.RegistrarEmpleados(nombre,apellido,codigoCargo,telefono,correo,direccion,estado,fechaNac,Dni);
             }
             catch (Exception ex)
             {

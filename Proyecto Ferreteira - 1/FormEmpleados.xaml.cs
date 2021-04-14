@@ -34,6 +34,7 @@ namespace Proyecto_Ferreteira___1
             CargarDatosDataGrid();
         }
 
+        
        
 
 
@@ -75,12 +76,45 @@ namespace Proyecto_Ferreteira___1
                                                            txtEmail.Text,
                                                            txtDireccion.Text,
                                                            true,
-                                                           FechaNac.SelectedDate.ToString());
+                                                           FechaNac.SelectedDate.ToString(),
+                                                           txtDNI.Text);
 
             MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
             CargarDatosDataGrid();
 
 
+        }
+
+        public int Codigo;
+        private void LlenarCampos(Clases.UserData ObjUserData)
+        {
+            txtNombreEmpleado.Text = ObjUserData.NombreEmpleado;
+            txtEmail.Text = ObjUserData.Email;
+            txtApellidoEmpleado.Text = ObjUserData.Email;
+            Codigo = ObjUserData.Id;
+        }
+
+
+        private List<FormEmpleados> Lista;
+        private void DataGridEmpleados_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            
+            
+        }
+
+        private void DataGridEmpleados_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGridEmpleados.SelectedIndex != -1)
+            {
+
+                Clases.UserData Fila = this.DataGridEmpleados.SelectedItem as Clases.UserData;
+                LlenarCampos(Fila);
+             
+            }
+            else
+            {
+                MessageBox.Show("F al chat");
+            }
         }
     }
 }

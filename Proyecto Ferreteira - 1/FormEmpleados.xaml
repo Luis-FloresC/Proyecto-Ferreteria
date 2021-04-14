@@ -21,22 +21,12 @@
                 <StackPanel Orientation="Horizontal" Margin="10">
 
                     <DataGrid x:Name="DataGridEmpleados"
+                        SelectedCellsChanged="DataGridEmpleados_SelectedCellsChanged"      
                         Width="auto" Height="auto"
                         CanUserAddRows="False"
-                        SelectionUnit="Cell"
-                        IsReadOnly="True"
-                        Background="Black"
-                        Foreground="White"      
-                        Style="{StaticResource MaterialDesignDataGrid}"      
-                        materialDesing:ColorZoneAssist.Mode="Inverted"      
-                        ColumnHeaderStyle="{StaticResource HeaderStyle}"      
-                        SelectionMode="Single" HorizontalGridLinesBrush="White" VerticalGridLinesBrush="White" GridLinesVisibility="All" >
+                        IsReadOnly="True" HorizontalGridLinesBrush="White" VerticalGridLinesBrush="White" GridLinesVisibility="All" SelectionChanged="DataGridEmpleados_SelectionChanged" />
 
-                       
 
-                    </DataGrid>
-
-                   
                 </StackPanel>
                 
                 <TextBlock Text="Total: " Name="txtTotal" Margin="10 0" Foreground="White" FontSize="20"/>
@@ -68,6 +58,16 @@
             <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
                 <TextBlock Text="Editar Perfil" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
+
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <materialDesing:PackIcon Kind="BadgeAccount" Width="25" Height="25" Foreground="White"/>
+                    <TextBox Margin="10 0" x:Name="txtDNI" materialDesing:HintAssist.Hint="Numero de Identidad" 
+                             Foreground="White" Width="280" 
+                             
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+                </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="Person" Width="25" Height="25" Foreground="White"/>

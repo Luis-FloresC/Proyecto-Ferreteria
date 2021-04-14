@@ -58,7 +58,7 @@ namespace Proyecto_Ferreteira___1
         {
             if(VerificarDatos())
             {
-                var Resultado = usuarios.EditarDatos(txtNombre.Text, txtApellido.Text, txtUsuario.Text, txtPassword.Password, txtEmail.Text);
+                var Resultado = usuarios.EditarDatos(txtNombre.Text, txtApellido.Text, txtUsuario.Text, txtPassword.Password, txtEmail.Text,txtDNI.Text);
                 MessageBox.Show(Resultado,"Aviso",MessageBoxButton.OK,MessageBoxImage.Information);
                 LoadEditarPerfil();
                 MenuPrincipal.GridPrincipal.Children.Clear();
@@ -99,7 +99,8 @@ namespace Proyecto_Ferreteira___1
                 Nombre = Clases.CacheUsuario.NombreCompleto,
                 Apellido = Clases.CacheUsuario.ApellidoCompleto,
                 Email = Clases.CacheUsuario.Email,
-                Cargo = Clases.CacheUsuario.Cargo
+                Cargo = Clases.CacheUsuario.Cargo,
+                DNI = Clases.CacheUsuario.DNI
             };
             this.DataContext = usuarios;
 

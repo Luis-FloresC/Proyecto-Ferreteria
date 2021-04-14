@@ -17,13 +17,13 @@ namespace Proyecto_Ferreteira___1.Clases
        
       
 
-        public string EditarDatos(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo)
+        public string EditarDatos(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo,string Dni)
         {
             string DatosActualizados = "";
             try
             {
                 
-                DatosActualizados = UserData.EditarDatosPerfil(nombreEmpleado, apellidoEmpleado, nombreUsuario, contraseña, correo);
+                DatosActualizados = UserData.EditarDatosPerfil(nombreEmpleado, apellidoEmpleado, nombreUsuario, contraseña, correo,Dni);
                 VerficarInicioSesion(nombreUsuario, contraseña);
                 return DatosActualizados;
             }
@@ -109,6 +109,21 @@ namespace Proyecto_Ferreteira___1.Clases
 
             }
         }
+
+        public string DNI
+        {
+            get { return CacheUsuario.DNI; }
+            set
+            {
+
+                CacheUsuario.DNI = value;
+
+                // La propiedad cambia, avisar a la interfaz
+                OnPropertyChanged("DNI");
+
+            }
+        }
+
 
 
         public string Nombre
