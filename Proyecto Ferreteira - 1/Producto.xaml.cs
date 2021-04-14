@@ -42,7 +42,8 @@ namespace Proyecto_Ferreteira___1
                                 Productos.Producto.Precio_Estandar [Precio],
                                 Productos.Categoria.Nombre_Categoria [Nombre de la Categoria] 
                                 From Productos.Categoria INNER JOIN Productos.Producto 
-                                ON Productos.Categoria.Codigo_Categoria = Productos.Producto.Codigo_Categoria"; //Consulta SQL
+                                ON Productos.Categoria.Codigo_Categoria = Productos.Producto.Codigo_Categoria
+                                WHERE Productos.Producto.Estado = 1;"; //Consulta SQL
 
                 //Abrir la conexión
                 connection.Open();
@@ -110,8 +111,8 @@ namespace Proyecto_Ferreteira___1
                 if (cbNombreCategoria.SelectedIndex == c)
                 {
                     string nombre = txtNombreProducto.Text;
-                    int precio = Convert.ToInt32(txtPrecioProducto.Text);
-                    int productos = dgvInventario.SelectedIndex + 1;
+                    double precio = Convert.ToDouble(txtPrecioProducto.Text);
+                    int productos = IdProducto;
                     producto.ModificarProductos(nombre, precio, i, productos);
                 }
                 c++;
@@ -120,14 +121,33 @@ namespace Proyecto_Ferreteira___1
             MostrarDatos();
         }
 
+        public static int IdProducto;
         private void dgvInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgvInventario.SelectedIndex != -1)
             {
+                IdProducto = Convert.ToInt32((dgvInventario.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
                 txtNombreProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[1].ToString();
                 txtPrecioProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[2].ToString();
                 cbNombreCategoria.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[3].ToString();
             }
+        }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            int c = 0;
+            foreach (int i in IdCategoria)
+            {
+                if (cbNombreCategoria.SelectedIndex == c)
+                {
+
+                    int productos = IdProducto;
+                    producto.EliminarProductos(productos);
+                }
+                c++;
+            }
+            MessageBox.Show("Se ha eliminado correctamente el producto");
+            MostrarDatos();
         }
     }
 }

@@ -96,7 +96,7 @@ namespace Proyecto_Ferreteira___1.Clases
             }
 
         }
-        public void ModificarProductos(string nombre, int precio, int codigoCategoria, int codigo_Producto)
+        public void ModificarProductos(string nombre, double precio, int codigoCategoria, int codigo_Producto)
         {
             var connection = GetConnection();
             try
@@ -125,6 +125,29 @@ namespace Proyecto_Ferreteira___1.Clases
                 connection.Close();
             }
         }
+        public void EliminarProductos(int codigo_Producto)
+        {
+            var connection = GetConnection();
+            try
+            {
+                string query = @"UPDATE Productos.Producto
+                                SET 
+                                Estado = 0
+                                WHERE Codigo_Producto = @codigoProducto";
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand(query, connection);
+                sqlCommand.Parameters.AddWithValue("@codigoProducto", codigo_Producto);
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
