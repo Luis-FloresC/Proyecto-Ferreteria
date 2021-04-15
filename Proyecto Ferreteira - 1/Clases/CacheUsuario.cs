@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
-    class CacheUsuario
+  public  class CacheUsuario
     {
 
         public static int IdUsuario { get; set; }
         public static string NombreCompleto { get; set; }
         
+        public static string DNI { get; set; }
+
         public static string ApellidoCompleto { get; set; }
         public static string Cargo { get; set; }
         public static string Email { get; set; }

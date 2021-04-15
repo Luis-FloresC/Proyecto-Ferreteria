@@ -82,6 +82,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="FormCrearUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormEditarPerfil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormEliminarUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormProveedores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="BuscarCliente.xaml.cs">
       <DependentUpon>BuscarCliente.xaml</DependentUpon>
     </Compile>
@@ -114,10 +138,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Clases\CacheEmpleado.cs" />
     <Compile Include="Clases\CacheUsuario.cs" />
     <Compile Include="Clases\Connection.cs" />
+    <Compile Include="Clases\Empleados.cs" />
+    <Compile Include="Clases\Proveedores.cs" />
     <Compile Include="Clases\UserData.cs" />
     <Compile Include="Clases\Usuarios.cs" />
+    <Compile Include="FormCrearUsuario.xaml.cs">
+      <DependentUpon>FormCrearUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditarPerfil.xaml.cs">
+      <DependentUpon>FormEditarPerfil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormEliminarUsuario.xaml.cs">
+      <DependentUpon>FormEliminarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpleados.xaml.cs">
+      <DependentUpon>FormEmpleados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormProveedores.xaml.cs">
+      <DependentUpon>FormProveedores.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormUsuarios.xaml.cs">
+      <DependentUpon>FormUsuarios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Clientes.xaml.cs">
       <DependentUpon>Clientes.xaml</DependentUpon>
     </Compile>
