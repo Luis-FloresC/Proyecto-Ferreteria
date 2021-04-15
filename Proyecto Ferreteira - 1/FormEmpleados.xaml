@@ -26,7 +26,7 @@
                              Text=""
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
-                             SelectionBrush="#FFD94448"/>
+                             SelectionBrush="#FFD94448" TextChanged="txtBuscar_TextChanged"/>
                     <materialDesing:PackIcon Kind="Search" Width="39" Height="39" Foreground="White"/>
                 </StackPanel>
                 

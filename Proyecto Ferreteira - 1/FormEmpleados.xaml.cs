@@ -23,9 +23,19 @@ namespace Proyecto_Ferreteira___1
     public partial class FormEmpleados : UserControl
     {
 
-     
+        /// <summary>
+        /// Instancia para llamar a la clase de Empleados
+        /// </summary>
         Clases.Empleados Empleados = new Clases.Empleados();
+
+        /// <summary>
+        /// Lista para alamcear los datos del empleado
+        /// </summary>
         private List<Clases.UserData> ListaCargos;
+
+        /// <summary>
+        /// Datatable para llenar el DatagridView
+        /// </summary>
         private DataTable DataTable;
 
         public FormEmpleados()
@@ -41,6 +51,7 @@ namespace Proyecto_Ferreteira___1
         /// </summary>
         private void CargarDatosDataGrid()
         {
+            
             DataTable = Empleados.MostarDataTableEmpleado();
             DataGridEmpleados.ItemsSource = DataTable.DefaultView;
             var TotalRows = DataGridEmpleados.Items.Count;
@@ -235,7 +246,9 @@ namespace Proyecto_Ferreteira___1
             LimpiarCampos();
         }
 
-
+        /// <summary>
+        /// Metodo para limpiar todos los campos
+        /// </summary>
         private void LimpiarCampos()
         {
             txtDNI.Text = string.Empty;
@@ -246,6 +259,19 @@ namespace Proyecto_Ferreteira___1
             txtDireccion.Text = string.Empty;
             cmbCargo.Text = null;
             FechaNac.SelectedDate = null;
+        }
+
+        /// <summary>
+        /// Metodo para bsucar de una forma dinamicia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DataTable = Empleados.BuscarDataTableEmpleado(txtBuscar.Text);
+            DataGridEmpleados.ItemsSource = DataTable.DefaultView;
+            var TotalRows = DataGridEmpleados.Items.Count;
+            txtTotal.Text = "Total: " + TotalRows;
         }
     }
 }

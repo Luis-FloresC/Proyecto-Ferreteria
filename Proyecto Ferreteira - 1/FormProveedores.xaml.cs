@@ -44,6 +44,7 @@ namespace Proyecto_Ferreteira___1
         /// </summary>
         private void MostrarDatosDataGridProveedores()
         {
+            DataTableProveedores.Clear();
             DataTableProveedores = Proveedores.MostrarProveedores();
             DataGridProveedores.ItemsSource = DataTableProveedores.DefaultView;
             var TotalRows = DataGridProveedores.Items.Count;
@@ -129,7 +130,27 @@ namespace Proyecto_Ferreteira___1
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
+            if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
+            {
 
+                if ((MessageBox.Show("¿Esta Seguro que desea Eliminar el Empleado?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
+                {
+                    var Resultado = Proveedores.EliminarDatos(IdProveedor);
+                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarCampos();
+                    MostrarDatosDataGridProveedores();
+                }
+
+            }
+        }
+
+        private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DataTableProveedores.Clear();
+            DataTableProveedores = Proveedores.BuscarProveedores(txtBuscar.Text);
+            DataGridProveedores.ItemsSource = DataTableProveedores.DefaultView;
+            var TotalRows = DataGridProveedores.Items.Count;
+            txtTotal.Text = "Total: " + TotalRows;
         }
     }
 }

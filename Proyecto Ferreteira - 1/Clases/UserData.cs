@@ -10,6 +10,9 @@ namespace Proyecto_Ferreteira___1.Clases
     public class UserData : Connection
     {
 
+        /// <summary>
+        /// Propiedades 
+        /// </summary>
         public int Id { get; set; }
         public string DNI { get; set; }
 
@@ -188,6 +191,80 @@ namespace Proyecto_Ferreteira___1.Clases
         }
 
         /// <summary>
+        /// Metodo para Buscar un Empleado en la base de datos
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public DataTable BuscarEmpleado(string nombre)
+        {
+            try
+            {
+                DataTable dataTable = new DataTable();
+                using (var conexion = GetConnection())
+                {
+                    string query = @"select
+                               E.Codigo_Empleado [Id],
+                               E.identidad [Identidad],
+                               concat(E.Nombre_Empleado,' ',E.Apellido_empleado)[Nombre Completo],
+                               E.Telefono,
+                               E.Correo,
+                               Datediff(YEAR,E.Fecha_Nacimiento,Getdate()) [Edad]
+                               from [Recursos_humanos].[Empleado] E
+                               join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto
+                               where E.Estado = 1
+                               and E.Nombre_Empleado like CONCAT('%',@nombre,'%')";
+
+                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.CommandType = CommandType.Text;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Metodo para Buscar un Proveedor en la base de datos
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public DataTable BuscarProveedores(string nombre)
+        {
+            try
+            {
+                DataTable dataTable = new DataTable();
+                using (var conexion = GetConnection())
+                {
+                    string query = @"SELECT [Codigo_Proveedor] [#]
+                                    ,[Nombre_Proveedor] [Nombre Completo]
+                                    ,[Telefono] 
+                                    ,[Direccion]
+                                    ,[Correo] [Correo Electronico]
+                                    FROM [Ferreteria].[Compras].[Proveedor]
+                                    where Nombre_Proveedor like CONCAT('%',@nombre,'%')";
+
+                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.CommandType = CommandType.Text;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Metodo para insertar un nuevo proveedor en la base de datos
         /// </summary>
         /// <returns></returns>
@@ -260,6 +337,43 @@ namespace Proyecto_Ferreteira___1.Clases
                 return ex.Message.ToString();
             }
         }
+
+        /// <summary>
+        /// Metodo para eliminar un Proveedor de la base de datos
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        public string EliminarProveedor(int codigo)
+        {
+            try
+            {
+                using (var CN = GetConnection())
+                {
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "ManteniemtoProveedores";
+                        CMD.Parameters.AddWithValue("@nombre", "");
+                        CMD.Parameters.AddWithValue("@codigo", codigo);
+                        CMD.Parameters.AddWithValue("@correo", "");
+                        CMD.Parameters.AddWithValue("@telefono", "");
+                        CMD.Parameters.AddWithValue("@direccion", "");
+                        CMD.Parameters.AddWithValue("@accion", "E");
+                        CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        return CMD.Parameters["@mensaje"].Value.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message.ToString();
+            }
+        }
+
 
         /// <summary>
         /// Funcion para Registrar un Nuevo empleado en la base de datos
