@@ -86,13 +86,17 @@ namespace Proyecto_Ferreteira___1
         }
 
         //public int Codigo;
-        //private void LlenarCampos(Clases.UserData ObjUserData)
-        //{
-        //    txtNombreEmpleado.Text = ObjUserData.Nombre;
-        //    txtEmail.Text = ObjUserData.Email;
-        //    txtApellidoEmpleado.Text = ObjUserData.Email;
-        //    Codigo = ObjUserData.Id;
-        //}
+        private void LlenarCampos()
+        {
+            txtDNI.Text = Clases.CacheEmpleado.DNI;
+            txtNombreEmpleado.Text = Clases.CacheEmpleado.NombreEmpleado;
+            txtApellidoEmpleado.Text = Clases.CacheEmpleado.ApellidoEmpleado;
+            txtEmail.Text = Clases.CacheEmpleado.Email;
+            txtTelefono.Text = Clases.CacheEmpleado.Telefono;
+            txtDireccion.Text = Clases.CacheEmpleado.Direccion;
+            cmbCargo.Text = Clases.CacheEmpleado.Cargo;
+            FechaNac.SelectedDate = Clases.CacheEmpleado.FechaNacimiento;
+        }
 
 
         private List<FormEmpleados> Lista;
@@ -109,8 +113,16 @@ namespace Proyecto_Ferreteira___1
 
 
                 int id = Convert.ToInt32((DataGridEmpleados.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
+                var BuscarEmpleado = Empleados.BuscarEmpleado(id);
 
-                MessageBox.Show(id.ToString());
+                if(!BuscarEmpleado)
+                {
+                    MessageBox.Show("Error");
+                }
+                else
+                {
+                    LlenarCampos();
+                }
 
 
                 //Clases.UserData Fila = this.DataGridEmpleados.SelectedItem as Clases.UserData;

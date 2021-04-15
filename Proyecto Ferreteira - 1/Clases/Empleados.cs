@@ -19,7 +19,12 @@ namespace Proyecto_Ferreteira___1.Clases
         
         UserData UserData = new UserData();
 
-      
+
+        public bool BuscarEmpleado(int codigo)
+        {
+            return UserData.BuscarEmpleado(codigo);
+        }
+
 
         public DataTable MostarDataTableEmpleado()
         {

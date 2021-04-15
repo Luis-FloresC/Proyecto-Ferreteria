@@ -114,6 +114,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Clases\CacheEmpleado.cs" />
     <Compile Include="Clases\CacheUsuario.cs" />
     <Compile Include="Clases\Connection.cs" />
     <Compile Include="Clases\Empleados.cs" />

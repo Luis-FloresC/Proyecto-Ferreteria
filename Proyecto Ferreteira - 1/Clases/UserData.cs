@@ -278,14 +278,15 @@ namespace Proyecto_Ferreteira___1.Clases
                         while (reader.Read())
                         {
 
-                            CacheUsuario.IdUsuario = reader.GetInt32(0);
-                            CacheUsuario.Usuario = reader.GetString(1);
-                            CacheUsuario.Contraseña = reader.GetString(2);
-                            CacheUsuario.NombreCompleto = reader.GetString(3);
-                            CacheUsuario.ApellidoCompleto = reader.GetString(4);
-                            CacheUsuario.Cargo = reader.GetString(5);
-                            CacheUsuario.Email = reader.GetString(6);
-                            CacheUsuario.Estado = reader.GetBoolean(7);
+                            CacheEmpleado.IdEmpleado = reader.GetInt32(0);
+                            CacheEmpleado.DNI = reader.GetString(1);
+                            CacheEmpleado.NombreEmpleado = reader.GetString(2);
+                            CacheEmpleado.ApellidoEmpleado = reader.GetString(3);
+                            CacheEmpleado.Telefono = reader.GetString(4);
+                            CacheEmpleado.Email = reader.GetString(5);
+                            CacheEmpleado.FechaNacimiento = reader.GetDateTime(6);
+                            CacheEmpleado.Cargo = reader.GetString(7);
+                            CacheEmpleado.Direccion = reader.GetString(8);
 
                         }
                         return true;
