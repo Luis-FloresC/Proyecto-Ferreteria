@@ -156,6 +156,110 @@ namespace Proyecto_Ferreteira___1.Clases
             
         }
 
+        /// <summary>
+        /// Metodo para obtener los proveedores de la base de datos
+        /// </summary>
+        /// <returns></returns>
+        public DataTable ObtenerProveedores()
+        {
+            try
+            {
+                DataTable dataTable = new DataTable();
+                using (var conexion = GetConnection())
+                {
+                    string query = @"SELECT [Codigo_Proveedor] [#]
+                                    ,[Nombre_Proveedor] [Nombre Completo]
+                                    ,[Telefono] 
+                                    ,[Direccion]
+                                    ,[Correo] [Correo Electronico]
+                                    FROM [Ferreteria].[Compras].[Proveedor]";
+
+                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Metodo para insertar un nuevo proveedor en la base de datos
+        /// </summary>
+        /// <returns></returns>
+        public string RegistrarProveedores(string nombre,string telefono,string direccion,string correo)
+        {
+            try
+            {
+                using (var CN = GetConnection())
+                {
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "ManteniemtoProveedores";
+                        CMD.Parameters.AddWithValue("@nombre", nombre);
+                        CMD.Parameters.AddWithValue("@codigo", 0);
+                        CMD.Parameters.AddWithValue("@correo", correo);
+                        CMD.Parameters.AddWithValue("@telefono", telefono);
+                        CMD.Parameters.AddWithValue("@direccion", direccion);
+                        CMD.Parameters.AddWithValue("@accion", "G");
+                        CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        return CMD.Parameters["@mensaje"].Value.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Metodo para modiifcar Datos en la base de datos
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="telefono"></param>
+        /// <param name="direccion"></param>
+        /// <param name="correo"></param>
+        /// <returns></returns>
+        public string ModificarProveedores(int codigo,string nombre, string telefono, string direccion, string correo)
+        {
+            try
+            {
+                using (var CN = GetConnection())
+                {
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "ManteniemtoProveedores";
+                        CMD.Parameters.AddWithValue("@nombre", nombre);
+                        CMD.Parameters.AddWithValue("@codigo", codigo);
+                        CMD.Parameters.AddWithValue("@correo", correo);
+                        CMD.Parameters.AddWithValue("@telefono", telefono);
+                        CMD.Parameters.AddWithValue("@direccion", direccion);
+                        CMD.Parameters.AddWithValue("@accion", "M");
+                        CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        return CMD.Parameters["@mensaje"].Value.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message.ToString();
+            }
+        }
 
         /// <summary>
         /// Funcion para Registrar un Nuevo empleado en la base de datos
