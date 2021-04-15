@@ -13,7 +13,7 @@ namespace Proyecto_Ferreteira___1.Clases
     {
         //Atributos 
         private int codigoCliente;
-        private int codigoEmpleado;
+        private int codigoEmpleado = 1;
         private int codigoProducto;
         private int cantidadProducto;
         private double precioProducto;

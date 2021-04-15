@@ -44,20 +44,24 @@ namespace Proyecto_Ferreteira___1
             {
                 //Establece la conexion con la base de datos
                 sqlConnection.Open();
-
+                //Crea un comando SQL
                 SqlCommand cmd = sqlConnection.CreateCommand();
 
+                //Crea un comando tipo texto con el que se guardara el query
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = @"SELECT codigo_cliente, nombres, apellidos, identidad, fecha_nacimiento FROM [Ventas].[Cliente] " +
                                     "WHERE nombres like '%"+txtBuscar.Text+"%' and estado = 1";
 
+                //Ejecuta el query
                 cmd.ExecuteNonQuery();
 
+                //Crea un objeto tipo tabla
                 DataTable dt = new DataTable();
+                //Crea un objeto donde se guardara la consulta 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-
+                //Llena el objeto tipo tabla con la consulta
                 da.Fill(dt);
-
+                //Llena el DataGrid con los datos guardados en el objeto tipo tabla
                 dgClientes.ItemsSource = dt.DefaultView;
             }
             catch (Exception e)
@@ -88,7 +92,7 @@ namespace Proyecto_Ferreteira___1
                 string codigo = (dgClientes.Items[fila] as System.Data.DataRowView).Row.ItemArray[0].ToString();
                 string nombre = (dgClientes.Items[fila] as System.Data.DataRowView).Row.ItemArray[1].ToString();
                 DateTime fechaNacimiento = Convert.ToDateTime((dgClientes.Items[fila] as System.Data.DataRowView).Row.ItemArray[4].ToString());
-                int edad = DateTime.Today.AddTicks(-fechaNacimiento.Ticks).Year - 1;
+                int edad = DateTime.Today.AddTicks(-fechaNacimiento.Ticks).Year - 1; //Calcula la edad del cliente con la fecha de nacimiento
 
                 pasar(codigo, nombre, edad);
 
@@ -96,6 +100,11 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+        /// <summary>
+        /// Ejecuta el metodo de la busqueda
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             buscarClientes();

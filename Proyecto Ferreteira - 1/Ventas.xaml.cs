@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 
+
 namespace Proyecto_Ferreteira___1
 {
     /// <summary>
@@ -21,15 +22,15 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class Ventas : UserControl
     {
+        //Listas
         List<Clases.ClsProducto> productos = new List<Clases.ClsProducto>();
+
         //Objetos
         Clases.ClsVenta venta = new Clases.ClsVenta();
 
         //Variables globales
         double existenciaProduc = 0;
-        double subtotal = 0;
         double descuento = 0;
-        double total = 0;
         //Constantes
         const double isv = 0.15;
         
@@ -42,7 +43,7 @@ namespace Proyecto_Ferreteira___1
         //METODOS
 
         /// <summary>
-        /// Agrega el producto seleccionado al DataGrid
+        /// Agrega el producto seleccionado al DataGrid y a la lista productos
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -58,6 +59,7 @@ namespace Proyecto_Ferreteira___1
             }
             else
             {
+                //Variable que almacena la informacion de el producto que vamos a ingresar
                 var Item = new Clases.ClsProducto
                 {
                     ID = Convert.ToInt32(txtIdProducto.Text),
@@ -66,48 +68,89 @@ namespace Proyecto_Ferreteira___1
                     CANTIDAD = int.Parse(txtCantidad.Text),
                     IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
                 };
-                /*productos.Add(new Clases.ClsProducto
+                //Ingresa el producto en la lista productos
+                productos.Add(new Clases.ClsProducto
                 {
                     ID = Convert.ToInt32(txtIdProducto.Text),
                     PRECIO = double.Parse(txtPrecio.Text),
-                    CANTIDAD = int.Parse(txtCantidad.Text)
-                });*/
+                    CANTIDAD = int.Parse(txtCantidad.Text),
+                    IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
+                });
+
                 dgDetalleVenta.Items.Add(Item);
-
                 calculos();
-
                 limpiarProducto();
             }
         }
 
         /// <summary>
-        /// Elimina el producto seleccionado del DataGrid
+        /// Elimina el producto seleccionado del DataGrid y de la lista productos
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if(dgDetalleVenta.SelectedIndex == -1)
+            int indice = dgDetalleVenta.SelectedIndex;
+
+            if (indice == -1)
             {
                 MessageBox.Show("Seleccione el producto a eliminar");
             }
             else
             {
-                dgDetalleVenta.Items.RemoveAt(dgDetalleVenta.SelectedIndex);
+                dgDetalleVenta.Items.RemoveAt(indice);
+                productos.RemoveAt(indice);
 
                 calculos();
             }
         }
 
+        /// <summary>
+        /// Se encarga de registrar la compra en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFactura_Click(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
+                if (validacion())
+                {
+                    guardarDatos();
+                    venta.facturar();
+
+                    //Ciclo que recorre la lista producto para ingresar cada producto del detalle
+                    foreach (var producto in productos)
+                    {
+                        venta.CodigoProducto = producto.ID;
+                        venta.PrecioProducto = producto.PRECIO;
+                        venta.CantidadProducto = producto.CANTIDAD;
+
+                        venta.agregarDetalle();
+                    }
+
+                    MessageBox.Show("Factura realizada por exito");
+                    limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("Llene todos los campos antes de realizar la venta.","Aviso");
+                }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("¡Error al facturar!");
+            }
         }
 
+        /// <summary>
+        /// Cancela la compra que se esta llevando acabo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             limpiar();
-            dgDetalleVenta.Items.Clear();
         }
 
         /// <summary>
@@ -125,6 +168,7 @@ namespace Proyecto_Ferreteira___1
 
         /// <summary>
         /// Es el metodo encargado de pasar el cliente que seleccionamos en la venta
+        /// y determina su descuento segun la edad
         /// de busqueda
         /// </summary>
         /// <param name="codigoCliente"></param>
@@ -133,8 +177,6 @@ namespace Proyecto_Ferreteira___1
         {
             txtIdCliente.Text = codigoCliente;
             txtNombreCliente.Text = nombreCliente;
-
-            MessageBox.Show("" + edad);
 
             if (edad >= 60)
                 descuento = 0.30;
@@ -169,33 +211,49 @@ namespace Proyecto_Ferreteira___1
             txtPrecio.Text = precioProducto;
         }
 
+        /// <summary>
+        /// Guarda los datos de la venta en la clase ClsVenta para su facturación
+        /// </summary>
         private void guardarDatos()
         {
             venta.CodigoCliente = Convert.ToInt32(txtIdCliente.Text);
             venta.TipoPago = cbTipoPago.Text;
-            venta.Subtotal = subtotal;
+            venta.Subtotal = Convert.ToDouble(txtSubtotal.Text);
             venta.ISV = isv;
             venta.Descuento = descuento;
         }
 
+        /// <summary>
+        /// Cada vez que se agregue o elimine un producto este metodo se encargara
+        /// de realizar los calculos totales de la compra
+        /// </summary>
         public void calculos()
         {
-            for(int fila = 1; fila < dgDetalleVenta.Items.Count; fila++)
+            try
             {
-                subtotal += Convert.ToDouble();
+                double subtotal = 0;
+
+                //Recorre todos los campos de importe de la lista para calcular el subtotal
+                foreach (var producto in productos)
+                {
+                    subtotal += Convert.ToDouble(producto.IMPORTE);
+                }
+
+                txtSubtotal.Text = subtotal.ToString();
+                txtIsv.Text = Convert.ToString(subtotal * isv);
+                txtDescuento.Text = Convert.ToString(subtotal * descuento);
+                txtTotal.Text = Convert.ToString(subtotal + (subtotal * isv) - (subtotal * descuento));
             }
-
-            /*foreach (DataGridRow fila in dgDetalleVenta.ItemsSource)
+            catch (Exception e)
             {
-                subtotal += fila.Item[4]
-            }*/
-
-            txtSubtotal.Text = subtotal.ToString();
-            txtIsv.Text = Convert.ToString(subtotal * isv);
-            txtDescuento.Text = Convert.ToString(subtotal * descuento);
-            txtTotal.Text = Convert.ToString(subtotal + (subtotal * isv) - (subtotal * descuento));
+                MessageBox.Show(e.ToString());
+            }
+            
         }
 
+        /// <summary>
+        /// Metodo de limpiar la informacion de los productos en los textBox
+        /// </summary>
         private void limpiarProducto()
         {
             txtIdProducto.Text = "";
@@ -204,19 +262,30 @@ namespace Proyecto_Ferreteira___1
             txtCantidad.Text = "";
         }
 
+        /// <summary>
+        /// Limpia toda la informacion de la venta
+        /// </summary>
         private void limpiar()
         {
             txtNombreCliente.Text = "";
             txtIdCliente.Text = "";
             cbTipoPago.SelectedIndex = -1;
-            txtSubtotal.Text = "0.00";
-            txtIsv.Text = "0.00";
-            txtDescuento.Text = "0.00";
-            txtSubtotal.Text = "0.00";
-            txtTotal.Text = "0.00";
+            txtSubtotal.Text = "0";
+            txtIsv.Text = "0";
+            txtDescuento.Text = "0";
+            txtSubtotal.Text = "0";
+            txtTotal.Text = "0";
             limpiarProducto();
+            dgDetalleVenta.Items.Clear();
+            productos.Clear();
         }
 
-        
+        private bool validacion()
+        {
+            if (!txtIdCliente.Text.Equals("") && cbTipoPago.SelectedIndex > -1 && dgDetalleVenta.Items.Count > 0)
+                return true;
+
+            return false;
+        }
     }
 }

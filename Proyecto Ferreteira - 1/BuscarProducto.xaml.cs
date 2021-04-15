@@ -41,20 +41,22 @@ namespace Proyecto_Ferreteira___1
             {
                 //Establece la conexion con la base de datos
                 sqlConnection.Open();
-
+                //Crea un comando SQL
                 SqlCommand cmd = sqlConnection.CreateCommand();
-
+                //Crea un comando tipo texto con el que se guardara el query
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = @"Select Codigo_Producto, Nombre_Producto, Existencia, Precio_Estandar From [Productos].[Producto] 
                                     WHERE [Nombre_Producto] like '%"+txtBuscar.Text+"%' and [Estado] = 1";
 
+                //Ejecuta el query
                 cmd.ExecuteNonQuery();
-
+                //Crea un objeto tipo tabla
                 DataTable dt = new DataTable();
+                //Crea un dataAdaptar donde se guardara la consulta
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-
+                //Llena el objeto tipo tabla con la consulta
                 da.Fill(dt);
-
+                //Llena el DataGrid con los datos guardados en el objeto tipo tabla
                 dgProductos.ItemsSource = dt.DefaultView;
             }
             catch (Exception e)
@@ -67,11 +69,21 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+        /// <summary>
+        /// Evento encargado de ejecutar la busqueda
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             buscarProductos();
         }
 
+        /// <summary>
+        /// Selecciona el producto de la tabla y envia la informacion a la venta de Ventas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSeleccionar_Click(object sender, RoutedEventArgs e)
         {
             if (dgProductos.SelectedIndex == -1)
