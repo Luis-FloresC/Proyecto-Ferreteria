@@ -104,7 +104,8 @@ namespace Proyecto_Ferreteira___1.Clases
                                E.Correo,
                                Datediff(YEAR,E.Fecha_Nacimiento,Getdate()) [Edad]
                                from [Recursos_humanos].[Empleado] E
-                               join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto";
+                               join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto
+                               where E.Estado = 1";
 
                 SqlCommand cmd = new SqlCommand(query, conexion);
 
@@ -181,7 +182,7 @@ namespace Proyecto_Ferreteira___1.Clases
                 
                     CMD.CommandType = CommandType.Text;
                     CMD.ExecuteNonQuery();
-                    return "La Cuenta de Usuario Esta Inactiva";
+                    return "La Cuenta del Empleado Esta Inactiva";
                 }
             }
         }
@@ -211,6 +212,60 @@ namespace Proyecto_Ferreteira___1.Clases
                 }
             }
         }
+
+        /// <summary>
+        /// Metodo para Actualizar Datos del empleado
+        /// </summary>
+        /// <param name="nombreEmpleado"></param>
+        /// <param name="apellidoEmpleado"></param>
+        /// <param name="dni"></param>
+        /// <param name="email"></param>
+        /// <param name="direccion"></param>
+        /// <param name="fechaNacimiento"></param>
+        /// <param name="codigoPuesto"></param>
+        /// <param name="telefono"></param>
+        /// <returns>Devuelve un mensaje de verificacion</returns>
+        public string EditarDatosEmpleados(string nombreEmpleado, string apellidoEmpleado, string dni, string email, string direccion, DateTime fechaNacimiento,int codigoPuesto,string telefono)
+        {
+            try
+            {
+
+
+                using (var CN = GetConnection())
+                {
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "EditarEmpleado";
+                        CMD.Parameters.AddWithValue("@codigo", CacheEmpleado.IdEmpleado);
+                        CMD.Parameters.AddWithValue("@nombre", nombreEmpleado);
+                        CMD.Parameters.AddWithValue("@apellido", apellidoEmpleado);
+                        CMD.Parameters.AddWithValue("@correo", email);
+                        CMD.Parameters.AddWithValue("@dni", dni);
+                        CMD.Parameters.AddWithValue("@fecha_nac", fechaNacimiento);
+                        CMD.Parameters.AddWithValue("@puesto", codigoPuesto);
+                        CMD.Parameters.AddWithValue("@direccion", direccion);
+                        CMD.Parameters.AddWithValue("@telefono", telefono);
+                        CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        return CMD.Parameters["@mensaje"].Value.ToString();
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message.ToString();
+            }
+
+            
+        }
+
+
 
         public int Id { get; set; }
         public string DNI { get; set; }
