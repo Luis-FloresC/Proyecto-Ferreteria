@@ -58,7 +58,7 @@ namespace Proyecto_Ferreteira___1
             bool comprobacion = Comprobacion();
             if (comprobacion == true)
             {
-                MessageBox.Show("Por favor llenar todos los datos requeridos");
+                MessageBox.Show("Por favor llenar todos los datos requeridos","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
             else
             {
@@ -130,9 +130,9 @@ namespace Proyecto_Ferreteira___1
                         btnRealizarCompra.IsEnabled = false;
                         btnEliminarPedido.IsEnabled = false;
                 }
-                catch (Exception ex )
+                catch (Exception)
                 {
-                    MessageBox.Show( ex.Message.ToString()+"Ten en cuenta que no puedes hacer multiples compras de un producto en un mismo carrito." +
+                    MessageBox.Show("Ten en cuenta que no puedes hacer multiples compras de un producto en un mismo carrito." +
                         "\nSi ese no es tu problema verifica los datos ingresados","ADVERTENCIA",MessageBoxButton.OK,MessageBoxImage.Warning);
                 }
                 finally
