@@ -291,5 +291,24 @@ namespace Proyecto_Ferreteira___1
 
             return false;
         }
+
+        /// <summary>
+        /// Valida solo numeros en el texbox de cantidad
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int ascci = Convert.ToInt32(Convert.ToChar(e.Text));
+
+            if (ascci >= 48 && ascci <= 57)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
