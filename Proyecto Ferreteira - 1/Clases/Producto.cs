@@ -70,7 +70,7 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <param name="existencia"></param>
         /// <param name="precio"></param>
         /// <param name="codigoCategoria"></param>
-        public void InsertarProducto(string nombre, int existencia, int precio, int codigoCategoria)
+        public void InsertarProducto(string nombre, int existencia, double precio, int codigoCategoria)
         {
             var connection = GetConnection();
             //Validar que el usuario ingreso los datos necesarios
@@ -96,6 +96,13 @@ namespace Proyecto_Ferreteira___1.Clases
             }
 
         }
+        /// <summary>
+        /// Método que modifica el producto ingresado
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="precio"></param>
+        /// <param name="codigoCategoria"></param>
+        /// <param name="codigo_Producto"></param>
         public void ModificarProductos(string nombre, double precio, int codigoCategoria, int codigo_Producto)
         {
             var connection = GetConnection();
@@ -125,6 +132,10 @@ namespace Proyecto_Ferreteira___1.Clases
                 connection.Close();
             }
         }
+        /// <summary>
+        /// /Método que elimina un producto del datagrid y lo deshabilita en la base de datos
+        /// </summary>
+        /// <param name="codigo_Producto"></param>
         public void EliminarProductos(int codigo_Producto)
         {
             var connection = GetConnection();

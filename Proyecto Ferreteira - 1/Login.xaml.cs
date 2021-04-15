@@ -47,7 +47,7 @@ namespace Proyecto_Ferreteira___1
             var ResultadoValidacion = usuarios.VerficarInicioSesion(txtuser.Text, txtpass.Password);
             if ((ResultadoValidacion == true) && (txtuser.Text == Clases.CacheUsuario.Usuario) && (txtpass.Password == Clases.CacheUsuario.Contraseña) && (Clases.CacheUsuario.Estado == true))
             {
-                MessageBox.Show(string.Format("¡Bienvenido(a) al sistema! {0} {1}!", Clases.CacheUsuario.NombreCompleto,Clases.CacheUsuario.ApellidoCompleto));
+                MessageBox.Show(string.Format("¡Bienvenido(a) al sistema, {0} {1}!", Clases.CacheUsuario.NombreCompleto,Clases.CacheUsuario.ApellidoCompleto));
                 MenuPrincipal menuPrincipal = new MenuPrincipal();
                 menuPrincipal.Show();
                 this.Close();

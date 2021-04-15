@@ -87,39 +87,64 @@ namespace Proyecto_Ferreteira___1
         private void btnInsertar_Click(object sender, RoutedEventArgs e)
         {
             int c = 0;
-            foreach (int i in IdCategoria)
+            if (txtNombreProducto.Text == String.Empty || txtPrecioProducto.Text == String.Empty || cbNombreCategoria.SelectedValue == null)
             {
-                if (cbNombreCategoria.SelectedIndex == c)
-                {
-                    string nombre = txtNombreProducto.Text;
-                    int existencia = 0;
-                    int precio = Convert.ToInt32(txtPrecioProducto.Text);
-                    producto.InsertarProducto(nombre, existencia, precio, i);
-                }
-                c++;
+                MessageBox.Show("¡Por favor, llenar todos los campos solicitados!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            MessageBox.Show("Se ha insertado correctamente el producto");
-            MostrarDatos();
-            LimpiarPantalla();
+            else
+            {
+                foreach (int i in IdCategoria)
+                {
+                    if (cbNombreCategoria.SelectedIndex == c)
+                    {
+                        string nombre = txtNombreProducto.Text;
+                        int existencia = 0;
+                        double precio = Convert.ToDouble(txtPrecioProducto.Text);
+                        producto.InsertarProducto(nombre, existencia, precio, i);
+                    }
+                    c++;
+                }
+                MessageBox.Show("Se ha insertado correctamente el producto", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Information);
+                MostrarDatos();
+                LimpiarPantalla();
+            }
+           
         }
 
+        /// <summary>
+        /// Modifica los datos del datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
             int c = 0;
-            foreach (int i in IdCategoria)
+            if (txtNombreProducto.Text == String.Empty || txtPrecioProducto.Text == String.Empty || cbNombreCategoria.SelectedValue == null)
             {
-                if (cbNombreCategoria.SelectedIndex == c)
-                {
-                    string nombre = txtNombreProducto.Text;
-                    double precio = Convert.ToDouble(txtPrecioProducto.Text);
-                    int productos = IdProducto;
-                    producto.ModificarProductos(nombre, precio, i, productos);
-                }
-                c++;
+                MessageBox.Show("¡Por favor, seleccionar el producto que desea modificar!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            MessageBox.Show("Se ha actualizado correctamente el producto");
-            MostrarDatos();
+            else
+            {
+                foreach (int i in IdCategoria)
+                {
+                    if (cbNombreCategoria.SelectedIndex == c)
+                    {
+                        string nombre = txtNombreProducto.Text;
+                        double precio = Convert.ToDouble(txtPrecioProducto.Text);
+                        int productos = IdProducto;
+                        producto.ModificarProductos(nombre, precio, i, productos);
+                    }
+                    c++;
+                }
+                MessageBox.Show("Se ha actualizado correctamente el producto", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Information);
+                MostrarDatos();
+                LimpiarPantalla();
+            }
+           
         }
+        /// <summary>
+        /// Evento que se encarga de enviar los elementos del datagrid a los textbox y combobox
+        /// </summary>
 
         public static int IdProducto;
         private void dgvInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -132,22 +157,37 @@ namespace Proyecto_Ferreteira___1
                 cbNombreCategoria.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[3].ToString();
             }
         }
-
+        /// <summary>
+        /// Elimina el producto del datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             int c = 0;
-            foreach (int i in IdCategoria)
+            if (txtNombreProducto.Text == String.Empty || txtPrecioProducto.Text == String.Empty || cbNombreCategoria.SelectedValue == null)
             {
-                if (cbNombreCategoria.SelectedIndex == c)
-                {
-
-                    int productos = IdProducto;
-                    producto.EliminarProductos(productos);
-                }
-                c++;
+                MessageBox.Show("¡Por favor, seleccionar el producto que desea eliminar!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            MessageBox.Show("Se ha eliminado correctamente el producto");
-            MostrarDatos();
+            else
+            {
+                foreach (int i in IdCategoria)
+                {
+                    if (cbNombreCategoria.SelectedIndex == c)
+                    {
+
+                        int productos = IdProducto;
+                        producto.EliminarProductos(productos);
+                    }
+                    c++;
+                }
+                if (MessageBox.Show("¿Esta seguro que desea eliminar el producto?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    MostrarDatos();
+                    LimpiarPantalla();
+                }
+            }
         }
+            
     }
 }
