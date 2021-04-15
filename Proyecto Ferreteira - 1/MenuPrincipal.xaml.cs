@@ -83,6 +83,10 @@ namespace Proyecto_Ferreteira___1
                     GridPrincipal.Children.Clear();
                     GridPrincipal.Children.Add(new FormEmpleados());
                     break;
+                case 6:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new FormProveedores());
+                    break;
                 default:
                     if (MessageBox.Show("¿Esta seguro que desea Cerrar Sesion?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {

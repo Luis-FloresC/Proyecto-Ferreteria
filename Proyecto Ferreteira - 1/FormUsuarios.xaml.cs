@@ -20,6 +20,10 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class FormUsuarios : UserControl
     {
+
+        public delegate void ActulizarDatos(string codigoProducto, string nombreProducto, string existenciaProducto, string precioProducto);
+        public event ActulizarDatos nuevosCambios;
+
         public FormUsuarios()
         {
             InitializeComponent();
@@ -31,6 +35,8 @@ namespace Proyecto_Ferreteira___1
         //{
 
         //}
+
+
 
         public Clases.Usuarios usuarios { get; set; }
         public void LoadEditarPerfil()

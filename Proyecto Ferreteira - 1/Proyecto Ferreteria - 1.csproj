@@ -98,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FormProveedores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +122,7 @@
     <Compile Include="Clases\CacheUsuario.cs" />
     <Compile Include="Clases\Connection.cs" />
     <Compile Include="Clases\Empleados.cs" />
+    <Compile Include="Clases\Proveedores.cs" />
     <Compile Include="Clases\UserData.cs" />
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="FormCrearUsuario.xaml.cs">
@@ -131,6 +136,9 @@
     </Compile>
     <Compile Include="FormEmpleados.xaml.cs">
       <DependentUpon>FormEmpleados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormProveedores.xaml.cs">
+      <DependentUpon>FormProveedores.xaml</DependentUpon>
     </Compile>
     <Compile Include="FormUsuarios.xaml.cs">
       <DependentUpon>FormUsuarios.xaml</DependentUpon>
