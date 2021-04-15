@@ -10,91 +10,14 @@ namespace Proyecto_Ferreteira___1.Clases
 {
    public class Usuarios : INotifyPropertyChanged
     {
-        public Usuarios() { }
 
-
-
-       
-      
-
-        public string EditarDatos(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo,string Dni)
-        {
-            string DatosActualizados = "";
-            try
-            {
-                
-                DatosActualizados = UserData.EditarDatosPerfil(nombreEmpleado, apellidoEmpleado, nombreUsuario, contraseña, correo,Dni);
-                VerficarInicioSesion(nombreUsuario, contraseña);
-                return DatosActualizados;
-            }
-            catch(Exception ex)
-            {
-                return ex.Message.ToString();
-            }
-        }
-
-        public string GuardarDatos(string nombreUsuario, string contraseña, int codigo)
-        {
-            string DatosGuardados = "";
-            try
-            {
-
-                DatosGuardados = UserData.RegistrarUsuario(nombreUsuario, contraseña, codigo);
-                return DatosGuardados;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message.ToString();
-            }
-        }
-
-        public bool ObtenerEstadoUsuario(int codigo)
-        {
-            try
-            {
-                return UserData.EstadoEmpleado(codigo);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
-
-        public string EliminarUsuario(int codigo ,bool estado)
-        {
-            try
-            {
-                return UserData.DesactivarUsuario(estado, codigo);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
         /// <summary>
-        /// Instancia para llmar ala Clase de UserData
+        /// Instancia para llamar a la Clase de UserData
         /// </summary>
         UserData UserData = new UserData();
-        /// <summary>
-        /// Devuelve un estado logico sobre la existencia del Usuario
-        /// </summary>
-        /// <param name="user">Usuario</param>
-        /// <param name="pass">Contraseña</param>
-        /// <returns></returns>
-        public bool VerficarInicioSesion(string user, string pass)
-        {
-            return UserData.Login(user, pass);
-        }
 
-       
-        public List<UserData> ListaEmpleados()
-        {
-            return UserData.MostrarEmpleados();
-        }
-
+        public event PropertyChangedEventHandler PropertyChanged;
+        public Usuarios() { }
 
 
         public string NombreUsuario
@@ -125,8 +48,6 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
-
-
         public string Nombre
         {
             get { return CacheUsuario.NombreCompleto; }
@@ -140,7 +61,6 @@ namespace Proyecto_Ferreteira___1.Clases
 
             }
         }
-
 
         public string Apellido
         {
@@ -156,7 +76,6 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
-
         public string Email
         {
             get { return CacheUsuario.Email; }
@@ -170,6 +89,7 @@ namespace Proyecto_Ferreteira___1.Clases
 
             }
         }
+
 
         public string Cargo
         {
@@ -185,8 +105,125 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+        /// <summary>
+        /// Devuelve un mensaje de verificacion sobre si se modifico correctamente los datos
+        /// </summary>
+        /// <param name="nombreEmpleado"></param>
+        /// <param name="apellidoEmpleado"></param>
+        /// <param name="nombreUsuario"></param>
+        /// <param name="contraseña"></param>
+        /// <param name="correo"></param>
+        /// <param name="Dni"></param>
+        /// <returns></returns>
+        public string EditarDatos(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo,string Dni)
+        {
+            string DatosActualizados = "";
+            try
+            {
+                
+                DatosActualizados = UserData.EditarDatosPerfil(nombreEmpleado, apellidoEmpleado, nombreUsuario, contraseña, correo,Dni);
+                VerficarInicioSesion(nombreUsuario, contraseña);
+                return DatosActualizados;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
 
+        /// <summary>
+        /// Metodo para guardar en la base de Datos un nuevo usuario
+        /// </summary>
+        /// <param name="nombreUsuario"></param>
+        /// <param name="contraseña"></param>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        public string GuardarDatos(string nombreUsuario, string contraseña, int codigo)
+        {
+            string DatosGuardados = "";
+            try
+            {
 
+                DatosGuardados = UserData.RegistrarUsuario(nombreUsuario, contraseña, codigo);
+                return DatosGuardados;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Devuelve el estado en el que se encuentra el Empleado
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        public bool ObtenerEstadoUsuario(int codigo)
+        {
+            try
+            {
+                return UserData.EstadoEmpleado(codigo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Metodo para Eliminar un Usuario
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <param name="estado"></param>
+        /// <returns></returns>
+        public string EliminarUsuario(int codigo ,bool estado)
+        {
+            try
+            {
+                return UserData.DesactivarUsuario(estado, codigo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+       
+
+        /// <summary>
+        /// Devuelve un estado logico sobre la existencia del Usuario
+        /// </summary>
+        /// <param name="user">Usuario</param>
+        /// <param name="pass">Contraseña</param>
+        /// <returns></returns>
+        public bool VerficarInicioSesion(string user, string pass)
+        {
+            try
+            {
+                return UserData.Login(user, pass);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
+        }
+
+       /// <summary>
+       /// Devuelve la lista de Empleados activos
+       /// </summary>
+       /// <returns></returns>
+        public List<UserData> ListaEmpleados()
+        {
+            return UserData.MostrarEmpleados();
+        }
+
+        /// <summary>
+        /// Metodo para Obtener los permisos de Usuario
+        /// </summary>
+        /// <returns></returns>
         public bool Permisos()
         {
             if (CacheUsuario.Cargo != "Administrador")
@@ -198,9 +235,10 @@ namespace Proyecto_Ferreteira___1.Clases
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Método que "avisa" a la interfaz que existe un cambio en una propiedad
+        /// <summary>
+        /// Método que "avisa" a la interfaz que existe un cambio en una propiedad
+        /// </summary>
+        /// <param name="property"></param>
         private void OnPropertyChanged(string property)
         {
             if (PropertyChanged != null)

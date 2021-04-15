@@ -9,6 +9,17 @@ namespace Proyecto_Ferreteira___1.Clases
 {
     public class UserData : Connection
     {
+
+        public int Id { get; set; }
+        public string DNI { get; set; }
+
+        public string Nombre { get; set; }
+
+        public string Cargo { get; set; }
+        public string Telefono { get; set; }
+        public string Email { get; set; }
+        public int Edad { get; set; }
+
         /// <summary>
         /// Constractor para crear una instancia
         /// </summary>
@@ -22,81 +33,105 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <returns></returns>
         public bool Login(string user, string pass)
         {
-            using (var conexion = GetConnection())
+            try
             {
-                conexion.Open();
-                using (var comando = new SqlCommand())
+                using (var conexion = GetConnection())
                 {
-                    comando.Connection = conexion;
-                    comando.CommandText = "Verificar_Usuario";
-                    comando.Parameters.AddWithValue("@user", user);
-                    comando.Parameters.AddWithValue("@contrasenia", pass);
-                    comando.CommandType = CommandType.StoredProcedure;
-                    SqlDataReader reader = comando.ExecuteReader();
-                    if (reader.HasRows)
+                    conexion.Open();
+                    using (var comando = new SqlCommand())
                     {
-                        while (reader.Read())
+                        comando.Connection = conexion;
+                        comando.CommandText = "Verificar_Usuario";
+                        comando.Parameters.AddWithValue("@user", user);
+                        comando.Parameters.AddWithValue("@contrasenia", pass);
+                        comando.CommandType = CommandType.StoredProcedure;
+                        SqlDataReader reader = comando.ExecuteReader();
+                        if (reader.HasRows)
                         {
+                            while (reader.Read())
+                            {
 
-                            CacheUsuario.IdUsuario = reader.GetInt32(0);
-                            CacheUsuario.Usuario = reader.GetString(1);
-                            CacheUsuario.Contraseña = reader.GetString(2);
-                            CacheUsuario.NombreCompleto = reader.GetString(3);
-                            CacheUsuario.ApellidoCompleto = reader.GetString(4);
-                            CacheUsuario.Cargo = reader.GetString(5);
-                            CacheUsuario.Email = reader.GetString(6);
-                            CacheUsuario.Estado = reader.GetBoolean(7);
-                            CacheUsuario.DNI = reader.GetString(8);
+                                CacheUsuario.IdUsuario = reader.GetInt32(0);
+                                CacheUsuario.Usuario = reader.GetString(1);
+                                CacheUsuario.Contraseña = reader.GetString(2);
+                                CacheUsuario.NombreCompleto = reader.GetString(3);
+                                CacheUsuario.ApellidoCompleto = reader.GetString(4);
+                                CacheUsuario.Cargo = reader.GetString(5);
+                                CacheUsuario.Email = reader.GetString(6);
+                                CacheUsuario.Estado = reader.GetBoolean(7);
+                                CacheUsuario.DNI = reader.GetString(8);
+                            }
+                            return true;
                         }
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
+                        else
+                        {
+                            return false;
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
         }
 
-
+        /// <summary>
+        /// Funcion para comprobar el estado del Empleado
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns>devuelve un estado logico</returns>
         public bool EstadoEmpleado(int codigo)
         {
-            bool EstadoEmpleado = false;
-            using (var conexion = GetConnection())
+
+            try
             {
-                conexion.Open();
-                using (var comando = new SqlCommand())
+                bool EstadoEmpleado = false;
+                using (var conexion = GetConnection())
                 {
-                    comando.Connection = conexion;
-                    comando.CommandText = "select Estado from [Recursos_humanos].[Empleado] where Codigo_Empleado = @codigo";
-                    comando.Parameters.AddWithValue("@codigo", codigo);
-
-                    comando.CommandType = CommandType.Text;
-                    SqlDataReader reader = comando.ExecuteReader();
-
-                    while (reader.Read())
+                    conexion.Open();
+                    using (var comando = new SqlCommand())
                     {
-                        EstadoEmpleado = reader.GetBoolean(0);
-                 
+                        comando.Connection = conexion;
+                        comando.CommandText = "select Estado from [Recursos_humanos].[Empleado] where Codigo_Empleado = @codigo";
+                        comando.Parameters.AddWithValue("@codigo", codigo);
+
+                        comando.CommandType = CommandType.Text;
+                        SqlDataReader reader = comando.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            EstadoEmpleado = reader.GetBoolean(0);
+
+                        }
+
+                        return EstadoEmpleado;
+
                     }
-
-                    return EstadoEmpleado;
-
                 }
             }
+            catch (Exception ex)
+            {
 
-           
-
-
+                throw ex;
+            }
+          
         }
 
-
+        /// <summary>
+        /// Funcion para Cargar el DatagridView con la infomrmacion de Empleados
+        /// </summary>
+        /// <returns>Devuelve el dataTable lleno con todos los datos de los empleados</returns>
         public DataTable DataTableEmpleado()
         {
-            DataTable dataTable = new DataTable();
-            using (var conexion = GetConnection())
+            try
             {
-                string query = @"select
+                DataTable dataTable = new DataTable();
+                using (var conexion = GetConnection())
+                {
+                    string query = @"select
                                E.Codigo_Empleado [Id],
                                E.identidad [Identidad],
                                concat(E.Nombre_Empleado,' ',E.Apellido_empleado)[Nombre Completo],
@@ -107,110 +142,183 @@ namespace Proyecto_Ferreteira___1.Clases
                                join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto
                                where E.Estado = 1";
 
-                SqlCommand cmd = new SqlCommand(query, conexion);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dataTable);
-                return dataTable;
+                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dataTable);
+                    return dataTable;
+                }
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
 
 
-
+        /// <summary>
+        /// Funcion para Registrar un Nuevo empleado en la base de datos
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="codigoCargo"></param>
+        /// <param name="telefono"></param>
+        /// <param name="correo"></param>
+        /// <param name="direccion"></param>
+        /// <param name="estado"></param>
+        /// <param name="fechaNac"></param>
+        /// <param name="DNI"></param>
+        /// <returns></returns>
         public string RegistrarEmpleados(string nombre, string apellido, int codigoCargo,string telefono,string correo,string direccion,bool estado,string fechaNac,string DNI)
         {
-            using (var CN = GetConnection())
+            try
             {
-                CN.Open();
-                using (var CMD = new SqlCommand())
+                using (var CN = GetConnection())
                 {
-                    CMD.Connection = CN;
-                    CMD.CommandText = "RegistrarEmpleado";
-                    CMD.Parameters.AddWithValue("@nombre", nombre);
-                    CMD.Parameters.AddWithValue("@DNI", DNI);
-                    CMD.Parameters.AddWithValue("@apellido", apellido);
-                    CMD.Parameters.AddWithValue("@codigoPuesto", codigoCargo);
-                    CMD.Parameters.AddWithValue("@correo", correo);
-                    CMD.Parameters.AddWithValue("@telefono", telefono);
-                    CMD.Parameters.AddWithValue("@fechaNacimiento", fechaNac);
-                    CMD.Parameters.AddWithValue("@estado", estado);
-                    CMD.Parameters.AddWithValue("@direccion", direccion);
-                    CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
-                    CMD.CommandType = CommandType.StoredProcedure;
-                    CMD.ExecuteNonQuery();
-                    return CMD.Parameters["@mensaje"].Value.ToString();
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "RegistrarEmpleado";
+                        CMD.Parameters.AddWithValue("@nombre", nombre);
+                        CMD.Parameters.AddWithValue("@DNI", DNI);
+                        CMD.Parameters.AddWithValue("@apellido", apellido);
+                        CMD.Parameters.AddWithValue("@codigoPuesto", codigoCargo);
+                        CMD.Parameters.AddWithValue("@correo", correo);
+                        CMD.Parameters.AddWithValue("@telefono", telefono);
+                        CMD.Parameters.AddWithValue("@fechaNacimiento", fechaNac);
+                        CMD.Parameters.AddWithValue("@estado", estado);
+                        CMD.Parameters.AddWithValue("@direccion", direccion);
+                        CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        return CMD.Parameters["@mensaje"].Value.ToString();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                return ex.Message.ToString();
+            }
+           
         }
 
-
+        /// <summary>
+        /// Funcion para guardar un nuevo Usuario en la base de Datos
+        /// </summary>
+        /// <param name="nombreUsuario"></param>
+        /// <param name="contraseña"></param>
+        /// <param name="codigoEmpleado"></param>
+        /// <returns></returns>
         public string RegistrarUsuario(string nombreUsuario, string contraseña, int codigoEmpleado)
         {
-            using (var CN = GetConnection())
+            try
             {
-                CN.Open();
-                using (var CMD = new SqlCommand())
+                using (var CN = GetConnection())
                 {
-                    CMD.Connection = CN;
-                    CMD.CommandText = "RegistrarUsuario";
-                    CMD.Parameters.AddWithValue("@codigo", codigoEmpleado);
-                    CMD.Parameters.AddWithValue("@usuario", nombreUsuario);
-                    CMD.Parameters.AddWithValue("@contraseña", contraseña);
-                    CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
-                    CMD.CommandType = CommandType.StoredProcedure;
-                    CMD.ExecuteNonQuery();
-                    return CMD.Parameters["@mensaje"].Value.ToString();
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "RegistrarUsuario";
+                        CMD.Parameters.AddWithValue("@codigo", codigoEmpleado);
+                        CMD.Parameters.AddWithValue("@usuario", nombreUsuario);
+                        CMD.Parameters.AddWithValue("@contraseña", contraseña);
+                        CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        return CMD.Parameters["@mensaje"].Value.ToString();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+  
         }
 
-
+        /// <summary>
+        /// Funcion para Desactivar un Usuario
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
         public string DesactivarUsuario(bool estado,int codigo)
         {
-            using (var CN = GetConnection())
+            try
             {
-                CN.Open();
-                using (var CMD = new SqlCommand())
+                using (var CN = GetConnection())
                 {
-                    CMD.Connection = CN;
-                    CMD.CommandText = @"UPDATE [Recursos_humanos].[Empleado]
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = @"UPDATE [Recursos_humanos].[Empleado]
                                       SET[Estado] = @Estado
                                       WHERE Codigo_Empleado = @codigo";
-                    CMD.Parameters.AddWithValue("@codigo", codigo);
-                    CMD.Parameters.AddWithValue("@Estado", estado);
-                  
-                
-                    CMD.CommandType = CommandType.Text;
-                    CMD.ExecuteNonQuery();
-                    return "La Cuenta del Empleado Esta Inactiva";
+                        CMD.Parameters.AddWithValue("@codigo", codigo);
+                        CMD.Parameters.AddWithValue("@Estado", estado);
+
+
+                        CMD.CommandType = CommandType.Text;
+                        CMD.ExecuteNonQuery();
+                        return "La Cuenta del Empleado Esta Inactiva";
+                    }
                 }
             }
+            catch ( Exception ex)
+            {
+
+                return ex.Message.ToString();
+            }
+           
         }
 
-
+        /// <summary>
+        /// Funcion para editar los datos personales del Usuario que actualmente incio sesion
+        /// </summary>
+        /// <param name="nombreEmpleado"></param>
+        /// <param name="apellidoEmpleado"></param>
+        /// <param name="nombreUsuario"></param>
+        /// <param name="contraseña"></param>
+        /// <param name="correo"></param>
+        /// <param name="DNI"></param>
+        /// <returns></returns>
         public string EditarDatosPerfil(string nombreEmpleado, string apellidoEmpleado, string nombreUsuario, string contraseña, string correo,string DNI)
         {
-            using (var CN = GetConnection())
+            try
             {
-                CN.Open();
-                using (var CMD = new SqlCommand())
+                using (var CN = GetConnection())
                 {
-                    CMD.Connection = CN;
-                    CMD.CommandText = "EditarPerfilUsuario";
-                    CMD.Parameters.AddWithValue("@id_Empleado", CacheUsuario.IdUsuario);
-                    CMD.Parameters.AddWithValue("@Nombre_Empleado", nombreEmpleado);
-                    CMD.Parameters.AddWithValue("@Apellido_empleado", apellidoEmpleado);
-                    CMD.Parameters.AddWithValue("@Correo", correo);
-                    CMD.Parameters.AddWithValue("@DNI", DNI);
-                    CMD.Parameters.AddWithValue("@Usuario", nombreUsuario);
-                    CMD.Parameters.AddWithValue("@Contraseña", contraseña);
-                    CMD.Parameters.AddWithValue("@Estado", CacheUsuario.Estado);
-                    CMD.Parameters.Add("@Mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
-                    CMD.CommandType = CommandType.StoredProcedure;
-                    CMD.ExecuteNonQuery();
-                    return CMD.Parameters["@Mensaje"].Value.ToString();
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "EditarPerfilUsuario";
+                        CMD.Parameters.AddWithValue("@id_Empleado", CacheUsuario.IdUsuario);
+                        CMD.Parameters.AddWithValue("@Nombre_Empleado", nombreEmpleado);
+                        CMD.Parameters.AddWithValue("@Apellido_empleado", apellidoEmpleado);
+                        CMD.Parameters.AddWithValue("@Correo", correo);
+                        CMD.Parameters.AddWithValue("@DNI", DNI);
+                        CMD.Parameters.AddWithValue("@Usuario", nombreUsuario);
+                        CMD.Parameters.AddWithValue("@Contraseña", contraseña);
+                        CMD.Parameters.AddWithValue("@Estado", CacheUsuario.Estado);
+                        CMD.Parameters.Add("@Mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        return CMD.Parameters["@Mensaje"].Value.ToString();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                return ex.Message.ToString();
+            }
+          
         }
 
         /// <summary>
@@ -265,21 +373,10 @@ namespace Proyecto_Ferreteira___1.Clases
             
         }
 
-
-
-        public int Id { get; set; }
-        public string DNI { get; set; }
-
-        public string Nombre { get; set; }
-
-        public string Cargo { get; set; }
-        public string Telefono { get; set; }
-        public string Email { get; set; }
-        public int Edad { get; set; }
-
-       
-
-
+        /// <summary>
+        /// Metodo para llenar lista con los Cargos disponibles
+        /// </summary>
+        /// <returns></returns>
         public List<UserData> ComboBoxCargo()
         {
             List<UserData> allCargos = new List<UserData>();
@@ -315,6 +412,11 @@ namespace Proyecto_Ferreteira___1.Clases
 
         }
 
+        /// <summary>
+        /// Metodo para Buscar un Empleado en Especifico
+        /// </summary>
+        /// <param name="codigoEmpleado"></param>
+        /// <returns> devuelve un estado logico indicando si se encontro el empleado</returns>
         public bool BuscarEmpleado(int codigoEmpleado)
         {
             using (var conexion = GetConnection())
@@ -354,6 +456,10 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+        /// <summary>
+        /// Lista para obtener el nombre de los empleaodos
+        /// </summary>
+        /// <returns></returns>
         public List<UserData> MostrarEmpleados()
         {
             // Inicializar una lista vacía de habitaciones
