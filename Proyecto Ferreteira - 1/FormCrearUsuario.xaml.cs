@@ -94,5 +94,11 @@ namespace Proyecto_Ferreteira___1
                 MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            Panel2.Children.Clear();
+            Panel2.Visibility = Visibility.Collapsed;
+        }
     }
 }

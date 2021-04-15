@@ -21,9 +21,10 @@ namespace Proyecto_Ferreteira___1
     public partial class FormUsuarios : UserControl
     {
 
-        public delegate void ActulizarDatos(string codigoProducto, string nombreProducto, string existenciaProducto, string precioProducto);
-        public event ActulizarDatos nuevosCambios;
-
+        /// <summary>
+        /// Instancia para llamar a la clase de Usuario
+        /// </summary>
+        public Clases.Usuarios usuarios { get; set; }
         public FormUsuarios()
         {
             InitializeComponent();
@@ -31,14 +32,9 @@ namespace Proyecto_Ferreteira___1
             Panel2.Visibility = Visibility.Hidden;
         }
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
+        
 
-        //}
-
-
-
-        public Clases.Usuarios usuarios { get; set; }
+       
         public void LoadEditarPerfil()
         {
             usuarios = new Clases.Usuarios
@@ -98,6 +94,8 @@ namespace Proyecto_Ferreteira___1
             Panel2.Visibility = Visibility.Visible;
             Panel2.Children.Clear();
             Panel2.Children.Add(new FormEditarPerfil());
+
+          
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
@@ -112,6 +110,7 @@ namespace Proyecto_Ferreteira___1
             Panel2.Visibility = Visibility.Visible;
             Panel2.Children.Clear();
             Panel2.Children.Add(new FormCrearUsuario());
+            
         }
 
 

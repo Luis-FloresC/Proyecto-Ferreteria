@@ -80,7 +80,7 @@
                             ToolTip="Cancelar Operacion"
                             x:Name="btnCancelar"
                             Margin="10 5"
-                            Content="Cancelar" />
+                            Content="Cancelar" Click="btnCancelar_Click" />
 
             </StackPanel>
 

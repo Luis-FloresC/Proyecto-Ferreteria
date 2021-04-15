@@ -20,32 +20,39 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class FormEditarPerfil : UserControl
     {
+
+       
+
+
         public FormEditarPerfil()
         {
             InitializeComponent();
             LoadEditarPerfil();
         }
 
-
+        /// <summary>
+        /// Metodo para validar los campos
+        /// </summary>
+        /// <returns></returns>
         private bool VerificarDatos()
         {
             bool VerificacionCorrecta = true;
             if (txtPassword.Password.Length < 8)
             {
-                MessageBox.Show("La contraseña debe tener minimo 8 caracteres,Vuela a intentar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("La contraseña debe tener minimo 8 caracteres,Vuelva a intentar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 VerificacionCorrecta = false;
                 
             }
 
             if(txtPassword.Password != txtConfirmarPassword.Password)
             {
-                MessageBox.Show("La contraseña no coincide,Vuela a intentar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("La contraseña no coincide,Vuelva a intentar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 VerificacionCorrecta = false;
             }
 
             if(txtPassWordActual.Password != Clases.CacheUsuario.Contraseña)
             {
-                MessageBox.Show("La contraseña es incorrecta,Vuela a intentar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("La contraseña es incorrecta,Vuelva a intentar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 MessageBox.Show(Clases.CacheUsuario.Contraseña);
                 VerificacionCorrecta = false;
             }
@@ -53,7 +60,11 @@ namespace Proyecto_Ferreteira___1
             return VerificacionCorrecta;
         }
 
-        MenuPrincipal MenuPrincipal = new MenuPrincipal();
+      /// <summary>
+      /// Metodo para Editar los datos personales
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if(VerificarDatos())
@@ -61,14 +72,14 @@ namespace Proyecto_Ferreteira___1
                 var Resultado = usuarios.EditarDatos(txtNombre.Text, txtApellido.Text, txtUsuario.Text, txtPassword.Password, txtEmail.Text,txtDNI.Text);
                 MessageBox.Show(Resultado,"Aviso",MessageBoxButton.OK,MessageBoxImage.Information);
                 LoadEditarPerfil();
-                MenuPrincipal.GridPrincipal.Children.Clear();
-                MenuPrincipal.GridPrincipal.Children.Add(new FormUsuarios());
             }
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-
+            Panel2.Children.Clear();
+            Panel2.Visibility = Visibility.Hidden;
+            
         }
 
 
@@ -107,7 +118,7 @@ namespace Proyecto_Ferreteira___1
 
             txtPassword.Password = Clases.CacheUsuario.Contraseña;
             txtConfirmarPassword.Password = Clases.CacheUsuario.Contraseña;
-
+           
          
 
         }
