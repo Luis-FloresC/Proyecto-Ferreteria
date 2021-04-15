@@ -129,7 +129,7 @@ namespace Proyecto_Ferreteira___1
                         venta.agregarDetalle();
                     }
 
-                    MessageBox.Show("Factura realizada por exito");
+                    MessageBox.Show("Factura realizada con exito");
                     limpiar();
                 }
                 else
@@ -280,6 +280,10 @@ namespace Proyecto_Ferreteira___1
             productos.Clear();
         }
 
+        /// <summary>
+        /// Valida que todos los campos necesarios para  la venta esten llenos
+        /// </summary>
+        /// <returns></returns>
         private bool validacion()
         {
             if (!txtIdCliente.Text.Equals("") && cbTipoPago.SelectedIndex > -1 && dgDetalleVenta.Items.Count > 0)
