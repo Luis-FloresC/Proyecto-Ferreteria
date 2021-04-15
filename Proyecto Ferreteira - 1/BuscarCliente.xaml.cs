@@ -22,7 +22,7 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class BuscarCliente : Window
     {
-        public delegate void pasarCliente(string codigoCliente, string nombreCliente);
+        public delegate void pasarCliente(string codigoCliente, string nombreCliente, int edad);
         public event pasarCliente pasar;
         private SqlConnection sqlConnection;
 
@@ -48,7 +48,7 @@ namespace Proyecto_Ferreteira___1
                 SqlCommand cmd = sqlConnection.CreateCommand();
 
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = @"Select codigo_cliente, nombres, apellidos, identidad from [Ventas].[Cliente] " +
+                cmd.CommandText = @"SELECT codigo_cliente, nombres, apellidos, identidad, fecha_nacimiento FROM [Ventas].[Cliente] " +
                                     "WHERE nombres like '%"+txtBuscar.Text+"%' and estado = 1";
 
                 cmd.ExecuteNonQuery();
@@ -87,8 +87,10 @@ namespace Proyecto_Ferreteira___1
 
                 string codigo = (dgClientes.Items[fila] as System.Data.DataRowView).Row.ItemArray[0].ToString();
                 string nombre = (dgClientes.Items[fila] as System.Data.DataRowView).Row.ItemArray[1].ToString();
+                DateTime fechaNacimiento = Convert.ToDateTime((dgClientes.Items[fila] as System.Data.DataRowView).Row.ItemArray[4].ToString());
+                int edad = DateTime.Today.AddTicks(-fechaNacimiento.Ticks).Year - 1;
 
-                pasar(codigo, nombre);
+                pasar(codigo, nombre, edad);
 
                 this.Visibility = Visibility.Hidden;
             }

@@ -17,7 +17,7 @@ namespace Proyecto_Ferreteira___1.Clases
         private int codigoProducto;
         private int cantidadProducto;
         private double precioProducto;
-        private double ISV;
+        private double isv;
         private double descuento;
         private double subtotal;
         private string tipoPago;
@@ -28,7 +28,7 @@ namespace Proyecto_Ferreteira___1.Clases
         public int CodigoProducto { get => codigoProducto; set => codigoProducto = value; }
         public int CantidadProducto { get => cantidadProducto; set => cantidadProducto = value; }
         public double PrecioProducto { get => precioProducto; set => precioProducto = value; }
-        public double ISV1 { get => ISV; set => ISV = value; }
+        public double ISV { get => isv; set => isv = value; }
         public double Descuento { get => descuento; set => descuento = value; }
         public double Subtotal { get => subtotal; set => subtotal = value; }
         public string TipoPago { get => tipoPago; set => tipoPago = value; }
@@ -57,8 +57,8 @@ namespace Proyecto_Ferreteira___1.Clases
                 sqlCommand.Parameters.AddWithValue("@codigoCliente", CodigoCliente);
                 sqlCommand.Parameters.AddWithValue("@tipoPago", TipoPago);
                 sqlCommand.Parameters.AddWithValue("@subtotal", Subtotal);
-                sqlCommand.Parameters.AddWithValue("@isv", ISV1);
-                sqlCommand.Parameters.AddWithValue("@rtn", Descuento);
+                sqlCommand.Parameters.AddWithValue("@isv", isv);
+                sqlCommand.Parameters.AddWithValue("@descuento", Descuento);
 
                 //Ejecutar el comando de insercion
                 sqlCommand.ExecuteNonQuery();
