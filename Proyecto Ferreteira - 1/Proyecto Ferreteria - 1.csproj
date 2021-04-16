@@ -130,6 +130,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Compra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -140,6 +144,8 @@
     </Compile>
     <Compile Include="Clases\CacheEmpleado.cs" />
     <Compile Include="Clases\CacheUsuario.cs" />
+    <Compile Include="Clases\Calculos.cs" />
+    <Compile Include="Clases\Compras.cs" />
     <Compile Include="Clases\Connection.cs" />
     <Compile Include="Clases\Empleados.cs" />
     <Compile Include="Clases\Proveedores.cs" />
@@ -165,6 +171,9 @@
     </Compile>
     <Compile Include="Clientes.xaml.cs">
       <DependentUpon>Clientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Compra.xaml.cs">
+      <DependentUpon>Compra.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
