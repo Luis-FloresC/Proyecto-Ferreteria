@@ -72,8 +72,8 @@ namespace Proyecto_Ferreteira___1
                     GridPrincipal.Children.Add(new Clientes());
                     break;
                 case 3:
-                    //GridPrincipal.Children.Clear();
-                    //GridPrincipal.Children.Add(new prueba3());
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new Productos());
                     break;
                 case 4:
                     GridPrincipal.Children.Clear();
@@ -88,7 +88,7 @@ namespace Proyecto_Ferreteira___1
                     GridPrincipal.Children.Add(new FormProveedores());
                     break;
                 default:
-                    if (MessageBox.Show("¿Esta seguro que desea Cerrar Sesion?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("¿Esta seguro que desea Cerrar Sesión?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
                         this.Close();
                     }

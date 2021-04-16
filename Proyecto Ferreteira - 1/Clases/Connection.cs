@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace Proyecto_Ferreteira___1.Clases
 {
- public class Connection
+    public class Connection
     {
 
         private readonly String Connection_st;
