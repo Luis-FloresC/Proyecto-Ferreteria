@@ -29,11 +29,21 @@ namespace Proyecto_Ferreteira___1
             txtUsuario.Text = Clases.CacheUsuario.NombreCompleto + " " + Clases.CacheUsuario.ApellidoCompleto;
         }
 
+        /// <summary>
+        /// Button para poder salir del programa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// Evento MosueDown para poder mover el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
@@ -96,6 +106,10 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+        /// <summary>
+        /// Evento para cambiar la pocision del Cursor al seleccionar un elemnto de la Lista
+        /// </summary>
+        /// <param name="index"></param>
         private void MoveCursorMenu(int index)
         {
             if(Pantalla.Text != "WindowRestore")
@@ -111,6 +125,11 @@ namespace Proyecto_Ferreteira___1
      
         }
 
+        /// <summary>
+        /// Funcion para maximizar la pantalla y restaurarla
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMaximizar_Click(object sender, RoutedEventArgs e)
         {
             if(Pantalla.Text != "WindowRestore")
@@ -127,12 +146,21 @@ namespace Proyecto_Ferreteira___1
         }
 
        
-
+        /// <summary>
+        /// Evento click para minimzar la pantalla
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMinimizar_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
+        /// <summary>
+        /// Evento click para abrir el formulario de Editar nuestro Perfil
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnEditarPerfil_Click(object sender, RoutedEventArgs e)
         {
             GridPrincipal.Children.Clear();

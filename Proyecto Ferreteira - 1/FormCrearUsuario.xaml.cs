@@ -20,6 +20,17 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class FormCrearUsuario : UserControl
     {
+
+        /// <summary>
+        /// Instancia para llamar a la clase de Uusuarios
+        /// </summary>
+        Clases.Usuarios usuarios = new Clases.Usuarios();
+
+        /// <summary>
+        /// Lista para Obtener los empleados
+        /// </summary>
+        private List<Clases.UserData> ListaDeEmpleados;
+
         public FormCrearUsuario()
         {
             InitializeComponent();
@@ -27,9 +38,11 @@ namespace Proyecto_Ferreteira___1
             MostrarEmpleados();
         }
 
-        Clases.Usuarios usuarios = new Clases.Usuarios();
-        private List<Clases.UserData> ListaDeEmpleados;
-
+       
+        
+        /// <summary>
+        /// Metodo para mostrar los empleados en el ComboBox
+        /// </summary>
         private void MostrarEmpleados()
         {
             ListaDeEmpleados = usuarios.ListaEmpleados();
@@ -38,7 +51,10 @@ namespace Proyecto_Ferreteira___1
             cmbNombreEmpleado.ItemsSource = ListaDeEmpleados;
         }
 
-
+        /// <summary>
+        /// Metodo para validar el ingreso de Datos en el Formulario
+        /// </summary>
+        /// <returns></returns>
         private bool VerficarDatos()
         {
             bool datosCorrectos = true;
@@ -86,6 +102,11 @@ namespace Proyecto_Ferreteira___1
             return datosCorrectos;
         }
 
+        /// <summary>
+        /// Evento Click para Guardar el Usuaurio
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if(VerficarDatos())
@@ -94,7 +115,11 @@ namespace Proyecto_Ferreteira___1
                 MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
+        /// <summary>
+        /// Evento Click para cancelar la operacion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             Panel2.Children.Clear();

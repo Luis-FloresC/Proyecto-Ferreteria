@@ -93,6 +93,8 @@
                     <materialDesing:PackIcon Kind="BadgeAccount" Width="25" Height="25" Foreground="White"/>
                     <TextBox Margin="10 0" x:Name="txtDNI" materialDesing:HintAssist.Hint="Numero de Identidad" 
                              Foreground="White" Width="280" 
+                             KeyDown="ValidacionNumeros"
+                             MaxLength="20"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" >
@@ -105,15 +107,18 @@
                     <TextBox Margin="10 0" x:Name="txtNombreEmpleado" materialDesing:HintAssist.Hint="Nombre del Empleado" 
                              Foreground="White" Width="280" 
                              Text=""
+                             MaxLength="75"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
-                             SelectionBrush="#FFD94448"/>
+                             SelectionBrush="#FFD94448" KeyDown="ValidacionLetras"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="Account" x:Name="iconNombre" Width="25" Height="25" Foreground="White"/>
                     <TextBox Margin="10 0" x:Name="txtApellidoEmpleado" materialDesing:HintAssist.Hint="Apellido del Empleado" 
                              Foreground="White" Width="280" Text=""
+                             KeyDown="ValidacionLetras"
+                             MaxLength="75"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              SelectionBrush="#FFD94448"/>
@@ -124,7 +129,9 @@
                     <TextBox Margin="10 0" x:Name="txtTelefono" materialDesing:HintAssist.Hint="Telefono" 
                              Foreground="White" Width="280" 
                              Text=""
-                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             MaxLength="20"
+                             KeyDown="ValidacionNumeros"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
                 </StackPanel>
@@ -134,6 +141,7 @@
                     <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
                              Text=""
+                             MaxLength="75"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -176,6 +184,7 @@
                              Foreground="White" Width="280" 
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
+                             MaxLength="75"
                              VerticalScrollBarVisibility="Auto"
                              SpellCheck.IsEnabled="True"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"

@@ -90,10 +90,10 @@
                             BorderThickness="2" BorderBrush="#DE1623" 
                             Background="#DE1623"
                             Foreground="White" 
-                            ToolTip="Eliminar un Usuario"
+                            ToolTip="Adminsitrar Usuarios"
                             x:Name="btnEliminar"
                             Margin="60"
-                            Content="Eliminar Usuario" Click="btnEliminar_Click"/>
+                            Content="Administrar Usuarios" Click="btnEliminar_Click"/>
 
                 </StackPanel>
 

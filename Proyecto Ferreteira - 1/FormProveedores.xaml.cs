@@ -76,6 +76,13 @@ namespace Proyecto_Ferreteira___1
                 datosCorrectos = false;
                 MessageBox.Show("Todos los Campos son Obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+
+            if (txtTelefono.Text.Length <= 7 || txtTelefono.Text.Length > 20)
+            {
+                datosCorrectos = false;
+                MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
             return datosCorrectos;
         }
 
@@ -112,11 +119,21 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+        /// <summary>
+        /// Evento Click para Limpiar los campos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
             LimpiarCampos();
         }
 
+        /// <summary>
+        /// Evento Click para Modificar un Proveedor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
             if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
@@ -128,6 +145,11 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+        /// <summary>
+        /// Evento Click para Eliminar un proveedor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
@@ -151,6 +173,56 @@ namespace Proyecto_Ferreteira___1
             DataGridProveedores.ItemsSource = DataTableProveedores.DefaultView;
             var TotalRows = DataGridProveedores.Items.Count;
             txtTotal.Text = "Total: " + TotalRows;
+        }
+
+
+        /// <summary>
+        /// Metodo para permitir solo Letras
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ValidacionLetras(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Permiten Letras", "Aviso");
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        /// <summary>
+        /// Metodo para permitir solo Numeros
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ValidacionNumeros(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Permiten Numeros", "Aviso");
+            }
+        }
+
+        /// <summary>
+        /// Evento Click para cancelar la operacion a realizar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            if ((MessageBox.Show("¿Esta Seguro que desea cancelar la operacion?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
+            {
+                LimpiarCampos();
+            }
         }
     }
 }

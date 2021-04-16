@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
-            <TextBlock Text="Eliminar Usuario" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
+            <TextBlock Text="Administrar Usuario" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="25" FontFamily="Georgia"></TextBlock>
 
             <StackPanel Orientation="Horizontal" Margin="10">
 

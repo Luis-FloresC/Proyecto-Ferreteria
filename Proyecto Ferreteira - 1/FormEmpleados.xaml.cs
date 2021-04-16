@@ -225,13 +225,18 @@ namespace Proyecto_Ferreteira___1
                 
             }
 
-            if(txtDNI.Text.Length <= 13 || txtDNI.Text.Length > 20)
+            if(txtDNI.Text.Length <=  12 || txtDNI.Text.Length > 20)
             {
                 datosCorrectos = false;
                 MessageBox.Show("La Identidad tiene que tener entre 13-20 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
-            
+            if (txtTelefono.Text.Length <= 7 || txtTelefono.Text.Length > 20)
+            {
+                datosCorrectos = false;
+                MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
             return datosCorrectos;
 
         }
@@ -273,5 +278,46 @@ namespace Proyecto_Ferreteira___1
             var TotalRows = DataGridEmpleados.Items.Count;
             txtTotal.Text = "Total: " + TotalRows;
         }
+
+        
+
+        /// <summary>
+        /// Metodo para permitir solo Letras
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ValidacionLetras(object sender,KeyEventArgs e )
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Permiten Letras", "Aviso");
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        /// <summary>
+        /// Metodo para permitir solo Numeros
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ValidacionNumeros(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Permiten Numeros", "Aviso");
+            }
+        }
+
+
+
     }
 }

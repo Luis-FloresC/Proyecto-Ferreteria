@@ -96,6 +96,8 @@
                     <TextBox Margin="10 0" x:Name="txtNombre" materialDesing:HintAssist.Hint="Nombre del Proveedor" 
                              Foreground="White" Width="280" 
                              Text=""
+                             KeyDown="ValidacionLetras"
+                             MaxLength="75"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -108,6 +110,8 @@
                     <TextBox Margin="10 0" x:Name="txtTelefono" materialDesing:HintAssist.Hint="Telefono" 
                              Foreground="White" Width="280" 
                              Text=""
+                              MaxLength="20"
+                             KeyDown="ValidacionNumeros"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -118,6 +122,7 @@
                     <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
                              Text=""
+                              MaxLength="32"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -133,6 +138,7 @@
                     <TextBox Margin="10 0" x:Name="txtDireccion" materialDesing:HintAssist.Hint="Direccion" 
                              Foreground="White" Width="280" 
                              TextWrapping="Wrap"
+                             MaxLength="250"
                              AcceptsReturn="True"
                              VerticalScrollBarVisibility="Auto"
                              SpellCheck.IsEnabled="True"
@@ -162,7 +168,7 @@
                             ToolTip="Cancelar Operacion"
                             x:Name="BtnCancelar"
                             Margin="10 5"
-                            Content="Cancelar" />
+                            Content="Cancelar" Click="BtnCancelar_Click" />
 
                 </StackPanel>
 

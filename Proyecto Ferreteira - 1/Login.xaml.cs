@@ -26,6 +26,12 @@ namespace Proyecto_Ferreteira___1
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// Evento MouseDown para poder mover el Formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
@@ -33,33 +39,52 @@ namespace Proyecto_Ferreteira___1
                 DragMove();
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
-                MessageBox.Show("Error: " + ex.Message.ToString());
             }
         }
 
+        /// <summary>
+        /// Boton de Aceptar para Verificar los datos del usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
 
-            Clases.Usuarios usuarios = new Clases.Usuarios();
-            var ResultadoValidacion = usuarios.VerficarInicioSesion(txtuser.Text, txtpass.Password);
-            if ((ResultadoValidacion == true) && (txtuser.Text == Clases.CacheUsuario.Usuario) && (txtpass.Password == Clases.CacheUsuario.Contraseña) && (Clases.CacheUsuario.Estado == true))
+            try
             {
-                MessageBox.Show(string.Format("¡Bienvenido(a) al sistema, {0} {1}!", Clases.CacheUsuario.NombreCompleto,Clases.CacheUsuario.ApellidoCompleto));
-                MenuPrincipal menuPrincipal = new MenuPrincipal();
-                menuPrincipal.Show();
-                this.Close();
+                Clases.Usuarios usuarios = new Clases.Usuarios();
+                var ResultadoValidacion = usuarios.VerficarInicioSesion(txtuser.Text, txtpass.Password);
+                if ((ResultadoValidacion == true) && (txtuser.Text == Clases.CacheUsuario.Usuario) && (txtpass.Password == Clases.CacheUsuario.Contraseña) && (Clases.CacheUsuario.Estado == true))
+                {
+                    MessageBox.Show(string.Format("¡Bienvenido(a) al sistema, {0} {1}!", Clases.CacheUsuario.NombreCompleto, Clases.CacheUsuario.ApellidoCompleto));
+                    MenuPrincipal menuPrincipal = new MenuPrincipal();
+                    menuPrincipal.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o Contraseña Incorrecto\nIntente de nuevo", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtpass.Password = string.Empty;
+                    txtpass.Focus();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuario o Contraseña Incorrecto\nIntente de nuevo", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtpass.Password = string.Empty;
-                txtpass.Focus();
+
+                MessageBox.Show(ex.Message.ToString());
             }
+
+            
         }
 
+        /// <summary>
+        /// Evento Click para salir del Programa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Esta seguro que desea Salir?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

@@ -75,6 +75,12 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+
+        /// <summary>
+        /// Evento Click para cancelar la operacion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             Panel2.Children.Clear();
@@ -82,7 +88,11 @@ namespace Proyecto_Ferreteira___1
             
         }
 
-
+        /// <summary>
+        /// Funcion para habilitar los campos de Contraseña y Confrimar Constraseña
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chEditar_Checked(object sender, RoutedEventArgs e)
         {
             if (chEditar.IsChecked != true)
@@ -99,8 +109,14 @@ namespace Proyecto_Ferreteira___1
         }
 
 
-       
+       /// <summary>
+       /// Instancia para llamar al Formulario de Usuarios
+       /// </summary>
         FormUsuarios formUsuario = new FormUsuarios();
+
+        /// <summary>
+        /// Instancia para llamar a la clase de Usuarios
+        /// </summary>
         public Clases.Usuarios usuarios { get; set; }
         private void LoadEditarPerfil()
         {

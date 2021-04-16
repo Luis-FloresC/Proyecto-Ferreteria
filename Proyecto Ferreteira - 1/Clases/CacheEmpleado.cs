@@ -8,7 +8,9 @@ namespace Proyecto_Ferreteira___1.Clases
 {
   public  class CacheEmpleado
     {
-
+        /// <summary>
+        /// Constructor para llamar a la clase
+        /// </summary>
         public CacheEmpleado() { }
 
         public static string NombreEmpleado { get; set; }
