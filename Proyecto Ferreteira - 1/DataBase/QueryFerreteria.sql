@@ -66,7 +66,8 @@ rtn varchar(20),
 estado bit
 Constraint PK_codigo_cliente
 Primary Key Clustered (codigo_cliente),
-Constraint AK_Cliente_Identidadunique nonclustered (identidad)
+Constraint AK_Cliente_Identidad
+unique nonclustered (identidad)
 )
 Go
 
@@ -129,7 +130,8 @@ Estado bit not null,
 Direccion nvarchar(75) not null,
 Constraint PK_Codigo_Empleado
 Primary Key Clustered (Codigo_Empleado),
-Constraint AK_Empleado_Identidadunique nonclustered (identidad)
+Constraint AK_Empleado_Identidad
+unique nonclustered (identidad)
 )
 Go
 
@@ -274,3 +276,7 @@ ALTER TABLE Ventas.detalle_venta
 	Add Constraint PK_LlaveCompuesta_Detalle_Venta
 	primary key(codigo_venta,codigo_producto)
 Go
+
+--Creacion del indice unico para Nombre_Producto 
+Alter table Productos.Producto
+ADD UNIQUE (Nombre_Producto)

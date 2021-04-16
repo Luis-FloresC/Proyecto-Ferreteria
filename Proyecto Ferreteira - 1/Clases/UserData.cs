@@ -466,6 +466,8 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <returns></returns>
         public string DesactivarUsuario(bool estado,int codigo)
         {
+            string resutaldo = "";
+
             try
             {
                 using (var CN = GetConnection())
@@ -483,7 +485,17 @@ namespace Proyecto_Ferreteira___1.Clases
 
                         CMD.CommandType = CommandType.Text;
                         CMD.ExecuteNonQuery();
-                        return "La Cuenta del Empleado Esta Inactiva";
+
+                        if (estado)
+                        {
+                            resutaldo = "La cuenta del empleado esta activa";
+                        }
+                        else
+                        {
+                            resutaldo = "La Cuenta del Empleado Esta Inactiva";
+                        }
+
+                        return resutaldo;
                     }
                 }
             }

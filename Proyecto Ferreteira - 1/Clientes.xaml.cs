@@ -133,7 +133,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error en la base de datos");
+                MessageBox.Show("Error en la base de datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -153,7 +153,7 @@ namespace Proyecto_Ferreteira___1
             }
             else
             {
-                MessageBox.Show("Por favor, llene todos los campos.");
+                MessageBox.Show("Por favor, llene todos los campos.","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
 
@@ -166,7 +166,7 @@ namespace Proyecto_Ferreteira___1
         {
             if(lbClientes.SelectedValue == null)
             {
-                MessageBox.Show("Seleccione un cliente");
+                MessageBox.Show("Seleccione un cliente","Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -221,7 +221,7 @@ namespace Proyecto_Ferreteira___1
             }
             else
             {
-                MessageBox.Show("Por favor! Llene todos los campos.");
+                MessageBox.Show("Por favor! Llene todos los campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -234,11 +234,11 @@ namespace Proyecto_Ferreteira___1
         {
             if (lbClientes.SelectedValue == null)
             {
-                MessageBox.Show("Seleccione un cliente a eliminar");
+                MessageBox.Show("Seleccione un cliente a eliminar", "Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
-                if(MessageBox.Show("¿Seguro que quieres eliminar el cliente?","Eliminar cliente",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if(MessageBox.Show("¿Seguro que quieres eliminar el cliente?","Eliminar cliente",MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     cliente.eliminarCliente(Convert.ToInt32(lbClientes.SelectedValue));
                     cargarTabla();

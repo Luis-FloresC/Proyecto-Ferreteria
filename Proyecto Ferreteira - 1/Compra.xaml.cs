@@ -19,9 +19,9 @@ namespace Proyecto_Ferreteira___1
             InitializeComponent();
             MostrarProveedores();
             MostrarProductos();
-
-            Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
-            this.DataContext = Calculo;
+            calculos();
+            //Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
+            //this.DataContext = Calculo;
 
         }
         private List<Clases.Compras> Carrito = new List<Clases.Compras>();
@@ -58,7 +58,7 @@ namespace Proyecto_Ferreteira___1
             bool comprobacion = Comprobacion();
             if (comprobacion == true)
             {
-                MessageBox.Show("Por favor llenar todos los datos requeridos","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Por favor llenar todos los datos requeridos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -82,6 +82,11 @@ namespace Proyecto_Ferreteira___1
                     //Activacion de botones
                     btnRealizarCompra.IsEnabled = true;
                     btnEliminarPedido.IsEnabled = true;
+
+                    //Limpiar los texbox de productos
+                    txtCantidad.Text = "0";
+                    txtPrecio.Text = "0";
+                    cmbProducto.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -98,49 +103,49 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void Realizar_Click_2(object sender, RoutedEventArgs e)
         {
-                try
+            try
+            {
+
+                string Resultado = "";
+                int Codigo = compra.CodigoCompra();
+                foreach (Clases.Compras Item in Carrito)
                 {
-                
-                    string Resultado = "";
-                    int Codigo = compra.CodigoCompra();
-                    foreach (Clases.Compras Item in Carrito)
-                    {
 
-                        Clases.Compras compras = new Clases.Compras
-                            (
-                             Convert.ToInt32(cmbProveedor.SelectedValue),
-                             Convert.ToInt32(Item.IdProducto.ToString()),
-                             Convert.ToInt32(Item.Cantidad.ToString()),
-                             Convert.ToInt32(Item.Precio.ToString()),
-                             double.Parse(txtSubtotal.Text),
-                             double.Parse(txtISV.Text),
-                             double.Parse(txtDescuento.Text),
-                             Codigo,
-                             double.Parse(txtFlete.Text)
-                            );
+                    Clases.Compras compras = new Clases.Compras
+                        (
+                         Convert.ToInt32(cmbProveedor.SelectedValue),
+                         Convert.ToInt32(Item.IdProducto.ToString()),
+                         Convert.ToInt32(Item.Cantidad.ToString()),
+                         Convert.ToInt32(Item.Precio.ToString()),
+                         double.Parse(txtSubtotal.Text),
+                         double.Parse(txtISV.Text),
+                         double.Parse(txtDescuento.Text),
+                         Codigo,
+                         double.Parse(txtFlete.Text)
+                        );
 
-                        Resultado = compras.GuardarCompras();
+                    Resultado = compras.GuardarCompras();
 
 
-                    }
-                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        //Habilitacion y deshabilitacion de botones
-                        btnAgregarPedido.IsEnabled = true;
-                        btnRealizarCompra.IsEnabled = false;
-                        btnEliminarPedido.IsEnabled = false;
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show("Ten en cuenta que no puedes hacer multiples compras de un producto en un mismo carrito." +
-                        "\nSi ese no es tu problema verifica los datos ingresados","ADVERTENCIA",MessageBoxButton.OK,MessageBoxImage.Warning);
-                }
-                finally
-                {
-                    Limpieza();
-                    dgbInformacion.Items.Clear();
-                    Carrito.Clear();
-            }           
+                MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                //Habilitacion y deshabilitacion de botones
+                btnAgregarPedido.IsEnabled = true;
+                btnRealizarCompra.IsEnabled = false;
+                btnEliminarPedido.IsEnabled = false;
+
+                //Limpiar
+                Limpieza();
+                dgbInformacion.Items.Clear();
+                Carrito.Clear();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ten en cuenta que no puedes hacer multiples compras de un producto en un mismo carrito." +
+                    "\nSi ese no es tu problema verifica los datos ingresados", "ADVERTENCIA", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
         }
         /// <summary>
         /// Se encarga de la elimanacion de datos del data Grid
@@ -150,17 +155,24 @@ namespace Proyecto_Ferreteira___1
         private void Eliminar_Click_3(object sender, RoutedEventArgs e)
         {
             int index = dgbInformacion.SelectedIndex;
-            for (int i = 0; i < Carrito.Count; i++)
+            if (index == -1)
             {
-                if (i == (index))
-                {
-                    Carrito.RemoveAt(i);
-
-                }
+                MessageBox.Show("Seleccione la compra a eliminar", "AVISO", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            dgbInformacion.Items.RemoveAt(index);
-            btnAgregarPedido.IsEnabled = true;
-            btnEliminarPedido.IsEnabled = false;
+            else
+            {
+                for (int i = 0; i < Carrito.Count; i++)
+                {
+                    if (i == (index))
+                    {
+                        Carrito.RemoveAt(i);
+
+                    }
+                }
+                dgbInformacion.Items.RemoveAt(index);
+                btnAgregarPedido.IsEnabled = true;
+                calculos();
+            }
         }
         /// <summary>
         /// Se encarga de la establecer el valor de las entradas de datos a su estado original
@@ -182,15 +194,21 @@ namespace Proyecto_Ferreteira___1
         /// Hace la validacíon de la entrada de datos
         /// </summary>
         /// <returns>True si la entrada de datos es erronea False si la entrada de datos es correcta</returns>
-        private bool Comprobacion ()
+        private bool Comprobacion()
         {
             bool resultado;
-             if (cmbProducto.SelectedValue == null || cmbProveedor.SelectedValue == null || txtCantidad.Text == "0" ||
-                 txtPrecio.Text == "0"
-                ) 
+            if (cmbProducto.SelectedValue == null || cmbProveedor.SelectedValue == null || txtCantidad.Text == "0" ||
+                txtPrecio.Text == "0"
+               )
             { resultado = true; }
             else { resultado = false; }
             return resultado;
+        }
+
+        private void calculos()
+        {
+            Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
+            this.DataContext = Calculo;
         }
     }
 }

@@ -27,6 +27,7 @@ namespace Proyecto_Ferreteira___1
         /// Instancia para llamar a la clase de Empleados
         /// </summary>
         Clases.Empleados Empleados = new Clases.Empleados();
+        Clases.Usuarios usuario = new Clases.Usuarios();
 
         /// <summary>
         /// Lista para alamcear los datos del empleado
@@ -43,7 +44,11 @@ namespace Proyecto_Ferreteira___1
             InitializeComponent();
             CargarDatosComboBoxCargo();
             CargarDatosDataGrid();
-            
+            if (!usuario.Permisos())
+            {
+                BtnModificar.Visibility = Visibility.Hidden;
+                btnEliminar.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>

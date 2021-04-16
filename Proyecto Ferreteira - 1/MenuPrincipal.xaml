@@ -12,7 +12,7 @@
             <Grid Background="#0061D2" Height="10"/>
             <Grid Margin="5">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="518,0,338,0">
-                    <TextBlock Text="Ferreteria" Foreground="White" VerticalAlignment="Center" FontSize="20" FontFamily="Champagne &amp; Limousines" Margin="50,3"/>
+                    <TextBlock Text="FERRETERIA JANA" Foreground="White" VerticalAlignment="Center" FontSize="20" FontFamily="Champagne &amp; Limousines" Margin="50,3"/>
                     <TextBlock Text="WindowMaximize"  x:Name="Pantalla" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">

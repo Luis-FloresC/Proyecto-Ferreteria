@@ -19,6 +19,8 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     public partial class MenuPrincipal : Window
     {
+        MainWindow login = new MainWindow();
+
         public MenuPrincipal()
         {
 
@@ -26,7 +28,20 @@ namespace Proyecto_Ferreteira___1
             Pantalla.Text = "WindowMaximize";
             txtCargo.Text = Clases.CacheUsuario.Cargo;
             txtEmail.Text = Clases.CacheUsuario.Email;
-            txtUsuario.Text = Clases.CacheUsuario.NombreCompleto + " " + Clases.CacheUsuario.ApellidoCompleto;
+            txtUsuario.Text = Cadena(Clases.CacheUsuario.NombreCompleto) + " " + Cadena(Clases.CacheUsuario.ApellidoCompleto);
+        }
+
+        /// <summary>
+        /// Metodo para Separar Cadena de Texto
+        /// </summary>
+        /// <param name="cadena"></param>
+        /// <returns></returns>
+        private string Cadena(string cadena)
+        {
+            String source = cadena; //Original text
+            String[] result = source.Split(new char[] { ' ', ' ' });
+
+            return result[0];
         }
 
         /// <summary>
@@ -100,6 +115,7 @@ namespace Proyecto_Ferreteira___1
                 default:
                     if (MessageBox.Show("¿Esta seguro que desea Cerrar Sesión?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
+                        login.Visibility = Visibility.Visible;
                         this.Close();
                     }
                     break;

@@ -49,6 +49,7 @@ namespace Proyecto_Ferreteira___1
             try
             {
                 string query = @"Select Productos.Producto.Codigo_Producto [Código], Productos.Producto.Nombre_Producto [Nombre del Producto],
+                                Productos.Producto.existencia [Existencia],
                                 Productos.Producto.Precio_Estandar [Precio],
                                 Productos.Categoria.Nombre_Categoria [Nombre de la Categoria] 
                                 From Productos.Categoria INNER JOIN Productos.Producto 
@@ -85,6 +86,7 @@ namespace Proyecto_Ferreteira___1
         {
             txtNombreProducto.Text = String.Empty;
             txtPrecioProducto.Text = String.Empty;
+            txtExistenciaProducto.Text = String.Empty;
             cbNombreCategoria.SelectedValue = null;
             txtNombreProducto.Focus();
         }
@@ -110,7 +112,7 @@ namespace Proyecto_Ferreteira___1
                         if (cbNombreCategoria.SelectedIndex == c)
                         {
                             string nombre = txtNombreProducto.Text;
-                            int existencia = 0;
+                            int existencia = Convert.ToInt32(txtExistenciaProducto.Text);
                             double precio = Convert.ToDouble(txtPrecioProducto.Text);
                             producto.InsertarProducto(nombre, existencia, precio, i);
                         }
@@ -151,7 +153,8 @@ namespace Proyecto_Ferreteira___1
                             string nombre = txtNombreProducto.Text;
                             double precio = Convert.ToDouble(txtPrecioProducto.Text);
                             int productos = IdProducto;
-                            producto.ModificarProductos(nombre, precio, i, productos);
+                            int existencia = Convert.ToInt32(txtExistenciaProducto.Text);
+                            producto.ModificarProductos(nombre, precio, i, productos, existencia);
                         }
                         c++;
                     }
@@ -176,8 +179,9 @@ namespace Proyecto_Ferreteira___1
             {
                 IdProducto = Convert.ToInt32((dgvInventario.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
                 txtNombreProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[1].ToString();
-                txtPrecioProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[2].ToString();
-                cbNombreCategoria.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[3].ToString();
+                txtExistenciaProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[2].ToString();
+                txtPrecioProducto.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[3].ToString();
+                cbNombreCategoria.Text = (dgvInventario.CurrentItem as DataRowView).Row.ItemArray[4].ToString();
             }
         }
         /// <summary>

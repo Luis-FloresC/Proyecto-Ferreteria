@@ -13,21 +13,15 @@ namespace Proyecto_Ferreteira___1.Clases
         //Propiedades
 
         public int IdProveedor { get; set; }
-
         public string NombreProveedor { get; set; }
-
         public int IdProducto { get; set; }
-
         public string NombreProducto { get; set; }
-
         public int Cantidad { get; set; }
         public double Precio { get; set; }
         public double Descuento { get; set; }
         public double ISV { get; set; }
-
         public double SubTotal { get; set; }
         private static int CodigoCompras { get; set; }
-
         public double Flete { get; set; }
 
 
@@ -168,7 +162,7 @@ namespace Proyecto_Ferreteira___1.Clases
                         CMD.CommandText = "RegistrarCompras";
                         CMD.Parameters.Clear();
                         CMD.Parameters.AddWithValue("@codigoProveedor", IdProveedor);
-                        CMD.Parameters.AddWithValue("@codigoEmpleado", 1);
+                        CMD.Parameters.AddWithValue("@codigoEmpleado", CacheUsuario.IdUsuario);
                         CMD.Parameters.AddWithValue("@codigoCompra", CodigoCompras);
                         CMD.Parameters.AddWithValue("@subTotal", SubTotal);
                         CMD.Parameters.AddWithValue("@isv", ISV);

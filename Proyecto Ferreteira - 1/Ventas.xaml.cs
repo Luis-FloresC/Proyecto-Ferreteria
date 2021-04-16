@@ -51,11 +51,11 @@ namespace Proyecto_Ferreteira___1
         {
             if( txtCantidad.Text.Equals(string.Empty) || Convert.ToInt32(txtCantidad.Text) <= 0)
             {
-                MessageBox.Show("La cantidad que usted ingreso no es valida");
+                MessageBox.Show("La cantidad que usted ingreso no es valida", "Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else if (Convert.ToInt32(txtCantidad.Text) > existenciaProduc)
             {
-                MessageBox.Show("La existencia de este producto es insuficiente");
+                MessageBox.Show("La existencia de este producto es insuficiente","Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -94,7 +94,7 @@ namespace Proyecto_Ferreteira___1
 
             if (indice == -1)
             {
-                MessageBox.Show("Seleccione el producto a eliminar");
+                MessageBox.Show("Seleccione el producto a eliminar","Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -129,17 +129,17 @@ namespace Proyecto_Ferreteira___1
                         venta.agregarDetalle();
                     }
 
-                    MessageBox.Show("Factura realizada con exito");
+                    MessageBox.Show("Factura realizada con exito", "Aviso",MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     limpiar();
                 }
                 else
                 {
-                    MessageBox.Show("Llene todos los campos antes de realizar la venta.","Aviso");
+                    MessageBox.Show("Llene todos los campos antes de realizar la venta.","Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch(Exception)
             {
-                MessageBox.Show("¡Error al facturar!");
+                MessageBox.Show("¡Error al facturar!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -104,7 +104,7 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <param name="precio"></param>
         /// <param name="codigoCategoria"></param>
         /// <param name="codigo_Producto"></param>
-        public void ModificarProductos(string nombre, double precio, int codigoCategoria, int codigo_Producto)
+        public void ModificarProductos(string nombre, double precio, int codigoCategoria, int codigo_Producto, int cantidad)
         {
             var connection = GetConnection();
             try
@@ -113,6 +113,7 @@ namespace Proyecto_Ferreteira___1.Clases
                                 SET Nombre_Producto = @nombre,
                                 Precio_Estandar = @precio,
                                 Codigo_Categoria = @codigo,
+                                Existencia = @existencia,
                                 Estado = 1
                                 WHERE Codigo_Producto = @codigoProducto";
                 connection.Open();
@@ -120,6 +121,7 @@ namespace Proyecto_Ferreteira___1.Clases
                 sqlCommand.Parameters.AddWithValue("@nombre", nombre);
                 sqlCommand.Parameters.AddWithValue("@precio", precio);
                 sqlCommand.Parameters.AddWithValue("@codigo", codigoCategoria);
+                sqlCommand.Parameters.AddWithValue("@existencia", cantidad);
                 sqlCommand.Parameters.AddWithValue("@codigoProducto", codigo_Producto);
                 sqlCommand.ExecuteNonQuery();
             }

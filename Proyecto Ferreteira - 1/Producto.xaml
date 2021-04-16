@@ -32,11 +32,13 @@
 
         <Label Content="Nombre del producto" Grid.Row="2" Margin="10,10,0,10" Foreground="White" FontSize="17" FontFamily="Segoe U"/>
         <Label Content="Precio del producto" Grid.Row="4" Margin="10,10,0,10" Foreground="White" FontSize="17" FontFamily="Segoe U"/>
+        <Label Content="Existencia del producto" Grid.Row="4" Grid.Column="2" Margin="10,10,0,10" Foreground="White" FontSize="17" FontFamily="Segoe U"/>
         <Label Content="Nombre de la categoria" Grid.Row="2" Grid.Column="2" Foreground="White" FontSize="17" FontFamily="Segoe U" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="17,10,197,12"/>
 
         <ComboBox Name="cbNombreCategoria" Background="White" Grid.Row="2" Grid.Column="3" FontSize="17" Margin="10,10,10,11" FontFamily="Segoe U" Width="Auto"/>
         <TextBox Name="txtNombreProducto" Background="White" Grid.Row="2" Grid.Column="1" FontSize="17" Margin="10" FontFamily="Segoe U"/>
         <TextBox Name="txtPrecioProducto" Background="White" Grid.Row="4" Grid.Column="1" FontSize="17" Margin="10,9,10,11" FontFamily="Segoe U"/>
+        <TextBox Name="txtExistenciaProducto" Background="White" Grid.Row="4" Grid.Column="3" FontSize="17" Margin="10,9,10,11" FontFamily="Segoe U"/>
         <DataGrid Name ="dgvInventario" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="20" FontSize="17" FontFamily="Segoe U" IsReadOnly="True" SelectionChanged="dgvInventario_SelectionChanged"/>
 
         <Button Name="btnInsertar" Content="Insertar" Grid.Column="1" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Segoe U" Background="#2196F3" Foreground="White" Click="btnInsertar_Click"/>

@@ -13,7 +13,7 @@
               TextOptions.TextFormattingMode="Ideal"
               TextOptions.TextRenderingMode="Auto"
               FontFamily="{DynamicResource MaterialDesignFont}"          
-              Background="#363636"            
+              Background="#242222"            
              >
     <Grid >
         
