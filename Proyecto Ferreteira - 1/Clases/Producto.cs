@@ -84,11 +84,12 @@ namespace Proyecto_Ferreteira___1.Clases
                 sqlCommand.Parameters.AddWithValue("@precio", precio);
                 sqlCommand.Parameters.AddWithValue("@codigo", codigoCategoria);
                 sqlCommand.ExecuteNonQuery();
+                MessageBox.Show("Se ha insertado correctamente el producto", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Verifique que no este ingresando un producto ya existente","Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             finally
             {

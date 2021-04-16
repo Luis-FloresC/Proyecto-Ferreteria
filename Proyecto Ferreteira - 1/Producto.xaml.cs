@@ -86,29 +86,36 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnInsertar_Click(object sender, RoutedEventArgs e)
         {
-            int c = 0;
-            if (txtNombreProducto.Text == String.Empty || txtPrecioProducto.Text == String.Empty || cbNombreCategoria.SelectedValue == null)
+            try
             {
-                MessageBox.Show("¡Por favor, llenar todos los campos solicitados!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                foreach (int i in IdCategoria)
+                int c = 0;
+                if (txtNombreProducto.Text == String.Empty || txtPrecioProducto.Text == String.Empty || cbNombreCategoria.SelectedValue == null)
                 {
-                    if (cbNombreCategoria.SelectedIndex == c)
-                    {
-                        string nombre = txtNombreProducto.Text;
-                        int existencia = 0;
-                        double precio = Convert.ToDouble(txtPrecioProducto.Text);
-                        producto.InsertarProducto(nombre, existencia, precio, i);
-                    }
-                    c++;
+                    MessageBox.Show("¡Por favor, llenar todos los campos solicitados!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                MessageBox.Show("Se ha insertado correctamente el producto", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Information);
-                MostrarDatos();
-                LimpiarPantalla();
+                else
+                {
+                    foreach (int i in IdCategoria)
+                    {
+                        if (cbNombreCategoria.SelectedIndex == c)
+                        {
+                            string nombre = txtNombreProducto.Text;
+                            int existencia = 0;
+                            double precio = Convert.ToDouble(txtPrecioProducto.Text);
+                            producto.InsertarProducto(nombre, existencia, precio, i);
+                        }
+                        c++;
+                    }
+                    MostrarDatos();
+                    LimpiarPantalla();
+                }
+
             }
-           
+            catch (Exception)
+            {
+
+                MessageBox.Show("Por favor verifique que esta ingresando los valores correctos en los campos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         /// <summary>
@@ -118,34 +125,40 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            int c = 0;
-            if (txtNombreProducto.Text == String.Empty || txtPrecioProducto.Text == String.Empty || cbNombreCategoria.SelectedValue == null)
+            try
             {
-                MessageBox.Show("¡Por favor, seleccionar el producto que desea modificar!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                foreach (int i in IdCategoria)
+                int c = 0;
+                if (txtNombreProducto.Text == String.Empty || txtPrecioProducto.Text == String.Empty || cbNombreCategoria.SelectedValue == null)
                 {
-                    if (cbNombreCategoria.SelectedIndex == c)
-                    {
-                        string nombre = txtNombreProducto.Text;
-                        double precio = Convert.ToDouble(txtPrecioProducto.Text);
-                        int productos = IdProducto;
-                        producto.ModificarProductos(nombre, precio, i, productos);
-                    }
-                    c++;
+                    MessageBox.Show("¡Por favor, seleccionar el producto que desea modificar!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                MessageBox.Show("Se ha actualizado correctamente el producto", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Information);
-                MostrarDatos();
-                LimpiarPantalla();
+                else
+                {
+                    foreach (int i in IdCategoria)
+                    {
+                        if (cbNombreCategoria.SelectedIndex == c)
+                        {
+                            string nombre = txtNombreProducto.Text;
+                            double precio = Convert.ToDouble(txtPrecioProducto.Text);
+                            int productos = IdProducto;
+                            producto.ModificarProductos(nombre, precio, i, productos);
+                        }
+                        c++;
+                    }
+                    MessageBox.Show("Se ha actualizado correctamente el producto", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MostrarDatos();
+                    LimpiarPantalla();
+                }
             }
-           
+            catch (Exception)
+            {
+
+                MessageBox.Show("Por favor verifique que esta ingresando los valores correctos en los campos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
         /// <summary>
         /// Evento que se encarga de enviar los elementos del datagrid a los textbox y combobox
         /// </summary>
-
         public static int IdProducto;
         private void dgvInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
