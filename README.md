@@ -16,8 +16,9 @@ si presenta un problema al momento de restaurar el backup por favor ejecute los 
 * DataBase/QueryFerreteria.sql
 * DataBase/Stored Procedures.sql
 
-despues puede probar iniciando sesion con el siguiente usuario: Luis
-contraseña: 12345678
+despues puede probar iniciando sesion con los datos siguiente:
+* usuario: Luis
+* contraseña: 12345678
 
 
 ## Construido con 🛠️
