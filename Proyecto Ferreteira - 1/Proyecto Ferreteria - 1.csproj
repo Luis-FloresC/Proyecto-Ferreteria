@@ -99,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FormInicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormProveedores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +120,9 @@
     <Compile Include="Clases\ClsCliente.cs" />
     <Compile Include="Clases\ClsProducto.cs" />
     <Compile Include="Clases\ClsVenta.cs" />
+    <Compile Include="FormInicio.xaml.cs">
+      <DependentUpon>FormInicio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventas.xaml.cs">
       <DependentUpon>Ventas.xaml</DependentUpon>
     </Compile>

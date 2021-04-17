@@ -85,8 +85,8 @@ namespace Proyecto_Ferreteira___1
             switch (index)
             {
                 case 0:
-                    //GridPrincipal.Children.Clear();
-                    //GridPrincipal.Children.Add(new FormUsuarios());
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new FormInicio());
                     break;
                 case 1:
                     GridPrincipal.Children.Clear();
