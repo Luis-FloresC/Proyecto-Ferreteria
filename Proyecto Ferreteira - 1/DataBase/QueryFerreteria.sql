@@ -280,3 +280,28 @@ Go
 --Creacion del indice unico para Nombre_Producto 
 Alter table Productos.Producto
 ADD UNIQUE (Nombre_Producto)
+
+
+
+-- Insertar Datos de Categoria
+
+insert into [Productos].[Categoria] 
+values 
+('Herramientas de mano'),
+('Lubricantes')
+
+-- Insertar Datos para los puestos
+insert into [Recursos_humanos].[Puesto]
+values
+('Administrador'),
+('Gerente'),
+('Vendedor')
+
+-- Insertar Empleado/Usuario 
+
+insert into [Recursos_humanos].[Empleado]
+values('Luis','Flores','0703200003793',1,'96362917','lf016158@gmail.com',2000-06-07,GetDate(),1,'Danli')
+
+
+insert into  [Recursos_humanos].[Usuario]
+values ('Luis','12345678',1)
