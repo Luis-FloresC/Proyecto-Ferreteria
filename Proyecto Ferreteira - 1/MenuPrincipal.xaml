@@ -1,0 +1,128 @@
+﻿<Window x:Class="Proyecto_Ferreteira___1.MenuPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MenuPrincipal" Height="650" Width="1250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
+    <Grid Background="#242222" MouseDown="Grid_MouseDown">
+        <StackPanel VerticalAlignment="Top" Background="#363636">
+            <Grid Background="#0061D2" Height="10"/>
+            <Grid Margin="5">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="518,0,338,0">
+                    <TextBlock Text="FERRETERIA JANA" Foreground="White" VerticalAlignment="Center" FontSize="20" FontFamily="Champagne &amp; Limousines" Margin="50,3"/>
+                    <TextBlock Text="WindowMaximize"  x:Name="Pantalla" Visibility="Hidden"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">
+                    <Button Width="30" x:Name="btnMinimizar" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Click="btnMinimizar_Click" Foreground="#0061D2">
+                        <materialDesign:PackIcon Kind="WindowMinimize"/>
+                    </Button>
+                    <!--<Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="#0061D2" >
+                        <materialDesign:PackIcon Kind="WindowMaximize"/>
+                    </Button>-->
+                    <Button x:Name="btnMaximizar" Click="btnMaximizar_Click"  Width="30" Height="30"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="#0061D2" >
+                        <materialDesign:PackIcon Kind="{Binding ElementName=Pantalla ,Path=Text ,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+                    </Button>
+                    <Button x:Name="ButtonFechar" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="#FF0000" Click="ButtonFechar_Click">
+                        <materialDesign:PackIcon Kind="WindowClose"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <Grid Margin="250 55 0 0">
+            <Grid x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Width="250" HorizontalAlignment="Left" Background="#363636">
+            <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                <Grid x:Name="GridCursor" Margin="0 150 0 0" Background="#0061D2" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
+            </materialDesign:TransitioningContent>
+
+            <StackPanel Orientation="Vertical" Margin="10,20" >
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Foreground="#0061D2" Kind="Account"  Width="20" Height="20" VerticalAlignment="Stretch" Margin="5"/>
+                    <TextBlock x:Name="txtUsuario" Text="Usuario" FontSize="18" Foreground="White" Margin="5"/>
+                    <Button x:Name="BtnEditarPerfil" Background="{x:Null}" Height="auto" Width="auto" BorderBrush="{x:Null}" Margin="5 0" ToolTip="Editar Usuario" Click="BtnEditarPerfil_Click">
+                        <materialDesign:PackIcon Foreground="#0061D2" Kind="Edit" Width="20"  Height="20"/>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Foreground="#0061D2" Kind="Email"  Width="20" Height="20" VerticalAlignment="Stretch" Margin="5"/>
+                    <TextBlock x:Name="txtEmail" Text="Email" FontSize="18" Foreground="White" Margin="5"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Foreground="#0061D2" Kind="Briefcase"  Width="20" Height="20" VerticalAlignment="Stretch" Margin="5"/>
+                    <TextBlock x:Name="txtCargo" Text="Cargo" FontSize="18" Foreground="White" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+
+            <ListView x:Name="ListViewMenu" Margin="0,150,0,1" Foreground="LightGray" FontFamily="Champagne &amp; Limousines" FontSize="18" SelectionChanged="ListViewMenu_SelectionChanged"  SelectedIndex="0">
+                <ListViewItem Height="60" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Inicio" FontSize="17" VerticalAlignment="Center" Margin="20 0" />
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CartArrowRight" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Ventas" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="AccountStar" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Clientes" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Package" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Productos" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Shopping" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Compras" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Accounts" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Empleados" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Accounts" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Proveedores" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="SignOut" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Cerrar Sesion" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+
+
+            </ListView>
+        </Grid>
+
+    </Grid>
+</Window>

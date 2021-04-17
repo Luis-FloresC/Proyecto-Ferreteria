@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="Proyecto_Ferreteira___1.FormEliminarUsuario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
+             mc:Ignorable="d" 
+             xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Height="auto" Width="auto">
+    <Grid>
+        <StackPanel Width="350" Background="#363636" x:Name="Panel2">
+
+            <TextBlock Text="Administrar Usuario" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="25" FontFamily="Georgia"></TextBlock>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+
+                <materialDesing:PackIcon Kind="User" VerticalAlignment="Center"   Width="25" Height="30" Foreground="White"/>
+                <ComboBox Margin="10 0" x:Name="cmbNombreEmpleado" materialDesing:HintAssist.Hint="Empleado" 
+                             Foreground="White" Width="276" 
+                             BorderBrush="white" 
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                             materialDesing:ColorZoneAssist.Mode="Inverted" SelectionChanged="cmbNombreEmpleado_SelectionChanged"/>
+
+
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+
+
+                <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" 
+                          Foreground="White" BorderBrush="White"
+                          HorizontalAlignment="Center"
+                          Width="120" IsChecked="False"  
+                          Margin="100,0"
+                          x:Name="chEstado"
+                          Content="Activo" Checked="CheckBox_Checked" />
+
+            </StackPanel>
+
+
+
+          
+
+         
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                            BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
+                            Foreground="White"
+                            Click="btnAceptar_Click"
+                            ToolTip="Iniciar sesion"
+                            x:Name="btnAceptar"
+                            Content="Aceptar" />
+
+
+
+                <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                            BorderThickness="2" BorderBrush="#242222" 
+                            Background="#242222"
+                            Foreground="White" 
+                            ToolTip="Cancelar Operacion"
+                            x:Name="btnCancelar"
+                            Margin="10 5"
+                            Content="Cancelar" Click="btnCancelar_Click" />
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,314 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Data;
+
+
+namespace Proyecto_Ferreteira___1
+{
+    /// <summary>
+    /// Lógica de interacción para Ventas.xaml
+    /// </summary>
+    public partial class Ventas : UserControl
+    {
+        //Listas
+        List<Clases.ClsProducto> productos = new List<Clases.ClsProducto>();
+
+        //Objetos
+        Clases.ClsVenta venta = new Clases.ClsVenta();
+
+        //Variables globales
+        double existenciaProduc = 0;
+        double descuento = 0;
+        //Constantes
+        const double isv = 0.15;
+        
+
+        public Ventas()
+        {
+            InitializeComponent();
+        }
+
+        //METODOS
+
+        /// <summary>
+        /// Agrega el producto seleccionado al DataGrid y a la lista productos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            if( txtCantidad.Text.Equals(string.Empty) || Convert.ToInt32(txtCantidad.Text) <= 0)
+            {
+                MessageBox.Show("La cantidad que usted ingreso no es valida", "Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else if (Convert.ToInt32(txtCantidad.Text) > existenciaProduc)
+            {
+                MessageBox.Show("La existencia de este producto es insuficiente","Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                //Variable que almacena la informacion de el producto que vamos a ingresar
+                var Item = new Clases.ClsProducto
+                {
+                    ID = Convert.ToInt32(txtIdProducto.Text),
+                    PRODUCTO = txtNombreProducto.Text,
+                    PRECIO = double.Parse(txtPrecio.Text),
+                    CANTIDAD = int.Parse(txtCantidad.Text),
+                    IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
+                };
+                //Ingresa el producto en la lista productos
+                productos.Add(new Clases.ClsProducto
+                {
+                    ID = Convert.ToInt32(txtIdProducto.Text),
+                    PRECIO = double.Parse(txtPrecio.Text),
+                    CANTIDAD = int.Parse(txtCantidad.Text),
+                    IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
+                });
+
+                dgDetalleVenta.Items.Add(Item);
+                calculos();
+                limpiarProducto();
+            }
+        }
+
+        /// <summary>
+        /// Elimina el producto seleccionado del DataGrid y de la lista productos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            int indice = dgDetalleVenta.SelectedIndex;
+
+            if (indice == -1)
+            {
+                MessageBox.Show("Seleccione el producto a eliminar","Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                dgDetalleVenta.Items.RemoveAt(indice);
+                productos.RemoveAt(indice);
+
+                calculos();
+            }
+        }
+
+        /// <summary>
+        /// Se encarga de registrar la compra en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFactura_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (validacion())
+                {
+                    guardarDatos();
+                    venta.facturar();
+
+                    //Ciclo que recorre la lista producto para ingresar cada producto del detalle
+                    foreach (var producto in productos)
+                    {
+                        venta.CodigoProducto = producto.ID;
+                        venta.PrecioProducto = producto.PRECIO;
+                        venta.CantidadProducto = producto.CANTIDAD;
+
+                        venta.agregarDetalle();
+                    }
+
+                    MessageBox.Show("Factura realizada con exito", "Aviso",MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("Llene todos los campos antes de realizar la venta.","Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("¡Error al facturar!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// Cancela la compra que se esta llevando acabo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            limpiar();
+        }
+
+        /// <summary>
+        /// Abre una ventana donde podemos buscar al cliente que 
+        /// realizara la compra
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBuscarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarCliente buscarCliente = new BuscarCliente();
+            buscarCliente.pasar += BuscarCliente_pasar;
+            buscarCliente.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Es el metodo encargado de pasar el cliente que seleccionamos en la venta
+        /// y determina su descuento segun la edad
+        /// de busqueda
+        /// </summary>
+        /// <param name="codigoCliente"></param>
+        /// <param name="nombreCliente"></param>
+        private void BuscarCliente_pasar(string codigoCliente, string nombreCliente, int edad)
+        {
+            txtIdCliente.Text = codigoCliente;
+            txtNombreCliente.Text = nombreCliente;
+
+            if (edad >= 60)
+                descuento = 0.30;
+            else
+                descuento = 0;
+        }
+
+        /// <summary>
+        /// Abre una venta para buscar el producto que se desea ingresar al DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBuscarProducto_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarProducto buscarProducto = new BuscarProducto();
+            buscarProducto.pasar += BuscarProducto_pasar;
+            buscarProducto.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Es el metodo encargado de pasar los datos del producto que seleccionamos en la venta de busqueda
+        /// </summary>
+        /// <param name="codigoProducto"></param>
+        /// <param name="nombreProducto"></param>
+        /// <param name="existenciaProducto"></param>
+        /// <param name="precioProducto"></param>
+        private void BuscarProducto_pasar(string codigoProducto, string nombreProducto, string existenciaProducto, string precioProducto)
+        {
+            txtIdProducto.Text = codigoProducto;
+            txtNombreProducto.Text = nombreProducto;
+            existenciaProduc = Convert.ToInt32(existenciaProducto);
+            txtPrecio.Text = precioProducto;
+        }
+
+        /// <summary>
+        /// Guarda los datos de la venta en la clase ClsVenta para su facturación
+        /// </summary>
+        private void guardarDatos()
+        {
+            venta.CodigoCliente = Convert.ToInt32(txtIdCliente.Text);
+            venta.TipoPago = cbTipoPago.Text;
+            venta.Subtotal = Convert.ToDouble(txtSubtotal.Text);
+            venta.ISV = isv;
+            venta.Descuento = descuento;
+        }
+
+        /// <summary>
+        /// Cada vez que se agregue o elimine un producto este metodo se encargara
+        /// de realizar los calculos totales de la compra
+        /// </summary>
+        public void calculos()
+        {
+            try
+            {
+                double subtotal = 0;
+
+                //Recorre todos los campos de importe de la lista para calcular el subtotal
+                foreach (var producto in productos)
+                {
+                    subtotal += Convert.ToDouble(producto.IMPORTE);
+                }
+
+                txtSubtotal.Text = subtotal.ToString();
+                txtIsv.Text = Convert.ToString(subtotal * isv);
+                txtDescuento.Text = Convert.ToString(subtotal * descuento);
+                txtTotal.Text = Convert.ToString(subtotal + (subtotal * isv) - (subtotal * descuento));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            
+        }
+
+        /// <summary>
+        /// Metodo de limpiar la informacion de los productos en los textBox
+        /// </summary>
+        private void limpiarProducto()
+        {
+            txtIdProducto.Text = "";
+            txtNombreProducto.Text = "";
+            txtPrecio.Text = "";
+            txtCantidad.Text = "";
+        }
+
+        /// <summary>
+        /// Limpia toda la informacion de la venta
+        /// </summary>
+        private void limpiar()
+        {
+            txtNombreCliente.Text = "";
+            txtIdCliente.Text = "";
+            cbTipoPago.SelectedIndex = -1;
+            txtSubtotal.Text = "0";
+            txtIsv.Text = "0";
+            txtDescuento.Text = "0";
+            txtSubtotal.Text = "0";
+            txtTotal.Text = "0";
+            limpiarProducto();
+            dgDetalleVenta.Items.Clear();
+            productos.Clear();
+        }
+
+        /// <summary>
+        /// Valida que todos los campos necesarios para  la venta esten llenos
+        /// </summary>
+        /// <returns></returns>
+        private bool validacion()
+        {
+            if (!txtIdCliente.Text.Equals("") && cbTipoPago.SelectedIndex > -1 && dgDetalleVenta.Items.Count > 0)
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Valida solo numeros en el texbox de cantidad
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtCantidad_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int ascci = Convert.ToInt32(Convert.ToChar(e.Text));
+
+            if (ascci >= 48 && ascci <= 57)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+    }
+}

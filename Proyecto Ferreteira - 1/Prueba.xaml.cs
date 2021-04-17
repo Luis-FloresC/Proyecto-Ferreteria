@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace Proyecto_Ferreteira___1
 {
     /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
+    /// Lógica de interacción para Prueba.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Prueba : UserControl
     {
-        public MainWindow()
+        public Prueba()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
