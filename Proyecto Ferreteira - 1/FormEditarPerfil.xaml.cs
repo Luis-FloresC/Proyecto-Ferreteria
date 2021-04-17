@@ -53,7 +53,7 @@ namespace Proyecto_Ferreteira___1
             if(txtPassWordActual.Password != Clases.CacheUsuario.Contraseña)
             {
                 MessageBox.Show("La contraseña es incorrecta,Vuelva a intentar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                MessageBox.Show(Clases.CacheUsuario.Contraseña);
+               
                 VerificacionCorrecta = false;
             }
 
@@ -100,10 +100,14 @@ namespace Proyecto_Ferreteira___1
 
                 txtPassword.IsEnabled = false;
                 txtConfirmarPassword.IsEnabled = false;
+                txtPassword.Password = Clases.CacheUsuario.Contraseña;
+                txtConfirmarPassword.Password = Clases.CacheUsuario.Contraseña;
             }
             else
             {
-                txtPassword.IsEnabled = true;
+                txtPassword.Password = string.Empty;
+                txtConfirmarPassword.Password = string.Empty;
+                txtPassword.IsEnabled = true; 
                 txtConfirmarPassword.IsEnabled = true;
             }
         }
