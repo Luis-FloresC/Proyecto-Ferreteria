@@ -130,6 +130,9 @@ namespace Proyecto_Ferreteira___1
                     }
 
                     MessageBox.Show("Factura realizada con exito", "Aviso",MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    
+                    FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
+                    ventas.Show();
                     limpiar();
                 }
                 else
@@ -141,6 +144,7 @@ namespace Proyecto_Ferreteira___1
             {
                 MessageBox.Show("¡Error al facturar!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
         }
 
         /// <summary>

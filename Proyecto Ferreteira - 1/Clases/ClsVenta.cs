@@ -76,6 +76,45 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+
+        public int CodigoVenta()
+        {
+            var connection = GetConnection();
+            int codigoVenta = 0;
+            try
+            {
+                //Consulta SQL
+                string query = @"select COAlesce(max([codigo_venta]),0)[Codi] from [Ventas].[venta]";
+
+                //Creacion del comando de consulta
+
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+
+                //Obtencion de datos y almacenamiento en las propiedades
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        codigoVenta = reader.GetInt32(0);
+                    }
+                }
+
+                return codigoVenta;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+        }
+
+
         /// <summary>
         /// Metodo encargado de agregar el detalle de la factura proviamente ingresada
         /// </summary>
