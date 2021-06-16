@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -210,5 +212,12 @@ namespace Proyecto_Ferreteira___1
             Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
             this.DataContext = Calculo;
         }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
     }
 }
