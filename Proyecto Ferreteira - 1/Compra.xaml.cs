@@ -236,7 +236,7 @@ namespace Proyecto_Ferreteira___1
             txtCantidad.Text = "";
         }
 
-        private void txtPrecio_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void txtPrecio_MouseEnter(object sender, MouseEventArgs e)
         {
             txtPrecio.Text = "";
         }
