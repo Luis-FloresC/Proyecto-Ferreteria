@@ -30,11 +30,15 @@ namespace Proyecto_Ferreteira___1
 
         private void FormFacturasVentas_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'FerreteriaDataSet2.TotalFacturas' Puede moverla o quitarla según sea necesario.
+            this.TotalFacturasTableAdapter.Fill(this.FerreteriaDataSet2.TotalFacturas, codV, codC);
             // TODO: esta línea de código carga datos en la tabla 'FerreteriaDataSet1.Factura' Puede moverla o quitarla según sea necesario.
             this.FacturaTableAdapter.Fill(this.FerreteriaDataSet1.Factura,codV,codC);
             // TODO: esta línea de código carga datos en la tabla 'FerreteriaDataSet1.ClienteFactura' Puede moverla o quitarla según sea necesario.
             this.ClienteFacturaTableAdapter.Fill(this.FerreteriaDataSet1.ClienteFactura, codC);
 
+
+            
             this.reportViewer1.RefreshReport();
         }
 
