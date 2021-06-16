@@ -33,21 +33,47 @@ namespace Proyecto_Ferreteira___1
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.FerreteriaDataSet1 = new Proyecto_Ferreteira___1.FerreteriaDataSet1();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFacturasVentas));
             this.FacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.FacturaTableAdapter = new Proyecto_Ferreteira___1.FerreteriaDataSet1TableAdapters.FacturaTableAdapter();
+            this.FerreteriaDataSet1 = new Proyecto_Ferreteira___1.FerreteriaDataSet1();
             this.ClienteFacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ClienteFacturaTableAdapter = new Proyecto_Ferreteira___1.FerreteriaDataSet1TableAdapters.ClienteFacturaTableAdapter();
-            this.FerreteriaDataSet2 = new Proyecto_Ferreteira___1.FerreteriaDataSet2();
             this.TotalFacturasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.FerreteriaDataSet2 = new Proyecto_Ferreteira___1.FerreteriaDataSet2();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.FacturaTableAdapter = new Proyecto_Ferreteira___1.FerreteriaDataSet1TableAdapters.FacturaTableAdapter();
+            this.ClienteFacturaTableAdapter = new Proyecto_Ferreteira___1.FerreteriaDataSet1TableAdapters.ClienteFacturaTableAdapter();
             this.TotalFacturasTableAdapter = new Proyecto_Ferreteira___1.FerreteriaDataSet2TableAdapters.TotalFacturasTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.FerreteriaDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FacturaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FerreteriaDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClienteFacturaBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FerreteriaDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TotalFacturasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FerreteriaDataSet2)).BeginInit();
             this.SuspendLayout();
+            // 
+            // FacturaBindingSource
+            // 
+            this.FacturaBindingSource.DataMember = "Factura";
+            this.FacturaBindingSource.DataSource = this.FerreteriaDataSet1;
+            // 
+            // FerreteriaDataSet1
+            // 
+            this.FerreteriaDataSet1.DataSetName = "FerreteriaDataSet1";
+            this.FerreteriaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ClienteFacturaBindingSource
+            // 
+            this.ClienteFacturaBindingSource.DataMember = "ClienteFactura";
+            this.ClienteFacturaBindingSource.DataSource = this.FerreteriaDataSet1;
+            // 
+            // TotalFacturasBindingSource
+            // 
+            this.TotalFacturasBindingSource.DataMember = "TotalFacturas";
+            this.TotalFacturasBindingSource.DataSource = this.FerreteriaDataSet2;
+            // 
+            // FerreteriaDataSet2
+            // 
+            this.FerreteriaDataSet2.DataSetName = "FerreteriaDataSet2";
+            this.FerreteriaDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -65,42 +91,17 @@ namespace Proyecto_Ferreteira___1
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(800, 450);
+            this.reportViewer1.Size = new System.Drawing.Size(675, 749);
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
-            // 
-            // FerreteriaDataSet1
-            // 
-            this.FerreteriaDataSet1.DataSetName = "FerreteriaDataSet1";
-            this.FerreteriaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // FacturaBindingSource
-            // 
-            this.FacturaBindingSource.DataMember = "Factura";
-            this.FacturaBindingSource.DataSource = this.FerreteriaDataSet1;
             // 
             // FacturaTableAdapter
             // 
             this.FacturaTableAdapter.ClearBeforeFill = true;
             // 
-            // ClienteFacturaBindingSource
-            // 
-            this.ClienteFacturaBindingSource.DataMember = "ClienteFactura";
-            this.ClienteFacturaBindingSource.DataSource = this.FerreteriaDataSet1;
-            // 
             // ClienteFacturaTableAdapter
             // 
             this.ClienteFacturaTableAdapter.ClearBeforeFill = true;
-            // 
-            // FerreteriaDataSet2
-            // 
-            this.FerreteriaDataSet2.DataSetName = "FerreteriaDataSet2";
-            this.FerreteriaDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // TotalFacturasBindingSource
-            // 
-            this.TotalFacturasBindingSource.DataMember = "TotalFacturas";
-            this.TotalFacturasBindingSource.DataSource = this.FerreteriaDataSet2;
             // 
             // TotalFacturasTableAdapter
             // 
@@ -110,16 +111,18 @@ namespace Proyecto_Ferreteira___1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(675, 749);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormFacturasVentas";
-            this.Text = "FormFacturasVentas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Factura de Ventas";
             this.Load += new System.EventHandler(this.FormFacturasVentas_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.FerreteriaDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FacturaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FerreteriaDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClienteFacturaBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FerreteriaDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TotalFacturasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FerreteriaDataSet2)).EndInit();
             this.ResumeLayout(false);
 
         }
