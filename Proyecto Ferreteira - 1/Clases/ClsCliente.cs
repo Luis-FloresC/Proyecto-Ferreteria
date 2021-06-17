@@ -35,46 +35,38 @@ namespace Proyecto_Ferreteira___1.Clases
         /// </summary>
         public void AgregarCliente()
         {
-            //Variable miembro para obtener la conexión
-            var conexion = GetConnection();
-
+            string Msj = "";
             try
             {
-                //Query a ejecutar en la base de datos
-                string query = "EXEC [dbo].[IngresarCliente] @nombres, @apellidos, @identidad, @fechaNacimiento, @telefono, @rtn";
-
-                //Establece la conexión
-                conexion.Open();
-
-                //Crea el comando SQL
-                SqlCommand sqlCommand = new SqlCommand(query, conexion);
-
-                //Remplazar los valores de los parametros
-                sqlCommand.Parameters.AddWithValue("@nombres", nombres);
-                sqlCommand.Parameters.AddWithValue("@apellidos", apellidos);
-                sqlCommand.Parameters.AddWithValue("@identidad", identidad);
-                sqlCommand.Parameters.AddWithValue("@fechaNacimiento", fechaNacimiento);
-                sqlCommand.Parameters.AddWithValue("@telefono", telefono);
-                sqlCommand.Parameters.AddWithValue("@rtn", rtn);
-
-                //Ejecutar el comando de insercion
-                sqlCommand.ExecuteNonQuery();
-
-                //Mensaje de éxito
-                MessageBox.Show("Cliente agregado con exito");
+                using (var CN = GetConnection())
+                {
+                    CN.Open();
+                    using (var CMD = new SqlCommand())
+                    {
+                        CMD.Connection = CN;
+                        CMD.CommandText = "IngresarCliente";
+                        CMD.Parameters.AddWithValue("@nombres", nombres);
+                        CMD.Parameters.AddWithValue("@apellidos", apellidos);
+                        CMD.Parameters.AddWithValue("@identidad", identidad);
+                        CMD.Parameters.AddWithValue("@fechaNacimiento", fechaNacimiento);
+                        CMD.Parameters.AddWithValue("@telefono", telefono);
+                        CMD.Parameters.AddWithValue("@rtn", rtn);
+                        CMD.Parameters.Add("@msj", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                        CMD.CommandType = CommandType.StoredProcedure;
+                        CMD.ExecuteNonQuery();
+                        Msj = CMD.Parameters["@msj"].Value.ToString();
+                    }
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                //Mensaje de error
-                MessageBox.Show(e.ToString());
-            }
-            finally
-            {
-                //Cerrar la conexión
-                conexion.Close();
+
+                Msj = ex.Message.ToString();
             }
 
+            MessageBox.Show(Msj, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
 
         /// <summary>
         /// Consulta un cliente en la base de datos para su edicion

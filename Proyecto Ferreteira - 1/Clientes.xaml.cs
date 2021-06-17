@@ -95,6 +95,9 @@ namespace Proyecto_Ferreteira___1
             else
                 estado = true;
 
+
+
+
             return estado;
         }
 
@@ -183,6 +186,47 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+
+
+        /// <summary>
+        /// Solo Permite el ingreso de Letras
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ValidacionLetras(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Permiten Letras", "Aviso");
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Metodo para permitir solo Numeros
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ValidacionNumeros(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se Permiten Numeros", "Aviso");
+            }
+        }
+
+
         /// <summary>
         /// Cancela la edicion y devuelve el formulario a su estado original
         /// </summary>
@@ -249,6 +293,11 @@ namespace Proyecto_Ferreteira___1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void tpFechaNacimiento_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
