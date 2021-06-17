@@ -225,20 +225,5 @@ namespace Proyecto_Ferreteira___1
             Regex regex = new Regex("[^0-9.]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
-        private void txtFlete_MouseEnter(object sender, MouseEventArgs e)
-        {
-            txtFlete.Text = "";
-        }
-
-        private void txtCantidad_MouseEnter(object sender, MouseEventArgs e)
-        {
-            txtCantidad.Text = "";
-        }
-
-        private void txtPrecio_MouseEnter(object sender, MouseEventArgs e)
-        {
-            txtPrecio.Text = "";
-        }
     }
 }
