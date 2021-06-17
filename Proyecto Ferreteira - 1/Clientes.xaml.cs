@@ -149,16 +149,130 @@ namespace Proyecto_Ferreteira___1
         {
             if (validaciones())
             {
-                guardarDatos();
-                cliente.AgregarCliente();
-                cargarTabla();
-                limpiar();
+                if(VerificarIdentidad(txtIdentidad.Text))
+                {
+                    guardarDatos();
+                    cliente.AgregarCliente();
+                    cargarTabla();
+                    limpiar();
+                }
+
             }
             else
             {
                 MessageBox.Show("Por favor, llene todos los campos.","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
+
+        private bool NumerosEnteros(int valor,int li,int ls)
+        {
+            if (valor < li || valor > ls)
+            {
+                return false;
+            }
+            else
+                return true;
+        }
+
+
+        private bool NumerosEnteros2(int valor, int li, int ls)
+        {
+            if (valor < li || valor > ls)
+            {
+                MessageBox.Show(string.Concat("Los siguientes dos digitos del municipio\nsolo se permiten numero del rango: ",li," y ",ls,"."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            else
+                return true;
+        }
+
+        public Dictionary<int, string> Departamentos = new Dictionary<int, string>(); 
+
+        private void AggDatosDiccionario()
+        {
+            Departamentos.Clear();
+            Departamentos.Add(1, "1-8");
+            Departamentos.Add(2, "1-10");
+            Departamentos.Add(3, "1-21");
+            Departamentos.Add(4, "1-23");
+            Departamentos.Add(5, "1-12");
+            Departamentos.Add(6, "1-16");
+            Departamentos.Add(7, "1-19");
+            Departamentos.Add(8, "1-28");
+            Departamentos.Add(9, "1-6");
+            Departamentos.Add(10, "1-17");
+            Departamentos.Add(11, "1-4");
+            Departamentos.Add(12, "1-19");
+            Departamentos.Add(13, "1-28");
+            Departamentos.Add(14, "1-16");
+            Departamentos.Add(15, "1-23");
+            Departamentos.Add(16, "1-28");
+            Departamentos.Add(17, "1-9");
+            Departamentos.Add(18, "1-11");
+
+        }
+
+        private bool BuscarDiccionario(int x)
+        {
+            if(Departamentos.ContainsKey(x))
+            {
+                String source = Departamentos[x]; //Original text
+                String[] result = source.Split(new char[] { '-', '-' });
+                Li = int.Parse(result[0]);
+                Ls = int.Parse(result[1]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        private int Ls;
+        private int Li;
+        private bool VerificarIdentidad(string cadena)
+        {
+            bool resultado=false;
+            int depto = int.Parse(cadena.Substring(0,2));
+            int muni = int.Parse(cadena.Substring(2,2));
+            int año = int.Parse(cadena.Substring(4,4));
+            int folio = int.Parse(cadena.Substring(8, 5));
+
+            AggDatosDiccionario();
+
+          
+            if (NumerosEnteros(depto,1,18))
+            {
+
+               bool Est = BuscarDiccionario(depto);
+                if (NumerosEnteros2(muni,Li,Ls))
+                {
+                    if(NumerosEnteros(año,1900,2100))
+                    {
+                        resultado = true;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return resultado;
+        }
+
 
         /// <summary>
         /// Consulta el cliente seleccionado para su edicion
@@ -255,7 +369,7 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            if (validaciones())
+            if (validaciones() && VerificarIdentidad(txtIdentidad.Text))
             {
                 guardarDatos();
                 cliente.editarCliente();
