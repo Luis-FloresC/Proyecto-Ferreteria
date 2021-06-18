@@ -88,12 +88,16 @@ namespace Proyecto_Ferreteira___1
         {
             bool estado = false;
 
+          
             if (txtNombre.Text.Equals("") || txtApellido.Text.Equals("")
                 || txtIdentidad.Text.Equals("") || txtRtn.Text.Equals("")
                 || txtTelefono.Text.Equals("") || tpFechaNacimiento.SelectedDate == null)
                 estado = false;
             else
+            {
                 estado = true;
+            }
+                
 
 
 
@@ -101,6 +105,63 @@ namespace Proyecto_Ferreteira___1
             return estado;
         }
 
+
+        int CalcularAño(string año)
+        {
+            string cadena = año.Substring(5, 4);
+            return int.Parse(cadena);
+        }
+
+        private bool DiferenciaEdad()
+        {
+            int DifAño = 0;
+            bool estado = false;
+            string FechaSeleccionada = tpFechaNacimiento.DisplayDate.ToString();
+            DateTime date = DateTime.Now;
+            string FechaActual = date.ToString();
+
+            DifAño =  CalcularAño(FechaActual) - CalcularAño(FechaSeleccionada);
+          
+            if(DifAño < 18)
+            {
+                estado = true;
+            }
+
+            return estado;
+
+        }
+
+        private bool validaciones2()
+        {
+            
+       
+            bool estado = false;
+
+            if (txtNombre.Text.Length <= 1 || txtApellido.Text.Length <= 1
+                || txtIdentidad.Text.Length <= 12 || txtRtn.Text.Length <= 13
+                || txtTelefono.Text.Length <= 7 )
+            {
+
+               
+            }  
+            else
+            {
+            
+                if (DiferenciaEdad())
+                {
+                    estado = false;
+                    MessageBox.Show("Tiene que ser mayor de edad o ingresar una fecha valida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                    estado = true;
+            }
+
+
+
+
+
+            return estado;
+        }
         /// <summary>
         /// Carga el listBox de empleados
         /// </summary>
@@ -149,12 +210,20 @@ namespace Proyecto_Ferreteira___1
         {
             if (validaciones())
             {
-                if(VerificarIdentidad(txtIdentidad.Text))
+                if(validaciones2())
                 {
-                    guardarDatos();
-                    cliente.AgregarCliente();
-                    cargarTabla();
-                    limpiar();
+                    if (VerificarIdentidad(txtIdentidad.Text))
+                    {
+
+                        guardarDatos();
+                        cliente.AgregarCliente();
+                        cargarTabla();
+                        limpiar();
+                    }
+                }
+               else
+                {
+                    MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
 
             }
@@ -369,13 +438,25 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            if (validaciones() && VerificarIdentidad(txtIdentidad.Text))
+            if (validaciones())
             {
-                guardarDatos();
-                cliente.editarCliente();
-                estadoBotones(Visibility.Visible);
-                limpiar();
-                cargarTabla();
+                if(validaciones2())
+                {
+                    if(VerificarIdentidad(txtIdentidad.Text))
+                    {
+                       
+                        guardarDatos();
+                        cliente.editarCliente();
+                        estadoBotones(Visibility.Visible);
+                        limpiar();
+                        cargarTabla();
+                    }
+                    else
+                        MessageBox.Show("Por favor! Verificar su numero de identidad.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                    MessageBox.Show("Por favor! Verificar todos los campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+
             }
             else
             {
