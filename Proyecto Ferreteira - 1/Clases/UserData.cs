@@ -174,7 +174,11 @@ namespace Proyecto_Ferreteira___1.Clases
                                     ,[Nombre_Proveedor] [Nombre Completo]
                                     ,[Telefono] 
                                     ,[Direccion]
-                                    ,[Correo] [Correo Electronico]
+                                    ,[Correo] [Correo Electronico],
+									case 
+									when Estado = 1 then 'Activo'
+									else 'Inactivo' 
+									end [Estado]
                                     FROM [Ferreteria].[Compras].[Proveedor]";
 
                     SqlCommand cmd = new SqlCommand(query, conexion);
@@ -284,6 +288,7 @@ namespace Proyecto_Ferreteira___1.Clases
                         CMD.Parameters.AddWithValue("@correo", correo);
                         CMD.Parameters.AddWithValue("@telefono", telefono);
                         CMD.Parameters.AddWithValue("@direccion", direccion);
+                        CMD.Parameters.AddWithValue("@estado", true);
                         CMD.Parameters.AddWithValue("@accion", "G");
                         CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
                         CMD.CommandType = CommandType.StoredProcedure;
@@ -307,7 +312,7 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <param name="direccion"></param>
         /// <param name="correo"></param>
         /// <returns></returns>
-        public string ModificarProveedores(int codigo,string nombre, string telefono, string direccion, string correo)
+        public string ModificarProveedores(int codigo,string nombre, string telefono, string direccion, string correo,bool estado)
         {
             try
             {
@@ -323,6 +328,7 @@ namespace Proyecto_Ferreteira___1.Clases
                         CMD.Parameters.AddWithValue("@correo", correo);
                         CMD.Parameters.AddWithValue("@telefono", telefono);
                         CMD.Parameters.AddWithValue("@direccion", direccion);
+                        CMD.Parameters.AddWithValue("@estado", estado);
                         CMD.Parameters.AddWithValue("@accion", "M");
                         CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
                         CMD.CommandType = CommandType.StoredProcedure;
@@ -343,7 +349,7 @@ namespace Proyecto_Ferreteira___1.Clases
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
-        public string EliminarProveedor(int codigo)
+        public string EliminarProveedor(int codigo,bool estado)
         {
             try
             {
@@ -355,11 +361,13 @@ namespace Proyecto_Ferreteira___1.Clases
                         CMD.Connection = CN;
                         CMD.CommandText = "ManteniemtoProveedores";
                         CMD.Parameters.AddWithValue("@nombre", "");
-                        CMD.Parameters.AddWithValue("@codigo", codigo);
                         CMD.Parameters.AddWithValue("@correo", "");
                         CMD.Parameters.AddWithValue("@telefono", "");
                         CMD.Parameters.AddWithValue("@direccion", "");
+                        CMD.Parameters.AddWithValue("@estado", estado);
                         CMD.Parameters.AddWithValue("@accion", "E");
+                        CMD.Parameters.AddWithValue("@codigo", codigo);
+                       
                         CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
                         CMD.CommandType = CommandType.StoredProcedure;
                         CMD.ExecuteNonQuery();

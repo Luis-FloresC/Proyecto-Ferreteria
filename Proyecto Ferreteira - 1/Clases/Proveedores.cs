@@ -83,11 +83,11 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <param name="direccion"></param>
         /// <param name="correo"></param>
         /// <returns></returns>
-        public string ModificarDatos(int codigo,string nombre, string telefono, string direccion, string correo)
+        public string ModificarDatos(int codigo,string nombre, string telefono, string direccion, string correo,bool estado)
         {
             try
             {
-                return UserData.ModificarProveedores(codigo,nombre, telefono, direccion, correo);
+                return UserData.ModificarProveedores(codigo,nombre, telefono, direccion, correo,estado);
             }
             catch (Exception ex)
             {
@@ -109,7 +109,7 @@ namespace Proyecto_Ferreteira___1.Clases
         {
             try
             {
-                return UserData.EliminarProveedor(codigo);
+                return UserData.EliminarProveedor(codigo,false);
             }
             catch (Exception ex)
             {

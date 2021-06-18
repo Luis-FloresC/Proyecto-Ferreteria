@@ -111,7 +111,6 @@ namespace Proyecto_Ferreteira___1
                     MessageBox.Show("el telefono es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-              
             else
             {
                 estado = true;
@@ -280,9 +279,7 @@ namespace Proyecto_Ferreteira___1
                 
                 return false;
             }
-               
-         
-            
+  
         }
 
         private bool NumerosEnteros(int valor,int li,int ls)

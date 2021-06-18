@@ -110,7 +110,7 @@
                     <TextBox Margin="10 0" x:Name="txtTelefono" materialDesing:HintAssist.Hint="Telefono" 
                              Foreground="White" Width="280" 
                              Text=""
-                              MaxLength="20"
+                              MaxLength="8"
                              KeyDown="ValidacionNumeros"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
@@ -122,7 +122,7 @@
                     <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
                              Text=""
-                              MaxLength="32"
+                              MaxLength="40"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -146,6 +146,19 @@
                              Text=""
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+
+
+                    <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" 
+                          Foreground="White" BorderBrush="White"
+                          HorizontalAlignment="Center"
+                          Width="120" IsChecked="False"  
+                          Margin="100,0"
+                          x:Name="chEstado"
+                          Content="Activo"  />
+
                 </StackPanel>
 
 

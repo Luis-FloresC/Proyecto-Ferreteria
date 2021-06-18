@@ -60,6 +60,30 @@ namespace Proyecto_Ferreteira___1
             txtEmail.Text = string.Empty;
             txtTelefono.Text = string.Empty;
             txtDireccion.Text = string.Empty;
+            chEstado.IsChecked = false;
+        }
+
+        /// <summary>
+        /// Validar Cadenas vacias
+        /// </summary>
+        /// <param name="cadena"></param>
+        /// <returns></returns>
+        private bool CadenaSoloEspacios(string cadena)
+        {
+            String source = cadena; //Original text
+
+            if (source.Trim().Length <= 1)
+            {
+
+
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
         }
 
         /// <summary>
@@ -70,14 +94,14 @@ namespace Proyecto_Ferreteira___1
         {
             bool datosCorrectos = true;
 
-            if ((txtNombre.Text == string.Empty) || (txtEmail.Text == string.Empty) ||
-                (txtDireccion.Text == string.Empty) || (txtTelefono.Text == string.Empty))            
+            if ((CadenaSoloEspacios(txtNombre.Text)) || CadenaSoloEspacios(txtEmail.Text) ||
+                (CadenaSoloEspacios(txtDireccion.Text)) || (CadenaSoloEspacios(txtDireccion.Text)))            
             {
                 datosCorrectos = false;
                 MessageBox.Show("Todos los Campos son Obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
-            if (txtTelefono.Text.Length <= 7 || txtTelefono.Text.Length > 20)
+            if (txtTelefono.Text.Length <= 7)
             {
                 datosCorrectos = false;
                 MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -109,6 +133,7 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void DataGridProveedores_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string estado = "";
             if (DataGridProveedores.SelectedIndex != -1)
             {
                 IdProveedor = Convert.ToInt32((DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
@@ -116,6 +141,16 @@ namespace Proyecto_Ferreteira___1
                 txtTelefono.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[2].ToString();
                 txtDireccion.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[3].ToString();
                 txtEmail.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[4].ToString();
+                estado = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[5].ToString();
+
+                if(estado =="Activo")
+                {
+                    chEstado.IsChecked = true;
+                }
+                else
+                {
+                    chEstado.IsChecked = false;
+                }
             }
         }
 
@@ -138,7 +173,7 @@ namespace Proyecto_Ferreteira___1
         {
             if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
             {
-                var Resultado = Proveedores.ModificarDatos(IdProveedor,txtNombre.Text, txtTelefono.Text, txtDireccion.Text, txtEmail.Text);
+                var Resultado = Proveedores.ModificarDatos(IdProveedor,txtNombre.Text, txtTelefono.Text, txtDireccion.Text, txtEmail.Text,chEstado.IsChecked.Value);
                 MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 LimpiarCampos();
                 MostrarDatosDataGridProveedores();
