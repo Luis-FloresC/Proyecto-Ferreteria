@@ -89,10 +89,29 @@ namespace Proyecto_Ferreteira___1
             bool estado = false;
 
           
-            if (txtNombre.Text.Equals("") || txtApellido.Text.Equals("")
-                || txtIdentidad.Text.Equals("") || txtRtn.Text.Equals("")
-                || txtTelefono.Text.Equals("") || tpFechaNacimiento.SelectedDate == null)
+            if (CadenaSoloEspacios(txtNombre.Text) || CadenaSoloEspacios(txtApellido.Text)
+                || CadenaSoloEspacios(txtIdentidad.Text) || CadenaSoloEspacios(txtRtn.Text)
+                || CadenaSoloEspacios(txtTelefono.Text) || tpFechaNacimiento.SelectedDate == null)
+            {
                 estado = false;
+                if ((CadenaSoloEspacios(txtNombre.Text) || CadenaSoloEspacios(txtApellido.Text)))
+                {
+                    MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres y es un campo obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (CadenaSoloEspacios(txtIdentidad.Text))
+                {
+                    MessageBox.Show("la identidad es obligatoria", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (CadenaSoloEspacios(txtRtn.Text))
+                {
+                    MessageBox.Show("el RTN es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show("el telefono es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+              
             else
             {
                 estado = true;
@@ -106,28 +125,21 @@ namespace Proyecto_Ferreteira___1
         }
 
 
-        int CalcularAño(string año)
-        {
-            string cadena = año.Substring(5, 4);
-            return int.Parse(cadena);
-        }
+
 
         private bool DiferenciaEdad()
         {
-            int DifAño = 0;
-            bool estado = false;
-            string FechaSeleccionada = tpFechaNacimiento.DisplayDate.ToString();
-            DateTime date = DateTime.Now;
-            string FechaActual = date.ToString();
 
-            DifAño =  CalcularAño(FechaActual) - CalcularAño(FechaSeleccionada);
+
+            var timeSpan = DateTime.Now - tpFechaNacimiento.DisplayDate;
+            int Edad = new DateTime(timeSpan.Ticks).Year - 1;
           
-            if(DifAño < 18)
+           
+            if(Edad < 18)
             {
-                estado = true;
+                return  true;
             }
-
-            return estado;
+             return false;
 
         }
 
@@ -141,8 +153,23 @@ namespace Proyecto_Ferreteira___1
                 || txtIdentidad.Text.Length <= 12 || txtRtn.Text.Length <= 13
                 || txtTelefono.Text.Length <= 7 )
             {
+                if(txtNombre.Text.Length <= 1 || txtApellido.Text.Length <= 1)
+                {
+                    MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (txtIdentidad.Text.Length <= 12)
+                {
+                    MessageBox.Show("la identidad debe tener 13 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if(txtRtn.Text.Length <= 13)
+                {
+                    MessageBox.Show("el RTN debe tener 14 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show("el telefono debe tener 8 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
-               
             }  
             else
             {
@@ -208,6 +235,9 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
+
+          
+
             if (validaciones())
             {
                 if(validaciones2())
@@ -233,6 +263,28 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+
+
+        private bool CadenaSoloEspacios(string cadena)
+        {
+            String source = cadena; //Original text
+
+            if (source.Trim().Length <= 1)
+            {
+
+
+                return true;
+            }
+            else
+            {
+                
+                return false;
+            }
+               
+         
+            
+        }
+
         private bool NumerosEnteros(int valor,int li,int ls)
         {
             if (valor < li || valor > ls)
@@ -248,7 +300,7 @@ namespace Proyecto_Ferreteira___1
         {
             if (valor < li || valor > ls)
             {
-                MessageBox.Show(string.Concat("Los siguientes dos digitos del municipio\nsolo se permiten numero del rango: ",li," y ",ls,"."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(string.Concat("Los siguientes dos digitos: ",valor," del municipio.","\nSolo se permiten numero del rango: ",li," y ",ls,"."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             else
