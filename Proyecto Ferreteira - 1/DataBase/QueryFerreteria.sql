@@ -104,6 +104,9 @@ Primary Key Clustered (Codigo_Proveedor)
 )
 Go
 
+alter table  Compras.Proveedor ADD Estado bit not null
+GO
+
 CREATE TABLE Productos.Producto(
 Codigo_Producto int not null IDENTITY (1,1),
 Nombre_Producto nvarchar(100) not null,
