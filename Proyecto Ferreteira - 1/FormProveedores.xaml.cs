@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
-
+using System.Text.RegularExpressions;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -87,6 +87,32 @@ namespace Proyecto_Ferreteira___1
         }
 
         /// <summary>
+        /// Validar Direccion de Correo Electronico
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        private Boolean ValidarEmail(String email)
+        {
+            String expresion;
+            expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Metodo para vaidar los campos del formulario
         /// </summary>
         /// <returns></returns>
@@ -97,14 +123,29 @@ namespace Proyecto_Ferreteira___1
             if ((CadenaSoloEspacios(txtNombre.Text)) || CadenaSoloEspacios(txtEmail.Text) ||
                 (CadenaSoloEspacios(txtDireccion.Text)) || (CadenaSoloEspacios(txtDireccion.Text)))            
             {
-                datosCorrectos = false;
+              
                 MessageBox.Show("Todos los Campos son Obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if((CadenaSoloEspacios(txtNombre.Text)))
+            {
+
+                MessageBox.Show("El Nombre debe tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
 
             if (txtTelefono.Text.Length <= 7)
             {
-                datosCorrectos = false;
+         
                 MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return  false;
+            }
+
+            if(!ValidarEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
 
             return datosCorrectos;
