@@ -368,7 +368,15 @@ namespace Proyecto_Ferreteira___1
                 {
                     if(NumerosEnteros(año,1900,2100))
                     {
-                        resultado = true;
+
+                        if (NumerosEnteros(folio, 1, 99999))
+                        {
+                            resultado = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("el año debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
 
                     }
                     else
