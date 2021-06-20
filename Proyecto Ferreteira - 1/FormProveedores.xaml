@@ -83,17 +83,17 @@
                 </StackPanel>
 
             </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
-            <StackPanel Width="350" Background="#363636" x:Name="Panel2">
-
-                <TextBlock Text="Proveedores" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="26" FontFamily="Georgia"></TextBlock>
+                    <TextBlock Text="Proveedores" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="26" FontFamily="Georgia"></TextBlock>
 
 
-               
 
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <materialDesing:PackIcon Kind="Person" Width="25" Height="25" Foreground="White"/>
-                    <TextBox Margin="10 0" x:Name="txtNombre" materialDesing:HintAssist.Hint="Nombre del Proveedor" 
+
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <materialDesing:PackIcon Kind="Person" Width="25" Height="25" Foreground="White"/>
+                        <TextBox Margin="10 0" x:Name="txtNombre" materialDesing:HintAssist.Hint="Nombre del Proveedor" 
                              Foreground="White" Width="280" 
                              Text=""
                              KeyDown="ValidacionLetras"
@@ -101,13 +101,13 @@
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
-                </StackPanel>
+                    </StackPanel>
 
-             
 
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <materialDesing:PackIcon Kind="Phone" Width="25" Height="25" Foreground="White"/>
-                    <TextBox Margin="10 0" x:Name="txtTelefono" materialDesing:HintAssist.Hint="Telefono" 
+
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <materialDesing:PackIcon Kind="Phone" Width="25" Height="25" Foreground="White"/>
+                        <TextBox Margin="10 0" x:Name="txtTelefono" materialDesing:HintAssist.Hint="Telefono" 
                              Foreground="White" Width="280" 
                              Text=""
                               MaxLength="8"
@@ -115,27 +115,27 @@
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <materialDesing:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
-                    <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <materialDesing:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
+                        <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
                              Text=""
                               MaxLength="40"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
-                </StackPanel>
+                    </StackPanel>
 
 
-               
 
-              
 
-                <StackPanel Orientation="Horizontal" Margin="10">
-                    <materialDesing:PackIcon Kind="AddressMarker" Width="25" Height="25" Foreground="White"/>
-                    <TextBox Margin="10 0" x:Name="txtDireccion" materialDesing:HintAssist.Hint="Direccion" 
+
+
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <materialDesing:PackIcon Kind="AddressMarker" Width="25" Height="25" Foreground="White"/>
+                        <TextBox Margin="10 0" x:Name="txtDireccion" materialDesing:HintAssist.Hint="Direccion" 
                              Foreground="White" Width="280" 
                              TextWrapping="Wrap"
                              MaxLength="250"
@@ -146,12 +146,12 @@
                              Text=""
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="10">
 
 
-                    <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" 
+                        <CheckBox Style="{StaticResource MaterialDesignFilterChipAccentOutlineCheckBox}" 
                           Foreground="White" BorderBrush="White"
                           HorizontalAlignment="Center"
                           Width="120" IsChecked="False"  
@@ -159,11 +159,11 @@
                           x:Name="chEstado"
                           Content="Activo"  />
 
-                </StackPanel>
+                    </StackPanel>
 
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20" >
-                    <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20" >
+                        <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
@@ -174,7 +174,7 @@
 
 
 
-                    <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                        <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
                             BorderThickness="2" BorderBrush="#242222" 
                             Background="#242222"
                             Foreground="White" 
@@ -183,10 +183,10 @@
                             Margin="10 5"
                             Content="Cancelar" Click="BtnCancelar_Click" />
 
+                    </StackPanel>
+
                 </StackPanel>
-
-            </StackPanel>
-
+            </ScrollViewer>
 
 
         </StackPanel>

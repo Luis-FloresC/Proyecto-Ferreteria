@@ -8,10 +8,10 @@
         Title="Buscar Cliente" Height="450" Width="800" Background="#242222">
     <Grid>
 
-        <DataGrid Name="dgClientes" HorizontalAlignment="Center" Height="278" Margin="148,73,132,0" VerticalAlignment="Top" Width="512" IsReadOnly="True"/>
+        <DataGrid Name="dgClientes" HorizontalAlignment="Center" Height="278" Margin="31,73,25,0" VerticalAlignment="Top" Width="736" IsReadOnly="True"/>
         <Label Content="Buscar:" HorizontalAlignment="Left" Margin="148,28,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24"/>
         <Button Name="btnSeleccionar" Content="Seleccionar" HorizontalAlignment="Left" Margin="350,367,0,0" VerticalAlignment="Top" Width="107" Click="btnSeleccionar_Click"/>
-        <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="28" Margin="235,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="414" Background="White" KeyUp="txtBuscar_KeyUp"/>
+        <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="28" Margin="235,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="414" Background="White" KeyUp="txtBuscar_KeyUp" TextChanged="txtBuscar_TextChanged"/>
 
     </Grid>
 </Window>

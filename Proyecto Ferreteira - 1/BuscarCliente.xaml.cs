@@ -109,5 +109,10 @@ namespace Proyecto_Ferreteira___1
         {
             buscarClientes();
         }
+
+        private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

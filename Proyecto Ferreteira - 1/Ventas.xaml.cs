@@ -38,6 +38,8 @@ namespace Proyecto_Ferreteira___1
         public Ventas()
         {
             InitializeComponent();
+            RegistroCl.IsChecked = true;
+          
         }
 
         //METODOS
@@ -313,6 +315,32 @@ namespace Proyecto_Ferreteira___1
             {
                 e.Handled = true;
             }
+        }
+
+
+        
+
+        private void RegistroCl_Checked(object sender, RoutedEventArgs e)
+        {
+            Clases.UserData user = new Clases.UserData();
+
+            if (RegistroCl.IsChecked != true)
+            {
+
+                btnBuscarCliente.IsEnabled = false;
+                txtIdCliente.Text = user.BuscarClienteAnonimo().ToString();
+                txtNombreCliente.Text = "-";
+                
+            }
+            else
+            {
+
+                btnBuscarCliente.IsEnabled = true;
+                txtIdCliente.Text = string.Empty;
+                txtNombreCliente.Text = string.Empty;
+
+            }
+
         }
     }
 }

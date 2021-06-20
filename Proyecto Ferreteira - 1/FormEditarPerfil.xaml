@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
              xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             Width="auto" Height="auto">
     <Grid>
-        <StackPanel Width="350" Background="#363636" x:Name="Panel2">
+        <TextBlock Text="#363636" Margin="20" Name="Color" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia" Visibility="Hidden"></TextBlock>
+        <StackPanel Width="350" Background="{Binding ElementName=Color ,Path=Text ,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" x:Name="Panel2">
 
             <TextBlock Text="Editar Perfil" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
 

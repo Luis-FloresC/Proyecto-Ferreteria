@@ -694,6 +694,30 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+
+        public int BuscarClienteAnonimo()
+        {
+            int codigo = 0;
+            using (var conexion = GetConnection())
+            {
+                conexion.Open();
+                using (var comando = new SqlCommand())
+                {
+                    comando.Connection = conexion;
+                    comando.CommandText = @"SELECT [codigo_cliente] FROM[Ferreteria].[Ventas].[Cliente] where identidad = '-'";
+                    
+
+                    comando.CommandType = CommandType.Text;
+                    SqlDataReader reader = comando.ExecuteReader();
+                  
+                        while (reader.Read())
+                        {
+                            codigo = reader.GetInt32(0);
+                        }
+                        return codigo;                  
+                }
+            }
+        }
         /// <summary>
         /// Lista para obtener el nombre de los empleaodos
         /// </summary>

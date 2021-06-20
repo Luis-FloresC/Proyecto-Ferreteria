@@ -97,12 +97,13 @@
 
                 </StackPanel>
 
+                <TextBlock Text="#363636" Margin="20"  Foreground="White" Name="Color" TextAlignment="Center" FontSize="38" FontFamily="Georgia" Visibility="Hidden"></TextBlock>
             </StackPanel>
 
-            <StackPanel Width="350" Background="#363636" x:Name="Panel2">
+            <StackPanel Width="350" Background="{Binding ElementName=Color ,Path=Text ,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" x:Name="Panel2">
 
                 <TextBlock Text="Editar Perfil" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
-
+       
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                     <TextBox Margin="10 0" x:Name="txtUsuario" materialDesing:HintAssist.Hint="Usuario" 

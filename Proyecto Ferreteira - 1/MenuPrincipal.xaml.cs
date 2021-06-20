@@ -179,6 +179,7 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void BtnEditarPerfil_Click(object sender, RoutedEventArgs e)
         {
+            MoveCursorMenu(10);
             GridPrincipal.Children.Clear();
             GridPrincipal.Children.Add(new FormUsuarios());
         }

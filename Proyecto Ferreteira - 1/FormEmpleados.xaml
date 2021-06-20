@@ -84,7 +84,8 @@
 
             </StackPanel>
 
-            <StackPanel Width="350" Background="#363636" x:Name="Panel2">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" materialDesing:ScrollViewerAssist.ShowSeparators="True">
+                <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
                 <TextBlock Text="Registrar Empleado" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="26" FontFamily="Georgia"></TextBlock>
 
@@ -94,7 +95,7 @@
                     <TextBox Margin="10 0" x:Name="txtDNI" materialDesing:HintAssist.Hint="Numero de Identidad" 
                              Foreground="White" Width="280" 
                              KeyDown="ValidacionNumeros"
-                             MaxLength="20"
+                             MaxLength="13"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" >
@@ -107,7 +108,7 @@
                     <TextBox Margin="10 0" x:Name="txtNombreEmpleado" materialDesing:HintAssist.Hint="Nombre del Empleado" 
                              Foreground="White" Width="280" 
                              Text=""
-                             MaxLength="75"
+                             MaxLength="38"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" KeyDown="ValidacionLetras"/>
@@ -118,10 +119,10 @@
                     <TextBox Margin="10 0" x:Name="txtApellidoEmpleado" materialDesing:HintAssist.Hint="Apellido del Empleado" 
                              Foreground="White" Width="280" Text=""
                              KeyDown="ValidacionLetras"
-                             MaxLength="75"
+                             MaxLength="38"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             SelectionBrush="#FFD94448"/>
+                             SelectionBrush="#FFD94448" TextChanged="txtApellidoEmpleado_TextChanged"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -129,7 +130,7 @@
                     <TextBox Margin="10 0" x:Name="txtTelefono" materialDesing:HintAssist.Hint="Telefono" 
                              Foreground="White" Width="280" 
                              Text=""
-                             MaxLength="20"
+                             MaxLength="8"
                              KeyDown="ValidacionNumeros"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
@@ -141,7 +142,7 @@
                     <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
                              Text=""
-                             MaxLength="75"
+                             MaxLength="30"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -154,12 +155,12 @@
                     <DatePicker x:Name="FechaNac" Width="280" Margin="10 0" 
                                 materialDesing:HintAssist.Hint="Fecha de Naciemiento" 
                                 materialDesing:CalendarAssist.IsHeaderVisible="True"
-                                
+                                ToolTip="Fecha de Nacimiento"
                                 CalendarStyle="{StaticResource  MaterialDesignDatePickerCalendarPortrait}"
                                 Style="{StaticResource  FondoDate}"
                                 materialDesing:ColorZoneAssist.Mode="Inverted"
                                 
-                                BorderBrush="white" />
+                                BorderBrush="white" KeyDown="FechaNac_KeyDown" />
 
 
                 </StackPanel>
@@ -184,7 +185,7 @@
                              Foreground="White" Width="280" 
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
-                             MaxLength="75"
+                             MaxLength="100"
                              VerticalScrollBarVisibility="Auto"
                              SpellCheck.IsEnabled="True"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -218,7 +219,7 @@
                 </StackPanel>
 
             </StackPanel>
-
+</ScrollViewer>
 
 
         </StackPanel>

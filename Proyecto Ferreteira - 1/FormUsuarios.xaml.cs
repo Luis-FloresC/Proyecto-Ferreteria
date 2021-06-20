@@ -30,6 +30,7 @@ namespace Proyecto_Ferreteira___1
             InitializeComponent();
             LoadEditarPerfil();
             Panel2.Visibility = Visibility.Hidden;
+            Color.Text = "#242222";
         }
 
         
@@ -66,7 +67,7 @@ namespace Proyecto_Ferreteira___1
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-
+            Color.Text = "#242222";
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -92,6 +93,7 @@ namespace Proyecto_Ferreteira___1
         private void linkEditarPerfil_Click(object sender, RoutedEventArgs e)
         {
             Panel2.Visibility = Visibility.Visible;
+            Color.Text = "#242222";
             Panel2.Children.Clear();
             Panel2.Children.Add(new FormEditarPerfil());
 

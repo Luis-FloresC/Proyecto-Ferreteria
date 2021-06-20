@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -211,6 +212,196 @@ namespace Proyecto_Ferreteira___1
           
         }
 
+        /// <summary>
+        /// Validar Cadenas vacias
+        /// </summary>
+        /// <param name="cadena"></param>
+        /// <returns></returns>
+        private bool CadenaSoloEspacios(string cadena)
+        {
+            String source = cadena; //Original text
+
+            if (source.Trim().Length <= 1)
+            {
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+        }
+
+        /// <summary>
+        /// Validar Direccion de Correo Electronico
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        private Boolean ValidarEmail(String email)
+        {
+            String expresion;
+            expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+        private bool NumerosEnteros(int valor, int li, int ls)
+        {
+            if (valor < li || valor > ls)
+            {
+                return false;
+            }
+            else
+                return true;
+        }
+
+
+        private bool NumerosEnteros2(int valor, int li, int ls)
+        {
+            if (valor < li || valor > ls)
+            {
+                MessageBox.Show(string.Concat("Los siguientes dos digitos: ", valor, " del municipio.", "\nSolo se permiten numero del rango: ", li, " y ", ls, "."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            else
+                return true;
+        }
+
+
+        public Dictionary<int, string> Departamentos = new Dictionary<int, string>();
+
+        private void AggDatosDiccionario()
+        {
+            Departamentos.Clear();
+            Departamentos.Add(1, "1-8");
+            Departamentos.Add(2, "1-10");
+            Departamentos.Add(3, "1-21");
+            Departamentos.Add(4, "1-23");
+            Departamentos.Add(5, "1-12");
+            Departamentos.Add(6, "1-16");
+            Departamentos.Add(7, "1-19");
+            Departamentos.Add(8, "1-28");
+            Departamentos.Add(9, "1-6");
+            Departamentos.Add(10, "1-17");
+            Departamentos.Add(11, "1-4");
+            Departamentos.Add(12, "1-19");
+            Departamentos.Add(13, "1-28");
+            Departamentos.Add(14, "1-16");
+            Departamentos.Add(15, "1-23");
+            Departamentos.Add(16, "1-28");
+            Departamentos.Add(17, "1-9");
+            Departamentos.Add(18, "1-11");
+
+        }
+
+        private int Li;
+        private int Ls;
+
+        /// <summary>
+        /// Encontrar si El departamento existe
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private bool BuscarDiccionario(int x)
+        {
+            if (Departamentos.ContainsKey(x))
+            {
+                String source = Departamentos[x]; //Original text
+                String[] result = source.Split(new char[] { '-', '-' });
+                Li = int.Parse(result[0]);
+                Ls = int.Parse(result[1]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool VerificarIdentidad(string cadena)
+        {
+            bool resultado = false;
+            int depto = int.Parse(cadena.Substring(0, 2));
+            int muni = int.Parse(cadena.Substring(2, 2));
+            int año = int.Parse(cadena.Substring(4, 4));
+            int folio = int.Parse(cadena.Substring(8, 5));
+
+            AggDatosDiccionario();
+
+
+            if (NumerosEnteros(depto, 1, 18))
+            {
+
+                bool Est = BuscarDiccionario(depto);
+                if (NumerosEnteros2(muni, Li, Ls))
+                {
+                    if (NumerosEnteros(año, 1900, 2100))
+                    {
+                        if(NumerosEnteros(folio,1,99999))
+                        {
+                            resultado = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("el folio debe tener un rango del 00001- 99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                        
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
+        /// Funcion para tener una diferencia de edad
+        /// </summary>
+        /// <returns></returns>
+        private bool DiferenciaEdad()
+        {
+
+            var timeSpan = DateTime.Now - FechaNac.DisplayDate;
+            int Edad = new DateTime(timeSpan.Ticks).Year - 1;
+
+            if (Edad < 18)
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
 
         /// <summary>
         /// Metodo para vaidar los campos del formulario
@@ -220,28 +411,55 @@ namespace Proyecto_Ferreteira___1
         {
             bool datosCorrectos = true;
            
-            if( (txtDNI.Text == string.Empty) || (txtNombreEmpleado.Text == string.Empty) || 
-                (txtApellidoEmpleado.Text == string.Empty) || (txtEmail.Text == string.Empty) ||
-                (txtDireccion.Text == string.Empty) || (txtTelefono.Text == string.Empty) ||
+            if( CadenaSoloEspacios(txtDNI.Text) || CadenaSoloEspacios(txtNombreEmpleado.Text) ||
+                CadenaSoloEspacios(txtApellidoEmpleado.Text) || CadenaSoloEspacios(txtEmail.Text) ||
+                CadenaSoloEspacios(txtTelefono.Text) || CadenaSoloEspacios(txtDireccion.Text) ||
                 (cmbCargo.SelectedValue == null) || (FechaNac.SelectedDate == null) )
             {
-                datosCorrectos = false;
+               
                 MessageBox.Show("Todos los Campos son Obligatorio","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
-                
+                datosCorrectos = false;
+
+            }
+            
+            if(!VerificarIdentidad(txtDNI.Text))
+            {
+                MessageBox.Show("Verificar su Identidad", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
 
-            if(txtDNI.Text.Length <=  12 || txtDNI.Text.Length > 20)
+            if(CadenaSoloEspacios(txtNombreEmpleado.Text) || CadenaSoloEspacios(txtApellidoEmpleado.Text))
             {
-                datosCorrectos = false;
-                MessageBox.Show("La Identidad tiene que tener entre 13-20 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("El Nombre o Apellido deben tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
 
-            if (txtTelefono.Text.Length <= 7 || txtTelefono.Text.Length > 20)
+            if (txtDNI.Text.Length <=  12 )
             {
-                datosCorrectos = false;
+                MessageBox.Show("La Identidad tiene que tener entre 13 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;   
+            }
+
+            if(DiferenciaEdad())
+            {
+                MessageBox.Show("1. Debe ser mayor de Edad\n" +
+                                "2. Ingrese una Fecha valida", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (txtTelefono.Text.Length <= 7)
+            {
                 MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+
             }
 
+            if(!ValidarEmail(txtEmail.Text))
+            {
+               
+                MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
             return datosCorrectos;
 
         }
@@ -322,7 +540,14 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
+        private void txtApellidoEmpleado_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
+        }
 
+        private void FechaNac_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

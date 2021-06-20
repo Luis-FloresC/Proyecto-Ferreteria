@@ -74,8 +74,6 @@ namespace Proyecto_Ferreteira___1
 
             if (source.Trim().Length <= 1)
             {
-
-
                 return true;
             }
             else

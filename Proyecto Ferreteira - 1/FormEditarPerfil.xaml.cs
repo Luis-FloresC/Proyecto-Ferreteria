@@ -83,6 +83,7 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
+            Color.Text = "#242222";
             Panel2.Children.Clear();
             Panel2.Visibility = Visibility.Hidden;
             
