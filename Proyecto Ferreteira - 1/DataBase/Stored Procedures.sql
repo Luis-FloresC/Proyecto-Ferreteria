@@ -117,7 +117,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create Procedure [dbo].[ManteniemtoProveedores]
+create Procedure ManteniemtoProveedores
 (
 @codigo int,
 @nombre nvarchar(75),
@@ -125,6 +125,7 @@ Create Procedure [dbo].[ManteniemtoProveedores]
 @direccion nvarchar(250),
 @correo nvarchar(32),
 @accion nvarchar(20),
+@estado bit,
 @mensaje nvarchar(150) output
 )
 as begin
@@ -134,8 +135,9 @@ begin
 
 if(not exists(select * from [Compras].[Proveedor] where Nombre_Proveedor = @nombre))
 begin
+
 insert into [Compras].[Proveedor] 
-values (@nombre,@telefono,@direccion,@correo)
+values (@nombre,@telefono,@direccion,@correo,@estado)
 
 set @mensaje = 'El Proveedor se registro con Exito!'
 end
@@ -155,7 +157,9 @@ begin
  Nombre_Proveedor = @nombre,
  Telefono = @telefono,
  Direccion = @direccion,
- Correo = @correo
+ Correo = @correo,
+ Estado = @estado
+
  where Codigo_Proveedor = @codigo
 
  set @mensaje = 'Se Actulizaron los datos del proveedor!'
@@ -171,7 +175,10 @@ end
 if(@accion = 'E')
 begin
 
-delete from [Compras].[Proveedor] where [Codigo_Proveedor] = @codigo
+ update [Compras].[Proveedor] set 
+ Estado = @estado
+
+ where Codigo_Proveedor = @codigo
 set @mensaje = 'Se Elimino el Proveedor Correctamente' 
 
 end
@@ -230,11 +237,6 @@ where Codigo_Producto = @codigoProducto
 set @mensaje = 'La compra se realizo correctamente'
 
 end
-
-
-
-
-
 
 end
 GO
@@ -336,17 +338,25 @@ end
 GO
 
 --Ingresar Clientes
-CREATE PROCEDURE IngresarCliente
+create PROCEDURE IngresarCliente
 @nombres as nvarchar(100),
 @apellidos as nvarchar(100),
 @identidad as varchar(20),
 @fechaNacimiento as datetime,
 @telefono as varchar(20),
-@rtn as varchar(20)
+@rtn as varchar(20),
+@msj nvarchar(150) output
 AS
 
 BEGIN
 
+
+if(exists(select * from [Ventas].[Cliente] where [identidad] = @identidad))
+
+set  @msj = 'El Cliente ya existe...'
+
+else 
+begin
 INSERT INTO [Ventas].[Cliente]
 ([nombres], 
 [apellidos], 
@@ -363,10 +373,15 @@ Values
 @fechaNacimiento,
 @telefono,
 @rtn,
-1
+CONVERT(bit,'True')
 )
 
+set @msj = 'Cliente agregado con exito'
+
+
+end
 END
+
 Go
 
 --Modificar el cliente
@@ -454,4 +469,72 @@ SET [Existencia] = Existencia - @cantidad
 Where [Codigo_Producto] = @codigoProducto
 
 END
+Go
 
+Create procedure Factura
+(@codigoV int,
+@codigoC int)
+as begin
+
+select 
+concat('FACT-',v.[codigo_venta])[Cod],
+v.[fecha_venta],
+p.Nombre_Producto,
+dv.cantidad,
+dv.precio_unitario,
+sum(dv.cantidad*dv.precio_unitario)"Total"
+from [Ventas].[venta] v
+inner join [Ventas].[detalle_venta] dv on v.codigo_venta = dv.codigo_venta
+join [Ventas].[Cliente] c on c.[codigo_cliente] = v.[codigo_cliente]
+join [Productos].[Producto] p on p.[Codigo_Producto] = dv.[codigo_producto]
+where 
+v.[codigo_venta] = @codigoV and 
+c.codigo_cliente = @codigoC
+group by p.Nombre_Producto,dv.cantidad,dv.precio_unitario,v.fecha_venta,v.codigo_venta
+
+
+
+
+end
+go
+
+create procedure ClienteFactura
+(@codigoC int)
+as begin
+
+
+
+select CONCAT(c.nombres,' ',c.apellidos) "Nombre",
+c.rtn,
+c.telefono
+from [Ventas].[Cliente] c
+where c.codigo_cliente=@codigoC
+
+
+end
+go
+
+create procedure TotalFacturas
+(
+@codigoV int,
+@codigoC int
+)
+as begin
+
+select
+sum(dv.cantidad*dv.precio_unitario)"SubTotal",
+sum(dv.cantidad*dv.precio_unitario*v.isv)"ISV",
+v.descuento [Descuento],
+SUM((dv.cantidad*dv.precio_unitario) + (dv.cantidad*dv.precio_unitario*v.[isv]) - v.descuento) [Total]
+from [Ventas].[venta] v
+inner join [Ventas].[detalle_venta] dv on v.codigo_venta = dv.codigo_venta
+join [Ventas].[Cliente] c on c.[codigo_cliente] = v.[codigo_cliente]
+join [Productos].[Producto] p on p.[Codigo_Producto] = dv.[codigo_producto]
+where 
+v.[codigo_venta] = @codigoV and 
+c.codigo_cliente = @codigoC
+group by p.Nombre_Producto,dv.cantidad,dv.precio_unitario,v.fecha_venta,v.codigo_venta,v.descuento
+
+
+end
+Go
