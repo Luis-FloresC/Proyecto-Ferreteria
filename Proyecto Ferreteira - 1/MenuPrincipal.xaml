@@ -12,7 +12,7 @@
             <Grid Background="#0061D2" Height="10"/>
             <Grid Margin="5">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="518,0,338,0">
-                    <TextBlock Text="FERRETERIA JANA" Foreground="White" VerticalAlignment="Center" FontSize="20" FontFamily="Champagne &amp; Limousines" Margin="50,3"/>
+                    <TextBlock Text="FERRETERÍA JANA" Foreground="White" VerticalAlignment="Center" FontSize="20" Margin="50,3"/>
                     <TextBlock Text="WindowMaximize"  x:Name="Pantalla" Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">
@@ -61,11 +61,11 @@
                 </StackPanel>
             </StackPanel>
 
-            <ListView x:Name="ListViewMenu" Margin="0,150,0,1" Foreground="LightGray" FontFamily="Champagne &amp; Limousines" FontSize="18" SelectionChanged="ListViewMenu_SelectionChanged"  SelectedIndex="0">
+            <ListView x:Name="ListViewMenu" Margin="0,150,0,1" Foreground="LightGray" FontFamily="Segoe UI" FontSize="18" SelectionChanged="ListViewMenu_SelectionChanged"  SelectedIndex="0">
                 <ListViewItem Height="60" >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Inicio" FontSize="17" VerticalAlignment="Center" Margin="20 0" />
+                        <TextBlock Text="Inicio" FontSize="17" VerticalAlignment="Center" Margin="20 0" FontFamily="Segoe UI" />
                     </StackPanel>
                 </ListViewItem>
 

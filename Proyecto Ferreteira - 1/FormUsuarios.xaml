@@ -18,18 +18,18 @@
             <StackPanel Width="650" Background="#242222">
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Mi Perfil" Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"/>
-                    <Button Background="{x:Null}" Height="32" Width="55" Click="linkEditarPerfil_Click" >
-                        <materialDesing:PackIcon Kind="Edit" Width="20" Height="20" Foreground="White" />
+                    <TextBlock Text="Mi Perfil" Margin="20" Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI"/>
+                    <Button Background="{x:Null}" Height="32" Width="55" Click="linkEditarPerfil_Click"  FontSize="30" FontFamily="Segoe UI" >
+                        <materialDesing:PackIcon Kind="Edit" Width="20" Height="20" Foreground="White"   />
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                     <Label Margin="10 0" Content="Usuario:"
-                             Foreground="White"  />
+                             Foreground="White"   FontSize="17" FontFamily="Segoe UI" />
                     <Label Margin="0 0" x:Name="lbUsuario" Content="{Binding Path=NombreUsuario,Mode=OneWay ,UpdateSourceTrigger=PropertyChanged}"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI" />
 
 
                 </StackPanel>
@@ -37,9 +37,9 @@
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                     <Label Margin="10 0" Content="Nombre:"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI" />
                     <Label Margin="0 0" x:Name="lbNombre" Content="{Binding Path=Nombre,Mode=OneWay}"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI" />
 
 
                 </StackPanel>
@@ -47,9 +47,9 @@
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                     <Label Margin="10 0" Content="Apellido:"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI" />
                     <Label Margin="0 0" x:Name="lbApellido" Content="{Binding Path=Apellido,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI"  />
 
 
                 </StackPanel>
@@ -57,9 +57,9 @@
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
                     <Label Margin="10 0" Content="Correo Electronico:"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI" />
                     <Label Margin="0 0" x:Name="lbEmail" Content="{Binding Path=Email,Mode=OneWay}"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI" />
 
 
                 </StackPanel>
@@ -67,9 +67,9 @@
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
                     <Label Margin="10 0" Content="Cargo:"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI"  />
                     <Label Margin="0 0" x:Name="lbCargp" Content="{Binding Path=Cargo,Mode=OneWay}"
-                             Foreground="White"  />
+                             Foreground="White"  FontSize="17" FontFamily="Segoe UI" />
 
 
                 </StackPanel>
@@ -85,11 +85,13 @@
                             Foreground="White" 
                             ToolTip="Crear un Nuevo Usuario"
                             x:Name="btnNuevo"
+                             FontSize="17" FontFamily="Segoe UI"
                             Content="Nuevo Usuario" Click="btnNuevo_Click"/>
                     <Button Width="200" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
-                            BorderThickness="2" BorderBrush="#DE1623" 
-                            Background="#DE1623"
+                            BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Adminsitrar Usuarios"
                             x:Name="btnEliminar"
                             Margin="60"
@@ -102,12 +104,13 @@
 
             <StackPanel Width="350" Background="{Binding ElementName=Color ,Path=Text ,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" x:Name="Panel2">
 
-                <TextBlock Text="Editar Perfil" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
+                <TextBlock Text="Editar Perfil" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI" ></TextBlock>
        
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                     <TextBox Margin="10 0" x:Name="txtUsuario" materialDesing:HintAssist.Hint="Usuario" 
                              Foreground="White" Width="280" 
+                             FontSize="17" FontFamily="Segoe UI"
                              Text="{Binding Path=NombreUsuario,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -118,6 +121,7 @@
                     <TextBox Margin="10 0" x:Name="txtNombre" materialDesing:HintAssist.Hint="Nombre" 
                              Foreground="White" Width="280" Text="{Binding Path=Nombre,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
+                             FontSize="17" FontFamily="Segoe UI"
                              SelectionBrush="#FFD94448"/>
                 </StackPanel>
 
@@ -125,6 +129,7 @@
                     <materialDesing:PackIcon Kind="Account" Width="25" Height="25" Foreground="White"/>
                     <TextBox Margin="10 0" x:Name="txtApellido" materialDesing:HintAssist.Hint="Apellido" 
                              Foreground="White" Width="280" 
+                             FontSize="17" FontFamily="Segoe UI"
                              Text="{Binding Path=Apellido,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -134,6 +139,7 @@
                     <materialDesing:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
                     <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
+                              FontSize="17" FontFamily="Segoe UI"
                              Text="{Binding Path=Email,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -143,7 +149,7 @@
                     <materialDesing:PackIcon Kind="Password" Width="25"  Height="25" Foreground="White"/>
                     <PasswordBox Margin="10 0" x:Name="txtPassword" materialDesing:HintAssist.Hint="Contraseña" 
                              Foreground="White" Width="220" 
-                             
+                              FontSize="17" FontFamily="Segoe UI"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"
                              IsEnabled="False"/>
@@ -159,6 +165,7 @@
                              Foreground="White" Width="220" 
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"
+                             FontSize="17" FontFamily="Segoe UI"    
                              IsEnabled="False"    />
 
 
@@ -169,9 +176,10 @@
                     <materialDesing:PackIcon Kind="Password" Width="25" Height="25" Foreground="White"/>
                     <PasswordBox Margin="10 0" x:Name="txtPassWordActual" materialDesing:HintAssist.Hint="Contraseña Actual" 
                              Foreground="White" Width="280" 
+                             FontSize="17" FontFamily="Segoe UI"    
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
-
+                             
 
                 </StackPanel>
 
@@ -181,6 +189,7 @@
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Iniciar sesion"
                             x:Name="btnAceptar"
                             Content="Aceptar" Click="btnAceptar_Click"/>
@@ -191,6 +200,7 @@
                             BorderThickness="2" BorderBrush="#242222" 
                             Background="#242222"
                             Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Cancelar Operacion"
                             x:Name="btnCancelar"
                             Margin="10 5"

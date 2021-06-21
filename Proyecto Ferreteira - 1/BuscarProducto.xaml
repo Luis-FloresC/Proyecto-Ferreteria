@@ -7,10 +7,15 @@
         mc:Ignorable="d"
         Title="Buscar Producto" Height="450" Width="800" Background="#242222">
     <Grid>
-        <DataGrid Name="dgProductos" HorizontalAlignment="Left" Height="272" Margin="122,77,0,0" VerticalAlignment="Top" Width="547" IsReadOnly="True"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="131*"/>
+            <RowDefinition Height="288*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="dgProductos" HorizontalAlignment="Left" Height="272" Margin="83,77,0,0" VerticalAlignment="Top" Width="617" IsReadOnly="True" Grid.RowSpan="2"/>
         <Label Content="Buscar:" HorizontalAlignment="Left" Margin="122,32,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24"/>
         <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="26" Margin="209,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="451" Background="White" KeyUp="txtBuscar_KeyUp"/>
-        <Button Name="btnSeleccionar" Content="Seleccionar" HorizontalAlignment="Left" Margin="354,368,0,0" VerticalAlignment="Top" Width="115" Click="btnSeleccionar_Click"/>
+        <Button Name="btnSeleccionar" Content="Seleccionar" HorizontalAlignment="Left" Margin="338,239,0,0" VerticalAlignment="Top" Width="145" Click="btnSeleccionar_Click" Grid.Row="1" FontSize="17"/>
 
     </Grid>
 </Window>

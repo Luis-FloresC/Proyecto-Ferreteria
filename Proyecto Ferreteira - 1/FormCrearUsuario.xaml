@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
-            <TextBlock Text="Nuevo Usuario" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
+            <TextBlock Text="Nuevo Usuario" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI"></TextBlock>
 
             <StackPanel Orientation="Horizontal" Margin="10">
 
@@ -18,6 +18,7 @@
                 <ComboBox Margin="10 0" x:Name="cmbNombreEmpleado" materialDesing:HintAssist.Hint="Empleado" 
                              Foreground="White" Width="276" 
                              BorderBrush="white" 
+                             FontSize="17" FontFamily="Segoe UI"
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                              materialDesing:ColorZoneAssist.Mode="Inverted"/>
 
@@ -30,7 +31,7 @@
                 <TextBox Margin="10 0" x:Name="txtNombreUsuario" materialDesing:HintAssist.Hint="Nombre del Usuario" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Foreground="White" Width="276" 
-                             
+                              FontSize="17" FontFamily="Segoe UI"
                              BorderBrush="white" 
                              CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -42,6 +43,7 @@
                 <materialDesing:PackIcon Kind="Password" VerticalAlignment="Center"  Width="25" Height="25" Foreground="White"/>
                 <PasswordBox Margin="10 0" x:Name="txtPassWord" materialDesing:HintAssist.Hint="Contraseña" 
                              Foreground="White" Width="280" 
+                              FontSize="17" FontFamily="Segoe UI"
                               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -53,6 +55,7 @@
                 <materialDesing:PackIcon Kind="Password" VerticalAlignment="Center" Width="25" Height="25" Foreground="White"/>
                 <PasswordBox Margin="10 0" x:Name="txtConfirmPassWord" materialDesing:HintAssist.Hint="Confirmar Contraseña" 
                              Foreground="White" Width="280" 
+                              FontSize="17" FontFamily="Segoe UI"
                                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -66,6 +69,7 @@
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
+                         FontSize="17" FontFamily="Segoe UI"
                             Click="btnAceptar_Click"
                             ToolTip="Iniciar sesion"
                             x:Name="btnAceptar"
@@ -77,6 +81,7 @@
                             BorderThickness="2" BorderBrush="#242222" 
                             Background="#242222"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Cancelar Operacion"
                             x:Name="btnCancelar"
                             Margin="10 5"

@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
-            <TextBlock Text="Administrar Usuario" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="25" FontFamily="Georgia"></TextBlock>
+            <TextBlock Text="Administrar Usuario" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI"></TextBlock>
 
             <StackPanel Orientation="Horizontal" Margin="10">
 
@@ -18,6 +18,7 @@
                 <ComboBox Margin="10 0" x:Name="cmbNombreEmpleado" materialDesing:HintAssist.Hint="Empleado" 
                              Foreground="White" Width="276" 
                              BorderBrush="white" 
+                             FontSize="17" FontFamily="Segoe UI"
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                              materialDesing:ColorZoneAssist.Mode="Inverted" SelectionChanged="cmbNombreEmpleado_SelectionChanged"/>
 
@@ -34,6 +35,7 @@
                           Width="120" IsChecked="False"  
                           Margin="100,0"
                           x:Name="chEstado"
+                           FontSize="17" FontFamily="Segoe UI"
                           Content="Activo" Checked="CheckBox_Checked" />
 
             </StackPanel>
@@ -53,6 +55,7 @@
                             Click="btnAceptar_Click"
                             ToolTip="Iniciar sesion"
                             x:Name="btnAceptar"
+                             FontSize="17" FontFamily="Segoe UI"
                             Content="Aceptar" />
 
 
@@ -61,6 +64,7 @@
                             BorderThickness="2" BorderBrush="#242222" 
                             Background="#242222"
                             Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Cancelar Operacion"
                             x:Name="btnCancelar"
                             Margin="10 5"

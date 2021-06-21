@@ -13,7 +13,7 @@ namespace Proyecto_Ferreteira___1.Clases
         public string NombreDeLaCategoria { get; set; }
         public string NombreDelProducto { get; set; }
         public int CantidadDeProducto { get; set; }
-        public int PrecioDelProducto { get; set; }
+        public double PrecioDelProducto { get; set; }
 
         //Constructor
         public Producto() { }

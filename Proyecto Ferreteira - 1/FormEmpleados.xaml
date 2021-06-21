@@ -19,11 +19,12 @@
                
 
                 <StackPanel Orientation="Horizontal" Margin="10">
-                    <TextBlock Text="Lista de Empleados" Margin="10 0" Foreground="White" FontSize="20"/>
+                    <TextBlock Text="Lista de Empleados" Margin="10 0" Foreground="White"  FontSize="17" FontFamily="Segoe UI"/>
                     
                     <TextBox Margin="20 0" x:Name="txtBuscar" materialDesing:HintAssist.Hint="Escribe un Nombre para Buscar" 
                              Foreground="White" Width="280" 
                              Text=""
+                              FontSize="17" FontFamily="Segoe UI"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" TextChanged="txtBuscar_TextChanged"/>
@@ -36,6 +37,7 @@
                     <DataGrid x:Name="DataGridEmpleados"
                        Width="auto" Height="auto"
                        CanUserAddRows="False"
+                        FontSize="17" FontFamily="Segoe UI"       
                        IsReadOnly="True" 
                        HorizontalGridLinesBrush="White" 
                        VerticalGridLinesBrush="White" 
@@ -55,15 +57,17 @@
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Modificar un Empleado"
                             Click="BtnModificar_Click"
                             x:Name="BtnModificar"
                             Content="Modificar" Margin="20" />
 
                     <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
-                            BorderThickness="2" BorderBrush="#29AA20" 
-                            Background="#29AA20"
+                           BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
                             Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Limpiar todos los campos"
                             x:Name="btnLimpiar"
                             Click="btnLimpiar_Click"
@@ -71,9 +75,10 @@
                             Content="Limpiar" />
 
                     <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
-                            BorderThickness="2" BorderBrush="#DE1623" 
-                            Background="#DE1623"
+                        BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Eliminar un Empleado"
                             x:Name="btnEliminar"
                             Click="btnEliminar_Click"
@@ -87,7 +92,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" materialDesing:ScrollViewerAssist.ShowSeparators="True">
                 <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
-                <TextBlock Text="Registrar Empleado" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="26" FontFamily="Georgia"></TextBlock>
+                    <TextBlock Text="Registrar Empleado" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="17" FontFamily="Segoe UI"></TextBlock>
 
 
                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -96,7 +101,8 @@
                              Foreground="White" Width="280" 
                              KeyDown="ValidacionNumeros"
                              MaxLength="13"
-                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             FontSize="17" FontFamily="Segoe UI"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" >
                         
@@ -109,7 +115,8 @@
                              Foreground="White" Width="280" 
                              Text=""
                              MaxLength="38"
-                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             FontSize="17" FontFamily="Segoe UI"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" KeyDown="ValidacionLetras"/>
                 </StackPanel>
@@ -119,6 +126,7 @@
                     <TextBox Margin="10 0" x:Name="txtApellidoEmpleado" materialDesing:HintAssist.Hint="Apellido del Empleado" 
                              Foreground="White" Width="280" Text=""
                              KeyDown="ValidacionLetras"
+                             FontSize="17" FontFamily="Segoe UI"
                              MaxLength="38"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -131,6 +139,7 @@
                              Foreground="White" Width="280" 
                              Text=""
                              MaxLength="8"
+                             FontSize="17" FontFamily="Segoe UI"
                              KeyDown="ValidacionNumeros"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
@@ -143,6 +152,7 @@
                              Foreground="White" Width="280" 
                              Text=""
                              MaxLength="30"
+                             FontSize="17" FontFamily="Segoe UI"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -156,6 +166,7 @@
                                 materialDesing:HintAssist.Hint="Fecha de Naciemiento" 
                                 materialDesing:CalendarAssist.IsHeaderVisible="True"
                                 ToolTip="Fecha de Nacimiento"
+                                 FontSize="17" FontFamily="Segoe UI"
                                 CalendarStyle="{StaticResource  MaterialDesignDatePickerCalendarPortrait}"
                                 Style="{StaticResource  FondoDate}"
                                 materialDesing:ColorZoneAssist.Mode="Inverted"
@@ -172,6 +183,7 @@
                     <ComboBox Margin="10 0" x:Name="cmbCargo" materialDesing:HintAssist.Hint="Cargo del Empleado" 
                              Foreground="White" Width="280" 
                              BorderBrush="white" 
+                             FontSize="17" FontFamily="Segoe UI"
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                              materialDesing:ColorZoneAssist.Mode="Inverted"/>
 
@@ -185,6 +197,7 @@
                              Foreground="White" Width="280" 
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
+                             FontSize="17" FontFamily="Segoe UI"
                              MaxLength="100"
                              VerticalScrollBarVisibility="Auto"
                              SpellCheck.IsEnabled="True"
@@ -200,6 +213,7 @@
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Registrar Empleado"
                             Click="btnGuardar_Click"
                             x:Name="btnGuardar"
@@ -211,6 +225,7 @@
                             BorderThickness="2" BorderBrush="#242222" 
                             Background="#242222"
                             Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Cancelar Operacion"
                             x:Name="btnCancelar"
                             Margin="10 5"

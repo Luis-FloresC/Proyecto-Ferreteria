@@ -11,7 +11,7 @@
         <TextBlock Text="#363636" Margin="20" Name="Color" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia" Visibility="Hidden"></TextBlock>
         <StackPanel Width="350" Background="{Binding ElementName=Color ,Path=Text ,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" x:Name="Panel2">
 
-            <TextBlock Text="Editar Perfil" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Georgia"></TextBlock>
+            <TextBlock Text="Editar Perfil" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI"></TextBlock>
 
 
             <StackPanel Orientation="Horizontal" Margin="10">
@@ -20,6 +20,7 @@
                              Foreground="White" Width="280" 
                              KeyDown="ValidacionNumeros"
                              MaxLength="13"
+                             FontSize="17" FontFamily="Segoe UI"
                              Text="{Binding Path=DNI,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -30,6 +31,7 @@
                 <TextBox Margin="10 0" x:Name="txtUsuario" materialDesing:HintAssist.Hint="Usuario" 
                              Foreground="White" Width="280" 
                              MaxLength="10"
+                              FontSize="17" FontFamily="Segoe UI"
                              Text="{Binding Path=NombreUsuario,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -42,6 +44,7 @@
                              BorderBrush="white" CaretBrush="#FFD94448" 
                               KeyDown="ValidacionLetras"
                              MaxLength="38"
+                             FontSize="17" FontFamily="Segoe UI"
                              SelectionBrush="#FFD94448"/>
             </StackPanel>
 
@@ -51,6 +54,7 @@
                              Foreground="White" Width="280" 
                              KeyDown="ValidacionLetras"
                              MaxLength="38"
+                             FontSize="17" FontFamily="Segoe UI"
                              Text="{Binding Path=Apellido,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -61,6 +65,7 @@
                 <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
                              MaxLength="30"
+                             FontSize="17" FontFamily="Segoe UI"
                              Text="{Binding Path=Email,Mode=TwoWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -70,7 +75,7 @@
                 <materialDesing:PackIcon Kind="Password" Width="25"  Height="25" Foreground="White"/>
                 <PasswordBox Margin="10 0" x:Name="txtPassword" materialDesing:HintAssist.Hint="Contraseña" 
                              Foreground="White" Width="220" 
-                             
+                              FontSize="17" FontFamily="Segoe UI"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"
                              IsEnabled="False"/>
@@ -86,6 +91,7 @@
                              Foreground="White" Width="220" 
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"
+                              FontSize="17" FontFamily="Segoe UI"
                              IsEnabled="False"    />
 
 
@@ -97,7 +103,7 @@
                 <PasswordBox Margin="10 0" x:Name="txtPassWordActual" materialDesing:HintAssist.Hint="Contraseña Actual" 
                              Foreground="White" Width="280" 
                              MaxLength="25"
-                             
+                              FontSize="17" FontFamily="Segoe UI"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
 
@@ -110,6 +116,7 @@
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Guardar Cambios"
                             x:Name="btnAceptar"
                             Content="Aceptar" Click="btnAceptar_Click"/>
@@ -120,6 +127,7 @@
                             BorderThickness="2" BorderBrush="#242222" 
                             Background="#242222"
                             Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Cancelar Cambios"
                             x:Name="btnCancelar"
                             Margin="10 5"

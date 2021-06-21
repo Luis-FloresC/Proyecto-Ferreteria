@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
         mc:Ignorable="d"
-        Title="Buscar Cliente" Height="450" Width="800" Background="#242222">
+        Title="Buscar Cliente" Height="450" Width="800" Background="#242222" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
 
-        <DataGrid Name="dgClientes" HorizontalAlignment="Center" Height="278" Margin="31,73,25,0" VerticalAlignment="Top" Width="736" IsReadOnly="True"/>
-        <Label Content="Buscar:" HorizontalAlignment="Left" Margin="148,28,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24"/>
-        <Button Name="btnSeleccionar" Content="Seleccionar" HorizontalAlignment="Left" Margin="350,367,0,0" VerticalAlignment="Top" Width="107" Click="btnSeleccionar_Click"/>
-        <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="28" Margin="235,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="414" Background="White" KeyUp="txtBuscar_KeyUp" TextChanged="txtBuscar_TextChanged"/>
+        <DataGrid Name="dgClientes" HorizontalAlignment="Center" Height="278" Margin="31,73,25,0" VerticalAlignment="Top" Width="736" IsReadOnly="True" FontSize="17"/>
+        <Label Content="Buscar:" HorizontalAlignment="Left" Margin="148,28,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
+        <Button Name="btnSeleccionar" Content="Seleccionar" HorizontalAlignment="Left" Margin="350,367,0,0" VerticalAlignment="Top" Width="154" Click="btnSeleccionar_Click" FontSize="17"/>
+        <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="28" Margin="235,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="414" Background="White" KeyUp="txtBuscar_KeyUp" TextChanged="txtBuscar_TextChanged" FontSize="17"/>
 
     </Grid>
 </Window>

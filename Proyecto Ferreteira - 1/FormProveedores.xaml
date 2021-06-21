@@ -19,11 +19,12 @@
                 
 
                 <StackPanel Orientation="Horizontal" Margin="10">
-                    <TextBlock Text="Lista de Proveedores" Margin="10 0" Foreground="White" FontSize="20"/>
+                    <TextBlock Text="Lista de Proveedores" Margin="10 0" Foreground="White" FontSize="17" FontFamily="Segoe UI"/>
                    
                     <TextBox Margin="20 0" x:Name="txtBuscar" materialDesing:HintAssist.Hint="Escribe un Nombre para Buscar" 
                              Foreground="White" Width="280" 
                              Text=""
+                             FontSize="17" FontFamily="Segoe UI"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" TextChanged="txtBuscar_TextChanged"/>
@@ -36,34 +37,36 @@
                        Width="auto" Height="auto"
                        CanUserAddRows="False"
                        IsReadOnly="True" 
+                       FontSize="17" FontFamily="Segoe UI"       
                        HorizontalGridLinesBrush="White" 
                        VerticalGridLinesBrush="White" 
                        GridLinesVisibility="All" 
-                       SelectionChanged="DataGridProveedores_SelectionChanged" 
-                        />
+                       SelectionChanged="DataGridProveedores_SelectionChanged" />
 
 
                 </StackPanel>
 
-                <TextBlock Text="Total: " Name="txtTotal" Margin="10 0" Foreground="White" FontSize="20"/>
+                <TextBlock Text="Total: " Name="txtTotal" Margin="10 0" Foreground="White" FontSize="17" FontFamily="Segoe UI"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
 
 
 
-                    <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                    <Button Width="112" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Modificar un Empleado"
                             Click="BtnModificar_Click"
                             x:Name="BtnModificar"
                             Content="Modificar" Margin="20" />
 
                     <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
-                            BorderThickness="2" BorderBrush="#29AA20" 
-                            Background="#29AA20"
+                            BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"
                             Click="btnLimpiar_Click"
                             ToolTip="Limpiar todos los campos"
                             x:Name="btnLimpiar"
@@ -71,9 +74,10 @@
                             Content="Limpiar" />
 
                     <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
-                            BorderThickness="2" BorderBrush="#DE1623" 
-                            Background="#DE1623"
+                              BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"
                             ToolTip="Eliminar un Empleado"
                             x:Name="btnEliminar"
                             Click="btnEliminar_Click"
@@ -86,7 +90,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
-                    <TextBlock Text="Proveedores" Margin="20"  Foreground="White" TextAlignment="Center" FontSize="26" FontFamily="Georgia"></TextBlock>
+                    <TextBlock Text="Proveedores" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="17" FontFamily="Segoe UI"></TextBlock>
 
 
 
@@ -96,6 +100,7 @@
                         <TextBox Margin="10 0" x:Name="txtNombre" materialDesing:HintAssist.Hint="Nombre del Proveedor" 
                              Foreground="White" Width="280" 
                              Text=""
+                             FontSize="17" FontFamily="Segoe UI"    
                              KeyDown="ValidacionLetras"
                              MaxLength="75"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -111,6 +116,7 @@
                              Foreground="White" Width="280" 
                              Text=""
                               MaxLength="8"
+                               FontSize="17" FontFamily="Segoe UI"   
                              KeyDown="ValidacionNumeros"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
@@ -122,7 +128,8 @@
                         <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
                              Text=""
-                              MaxLength="40"
+                             FontSize="17" FontFamily="Segoe UI"   
+                             MaxLength="40"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -140,6 +147,7 @@
                              TextWrapping="Wrap"
                              MaxLength="250"
                              AcceptsReturn="True"
+                             FontSize="17" FontFamily="Segoe UI"    
                              VerticalScrollBarVisibility="Auto"
                              SpellCheck.IsEnabled="True"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -156,6 +164,7 @@
                           HorizontalAlignment="Center"
                           Width="120" IsChecked="False"  
                           Margin="100,0"
+                          FontSize="17" FontFamily="Segoe UI"        
                           x:Name="chEstado"
                           Content="Activo"  />
 
@@ -167,6 +176,7 @@
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"    
                             ToolTip="Registrar Proveedor"
                             Click="BtnGuardar_Click"
                             x:Name="BtnGuardar"
@@ -178,6 +188,7 @@
                             BorderThickness="2" BorderBrush="#242222" 
                             Background="#242222"
                             Foreground="White" 
+                            FontSize="17" FontFamily="Segoe UI"    
                             ToolTip="Cancelar Operacion"
                             x:Name="BtnCancelar"
                             Margin="10 5"
