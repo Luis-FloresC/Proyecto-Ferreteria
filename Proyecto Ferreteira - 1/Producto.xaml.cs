@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+
 
 namespace Proyecto_Ferreteira___1
 {
@@ -50,7 +52,7 @@ namespace Proyecto_Ferreteira___1
             {
                 string query = @"Select Productos.Producto.Codigo_Producto [Código], Productos.Producto.Nombre_Producto [Nombre del Producto],
                                 Productos.Producto.existencia [Existencia],
-                                Productos.Producto.Precio_Estandar [Precio],
+                                CAST(Productos.Producto.Precio_Estandar AS decimal(10,2)) as Precio,
                                 Productos.Categoria.Nombre_Categoria [Nombre de la Categoria] 
                                 From Productos.Categoria INNER JOIN Productos.Producto 
                                 ON Productos.Categoria.Codigo_Categoria = Productos.Producto.Codigo_Categoria
@@ -107,26 +109,51 @@ namespace Proyecto_Ferreteira___1
                 }
                 else
                 {
-                    foreach (int i in IdCategoria)
+                    string nombre2 = txtNombreProducto.Text;
+                    double precio2 = Convert.ToInt32(txtPrecioProducto.Text);
+
+                    if (nombre2.Length <= 1)
                     {
-                        if (cbNombreCategoria.SelectedIndex == c)
-                        {
-                            string nombre = txtNombreProducto.Text;
-                            int existencia = Convert.ToInt32(txtExistenciaProducto.Text);
-                            double precio = Convert.ToDouble(txtPrecioProducto.Text);
-                            producto.InsertarProducto(nombre, existencia, precio, i);
-                        }
-                        c++;
+                        MessageBox.Show("El nombre no puede ser menor o igual a un caracter", "Advertencia",
+                            MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-                    MostrarDatos();
-                    LimpiarPantalla();
+                    else if (precio2 == 0)
+                    {
+                        MessageBox.Show("El precio no puede ser 0", "Advertencia",
+                            MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else if (CadenaSoloEspacios(nombre2))
+                    {
+                        MessageBox.Show("No se puede ingresar el nombre de un producto con espacios", 
+                            "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                   
+                    else
+                    {
+                        foreach (int i in IdCategoria)
+                        {
+                            if (cbNombreCategoria.SelectedIndex == c)
+                            {
+                                string nombre = txtNombreProducto.Text;
+                                int existencia = Convert.ToInt32(txtExistenciaProducto.Text);
+                                double precio = Convert.ToDouble(txtPrecioProducto.Text);
+                                producto.InsertarProducto(nombre, existencia, precio, i);
+                            }
+                            c++;
+                        }
+                        MostrarDatos();
+                        LimpiarPantalla();
+                    }
+
+                    
                 }
 
             }
             catch (Exception)
             {
 
-                MessageBox.Show("Por favor verifique que esta ingresando los valores correctos en los campos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor verifique que esta ingresando los valores correctos en los " +
+                    "campos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -215,6 +242,41 @@ namespace Proyecto_Ferreteira___1
                 }
             }
         }
-            
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void NumberValidationTextBox2(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9.]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void TextValidation(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private bool CadenaSoloEspacios(string cadena)
+        {
+            String source = txtNombreProducto.Text; //Original text
+
+            if (source.Trim().Length <= 1)
+            {
+
+
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+        }
+
     }
 }
