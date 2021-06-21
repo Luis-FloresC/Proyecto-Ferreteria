@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
         mc:Ignorable="d"
-        Title="Buscar Producto" Height="450" Width="800" Background="#242222">
+        Title="Buscar Producto" Height="450" Width="800" Background="#242222" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="131*"/>
