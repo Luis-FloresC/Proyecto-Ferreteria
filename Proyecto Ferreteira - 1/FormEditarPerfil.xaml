@@ -75,7 +75,7 @@
                              SelectionBrush="#FFD94448"
                              IsEnabled="False"/>
 
-                <CheckBox Content="Editar" x:Name="chEditar"  Style="{StaticResource MaterialDesignAccentCheckBox}" Foreground="#0061D2" Background="#0061D2" Cursor="Hand" Checked="chEditar_Checked" Unchecked="chEditar_Checked"/>
+                <CheckBox Content="Editar" x:Name="chEditar" materialDesing:ThemeAssist.Theme="Dark" Style="{StaticResource MaterialDesignAccentCheckBox}" Foreground="#0061D2" Background="#0061D2" Cursor="Hand" Checked="chEditar_Checked" Unchecked="chEditar_Checked"/>
 
             </StackPanel>
 
