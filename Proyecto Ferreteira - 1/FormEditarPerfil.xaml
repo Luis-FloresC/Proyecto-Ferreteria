@@ -18,6 +18,8 @@
                 <materialDesing:PackIcon Kind="BadgeAccount" Width="25" Height="25" Foreground="White"/>
                 <TextBox Margin="10 0" x:Name="txtDNI" materialDesing:HintAssist.Hint="Numero de Identidad" 
                              Foreground="White" Width="280" 
+                             KeyDown="ValidacionNumeros"
+                             MaxLength="13"
                              Text="{Binding Path=DNI,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -27,6 +29,7 @@
                 <materialDesing:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                 <TextBox Margin="10 0" x:Name="txtUsuario" materialDesing:HintAssist.Hint="Usuario" 
                              Foreground="White" Width="280" 
+                             MaxLength="10"
                              Text="{Binding Path=NombreUsuario,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -37,6 +40,8 @@
                 <TextBox Margin="10 0" x:Name="txtNombre" materialDesing:HintAssist.Hint="Nombre" 
                              Foreground="White" Width="280" Text="{Binding Path=Nombre,Mode=TwoWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
+                              KeyDown="ValidacionLetras"
+                             MaxLength="38"
                              SelectionBrush="#FFD94448"/>
             </StackPanel>
 
@@ -44,6 +49,8 @@
                 <materialDesing:PackIcon Kind="Account" Width="25" Height="25" Foreground="White"/>
                 <TextBox Margin="10 0" x:Name="txtApellido" materialDesing:HintAssist.Hint="Apellido" 
                              Foreground="White" Width="280" 
+                             KeyDown="ValidacionLetras"
+                             MaxLength="38"
                              Text="{Binding Path=Apellido,Mode=OneWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -53,6 +60,7 @@
                 <materialDesing:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
                 <TextBox Margin="10 0" x:Name="txtEmail" materialDesing:HintAssist.Hint="Correo Electronico" 
                              Foreground="White" Width="280" 
+                             MaxLength="30"
                              Text="{Binding Path=Email,Mode=TwoWay}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -102,7 +110,7 @@
                             BorderThickness="2" BorderBrush="#007DB7" 
                             Background="#007DB7"
                             Foreground="White" 
-                            ToolTip="Iniciar sesion"
+                            ToolTip="Guardar Cambios"
                             x:Name="btnAceptar"
                             Content="Aceptar" Click="btnAceptar_Click"/>
 
@@ -112,7 +120,7 @@
                             BorderThickness="2" BorderBrush="#242222" 
                             Background="#242222"
                             Foreground="White" 
-                            ToolTip="Cancelar Operacion"
+                            ToolTip="Cancelar Cambios"
                             x:Name="btnCancelar"
                             Margin="10 5"
                             Content="Cancelar" Click="btnCancelar_Click"/>

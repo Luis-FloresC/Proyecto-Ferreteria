@@ -145,7 +145,7 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <param name="fechaNac"></param>
         /// <param name="Dni"></param>
         /// <returns></returns>
-        public string AñadirNuevoEmpleado(string nombre, string apellido, int codigoCargo, string telefono, string correo, string direccion, bool estado, string fechaNac,string Dni)
+        public string AñadirNuevoEmpleado(string nombre, string apellido, int codigoCargo, string telefono, string correo, string direccion, bool estado, DateTime fechaNac,string Dni)
         {
             try
             {

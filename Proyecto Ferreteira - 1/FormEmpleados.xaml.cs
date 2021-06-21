@@ -107,7 +107,7 @@ namespace Proyecto_Ferreteira___1
                                                                txtEmail.Text,
                                                                txtDireccion.Text,
                                                                true,
-                                                               FechaNac.SelectedDate.ToString(),
+                                                               FechaNac.SelectedDate.Value,
                                                                txtDNI.Text);
 
                 MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);

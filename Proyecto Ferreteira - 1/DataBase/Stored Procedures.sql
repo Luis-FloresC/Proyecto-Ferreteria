@@ -253,7 +253,7 @@ CREATE procedure [dbo].[RegistrarEmpleado]
 @DNI varchar(20),
 @telefono nvarchar(20),
 @correo nvarchar(75),
-@fechaNacimiento nvarchar(50),
+@fechaNacimiento datetime,
 @estado bit,
 @direccion nvarchar(75),
 @mensaje nvarchar(150) output
@@ -266,13 +266,14 @@ set @mensaje = 'El empleado ya existe'
 else
 begin
 insert into [Recursos_humanos].[Empleado] values
-(@nombre,@apellido,@DNI,@codigoPuesto,@telefono,@correo,convert(date,@fechaNacimiento,103),GETDATE(),@estado,@direccion)
+(@nombre,@apellido,@DNI,@codigoPuesto,@telefono,@correo,@fechaNacimiento,GETDATE(),@estado,@direccion)
 
 set @mensaje = 'Se registró con éxito'
 
 end
 
 end
+
 GO
 /****** Object:  StoredProcedure [dbo].[RegistrarUsuario]    Script Date: 15/4/2021 18:24:16 ******/
 SET ANSI_NULLS ON

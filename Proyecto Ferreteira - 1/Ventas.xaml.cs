@@ -214,7 +214,7 @@ namespace Proyecto_Ferreteira___1
             txtIdProducto.Text = codigoProducto;
             txtNombreProducto.Text = nombreProducto;
             existenciaProduc = Convert.ToInt32(existenciaProducto);
-            txtPrecio.Text = precioProducto;
+            txtPrecio.Text = Math.Round(double.Parse(precioProducto)).ToString();
         }
 
         /// <summary>
@@ -284,6 +284,7 @@ namespace Proyecto_Ferreteira___1
             limpiarProducto();
             dgDetalleVenta.Items.Clear();
             productos.Clear();
+            RegistroCl.IsChecked = true;
         }
 
         /// <summary>

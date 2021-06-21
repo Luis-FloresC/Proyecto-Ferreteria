@@ -243,11 +243,27 @@ namespace Proyecto_Ferreteira___1
                 {
                     if (VerificarIdentidad(txtIdentidad.Text))
                     {
+                        if(VerificarRTN(txtRtn.Text))
+                        {
+                            guardarDatos();
+                            cliente.AgregarCliente();
+                            cargarTabla();
+                            limpiar();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtRtn.Focus();
+                        }
+                           
 
-                        guardarDatos();
-                        cliente.AgregarCliente();
-                        cargarTabla();
-                        limpiar();
+                    }
+                    else
+                    {
+                       
+                            MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtIdentidad.Focus();
+                        
                     }
                 }
                else
@@ -375,7 +391,7 @@ namespace Proyecto_Ferreteira___1
                         }
                         else
                         {
-                            MessageBox.Show("el año debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
 
                     }
@@ -399,6 +415,57 @@ namespace Proyecto_Ferreteira___1
             return resultado;
         }
 
+
+
+        private bool VerificarRTN(string cadena)
+        {
+            bool resultado = false;
+            int depto = int.Parse(cadena.Substring(0, 2));
+            int muni = int.Parse(cadena.Substring(2, 2));
+            int año = int.Parse(cadena.Substring(4, 4));
+            int folio = int.Parse(cadena.Substring(8, 6));
+
+            AggDatosDiccionario();
+
+
+            if (NumerosEnteros(depto, 1, 18))
+            {
+
+                bool Est = BuscarDiccionario(depto);
+                if (NumerosEnteros2(muni, Li, Ls))
+                {
+                    if (NumerosEnteros(año, 1900, 2100))
+                    {
+
+                        if (NumerosEnteros(folio, 1, 999999))
+                        {
+                            resultado = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return resultado;
+        }
 
         /// <summary>
         /// Consulta el cliente seleccionado para su edicion
@@ -501,12 +568,16 @@ namespace Proyecto_Ferreteira___1
                 {
                     if(VerificarIdentidad(txtIdentidad.Text))
                     {
-                       
-                        guardarDatos();
-                        cliente.editarCliente();
-                        estadoBotones(Visibility.Visible);
-                        limpiar();
-                        cargarTabla();
+                       if(VerificarRTN(txtRtn.Text))
+                        {
+                            guardarDatos();
+                            cliente.editarCliente();
+                            estadoBotones(Visibility.Visible);
+                            limpiar();
+                            cargarTabla();
+                        }
+                       else
+                            MessageBox.Show("Por favor! Verificar su RTN.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     else
                         MessageBox.Show("Por favor! Verificar su numero de identidad.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
