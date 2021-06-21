@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -105,40 +107,42 @@ namespace Proyecto_Ferreteira___1
         {
             try
             {
-
-                string Resultado = "";
-                int Codigo = compra.CodigoCompra();
-                foreach (Clases.Compras Item in Carrito)
+                if(Carrito.Count == 0)
                 {
-
-                    Clases.Compras compras = new Clases.Compras
-                        (
-                         Convert.ToInt32(cmbProveedor.SelectedValue),
-                         Convert.ToInt32(Item.IdProducto.ToString()),
-                         Convert.ToInt32(Item.Cantidad.ToString()),
-                         Convert.ToInt32(Item.Precio.ToString()),
-                         double.Parse(txtSubtotal.Text),
-                         double.Parse(txtISV.Text),
-                         double.Parse(txtDescuento.Text),
-                         Codigo,
-                         double.Parse(txtFlete.Text)
-                        );
-
-                    Resultado = compras.GuardarCompras();
-
-
+                    MessageBox.Show("La lista de compras no puede estar vacía", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                { 
+                    string Resultado = "";
+                    int Codigo = compra.CodigoCompra();
+                    foreach (Clases.Compras Item in Carrito)
+                    {
+                        Clases.Compras compras = new Clases.Compras
+                            (
+                             Convert.ToInt32(cmbProveedor.SelectedValue),
+                             Convert.ToInt32(Item.IdProducto.ToString()),
+                             Convert.ToInt32(Item.Cantidad.ToString()),
+                             Convert.ToDouble(Item.Precio.ToString()),
+                             double.Parse(txtSubtotal.Text),
+                             double.Parse(txtISV.Text),
+                             double.Parse(txtDescuento.Text),
+                             Codigo,
+                             double.Parse(txtFlete.Text)
+                            );
+                        Resultado = compras.GuardarCompras();
+                    }
+                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                //Habilitacion y deshabilitacion de botones
-                btnAgregarPedido.IsEnabled = true;
-                btnRealizarCompra.IsEnabled = false;
-                btnEliminarPedido.IsEnabled = false;
+                    //Habilitacion y deshabilitacion de botones
+                    btnAgregarPedido.IsEnabled = true;
+                    btnRealizarCompra.IsEnabled = false;
+                    btnEliminarPedido.IsEnabled = false;
 
-                //Limpiar
-                Limpieza();
-                dgbInformacion.Items.Clear();
-                Carrito.Clear();
+                    //Limpiar
+                    Limpieza();
+                    dgbInformacion.Items.Clear();
+                    Carrito.Clear();
+                }
             }
             catch (Exception)
             {
@@ -209,6 +213,17 @@ namespace Proyecto_Ferreteira___1
         {
             Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
             this.DataContext = Calculo;
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void NumberValidationTextBox2(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9.]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

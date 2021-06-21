@@ -26,8 +26,8 @@ namespace Proyecto_Ferreteira___1.Clases
             get { return precio; }
             set
             {
-                int numero;
-                bool operacion = int.TryParse(value, out numero);
+                double numero;
+                bool operacion = double.TryParse(value, out numero);
                 if (operacion) precio = value;
 
                 // La propiedad cambia, avisar a la interfaz
@@ -75,7 +75,7 @@ namespace Proyecto_Ferreteira___1.Clases
         {
             get
             {
-                int respuesta = int.Parse(Precio) * int.Parse(Cantidad);
+                double respuesta = double.Parse(Precio) * double.Parse(Cantidad);
                 return respuesta.ToString();
             }
             set
