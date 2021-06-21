@@ -42,6 +42,31 @@ namespace Proyecto_Ferreteira___1
           
         }
 
+
+        private void AggAlCarrito()
+        {
+            var Item = new Clases.ClsProducto
+            {
+                ID = Convert.ToInt32(txtIdProducto.Text),
+                PRODUCTO = txtNombreProducto.Text,
+                PRECIO = double.Parse(txtPrecio.Text),
+                CANTIDAD = int.Parse(txtCantidad.Text),
+                IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
+            };
+            //Ingresa el producto en la lista productos
+            productos.Add(new Clases.ClsProducto
+            {
+                ID = Convert.ToInt32(txtIdProducto.Text),
+                PRECIO = double.Parse(txtPrecio.Text),
+                CANTIDAD = int.Parse(txtCantidad.Text),
+                IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
+            });
+
+            dgDetalleVenta.Items.Add(Item);
+            calculos();
+            limpiarProducto();
+        }
+
         //METODOS
 
         /// <summary>
@@ -51,38 +76,48 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            if( txtCantidad.Text.Equals(string.Empty) || Convert.ToInt32(txtCantidad.Text) <= 0)
+            try
             {
-                MessageBox.Show("La cantidad que usted ingreso no es valida", "Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else if (Convert.ToInt32(txtCantidad.Text) > existenciaProduc)
-            {
-                MessageBox.Show("La existencia de este producto es insuficiente","Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else
-            {
-                //Variable que almacena la informacion de el producto que vamos a ingresar
-                var Item = new Clases.ClsProducto
-                {
-                    ID = Convert.ToInt32(txtIdProducto.Text),
-                    PRODUCTO = txtNombreProducto.Text,
-                    PRECIO = double.Parse(txtPrecio.Text),
-                    CANTIDAD = int.Parse(txtCantidad.Text),
-                    IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
-                };
-                //Ingresa el producto en la lista productos
-                productos.Add(new Clases.ClsProducto
-                {
-                    ID = Convert.ToInt32(txtIdProducto.Text),
-                    PRECIO = double.Parse(txtPrecio.Text),
-                    CANTIDAD = int.Parse(txtCantidad.Text),
-                    IMPORTE = (Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text))
-                });
 
-                dgDetalleVenta.Items.Add(Item);
-                calculos();
-                limpiarProducto();
+                if (txtCantidad.Text.Equals(string.Empty) || Convert.ToInt32(txtCantidad.Text) <= 0)
+                {
+                    MessageBox.Show("La cantidad que usted ingreso no es valida", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (Convert.ToInt32(txtCantidad.Text) > existenciaProduc)
+                {
+                    MessageBox.Show("La existencia de este producto es insuficiente", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    if (productos.Count == 0)
+                    {
+                        AggAlCarrito();
+                    }
+                    else
+                    {
+
+                        foreach (Clases.ClsProducto Item in productos)
+                        {
+
+                            if (int.Parse(txtIdProducto.Text) == Item.ID)
+                            {
+                                MessageBox.Show("El Producto ya se encuentra en el detalle de la venta...", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                limpiarProducto();
+                            }
+                            else
+                            {
+                                AggAlCarrito();
+                            }
+                        }
+                    }
+                }
+
             }
+            catch (Exception ex)
+            {
+               
+            }
+          
         }
 
         /// <summary>
