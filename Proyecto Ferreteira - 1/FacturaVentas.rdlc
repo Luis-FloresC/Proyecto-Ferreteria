@@ -11,7 +11,7 @@
               <TextRun>
                 <Value>Sub Total:</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                 </Style>
               </TextRun>
@@ -43,7 +43,7 @@
               <TextRun>
                 <Value>ISV (15%):</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                 </Style>
               </TextRun>
@@ -74,10 +74,16 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Descuento:</Value>
+                <Value>D</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontFamily>Segoe UI</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>escuento:</Value>
+                <Style>
+                  <FontFamily>Segoe UI</FontFamily>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -109,7 +115,7 @@
               <TextRun>
                 <Value>Total:</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                   <Color>#000000</Color>
                 </Style>
@@ -143,6 +149,7 @@
               <TextRun>
                 <Value>=Sum(Fields!SubTotal.Value, "DataSet2")</Value>
                 <Style>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                   <Format>'L' #,0.00;('L' #,0.00);'-'</Format>
                   <Color>#696969</Color>
@@ -178,7 +185,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ISV.Value, "DataSet2")</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                   <Format>'L' #,0.00;('L' #,0.00);'-'</Format>
                   <Color>#696969</Color>
@@ -214,7 +221,7 @@
               <TextRun>
                 <Value>=Sum(Fields!Descuento.Value, "DataSet2")</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                   <Format>'L' #,0.00;('L' #,0.00);'-'</Format>
                   <Color>#696969</Color>
@@ -250,7 +257,7 @@
               <TextRun>
                 <Value>=Sum(Fields!Total.Value, "DataSet2")</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                   <Format>'L' #,0.00;('L' #,0.00);'-'</Format>
                   <Color>#696969</Color>
@@ -286,7 +293,7 @@
               <TextRun>
                 <Value>Factura a:</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>14pt</FontSize>
                 </Style>
               </TextRun>
@@ -319,8 +326,8 @@
               <TextRun>
                 <Value>=First(Fields!Nombre.Value, "DataSet1")</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontFamily>Segoe UI</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <Color>#696969</Color>
                 </Style>
               </TextRun>
@@ -353,8 +360,8 @@
               <TextRun>
                 <Value>=First(Fields!rtn.Value, "DataSet1")</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontFamily>Segoe UI</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <Color>#696969</Color>
                 </Style>
               </TextRun>
@@ -364,9 +371,9 @@
         </Paragraphs>
         <rd:DefaultName>rtn</rd:DefaultName>
         <Top>1.79972cm</Top>
-        <Left>0.97578cm</Left>
+        <Left>0.89641cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.19667cm</Width>
+        <Width>7.27604cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -387,8 +394,8 @@
               <TextRun>
                 <Value>=First(Fields!telefono.Value, "DataSet1")</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontFamily>Segoe UI</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <Color>#696969</Color>
                 </Style>
               </TextRun>
@@ -398,9 +405,9 @@
         </Paragraphs>
         <rd:DefaultName>telefono</rd:DefaultName>
         <Top>2.57611cm</Top>
-        <Left>0.97578cm</Left>
+        <Left>0.89641cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.19667cm</Width>
+        <Width>7.27604cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -421,6 +428,7 @@
               <TextRun>
                 <Value>Factura#</Value>
                 <Style>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                 </Style>
               </TextRun>
@@ -429,9 +437,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox25</rd:DefaultName>
-        <Top>1.79972cm</Top>
+        <Top>1.48222cm</Top>
         <Left>10.34521cm</Left>
-        <Height>0.6cm</Height>
+        <Height>0.9175cm</Height>
         <Width>3.00271cm</Width>
         <ZIndex>12</ZIndex>
         <Style>
@@ -453,7 +461,7 @@
               <TextRun>
                 <Value>=First(Fields!Cod.Value, "FacturarVentas")</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                   <Color>#696969</Color>
                 </Style>
@@ -465,9 +473,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Cod1</rd:DefaultName>
-        <Top>1.79972cm</Top>
+        <Top>1.48222cm</Top>
         <Left>13.5243cm</Left>
-        <Height>0.6cm</Height>
+        <Height>0.9175cm</Height>
         <Width>3.21438cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
@@ -489,6 +497,7 @@
               <TextRun>
                 <Value>Fecha</Value>
                 <Style>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                 </Style>
               </TextRun>
@@ -499,7 +508,7 @@
         <rd:DefaultName>Textbox25</rd:DefaultName>
         <Top>2.57611cm</Top>
         <Left>10.34521cm</Left>
-        <Height>0.6cm</Height>
+        <Height>0.86458cm</Height>
         <Width>3.00271cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
@@ -521,7 +530,7 @@
               <TextRun>
                 <Value>=First(Fields!fecha_venta.Value, "FacturarVentas")</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                   <Format>d/M/yyyy</Format>
                   <Color>#696969</Color>
@@ -536,7 +545,7 @@
         <rd:DefaultName>fecha_venta1</rd:DefaultName>
         <Top>2.57611cm</Top>
         <Left>13.5243cm</Left>
-        <Height>0.6cm</Height>
+        <Height>0.86458cm</Height>
         <Width>3.21438cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
@@ -580,7 +589,7 @@
                             <TextRun>
                               <Value>Descripción</Value>
                               <Style>
-                                <FontFamily>Georgia</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#ffffff</Color>
@@ -616,7 +625,7 @@
                             <TextRun>
                               <Value>Precio</Value>
                               <Style>
-                                <FontFamily>Georgia</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#ffffff</Color>
@@ -652,7 +661,7 @@
                             <TextRun>
                               <Value>Cantidad</Value>
                               <Style>
-                                <FontFamily>Georgia</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#ffffff</Color>
@@ -688,7 +697,7 @@
                             <TextRun>
                               <Value>Total</Value>
                               <Style>
-                                <FontFamily>Georgia</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#ffffff</Color>
@@ -728,7 +737,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Nombre_Producto.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -759,6 +770,7 @@
                             <TextRun>
                               <Value>=Fields!precio_unitario.Value</Value>
                               <Style>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <Format>#,0.00;(#,0.00);'-'</Format>
                               </Style>
                             </TextRun>
@@ -790,7 +802,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cantidad.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -821,6 +835,7 @@
                             <TextRun>
                               <Value>=Fields!Total.Value</Value>
                               <Style>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <Format>#,0.00;(#,0.00);'-'</Format>
                               </Style>
                             </TextRun>
@@ -887,7 +902,7 @@
               <TextRun>
                 <Value>Gracias por su Compra</Value>
                 <Style>
-                  <FontFamily>Georgia</FontFamily>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -899,7 +914,7 @@
         <rd:DefaultName>Textbox39</rd:DefaultName>
         <Top>5.51743cm</Top>
         <Left>0.36724cm</Left>
-        <Height>0.6cm</Height>
+        <Height>0.78521cm</Height>
         <Width>5.27812cm</Width>
         <ZIndex>17</ZIndex>
         <Style>
@@ -944,7 +959,8 @@
                 <TextRun>
                   <Value>Factura</Value>
                   <Style>
-                    <FontSize>18pt</FontSize>
+                    <FontFamily>Segoe UI</FontFamily>
+                    <FontSize>16pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -954,9 +970,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>2.66912cm</Top>
+          <Top>2.40454cm</Top>
           <Left>10.60979cm</Left>
-          <Height>0.75875cm</Height>
+          <Height>1.02333cm</Height>
           <Width>2.41808cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
@@ -1005,7 +1021,7 @@
                 <TextRun>
                   <Value>Ferretería JANA</Value>
                   <Style>
-                    <FontFamily>Georgia</FontFamily>
+                    <FontFamily>Segoe UI</FontFamily>
                     <FontSize>20pt</FontSize>
                   </Style>
                 </TextRun>
@@ -1088,6 +1104,7 @@
                 <TextRun>
                   <Value>Firma</Value>
                   <Style>
+                    <FontFamily>Segoe UI</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1101,7 +1118,7 @@
           <rd:DefaultName>Textbox40</rd:DefaultName>
           <Top>0.28222cm</Top>
           <Left>12.18353cm</Left>
-          <Height>0.6cm</Height>
+          <Height>0.70583cm</Height>
           <Width>1.49458cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
@@ -1123,6 +1140,7 @@
                 <TextRun>
                   <Value>Teléfono: 2254- 7865   </Value>
                   <Style>
+                    <FontFamily>Segoe UI</FontFamily>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1134,6 +1152,7 @@
                 <TextRun>
                   <Value>Dirección: Danlí,El Paraíso, 2 cuadras abajo del parque central</Value>
                   <Style>
+                    <FontFamily>Segoe UI</FontFamily>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1143,7 +1162,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox41</rd:DefaultName>
           <Top>0.41479cm</Top>
-          <Height>0.95222cm</Height>
+          <Height>1.13743cm</Height>
           <Width>11.46238cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
