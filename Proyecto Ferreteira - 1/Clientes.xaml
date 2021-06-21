@@ -33,7 +33,7 @@
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
-        <Label Content="Clientes" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30" Foreground="White" />
+        <Label Content="Clientes" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  FontFamily="Segoe UI"  HorizontalAlignment="Center" FontSize="30" Foreground="White" />
 
         <ListBox Name="lbClientes" Grid.Row="2" Grid.RowSpan="12" Grid.Column="2" Grid.ColumnSpan="2" FontFamily="Segoe UI" FontSize="17" Margin="0,10,20,10" Background="White"/>
 
@@ -53,6 +53,7 @@
                              Text=""
                             KeyDown="ValidacionNumeros"
                              MaxLength="13"
+                            FontSize="17" FontFamily="Segoe UI" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
@@ -65,6 +66,7 @@
                 <TextBox Margin="10 0" x:Name="txtNombre" materialDesign:HintAssist.Hint="Nombre" 
                              Foreground="White" Width="280" 
                              Text=""
+                                 FontSize="17" FontFamily="Segoe UI" 
                               MaxLength="38"
                               KeyDown="ValidacionLetras"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -77,6 +79,7 @@
                 <TextBox Margin="10 0" x:Name="txtApellido" materialDesign:HintAssist.Hint="Apellido" 
                              Foreground="White" Width="280" 
                              Text=""
+                            FontSize="17" FontFamily="Segoe UI" 
                             KeyDown="ValidacionLetras"
                              MaxLength="38"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -94,7 +97,7 @@
                                 materialDesign:CalendarAssist.IsHeaderVisible="True"
                                 CalendarStyle="{StaticResource  MaterialDesignDatePickerCalendarPortrait}"
                                 Style="{StaticResource  FondoDate}"
-                               
+                                  FontSize="17" FontFamily="Segoe UI" 
                                
                                 materialDesign:ColorZoneAssist.Mode="Inverted"
                                 BorderBrush="white" ToolTip="Fecha de Nacimeinto" IsTodayHighlighted="False" KeyDown="tpFechaNacimiento_KeyDown" />
@@ -107,7 +110,7 @@
                              Foreground="White" Width="280" 
                              TextWrapping="Wrap"
                              MaxLength="14"
-                         
+                               FontSize="17" FontFamily="Segoe UI" 
                             KeyDown="ValidacionNumeros"
                              AcceptsReturn="True"
                              VerticalScrollBarVisibility="Auto"
@@ -124,6 +127,7 @@
                              Foreground="White" Width="280" 
                              TextWrapping="Wrap"
                              MaxLength="8"
+                            FontSize="17" FontFamily="Segoe UI" 
                              KeyDown="ValidacionNumeros"
                              AcceptsReturn="True"
                              VerticalScrollBarVisibility="Auto"
@@ -139,24 +143,11 @@
 
         </StackPanel>
 
-        <!--<Label Content="Identidad:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,60,0" />
-        <TextBox Name="txtIdentidad" HorizontalAlignment="Left" Height="28" Margin="43,5,0,0" Grid.Row="3" TextWrapping="Wrap" Background="White" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2"/>
-        <Label Content="Nombre:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,72,0" />
-        <TextBox Name="txtNombre" HorizontalAlignment="Left" Height="28" Margin="43,5,0,0" Grid.Row="5" TextWrapping="Wrap" Background="White" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2"/>
-        <Label Content="Apellido:" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,72,0" />
-        <TextBox Name="txtApellido" HorizontalAlignment="Left" Height="28" Margin="43,5,0,0" Grid.Row="7" TextWrapping="Wrap" Background="White" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2"/>
-        <Label Content="Fecha de nacimiento:" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,142,0" Grid.ColumnSpan="2" Width="215" />
-        <DatePicker Name="tpFechaNacimiento" HorizontalAlignment="Left" Margin="43,5,0,0" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="250" Height="30" BorderBrush="#FFFBFBFB" Foreground="#FF00AEFF"/>
-        <Label Content="RTN:" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,108,0" />
-        <TextBox Name="txtRtn" MaxLength="14" HorizontalAlignment="Left" Height="28" Margin="43,5,0,0" Grid.Row="11" TextWrapping="Wrap" Background="White" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2"/>
-        <Label Content="Telefono:" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="43,0,60,0" Width="97" />
-        <TextBox Name="txtTelefono" HorizontalAlignment="Left" Height="28" Margin="43,5,0,0" Grid.Row="13" TextWrapping="Wrap" Background="White" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2"/>-->
-
-        <Button Name="btnAgregar" Content="Agregar" Grid.Row="14" Grid.Column="0" Margin="15 5" Click="btnAgregar_Click"/>
-        <Button Name="btnAceptar" Content="Aceptar" Grid.Row="14" Grid.Column="1" Margin="15 5" Click="btnAceptar_Click"/>
-        <Button Name="btnEditar" Content="Editar" Grid.Row="14" Grid.Column="1" Margin="15 5" Click="btnEditar_Click"/>
-        <Button Name="btnCancelar" Content="Cancelar" Grid.Row="14" Grid.Column="2" Margin="15 5" Click="btnCancelar_Click"/>
-        <Button Name="btnEliminar" Content="Eliminar" Grid.Row="14" Grid.Column="2" Margin="15 5" Click="btnEliminar_Click" />
-        <Button Name="btnLimpiar" Content="Limpiar" Grid.Row="14" Grid.Column="3" Margin="15 5" Click="btnLimpiar_Click"/>
+        <Button Name="btnAgregar" Content="Agregar"    FontSize="17" FontFamily="Segoe UI"  Grid.Row="14" Grid.Column="0" Margin="15 5" Click="btnAgregar_Click"/>
+        <Button Name="btnAceptar" Content="Aceptar" Grid.Row="14"    FontSize="17" FontFamily="Segoe UI"  Grid.Column="1" Margin="15 5" Click="btnAceptar_Click"/>
+        <Button Name="btnEditar" Content="Editar" Grid.Row="14" Grid.Column="1"    FontSize="17" FontFamily="Segoe UI"  Margin="15 5" Click="btnEditar_Click"/>
+        <Button Name="btnCancelar" Content="Cancelar" Grid.Row="14" Grid.Column="2" Margin="15 5"    FontSize="17" FontFamily="Segoe UI"  Click="btnCancelar_Click"/>
+        <Button Name="btnEliminar" Content="Eliminar" Grid.Row="14" Grid.Column="2" Margin="15 5"    FontSize="17" FontFamily="Segoe UI"  Click="btnEliminar_Click" />
+        <Button Name="btnLimpiar" Content="Limpiar" Grid.Row="14" Grid.Column="3" Margin="15 5"    FontSize="17" FontFamily="Segoe UI"  Click="btnLimpiar_Click"/>
     </Grid>
 </UserControl>

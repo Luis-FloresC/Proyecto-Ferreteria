@@ -30,8 +30,8 @@
                              SelectionBrush="#FFD94448" TextChanged="txtBuscar_TextChanged"/>
                     <materialDesing:PackIcon Kind="Search" Width="39" Height="39" Foreground="White" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="10">
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" materialDesing:ColorZoneAssist.Mode="Inverted">
+                    <StackPanel Orientation="Horizontal" Margin="10">
 
                     <DataGrid x:Name="DataGridProveedores"
                        Width="auto" Height="auto"
@@ -45,6 +45,7 @@
 
 
                 </StackPanel>
+                    </ScrollViewer>
 
                 <TextBlock Text="Total: " Name="txtTotal" Margin="10 0" Foreground="White" FontSize="17" FontFamily="Segoe UI"/>
 
@@ -87,10 +88,10 @@
                 </StackPanel>
 
             </StackPanel>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer VerticalScrollBarVisibility="Visible" materialDesing:ColorZoneAssist.Mode="Inverted">
                 <StackPanel Width="350" Background="#363636" x:Name="Panel2">
 
-                    <TextBlock Text="Proveedores" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="17" FontFamily="Segoe UI"></TextBlock>
+                    <TextBlock Text="Proveedores" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI"></TextBlock>
 
 
 
