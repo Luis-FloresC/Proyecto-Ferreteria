@@ -225,5 +225,12 @@ namespace Proyecto_Ferreteira___1
             Regex regex = new Regex("[^0-9.]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        private void cmbProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+            Clases.UserData data = new Clases.UserData();
+            txtPrecio.Text = data.BuscarPrecioProducto(Convert.ToInt32(cmbProducto.SelectedValue)).ToString();
+        }
     }
 }

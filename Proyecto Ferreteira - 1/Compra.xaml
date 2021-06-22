@@ -74,7 +74,7 @@
             <TextBox  Name="txtFlete" Background="WhiteSmoke" Width="200" Margin="20 0 10 0"  FontSize="17" FontFamily="Segoe UI" Text="{Binding Path=Flete, Mode=TwoWay}" PreviewTextInput="NumberValidationTextBox"  />
         </StackPanel>
 
-        <ComboBox  Name="cmbProducto" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Background="WhiteSmoke" />
+        <ComboBox  Name="cmbProducto" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Background="WhiteSmoke" Margin="0,0,0,8" VerticalAlignment="Bottom" SelectionChanged="cmbProducto_SelectionChanged" />
 
         <StackPanel Margin="0 0 10 0" Orientation="Horizontal" Grid.ColumnSpan="5" Grid.Row="4" Grid.Column="4">
             <Label  Foreground="WhiteSmoke"  Margin="10 0 0 0"  Content="Precio:" FontSize="17" FontFamily="Segoe UI"  VerticalAlignment="Center" HorizontalAlignment="Center"/>

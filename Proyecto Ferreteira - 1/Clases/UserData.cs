@@ -718,6 +718,32 @@ namespace Proyecto_Ferreteira___1.Clases
                 }
             }
         }
+
+
+        public decimal BuscarPrecioProducto(int cod)
+        {
+            decimal precio = 0;
+            using (var conexion = GetConnection())
+            {
+                conexion.Open();
+                using (var comando = new SqlCommand())
+                {
+                    comando.Connection = conexion;
+                    comando.CommandText = @"select cast(Precio_Estandar as decimal(10,2))[Precio] from [Productos].[Producto] where Codigo_Producto = @cod";
+                    comando.Parameters.AddWithValue("@cod", cod);
+
+                    comando.CommandType = CommandType.Text;
+                    SqlDataReader reader = comando.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        precio = reader.GetDecimal(0);
+                    }
+                    return precio;
+                }
+            }
+        }
+
         /// <summary>
         /// Lista para obtener el nombre de los empleaodos
         /// </summary>
