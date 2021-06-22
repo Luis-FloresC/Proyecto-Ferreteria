@@ -97,18 +97,30 @@ namespace Proyecto_Ferreteira___1
                 if ((CadenaSoloEspacios(txtNombre.Text) || CadenaSoloEspacios(txtApellido.Text)))
                 {
                     MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres y es un campo obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if((CadenaSoloEspacios(txtNombre.Text)))
+                    {
+                        txtNombre.Focus();
+                    }
+                    else
+                    {
+                        txtApellido.Focus();
+                    }
                 }
                 else if (CadenaSoloEspacios(txtIdentidad.Text))
                 {
                     MessageBox.Show("la identidad es obligatoria", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    txtIdentidad.Focus();
                 }
                 else if (CadenaSoloEspacios(txtRtn.Text))
                 {
                     MessageBox.Show("el RTN es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtRtn.Focus();
                 }
                 else
                 {
                     MessageBox.Show("el telefono es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtTelefono.Focus();
                 }
             }
             else
@@ -152,21 +164,31 @@ namespace Proyecto_Ferreteira___1
                 || txtIdentidad.Text.Length <= 12 || txtRtn.Text.Length <= 13
                 || txtTelefono.Text.Length <= 7 )
             {
-                if(txtNombre.Text.Length <= 1 || txtApellido.Text.Length <= 1)
+                if(txtNombre.Text.Length <= 1)
                 {
                     MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtNombre.Focus();
+                }
+                else if(txtApellido.Text.Length <= 1)
+                {
+                    MessageBox.Show("El Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtApellido.Focus();
+
                 }
                 else if (txtIdentidad.Text.Length <= 12)
                 {
                     MessageBox.Show("la identidad debe tener 13 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtIdentidad.Focus();
                 }
                 else if(txtRtn.Text.Length <= 13)
                 {
                     MessageBox.Show("el RTN debe tener 14 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtRtn.Focus();
                 }
                 else
                 {
                     MessageBox.Show("el telefono debe tener 8 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtTelefono.Focus();
                 }
 
             }  
@@ -392,12 +414,14 @@ namespace Proyecto_Ferreteira___1
                         else
                         {
                             MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtIdentidad.Focus();
                         }
 
                     }
                     else
                     {
                         MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        txtIdentidad.Focus();
                     }
                 }
                 else
@@ -409,6 +433,7 @@ namespace Proyecto_Ferreteira___1
             else
             {
                 MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtIdentidad.Focus();
                 return false;
             }
 
@@ -444,12 +469,14 @@ namespace Proyecto_Ferreteira___1
                         else
                         {
                             MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtRtn.Focus();
                         }
 
                     }
                     else
                     {
                         MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        txtRtn.Focus();
                     }
                 }
                 else
@@ -460,7 +487,8 @@ namespace Proyecto_Ferreteira___1
             }
             else
             {
-                MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("1. Los primeros dos numeros del RTN. \n2.Deben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtRtn.Focus();
                 return false;
             }
 

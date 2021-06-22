@@ -123,13 +123,14 @@ namespace Proyecto_Ferreteira___1
             {
               
                 MessageBox.Show("Todos los Campos son Obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                datosCorrectos = false;
             }
 
             if((CadenaSoloEspacios(txtNombre.Text)))
             {
 
                 MessageBox.Show("El Nombre debe tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtNombre.Focus();
                 return false;
             }
 
@@ -137,12 +138,14 @@ namespace Proyecto_Ferreteira___1
             {
          
                 MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtTelefono.Focus();
                 return  false;
             }
 
             if(!ValidarEmail(txtEmail.Text))
             {
                 MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtEmail.Focus();
                 return false;
             }
 

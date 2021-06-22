@@ -360,6 +360,7 @@ namespace Proyecto_Ferreteira___1
                         else
                         {
                             MessageBox.Show("el folio debe tener un rango del 00001- 99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtDNI.Focus();
                         }
                         
 
@@ -367,6 +368,7 @@ namespace Proyecto_Ferreteira___1
                     else
                     {
                         MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        txtDNI.Focus();
                     }
                 }
                 else
@@ -377,7 +379,8 @@ namespace Proyecto_Ferreteira___1
             }
             else
             {
-                MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("1.Los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtDNI.Focus();
                 return false;
             }
 
@@ -425,18 +428,28 @@ namespace Proyecto_Ferreteira___1
             if(!VerificarIdentidad(txtDNI.Text))
             {
                 MessageBox.Show("Verificar su Identidad", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtDNI.Focus();
                 return false;
             }
 
             if(CadenaSoloEspacios(txtNombreEmpleado.Text) || CadenaSoloEspacios(txtApellidoEmpleado.Text))
             {
                 MessageBox.Show("El Nombre o Apellido deben tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if(CadenaSoloEspacios(txtNombreEmpleado.Text))
+                {
+                    txtNombreEmpleado.Focus();
+                }
+                else
+                {
+                    txtApellidoEmpleado.Focus();
+                }
                 return false;
             }
 
             if (txtDNI.Text.Length <=  12 )
             {
                 MessageBox.Show("La Identidad tiene que tener entre 13 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtDNI.Focus();
                 return false;   
             }
 
@@ -444,20 +457,22 @@ namespace Proyecto_Ferreteira___1
             {
                 MessageBox.Show("1. Debe ser mayor de Edad\n" +
                                 "2. Ingrese una Fecha valida", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                FechaNac.Focus();
                 return false;
             }
 
             if (txtTelefono.Text.Length <= 7)
             {
                 MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtTelefono.Focus();
                 return false;
 
             }
 
             if(!ValidarEmail(txtEmail.Text))
             {
-               
                 MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtEmail.Focus();
                 return false;
             }
             return datosCorrectos;
