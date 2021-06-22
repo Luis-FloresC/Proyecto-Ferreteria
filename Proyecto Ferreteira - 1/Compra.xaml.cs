@@ -232,5 +232,37 @@ namespace Proyecto_Ferreteira___1
             Clases.UserData data = new Clases.UserData();
             txtPrecio.Text = data.BuscarPrecioProducto(Convert.ToInt32(cmbProducto.SelectedValue)).ToString();
         }
+
+        private void txtFlete_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if(txtFlete.Text == "0")
+            {
+                txtFlete.Text = "";
+            }
+        }
+
+        private void txtFlete_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (txtFlete.Text == "")
+            {
+                txtFlete.Text = "0";
+            }
+        }
+
+        private void txtCantidad_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (txtCantidad.Text == "0")
+            {
+                txtCantidad.Text = "";
+            }
+        }
+
+        private void txtCantidad_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (txtCantidad.Text == "")
+            {
+                txtCantidad.Text = "0";
+            }
+        }
     }
 }
