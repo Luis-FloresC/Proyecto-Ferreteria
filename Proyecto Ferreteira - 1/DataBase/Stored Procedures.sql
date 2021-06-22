@@ -539,3 +539,26 @@ group by p.Nombre_Producto,dv.cantidad,dv.precio_unitario,v.fecha_venta,v.codigo
 
 end
 Go
+
+create procedure IngresarProducto
+(
+@nombre nvarchar(100),
+@precio money,
+@codigo int,
+@msj nvarchar(150) output
+)
+as begin
+
+if(not exists(select * from [Productos].[Producto] P where P.Nombre_Producto = @nombre))
+begin
+
+INSERT INTO Productos.Producto
+VALUES (@nombre, 0 ,@precio, @codigo, 1)
+set @msj = 'Se ha insertado correctamente el producto'
+
+end
+else
+set @msj = 'Verifique que no este ingresando un producto ya existente'
+
+
+end
