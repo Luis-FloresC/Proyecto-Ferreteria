@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 //Namespace Requerido
 using System.Data.SqlClient;
 using System.Windows;
@@ -70,21 +71,24 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <param name="existencia"></param>
         /// <param name="precio"></param>
         /// <param name="codigoCategoria"></param>
-        public void InsertarProducto(string nombre, int existencia, double precio, int codigoCategoria)
+        public void InsertarProducto(string nombre, int existencia, decimal precio, int codigoCategoria)
         {
             var connection = GetConnection();
+
+
             //Validar que el usuario ingreso los datos necesarios
             try
             {
-                string query = @"INSERT INTO Productos.Producto(Nombre_Producto, Existencia, Precio_Estandar,
-                                Codigo_Categoria, Estado) VALUES (@nombre, 0 ,@precio, @codigo, 1)";
+                string query = @"IngresarProducto";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@nombre", nombre);
                 sqlCommand.Parameters.AddWithValue("@precio", precio);
                 sqlCommand.Parameters.AddWithValue("@codigo", codigoCategoria);
+                sqlCommand.Parameters.Add("@msj", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.ExecuteNonQuery();
-                MessageBox.Show("Se ha insertado correctamente el producto", "Felicidades", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(sqlCommand.Parameters["@msj"].Value.ToString(), "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception)
             {

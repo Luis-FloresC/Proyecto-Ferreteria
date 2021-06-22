@@ -110,7 +110,7 @@ namespace Proyecto_Ferreteira___1
                 else
                 {
                     string nombre2 = txtNombreProducto.Text;
-                    double precio2 = Convert.ToInt32(txtPrecioProducto.Text);
+                    double precio2 = Convert.ToDouble(txtPrecioProducto.Text);
 
                     if (nombre2.Length <= 1)
                     {
@@ -136,7 +136,7 @@ namespace Proyecto_Ferreteira___1
                             {
                                 string nombre = txtNombreProducto.Text;
                                 int existencia = Convert.ToInt32(txtExistenciaProducto.Text);
-                                double precio = Convert.ToDouble(txtPrecioProducto.Text);
+                                decimal precio = Convert.ToDecimal(txtPrecioProducto.Text);
                                 producto.InsertarProducto(nombre, existencia, precio, i);
                             }
                             c++;
@@ -149,9 +149,9 @@ namespace Proyecto_Ferreteira___1
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message.ToString(),"Error");
                 MessageBox.Show("Por favor verifique que esta ingresando los valores correctos en los " +
                     "campos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
