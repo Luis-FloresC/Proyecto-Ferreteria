@@ -34,7 +34,7 @@
                     <StackPanel Orientation="Horizontal" Margin="10">
 
                     <DataGrid x:Name="DataGridProveedores"
-                       Width="auto" Height="auto"
+                       Width="auto" Height="350"
                        CanUserAddRows="False"
                        IsReadOnly="True" 
                        FontSize="17" FontFamily="Segoe UI"       
