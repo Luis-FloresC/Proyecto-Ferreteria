@@ -90,7 +90,7 @@ namespace Proyecto_Ferreteira___1
             txtPrecioProducto.Text = String.Empty;
             txtExistenciaProducto.Text = String.Empty;
             cbNombreCategoria.SelectedValue = null;
-            txtNombreProducto.Focus();
+   
         }
 
         /// <summary>
@@ -278,5 +278,6 @@ namespace Proyecto_Ferreteira___1
 
         }
 
+      
     }
 }

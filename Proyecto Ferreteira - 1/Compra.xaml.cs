@@ -16,6 +16,9 @@ namespace Proyecto_Ferreteira___1
 
         Clases.Compras compra = new Clases.Compras();
 
+        const double isv = 0.12;
+        const double descuento = 0.10;
+
         public Compra()
         {
             InitializeComponent();
@@ -80,7 +83,7 @@ namespace Proyecto_Ferreteira___1
                         Precio = double.Parse(txtPrecio.Text)
                     });
                     dgbInformacion.Items.Add(Item);
-
+                    CalcularDetalle();
                     //Activacion de botones
                     btnRealizarCompra.IsEnabled = true;
                     btnEliminarPedido.IsEnabled = true;
@@ -176,6 +179,7 @@ namespace Proyecto_Ferreteira___1
                 dgbInformacion.Items.RemoveAt(index);
                 btnAgregarPedido.IsEnabled = true;
                 calculos();
+                CalcularDetalle();
             }
         }
         /// <summary>
@@ -209,6 +213,32 @@ namespace Proyecto_Ferreteira___1
             return resultado;
         }
 
+
+        public void CalcularDetalle()
+        {
+            try
+            {
+                double subtotal = 0;
+
+                //Recorre todos los campos de importe de la lista para calcular el subtotal
+                foreach (var producto in Carrito)
+                {
+                    subtotal += (Convert.ToDouble(producto.Precio) * Convert.ToDouble(producto.Cantidad));
+                }
+
+                txtSubtotal.Text = subtotal.ToString();
+                txtISV.Text = Convert.ToString(subtotal * isv);
+                txtDescuento.Text = Convert.ToString(subtotal * descuento);
+                txtTotal.Text = Convert.ToString(subtotal + (subtotal * isv) - (subtotal * descuento) + double.Parse(txtFlete.Text));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+
+        }
+
+
         private void calculos()
         {
             Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
@@ -228,9 +258,11 @@ namespace Proyecto_Ferreteira___1
 
         private void cmbProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
             Clases.UserData data = new Clases.UserData();
-            txtPrecio.Text = data.BuscarPrecioProducto(Convert.ToInt32(cmbProducto.SelectedValue)).ToString();
+            string Precio = data.BuscarPrecioProducto(Convert.ToInt32(cmbProducto.SelectedValue)).ToString();
+
+            txtPrecio.Text = Precio;
+
         }
 
         private void txtFlete_MouseEnter(object sender, MouseEventArgs e)

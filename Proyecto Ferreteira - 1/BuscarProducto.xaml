@@ -12,10 +12,13 @@
             <RowDefinition Height="288*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Name="dgProductos" HorizontalAlignment="Left" Height="auto" Margin="83,77,0,0" VerticalAlignment="Top" Width="auto" IsReadOnly="True" Grid.RowSpan="2"/>
+
+
+
+        <DataGrid Name="dgProductos" HorizontalAlignment="Center" Height="275" Margin="83,77,0,0" VerticalAlignment="Top" Width="auto" IsReadOnly="True" Grid.RowSpan="2"/>
         <Label Content="Buscar:" HorizontalAlignment="Left" Margin="122,32,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24"/>
         <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="26" Margin="209,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="451" Background="White" KeyUp="txtBuscar_KeyUp"/>
-        <Button Name="btnSeleccionar" Content="Seleccionar" HorizontalAlignment="Left" Margin="338,239,0,0" VerticalAlignment="Top" Width="145" Click="btnSeleccionar_Click" Grid.Row="1" FontSize="17"/>
+        <Button Name="btnSeleccionar" Content="Seleccionar" HorizontalAlignment="Center" Margin="324,232,324,0" VerticalAlignment="Top" Width="144" Click="btnSeleccionar_Click" Grid.Row="1" FontSize="17"/>
 
     </Grid>
 </Window>

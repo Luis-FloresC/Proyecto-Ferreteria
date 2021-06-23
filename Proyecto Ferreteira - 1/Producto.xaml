@@ -5,45 +5,138 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000"
+             xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Height="auto" Width="auto"
              Background="#242222">
 
-    <Grid HorizontalAlignment="Stretch">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="290"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <Label Content="Productos" Grid.ColumnSpan="5" HorizontalAlignment="Center" FontSize="30" Foreground="White" FontFamily="Segoe Ui"/>
+    <Grid>
 
 
-        <Label Content="Nombre del producto" Grid.Row="2" Margin="10,10,0,10" Foreground="White" FontSize="17" FontFamily="Segoe UI"/>
-        <Label Content="Precio del producto" Grid.Row="4" Margin="10,10,0,10" Foreground="White" FontSize="17" FontFamily="Segoe UI"/>
-        <Label Content="Existencia del producto" Grid.Row="4" Grid.Column="2" Margin="10,10,0,10" Foreground="White" FontSize="17" FontFamily="Segoe UII"/>
-        <Label Content="Nombre de la categoria" Grid.Row="2" Grid.Column="2" Foreground="White" FontSize="17" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="17,10,197,12"/>
 
-        <ComboBox Name="cbNombreCategoria" Background="White" Grid.Row="2" Grid.Column="3" FontSize="17" Margin="10,10,10,11" FontFamily="Segoe UI" Width="Auto"/>
-        <TextBox Name="txtNombreProducto" Background="White" Grid.Row="2" Grid.Column="1" FontSize="17" Margin="10" FontFamily="Segoe UI" PreviewTextInput="TextValidation" MaxLength="30"/>
-        <TextBox Name="txtPrecioProducto" Background="White" Grid.Row="4" Grid.Column="1" FontSize="17" Margin="10,9,10,11" FontFamily="Segoe UI" PreviewTextInput="NumberValidationTextBox2" MaxLength="8"/>
-        <TextBox Name="txtExistenciaProducto" Background="White" Grid.Row="4" Grid.Column="3" FontSize="17" Margin="10,9,10,11" FontFamily="Segoe UI" PreviewTextInput="NumberValidationTextBox" MaxLength="5"/>
-        <DataGrid Name ="dgvInventario" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Margin="20" FontSize="17" FontFamily="Segoe U" IsReadOnly="True" SelectionChanged="dgvInventario_SelectionChanged"/>
 
-        <Button Name="btnInsertar" Content="Insertar" Grid.Column="1" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Segoe UI" Background="#2196F3" Foreground="White" Click="btnInsertar_Click"/>
-        <Button Name="btnModificar" Content="Modificar" Grid.Column="2" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Segoe UI" Background="#2196F3" Foreground="White" Click="btnModificar_Click"/>
-        <Button Name="btnEliminar" Content="Eliminar" Grid.Column="3" Grid.Row="6" Margin="20" FontSize="17" FontFamily="Segoe UI" Background="#2196F3" Foreground="White" Click="btnEliminar_Click"/>
 
+        <StackPanel Orientation="Vertical">
+
+            <StackPanel Width="800" Background="#242222" HorizontalAlignment="Center">
+
+                <TextBlock Text="Productos" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI"></TextBlock>
+
+                <StackPanel Width="800" Background="#242222" Orientation="Horizontal" x:Name="Panel2" Height="158">
+
+                     
+
+
+
+                    <StackPanel Orientation="Vertical" Margin="40 0">
+                        <StackPanel Orientation="Horizontal" Margin="10">
+
+                            <TextBox Margin="10 0" x:Name="txtNombreProducto" materialDesing:HintAssist.Hint="Nombre del producto" 
+                             Foreground="White" Width="280" 
+                             Text=""
+                             FontSize="17" FontFamily="Segoe UI"    
+                             PreviewTextInput="TextValidation"
+                             MaxLength="30"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal" Margin="10">
+
+                            <TextBox Margin="10 0" x:Name="txtPrecioProducto" materialDesing:HintAssist.Hint="Precio del producto" 
+                             Foreground="White" Width="280" 
+                             Text=""
+                             MaxLength="8"
+                             FontSize="17" FontFamily="Segoe UI"   
+                             PreviewTextInput="NumberValidationTextBox2"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="40 0">
+                        <StackPanel Orientation="Horizontal" Margin="10">
+
+                            <ComboBox  x:Name="cbNombreCategoria" materialDesing:HintAssist.Hint="Nombre de la Categoria" 
+                             Foreground="White" 
+                             BorderBrush="white" 
+                             FontSize="17" FontFamily="Segoe UI"
+                             Width="280"          
+                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                             materialDesing:ColorZoneAssist.Mode="Inverted" Margin="10 0" />
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal" Margin="10">
+
+                            <TextBox Margin="10 0" x:Name="txtExistenciaProducto" materialDesing:HintAssist.Hint="Existencia del producto" 
+                             Foreground="White" Width="280" 
+                             Text=""
+                             FontSize="17" FontFamily="Segoe UI"   
+                             MaxLength="5"
+                             PreviewTextInput="NumberValidationTextBox"        
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+                        </StackPanel>
+                    </StackPanel>  
+
+
+                    </StackPanel>
+
+
+                <StackPanel>
+                    <DataGrid Name ="dgvInventario"
+                              FontSize="17" FontFamily="Segoe U" 
+                              Height="250"
+                              Margin="20 0"
+                              IsReadOnly="True" SelectionChanged="dgvInventario_SelectionChanged"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" >
+                        <Button Name="btnInsertar" 
+                                Content="Insertar" 
+                                Width="150"
+                                Margin="20 0"  
+                                FontSize="17" FontFamily="Segoe UI" 
+                                Background="#2196F3" Foreground="White" Click="btnInsertar_Click"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Name="btnModificar" 
+                                Content="Modificar" 
+                                FontSize="17" FontFamily="Segoe UI" 
+                                Background="#2196F3" 
+                                Width="150"
+                                Margin="20 0" 
+                                Foreground="White" Click="btnModificar_Click"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Name="btnEliminar"
+                                Content="Eliminar" 
+                                Grid.Column="3" 
+                                Grid.Row="7"
+                                Width="150"
+                                Margin="20 0" 
+                                FontSize="17" 
+                                FontFamily="Segoe UI" 
+                                Background="#2196F3" 
+                                Foreground="White" Click="btnEliminar_Click"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+
+            </StackPanel>
+           
+
+
+        </StackPanel>
+
+ 
     </Grid>
 </UserControl>
