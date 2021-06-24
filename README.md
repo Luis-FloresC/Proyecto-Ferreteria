@@ -20,6 +20,11 @@ despues puede probar iniciando sesion con los datos siguiente:
 * usuario: Luis
 * contraseña: 12345678
 
+Nota:
+* De presentar una complicacion al momento de ejecutar el programa; extraer el archivo "SqlServerTypes.zip" que se encuentran en la carpeta \Proyecto Ferreteira - 1\SqlServerTypes
+* El Resultado sera 2 carpetas con el nombre x86 y x64
+* Reiniciar el programa o recompilar el proyecto
+
 
 ## Construido con 🛠️
 

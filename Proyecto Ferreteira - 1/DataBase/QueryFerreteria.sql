@@ -308,3 +308,6 @@ values('Luis','Flores','0703200003793',1,'96362917','lf016158@gmail.com',2000-06
 
 insert into  [Recursos_humanos].[Usuario]
 values ('Luis','12345678',1)
+
+insert into [Ventas].[Cliente]
+values ('-','-','-',getdate(),'-','-',1)
