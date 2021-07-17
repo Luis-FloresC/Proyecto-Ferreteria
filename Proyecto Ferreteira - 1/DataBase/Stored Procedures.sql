@@ -92,17 +92,25 @@ Create Procedure [dbo].[EditarPerfilUsuario]
 )
 as begin
 
+declare @Encriptacion VARBINARY(MAX) = (SELECT ENCRYPTBYPASSPHRASE('password', @Contraseña))
+
+declare @CodigoEstado int = 0
+if(@Estado = 1)
+  set @CodigoEstado = 1
+else
+  set @CodigoEstado = 2
 --Actualizar Datos Personles
 update Recursos_humanos.Empleado set Nombre_Empleado = @Nombre_Empleado,
                                      Apellido_empleado = @Apellido_empleado,
 									 Correo = @Correo,
-									 Estado = @Estado,
+									 cod_estado = @CodigoEstado,
 									 identidad = @DNI
 									 where Codigo_Empleado = @id_Empleado
 
 --Actualizar Datos del Usuario
 update Recursos_humanos.Usuario set Nick_Name = @Usuario,
-                                    Contrasenia = @Contraseña
+                                    Contrasenia = @Encriptacion,
+									fecha_modificacion = getdate()
 									where Codigo_Empleado = @id_Empleado
 
 
@@ -153,12 +161,19 @@ begin
 
 if(exists(select * from [Compras].[Proveedor] where [Codigo_Proveedor] = @codigo))
 begin
+
+declare @CodigoEstado int = 0
+if(@estado = 1)
+  set @CodigoEstado = 1
+else
+  set @CodigoEstado = 2
+
  update [Compras].[Proveedor] set 
  Nombre_Proveedor = @nombre,
  Telefono = @telefono,
  Direccion = @direccion,
  Correo = @correo,
- Estado = @estado
+ cod_estado = @CodigoEstado
 
  where Codigo_Proveedor = @codigo
 
@@ -176,7 +191,7 @@ if(@accion = 'E')
 begin
 
  update [Compras].[Proveedor] set 
- Estado = @estado
+ cod_estado = 2
 
  where Codigo_Proveedor = @codigo
 set @mensaje = 'Se Elimino el Proveedor Correctamente' 
@@ -203,6 +218,8 @@ create procedure [dbo].[RegistrarCompras]
 @codigoProducto int,
 @precionUnitario money,
 @cantidad int,
+@cambio money,
+@monto money,
 @mensaje nvarchar(150) output
 )
 as begin
@@ -223,7 +240,7 @@ begin
 if(not exists(select * from [Compras].[Compra] WHERE Codigo_Compra = @codigoCompra))
 begin
 INSERT INTO [Compras].[Compra] VAlues 
-(GETDATE(),@codigoProveedor,@codigoEmpleado,@flete,@subTotal,@isv,@descuento)
+(GETDATE(),@codigoProveedor,@codigoEmpleado,@flete,@subTotal,@isv,@descuento,@cambio,@monto)
 end
 
 
@@ -290,12 +307,13 @@ create procedure [dbo].[RegistrarUsuario]
 as
 begin
 
+declare @encriptacion VARBINARY(MAX) = (SELECT ENCRYPTBYPASSPHRASE('password', @contraseña))
 
 if(exists(select * from [Recursos_humanos].[Empleado] where Codigo_Empleado = @codigo) and not exists(select * from [Recursos_humanos].[Usuario] where Codigo_Empleado = @codigo))
 begin
 
 insert into [Recursos_humanos].[Usuario] values
-(@usuario,@contraseña,@codigo)
+(@usuario,@encriptacion,@codigo,getdate(),null,1)
 
 set @mensaje = 'Usuario Registrado con exito'
 
@@ -303,6 +321,7 @@ end
 else 
 
 set @mensaje = 'El Empleado ya tiene un usuario Disponible'
+
 
 
 
@@ -321,19 +340,23 @@ CREATE procedure [dbo].[Verificar_Usuario]
 )
 as begin
 
+declare @Contraseña_Encriptada varbinary(max) = (select Contrasenia from Recursos_humanos.Usuario R where R.Nick_Name = @user)
+declare @Contra nvarchar(50) = CONVERT(nvarchar(MAX), DECRYPTBYPASSPHRASE('password', @Contraseña_Encriptada)) 
+
 Select E.Codigo_Empleado [Id],
 U.Nick_Name [Usuario],
-U.Contrasenia,
+@Contra,
 E.Nombre_Empleado,
 E.Apellido_empleado,
 P.Descripcion [Cargo],
 E.Correo [Email],
-E.Estado,
+case when E.cod_estado = 1 then convert(bit ,1) else convert(bit ,0) end 'Estado',
 E.identidad
 from [Recursos_humanos].[Empleado] E
 join [Recursos_humanos].[Puesto] P on P.Codigo_Puesto = E.Codigo_Puesto
 join [Recursos_humanos].[Usuario] U on U.Codigo_Empleado = E.Codigo_Empleado
-where U.Nick_Name = @user and U.Contrasenia = @contrasenia
+where U.Nick_Name = @user and @Contra = @contrasenia
+
 
 end
 GO
@@ -365,7 +388,7 @@ INSERT INTO [Ventas].[Cliente]
 [fecha_nacimiento], 
 [telefono], 
 [rtn], 
-[estado])
+[cod_estado])
 Values
 (
 @nombres,
@@ -374,7 +397,7 @@ Values
 @fechaNacimiento,
 @telefono,
 @rtn,
-CONVERT(bit,'True')
+1
 )
 
 set @msj = 'Cliente agregado con exito'
@@ -553,7 +576,7 @@ if(not exists(select * from [Productos].[Producto] P where P.Nombre_Producto = @
 begin
 
 INSERT INTO Productos.Producto
-VALUES (@nombre, 0 ,@precio, @codigo, 1)
+VALUES (@nombre, 0 ,@precio,0, @codigo, 1,GETDATE(),null)
 set @msj = 'Se ha insertado correctamente el producto'
 
 end
@@ -562,3 +585,19 @@ set @msj = 'Verifique que no este ingresando un producto ya existente'
 
 
 end
+GO
+
+DECLARE	@return_value int,
+		@mensaje nvarchar(150)
+
+EXEC	@return_value = [dbo].[RegistrarUsuario]
+		@usuario = N'Admin',
+		@contraseña = N'12345678',
+		@codigo = 1,
+		@mensaje = @mensaje OUTPUT
+
+SELECT	@mensaje as N'@mensaje'
+
+SELECT	'Return Value' = @return_value
+
+GO

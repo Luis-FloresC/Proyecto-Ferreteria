@@ -29,7 +29,9 @@ codigo_cliente int not null,
 tipo_pago nvarchar(100) not null,
 subtotal money not null,
 isv float not null,
-descuento float not null
+descuento float not null,
+cambio money not null,
+monto_pago money not null,
 Constraint PK_codigo_venta
 Primary Key Clustered (codigo_venta)
 )
@@ -63,7 +65,7 @@ identidad varchar(20) not null,
 fecha_nacimiento datetime not null,
 telefono varchar(20),
 rtn varchar(20),
-estado bit
+cod_estado int
 Constraint PK_codigo_cliente
 Primary Key Clustered (codigo_cliente),
 Constraint AK_Cliente_Identidad
@@ -79,7 +81,9 @@ Codigo_Empleado int not null,
 Flete_Envio money not null,
 Subtotal money not null,
 ISV float not null,
-Descuento money not null
+Descuento money not null,
+cambio money not null,
+monto_pago money not null,
 Constraint PK_Codigo_Compra
 Primary Key Clustered (Codigo_Compra)
 )
@@ -98,22 +102,25 @@ Codigo_Proveedor int not null IDENTITY(1,1),
 Nombre_Proveedor nvarchar(75)not null,
 Telefono nvarchar (20) not null ,
 Direccion nvarchar (250) not null,
-Correo nvarchar (32) not null
+Correo nvarchar (32) not null,
+cod_estado int 
 Constraint PK_Codigo_Proveedor
 Primary Key Clustered (Codigo_Proveedor)
 )
 Go
 
-alter table  Compras.Proveedor ADD Estado bit not null
-GO
+
 
 CREATE TABLE Productos.Producto(
 Codigo_Producto int not null IDENTITY (1,1),
 Nombre_Producto nvarchar(100) not null,
 Existencia int not null,
 Precio_Estandar money not null,
+Precio_Ventas money not null,
 Codigo_Categoria int not null,
-Estado bit not null
+cod_estado int ,
+fecha_creacion datetime null,
+fecha_modificacion datetime null
 Constraint PK_Codigo_Producto
 Primary Key Clustered (Codigo_Producto)
 )
@@ -129,7 +136,7 @@ Telefono nvarchar(20)not null,
 Correo nvarchar(75)not null,
 Fecha_Nacimiento datetime not null,
 Fecha_Contratacion datetime not null,
-Estado bit not null,
+cod_estado int ,
 Direccion nvarchar(75) not null,
 Constraint PK_Codigo_Empleado
 Primary Key Clustered (Codigo_Empleado),
@@ -158,24 +165,96 @@ PRIMARY KEY CLUSTERED(Codigo_Puesto)
 )
 Go
 
+CREATE TABLE Recursos_humanos.Estado
+(
+Codigo_estado int not null IDENTITY(1,1),
+Descripcion nvarchar(150) not null
+CONSTRAINT PK_Codigo_Estado
+PRIMARY KEY CLUSTERED(Codigo_estado)
+)
+Go
+
+CREATE TABLE Productos.Precio_historico
+(
+Codigo_PrecioHistorico int not null IDENTITY(1,1),
+Codigo_Producto int not null,
+precio_historico money not null,
+fecha_apertura datetime ,
+fecha_cierre datetime,
+Descripcion nvarchar(150) not null
+CONSTRAINT PK_Codigo_PrecioHistorico
+PRIMARY KEY CLUSTERED(Codigo_PrecioHistorico)
+)
+Go
+
 --Tabla de Usuarios
 CREATE TABLE Recursos_humanos.Usuario
 (
 Codigo_Usuario int not null IDENTITY(1,1),
 Nick_Name nvarchar(50) not null,
-Contrasenia nvarchar(50) not null,
-Codigo_Empleado int not null 
+Contrasenia varbinary(max) not null,
+Codigo_Empleado int not null ,
+fecha_creacion datetime null,
+fecha_modificacion datetime null,
+cod_estado int
 CONSTRAINT PK_Codigo_Usuario
 PRIMARY KEY CLUSTERED(Codigo_Usuario)
 )
 Go
 
+
+--Llave fóranea para Precio Historico (Codigo_Producto) hace referencia a la tabla Empleado
+ALTER TABLE Productos.Precio_historico
+	Add Constraint FK_Producto_Producto_$TieneUn$Preciohistorico
+	Foreign Key(Codigo_Producto) References Productos.Producto(Codigo_Producto)
+	On UPDATE No Action
+	On DELETE No Action
+
 --Llave fóranea para venta (Codigo_empleado) hace referencia a la tabla Empleado
 ALTER TABLE Ventas.venta
-	Add Constraint FK_Ventas_venta$TieneUn$Recursos_humanos_Empleado
+	Add Constraint FK_Cliente_$TieneUn$Estado
 	Foreign Key(codigo_empleado) References Recursos_humanos.Empleado(Codigo_Empleado)
 	On UPDATE No Action
 	On DELETE No Action
+
+--Llave fóranea para cliente (Cod_estado) hace referencia a la tabla Estado
+ALTER TABLE Ventas.Cliente
+	Add Constraint FK_Ventas_Cliente$TieneUn$Recursos_humanos_Estado
+	Foreign Key(cod_estado) References Recursos_humanos.Estado(Codigo_estado)
+	On UPDATE No Action
+	On DELETE No Action
+
+--Llave fóranea para cliente (Cod_estado) hace referencia a la tabla Estado
+ALTER TABLE Recursos_humanos.Empleado
+	Add Constraint FK_RecursosHumanos_Empleado$TieneUn$Recursos_humanos_Estado
+	Foreign Key(cod_estado) References Recursos_humanos.Estado(Codigo_estado)
+	On UPDATE No Action
+	On DELETE No Action
+
+
+
+--Llave fóranea para proveedor (Cod_estado) hace referencia a la tabla Estado
+ALTER TABLE Compras.Proveedor
+	Add Constraint FK_Compras_Proveedor$TieneUn$Recursos_humanos_Estado
+	Foreign Key(cod_estado) References Recursos_humanos.Estado(Codigo_estado)
+	On UPDATE No Action
+	On DELETE No Action
+
+--Llave fóranea para producto (Cod_estado) hace referencia a la tabla Estado
+ALTER TABLE Productos.Producto
+	Add Constraint FK_Productos_Producto$TieneUn$Recursos_humanos_Estado
+	Foreign Key(cod_estado) References Recursos_humanos.Estado(Codigo_estado)
+	On UPDATE No Action
+	On DELETE No Action
+
+
+--Llave fóranea para Usuario (Cod_estado) hace referencia a la tabla Estado
+ALTER TABLE Recursos_humanos.Usuario
+	Add Constraint FK_RRHH_Usuario$TieneUn$Recursos_humanos_Estado
+	Foreign Key(cod_estado) References Recursos_humanos.Estado(Codigo_estado)
+	On UPDATE No Action
+	On DELETE No Action
+
 
 --Llave fóranea para venta (Codigo_cliente) hace referencia a la tabla cliente
 ALTER TABLE Ventas.venta
@@ -291,7 +370,13 @@ ADD UNIQUE (Nombre_Producto)
 insert into [Productos].[Categoria] 
 values 
 ('Herramientas de mano'),
-('Lubricantes')
+('Lubricantes'),
+('Adhesivos y Silicones'),
+('Agrícola'),
+('Automotríz'),
+('Carpintería'),
+('Cerrajería'),
+('Construcción')
 
 -- Insertar Datos para los puestos
 insert into [Recursos_humanos].[Puesto]
@@ -302,12 +387,30 @@ values
 
 -- Insertar Empleado/Usuario 
 
+insert into  [Recursos_humanos].[Estado]
+values ('Activo'),('Inactivo')
+
 insert into [Recursos_humanos].[Empleado]
 values('Luis','Flores','0703200003793',1,'96362917','lf016158@gmail.com',2000-06-07,GetDate(),1,'Danli')
 
 
-insert into  [Recursos_humanos].[Usuario]
-values ('Luis','12345678',1)
+
+declare @encriptacion VARBINARY(MAX) = (SELECT ENCRYPTBYPASSPHRASE('password', '12345678'))
+
+INSERT INTO [Recursos_humanos].[Usuario]
+           ([Nick_Name]
+           ,[Contrasenia]
+           ,[Codigo_Empleado]
+           ,[fecha_creacion]
+           ,[cod_estado])
+     VALUES
+           ('Admin'
+           ,@encriptacion
+           ,1
+           ,GETDATE()
+           ,1)
+
+
 
 insert into [Ventas].[Cliente]
 values ('-','-','-',getdate(),'-','-',1)
