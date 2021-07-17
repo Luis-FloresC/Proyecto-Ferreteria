@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="Proyecto_Ferreteira___1.FormReportes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             Width="auto" Height="auto">
+    <Grid Background="#242222">
+
+
+
+        <StackPanel Orientation="Horizontal">
+
+            <StackPanel Width="500" Background="#242222">
+
+                <TextBlock Text="Reporte de Ventas" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI"></TextBlock>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <materialDesign:PackIcon Kind="SortCalendarDescending" Foreground="White" Width="49" Height="49"/>
+                    <DatePicker Name="dtpFechaInicio" Width="410" Margin="10 0"  
+                                materialDesign:HintAssist.Hint="Fecha Inicial" 
+                                Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
+                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <materialDesign:PackIcon Kind="SortCalendarAscending" Foreground="White" Width="49" Height="49"/>
+                    <DatePicker Name="dtpFechaFinal" Width="410" Margin="10 0"  
+                                materialDesign:HintAssist.Hint="Fecha Final" 
+                                Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
+                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20" >
+                    <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                            BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
+                            Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
+                            ToolTip="Imprimir Reporte de Venta"
+                         
+                            x:Name="btnImprimir"
+                            Content="Imprimir" />
+
+
+
+                    <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                            BorderThickness="2" BorderBrush="#242222" 
+                            Background="#363636"
+                            
+                            Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
+                            ToolTip="Cancelar Operacion"
+                            x:Name="btnCancelar"
+                            Margin="10 5"
+                            Content="Cancelar" />
+
+                </StackPanel>
+
+            </StackPanel>
+
+       
+                <StackPanel Width="500" Background="#363636" x:Name="Panel2">
+
+                    <TextBlock Text="Reporte de Compras" Margin="20"  Foreground="White" TextAlignment="Center"  FontSize="30" FontFamily="Segoe UI"></TextBlock>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <materialDesign:PackIcon Kind="SortCalendarDescending" Foreground="White" Width="49" Height="49"/>
+                    <DatePicker Name="dtpFechaInicioCompra" Width="410" Margin="10 0"  
+                                materialDesign:HintAssist.Hint="Fecha Inicial" 
+                                Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
+                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <materialDesign:PackIcon Kind="SortCalendarAscending" Foreground="White" Width="49" Height="49"/>
+                    <DatePicker Name="dtpFechaFinalCompra" Width="410" Margin="10 0"  
+                                materialDesign:HintAssist.Hint="Fecha Final" 
+                                Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
+                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20" >
+                    <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                            BorderThickness="2" BorderBrush="#007DB7" 
+                            Background="#007DB7"
+                            Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
+                            ToolTip="Imprimir Reporte de Compra"
+                         
+                            x:Name="btnImprimirCompra"
+                            Content="Imprimir" />
+
+
+
+                    <Button Width="100" Height="30" Style="{StaticResource MaterialDesignRaisedButton}"
+                            BorderThickness="2" BorderBrush="#242222" 
+                            Background="#242222"
+                            Foreground="White" 
+                             FontSize="17" FontFamily="Segoe UI"
+                            ToolTip="Cancelar Operacion"
+                            x:Name="btnCancelarCompra"
+                            Margin="10 5"
+                            Content="Cancelar" />
+
+                </StackPanel>
+
+            </StackPanel>
+      
+
+
+        </StackPanel>
+
+
+
+    </Grid>
+    
+    
+</UserControl>

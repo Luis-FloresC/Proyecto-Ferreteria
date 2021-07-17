@@ -16,10 +16,46 @@ namespace Proyecto_Ferreteira___1.Clases
 
         public Connection()
         {
-            Connection_st = ConfigurationManager.ConnectionStrings["Proyecto_Ferreteira___1.Properties.Settings.FerreteriaDb"].ConnectionString;
+            if(VerificarConexion())
+            {
+                Connection_st = ConfigurationManager.ConnectionStrings["Proyecto_Ferreteira___1.Properties.Settings.FerreteriaDb"].ConnectionString;
+            }
+            else
+            {
+                Connection_st = ConfigurationManager.ConnectionStrings["Proyecto_Ferreteira___1.Properties.Settings.FerreteriaDb2"].ConnectionString;
+            }
+        }
+
+
+        /// <summary>
+        /// Metodo para verificar la conexion
+        /// </summary>
+        /// <returns></returns>
+        public bool VerificarConexion()
+        {
+
+            string connetionString = null;
+            SqlConnection cnn;
+            connetionString = @"Data Source=(local)\SQLEXPRESS;Initial Catalog=Ferreteria;Integrated Security=True";
+
+            cnn = new SqlConnection(connetionString);
+            try
+            {
+                cnn.Open();
+                cnn.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
 
         }
 
+        /// <summary>
+        /// Metodo para obtener la conexion
+        /// </summary>
+        /// <returns></returns>
         public SqlConnection GetConnection()
         {
             return new SqlConnection(Connection_st);

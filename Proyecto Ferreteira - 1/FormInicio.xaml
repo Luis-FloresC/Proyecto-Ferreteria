@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
              mc:Ignorable="d" 
              xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
-             Height="650" Width="1000">
+             Height="720" Width="1000">
     <Grid>
 
         <Grid.Background>
@@ -16,7 +16,7 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <Border Height="530" VerticalAlignment="Top" 
+        <Border Height="600" VerticalAlignment="Top" 
                 CornerRadius="0 0 180 0" Background="#242222" >
 
         </Border>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="MenuPrincipal" Height="650" Width="1250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
+        Title="MenuPrincipal" Height="720" Width="1250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" >
     <Grid Background="#242222" MouseDown="Grid_MouseDown">
         <StackPanel VerticalAlignment="Top" Background="#363636">
             <Grid Background="#0061D2" Height="10"/>
@@ -112,6 +112,12 @@
                     </StackPanel>
                 </ListViewItem>
 
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ChartBar" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Reportes" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
 
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
