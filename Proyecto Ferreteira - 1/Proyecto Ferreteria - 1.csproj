@@ -226,6 +226,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FerreteriaDataSet8.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FerreteriaDataSet9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FerreteriaDataSet9.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FormFacturasVentas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -460,6 +465,17 @@
     </None>
     <None Include="FerreteriaDataSet8.xss">
       <DependentUpon>FerreteriaDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet9.xsc">
+      <DependentUpon>FerreteriaDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet9.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FerreteriaDataSet9.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FerreteriaDataSet9.xss">
+      <DependentUpon>FerreteriaDataSet9.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

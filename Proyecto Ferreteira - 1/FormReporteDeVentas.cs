@@ -38,7 +38,7 @@ namespace Proyecto_Ferreteira___1
             {
                 string txtFechaFinal = FechaFinal.ToString().Replace("00:00:00", "23:59:59");
                 this.reporteVentasTableAdapter1.Fill(this.ferreteriaDataSet8.ReporteVentas, FechaInicio.ToString(), txtFechaFinal);
-
+                this.ventasDiasTableAdapter.Fill(this.ferreteriaDataSet9.VentasDias, FechaInicio.ToString(), txtFechaFinal);
 
                 this.reportViewer1.RefreshReport();
             }
