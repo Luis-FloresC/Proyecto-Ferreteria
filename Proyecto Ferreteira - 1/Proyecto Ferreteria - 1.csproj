@@ -201,6 +201,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FerreteriaDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FerreteriaDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FerreteriaDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FerreteriaDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FerreteriaDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FerreteriaDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FerreteriaDataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FerreteriaDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FerreteriaDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FerreteriaDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FerreteriaDataSet8.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FormFacturasVentas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +234,12 @@
     </Compile>
     <Compile Include="FormInicio.xaml.cs">
       <DependentUpon>FormInicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormReporteDeVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReporteDeVentas.Designer.cs">
+      <DependentUpon>FormReporteDeVentas.cs</DependentUpon>
     </Compile>
     <Compile Include="FormReportes.xaml.cs">
       <DependentUpon>FormReportes.xaml</DependentUpon>
@@ -323,10 +354,14 @@
     <EmbeddedResource Include="FormFacturasVentas.resx">
       <DependentUpon>FormFacturasVentas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReporteDeVentas.resx">
+      <DependentUpon>FormReporteDeVentas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportVentas.rdlc" />
     <None Include="FerreteriaDataSet.xsc">
       <DependentUpon>FerreteriaDataSet.xsd</DependentUpon>
     </None>
@@ -370,6 +405,61 @@
     </None>
     <None Include="FerreteriaDataSet3.xss">
       <DependentUpon>FerreteriaDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet4.xsc">
+      <DependentUpon>FerreteriaDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FerreteriaDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FerreteriaDataSet4.xss">
+      <DependentUpon>FerreteriaDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet5.xsc">
+      <DependentUpon>FerreteriaDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FerreteriaDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FerreteriaDataSet5.xss">
+      <DependentUpon>FerreteriaDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet6.xsc">
+      <DependentUpon>FerreteriaDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FerreteriaDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FerreteriaDataSet6.xss">
+      <DependentUpon>FerreteriaDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet7.xsc">
+      <DependentUpon>FerreteriaDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FerreteriaDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FerreteriaDataSet7.xss">
+      <DependentUpon>FerreteriaDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet8.xsc">
+      <DependentUpon>FerreteriaDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FerreteriaDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FerreteriaDataSet8.xss">
+      <DependentUpon>FerreteriaDataSet8.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

@@ -22,7 +22,7 @@
                     <DatePicker Name="dtpFechaInicio" Width="410" Margin="10 0"  
                                 materialDesign:HintAssist.Hint="Fecha Inicial" 
                                 Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
-                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
+                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White" SelectedDateFormat="Short"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -42,7 +42,7 @@
                             ToolTip="Imprimir Reporte de Venta"
                          
                             x:Name="btnImprimir"
-                            Content="Imprimir" />
+                            Content="Imprimir" Click="btnImprimir_Click" />
 
 
 

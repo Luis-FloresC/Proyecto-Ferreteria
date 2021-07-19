@@ -24,5 +24,12 @@ namespace Proyecto_Ferreteira___1
         {
             InitializeComponent();
         }
+
+        private void btnImprimir_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(dtpFechaInicio.SelectedDate.ToString());
+            FormReporteDeVentas ventas = new FormReporteDeVentas(dtpFechaInicio.SelectedDate.Value,dtpFechaFinal.SelectedDate.Value);
+            ventas.Show();
+        }
     }
 }
