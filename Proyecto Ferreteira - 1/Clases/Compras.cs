@@ -24,6 +24,9 @@ namespace Proyecto_Ferreteira___1.Clases
         private static int CodigoCompras { get; set; }
         public double Flete { get; set; }
 
+        public static double Cambio { get; set; }
+        public static double Monto { get; set; }
+
 
         //Constructores
         public Compras() { }
@@ -33,6 +36,17 @@ namespace Proyecto_Ferreteira___1.Clases
             NombreProveedor = nombreProveedor;
         }
 
+        public Compras(double cambio, double monto)
+        {
+            Cambio = cambio;
+            Monto = monto;
+        }
+
+        public void RegistroDeCambio()
+        {
+            Console.WriteLine("Listo");
+        }
+
         public Compras(int idProducto, string nombreProducto, int cantidad)
         {
             IdProducto = idProducto;
@@ -40,7 +54,7 @@ namespace Proyecto_Ferreteira___1.Clases
             Cantidad = cantidad;
         }
 
-        public Compras(int idProveedor, int idProducto, int cantidad, double precioUnitario, double subtotal, double isv, double descuento, int codigoCompra, double flete)
+        public Compras(int idProveedor, int idProducto, int cantidad, double precioUnitario, double subtotal, double isv, double descuento, int codigoCompra, double flete , double cambio, double monto)
         {
             this.IdProveedor = idProveedor;
             this.IdProducto = idProducto;
@@ -51,6 +65,8 @@ namespace Proyecto_Ferreteira___1.Clases
             this.Precio = precioUnitario;
             this.SubTotal = subtotal;
             this.Flete = flete;
+            Cambio = cambio;
+            Monto = monto;
 
         }
         /// <summary>
@@ -171,6 +187,8 @@ namespace Proyecto_Ferreteira___1.Clases
                         CMD.Parameters.AddWithValue("@precionUnitario", Precio);
                         CMD.Parameters.AddWithValue("@cantidad", Cantidad);
                         CMD.Parameters.AddWithValue("@flete", Flete);
+                        CMD.Parameters.AddWithValue("@cambio", Cambio);
+                        CMD.Parameters.AddWithValue("@monto", Monto);
                         CMD.Parameters.Add("@mensaje", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
                         CMD.CommandType = CommandType.StoredProcedure;
                         CMD.ExecuteNonQuery();

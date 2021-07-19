@@ -118,7 +118,7 @@ namespace Proyecto_Ferreteira___1.Clases
                                 Precio_Estandar = @precio,
                                 Codigo_Categoria = @codigo,
                                 Existencia = @existencia,
-                                Estado = 1
+                                cod_estado = 1
                                 WHERE Codigo_Producto = @codigoProducto";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
@@ -150,7 +150,7 @@ namespace Proyecto_Ferreteira___1.Clases
             {
                 string query = @"UPDATE Productos.Producto
                                 SET 
-                                Estado = 0
+                                cod_estado = 2
                                 WHERE Codigo_Producto = @codigoProducto";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);

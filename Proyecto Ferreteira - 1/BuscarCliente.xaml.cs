@@ -50,7 +50,7 @@ namespace Proyecto_Ferreteira___1
                 //Crea un comando tipo texto con el que se guardara el query
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = @"SELECT codigo_cliente [#], nombres [Nombres], apellidos[Apellidos], identidad [Identidad], fecha_nacimiento [Fecha Nacimiento] FROM [Ventas].[Cliente] " +
-                                    "WHERE nombres like '%"+txtBuscar.Text+"%' and estado = 1";
+                                    "WHERE nombres like '%"+txtBuscar.Text+"%' and cod_estado = 1";
 
                 //Ejecuta el query
                 cmd.ExecuteNonQuery();

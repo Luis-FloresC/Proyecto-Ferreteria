@@ -56,7 +56,7 @@ namespace Proyecto_Ferreteira___1
                                 Productos.Categoria.Nombre_Categoria [Nombre de la Categoria] 
                                 From Productos.Categoria INNER JOIN Productos.Producto 
                                 ON Productos.Categoria.Codigo_Categoria = Productos.Producto.Codigo_Categoria
-                                WHERE Productos.Producto.Estado = 1;"; //Consulta SQL
+                                WHERE Productos.Producto.cod_estado = 1;"; //Consulta SQL
 
                 //Abrir la conexión
                 connection.Open();

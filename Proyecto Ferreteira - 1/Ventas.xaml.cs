@@ -33,13 +33,15 @@ namespace Proyecto_Ferreteira___1
         double descuento = 0;
         //Constantes
         const double isv = 0.15;
-        
 
+        private double Monto = 0;
+        private double Cambio = 0;
         public Ventas()
         {
             InitializeComponent();
             RegistroCl.IsChecked = true;
-          
+            Properties.Settings.Default.PagoCorrecto = false;
+
         }
 
 
@@ -69,6 +71,31 @@ namespace Proyecto_Ferreteira___1
 
         //METODOS
 
+
+
+        private void Cambio_pasar(double cambio, double monto, bool Resp)
+        {
+            if (!Resp)
+            {
+                
+                btnRealizarPago.IsEnabled = true;
+                MessageBox.Show("Debe Realizar el pago para realizar la compra");
+            }
+            else
+            {
+                Cambio = cambio;
+                Monto = monto;
+            }
+
+        }
+
+        private void IngresarCambio()
+        {
+            VentanaModal ventanaModal = new VentanaModal("Venta", double.Parse(txtTotal.Text));
+            ventanaModal.pasar += Cambio_pasar;
+            ventanaModal.Show();
+        }
+
         /// <summary>
         /// Agrega el producto seleccionado al DataGrid y a la lista productos
         /// </summary>
@@ -92,6 +119,7 @@ namespace Proyecto_Ferreteira___1
                     if (productos.Count == 0)
                     {
                         AggAlCarrito();
+                        btnRealizarPago.IsEnabled = true;
                     }
                     else
                     {
@@ -107,6 +135,7 @@ namespace Proyecto_Ferreteira___1
                             else
                             {
                                 AggAlCarrito();
+                                btnRealizarPago.IsEnabled = true;
                             }
                         }
                     }
@@ -167,7 +196,7 @@ namespace Proyecto_Ferreteira___1
                     }
 
                     MessageBox.Show("Factura realizada con exito", "Aviso",MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    
+                    MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
                     FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
                     ventas.Show();
                     limpiar();
@@ -181,7 +210,8 @@ namespace Proyecto_Ferreteira___1
             {
                 MessageBox.Show("¡Error al facturar!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+            Properties.Settings.Default.PagoCorrecto = false;
+
         }
 
         /// <summary>
@@ -218,7 +248,7 @@ namespace Proyecto_Ferreteira___1
         {
             txtIdCliente.Text = codigoCliente;
             txtNombreCliente.Text = nombreCliente;
-
+            
             if (edad >= 60)
                 descuento = 0.30;
             else
@@ -262,6 +292,8 @@ namespace Proyecto_Ferreteira___1
             venta.Subtotal = Convert.ToDouble(txtSubtotal.Text);
             venta.ISV = isv;
             venta.Descuento = descuento;
+            venta.Monto = Monto;
+            venta.Cambio = Cambio;
         }
 
         /// <summary>
@@ -328,7 +360,7 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool validacion()
         {
-            if (!txtIdCliente.Text.Equals("") && cbTipoPago.SelectedIndex > -1 && dgDetalleVenta.Items.Count > 0)
+            if (!txtIdCliente.Text.Equals("") && cbTipoPago.SelectedIndex > -1 && dgDetalleVenta.Items.Count > 0 && Properties.Settings.Default.PagoCorrecto)
                 return true;
 
             return false;
@@ -382,6 +414,12 @@ namespace Proyecto_Ferreteira___1
         private void cbTipoPago_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void btnRealizarPago_Click(object sender, RoutedEventArgs e)
+        {
+            IngresarCambio();
+            btnRealizarPago.IsEnabled = false;
         }
     }
 }

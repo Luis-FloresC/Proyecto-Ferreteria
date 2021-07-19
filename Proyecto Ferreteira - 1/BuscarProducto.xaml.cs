@@ -46,7 +46,7 @@ namespace Proyecto_Ferreteira___1
                 //Crea un comando tipo texto con el que se guardara el query
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = @"Select Codigo_Producto [#], Nombre_Producto [Producto], Existencia, cast(Precio_Estandar as Decimal(10,2))[Precio] From [Productos].[Producto] 
-                                    WHERE [Nombre_Producto] like '%"+txtBuscar.Text+"%' and [Estado] = 1";
+                                    WHERE [Nombre_Producto] like '%"+txtBuscar.Text+"%' and [cod_estado] = 1";
 
                 //Ejecuta el query
                 cmd.ExecuteNonQuery();

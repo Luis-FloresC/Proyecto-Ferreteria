@@ -19,6 +19,8 @@ namespace Proyecto_Ferreteira___1.Clases
         private double precioProducto;
         private double isv;
         private double descuento;
+        private double cambio;
+        private double monto;
         private double subtotal;
         private string tipoPago;
 
@@ -29,6 +31,9 @@ namespace Proyecto_Ferreteira___1.Clases
         public int CantidadProducto { get => cantidadProducto; set => cantidadProducto = value; }
         public double PrecioProducto { get => precioProducto; set => precioProducto = value; }
         public double ISV { get => isv; set => isv = value; }
+
+        public double Cambio { get => cambio; set => cambio = value; }
+        public double Monto { get => monto; set => monto = value; }
         public double Descuento { get => descuento; set => descuento = value; }
         public double Subtotal { get => subtotal; set => subtotal = value; }
         public string TipoPago { get => tipoPago; set => tipoPago = value; }
@@ -44,7 +49,7 @@ namespace Proyecto_Ferreteira___1.Clases
             try
             {
                 //Query a ejecutar en la base de datos
-                string query = "EXEC [dbo].[Facturar] @codigoEmpleado, @codigoCliente, @tipoPago, @subtotal, @isv, @descuento";
+                string query = "EXEC [dbo].[Facturar] @codigoEmpleado, @codigoCliente, @tipoPago, @subtotal, @isv, @descuento,@cambio,@monto";
 
                 //Establece la conexión
                 conexion.Open();
@@ -59,6 +64,8 @@ namespace Proyecto_Ferreteira___1.Clases
                 sqlCommand.Parameters.AddWithValue("@subtotal", Subtotal);
                 sqlCommand.Parameters.AddWithValue("@isv", isv);
                 sqlCommand.Parameters.AddWithValue("@descuento", Descuento);
+                sqlCommand.Parameters.AddWithValue("@cambio", Cambio);
+                sqlCommand.Parameters.AddWithValue("@monto", Monto);
 
                 //Ejecutar el comando de insercion
                 sqlCommand.ExecuteNonQuery();

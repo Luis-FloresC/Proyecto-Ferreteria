@@ -218,7 +218,7 @@ namespace Proyecto_Ferreteira___1
             try
             {
                 //Query de consulta
-                string query = "Select * from [Ventas].[Cliente] Where estado = 1";
+                string query = "Select * from [Ventas].[Cliente] Where cod_estado = 1";
 
                 // SqlDataAdapter es una interfaz entre las tablas de la base de datos
                 // y los objetos utilizables en C#

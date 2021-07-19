@@ -43,5 +43,29 @@ namespace Proyecto_Ferreteira___1.Properties {
                 return ((string)(this["FerrteriaDb2"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PagoCorrecto {
+            get {
+                return ((bool)(this["PagoCorrecto"]));
+            }
+            set {
+                this["PagoCorrecto"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OpenVentana {
+            get {
+                return ((bool)(this["OpenVentana"]));
+            }
+            set {
+                this["OpenVentana"] = value;
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 
+
 namespace Proyecto_Ferreteira___1
 {
     /// <summary>
@@ -18,6 +19,7 @@ namespace Proyecto_Ferreteira___1
 
         const double isv = 0.12;
         const double descuento = 0.10;
+     
 
         public Compra()
         {
@@ -25,6 +27,7 @@ namespace Proyecto_Ferreteira___1
             MostrarProveedores();
             MostrarProductos();
             calculos();
+            btnRealizarCompra.IsEnabled=false;
             //Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
             //this.DataContext = Calculo;
 
@@ -32,6 +35,8 @@ namespace Proyecto_Ferreteira___1
         private List<Clases.Compras> Carrito = new List<Clases.Compras>();
         private List<Clases.Compras> ObtenerProductos;
         private List<Clases.Compras> ObtenerProveedores;
+        private double Monto=0;
+        private double Cambio = 0;
 
         /// <summary>
         /// Llena el combobox de Proveedores
@@ -85,7 +90,8 @@ namespace Proyecto_Ferreteira___1
                     dgbInformacion.Items.Add(Item);
                     CalcularDetalle();
                     //Activacion de botones
-                    btnRealizarCompra.IsEnabled = true;
+                    btnRealizarCompra.IsEnabled = false;
+                    btnRealizarPago.IsEnabled = true;
                     btnEliminarPedido.IsEnabled = true;
 
                     //Limpiar los texbox de productos
@@ -101,6 +107,17 @@ namespace Proyecto_Ferreteira___1
             }
 
         }
+
+      
+
+      private void IngresarCambio()
+        {
+            VentanaModal ventanaModal = new VentanaModal("Compra", double.Parse(txtTotal.Text));
+            ventanaModal.pasar += Cambio_pasar;
+            ventanaModal.Show();
+           
+        }
+
         /// <summary>
         /// Se encarga de enviar los parametros requeridos al constructor 
         /// </summary>
@@ -115,36 +132,43 @@ namespace Proyecto_Ferreteira___1
                     MessageBox.Show("La lista de compras no puede estar vacía", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
-                { 
-                    string Resultado = "";
-                    int Codigo = compra.CodigoCompra();
-                    foreach (Clases.Compras Item in Carrito)
-                    {
-                        Clases.Compras compras = new Clases.Compras
-                            (
-                             Convert.ToInt32(cmbProveedor.SelectedValue),
-                             Convert.ToInt32(Item.IdProducto.ToString()),
-                             Convert.ToInt32(Item.Cantidad.ToString()),
-                             Convert.ToDouble(Item.Precio.ToString()),
-                             double.Parse(txtSubtotal.Text),
-                             double.Parse(txtISV.Text),
-                             double.Parse(txtDescuento.Text),
-                             Codigo,
-                             double.Parse(txtFlete.Text)
-                            );
-                        Resultado = compras.GuardarCompras();
-                    }
-                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                {
 
-                    //Habilitacion y deshabilitacion de botones
-                    btnAgregarPedido.IsEnabled = true;
-                    btnRealizarCompra.IsEnabled = false;
-                    btnEliminarPedido.IsEnabled = false;
+                       
+                        string Resultado = "";
+                        int Codigo = compra.CodigoCompra();
+                        foreach (Clases.Compras Item in Carrito)
+                        {
+                            Clases.Compras compras = new Clases.Compras
+                                (
+                                 Convert.ToInt32(cmbProveedor.SelectedValue),
+                                 Convert.ToInt32(Item.IdProducto.ToString()),
+                                 Convert.ToInt32(Item.Cantidad.ToString()),
+                                 Convert.ToDouble(Item.Precio.ToString()),
+                                 double.Parse(txtSubtotal.Text),
+                                 double.Parse(txtISV.Text),
+                                 double.Parse(txtDescuento.Text),
+                                 Codigo,
+                                 double.Parse(txtFlete.Text),
+                                 Cambio,
+                                 Monto
+                                );
+                            Resultado = compras.GuardarCompras();
+                        }
+                        MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    //Limpiar
-                    Limpieza();
-                    dgbInformacion.Items.Clear();
-                    Carrito.Clear();
+                        //Habilitacion y deshabilitacion de botones
+                        btnAgregarPedido.IsEnabled = true;
+                        btnRealizarCompra.IsEnabled = false;
+                        btnEliminarPedido.IsEnabled = false;
+
+                        //Limpiar
+                        Limpieza();
+                        dgbInformacion.Items.Clear();
+                        Carrito.Clear();
+                    MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
+
+
                 }
             }
             catch (Exception)
@@ -152,7 +176,24 @@ namespace Proyecto_Ferreteira___1
                 MessageBox.Show("Ten en cuenta que no puedes hacer multiples compras de un producto en un mismo carrito." +
                     "\nSi ese no es tu problema verifica los datos ingresados", "ADVERTENCIA", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+          
+        }
 
+
+        private void Cambio_pasar(double cambio, double monto,bool Resp)
+        {
+            if(!Resp)
+            {
+                btnRealizarCompra.IsEnabled = false;
+                btnRealizarPago.IsEnabled = true;
+                MessageBox.Show("Debe Realizar el pago para realizar la compra");
+            }
+            else
+            {
+                Cambio = cambio;
+                Monto = monto;
+            }
+         
         }
         /// <summary>
         /// Se encarga de la elimanacion de datos del data Grid
@@ -296,5 +337,16 @@ namespace Proyecto_Ferreteira___1
                 txtCantidad.Text = "0";
             }
         }
+
+        private void btnRealizarPago_Click(object sender, RoutedEventArgs e)
+        {
+            IngresarCambio();
+            btnRealizarCompra.IsEnabled = true;
+            btnRealizarPago.IsEnabled = false;
+
+           
+        }
+
+      
     }
 }

@@ -143,7 +143,7 @@ namespace Proyecto_Ferreteira___1.Clases
                                Datediff(YEAR,E.Fecha_Nacimiento,Getdate()) [Edad]
                                from [Recursos_humanos].[Empleado] E
                                join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto
-                               where E.Estado = 1";
+                               where E.cod_estado = 1";
 
                     SqlCommand cmd = new SqlCommand(query, conexion);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -176,9 +176,9 @@ namespace Proyecto_Ferreteira___1.Clases
                                     ,[Direccion]
                                     ,[Correo] [Correo Electronico],
 									case 
-									when Estado = 1 then 'Activo'
+									when cod_estado = 1 then 'Activo'
 									else 'Inactivo' 
-									end [Estado]
+									end [cod_estado]
                                     FROM [Ferreteria].[Compras].[Proveedor]";
 
                     SqlCommand cmd = new SqlCommand(query, conexion);
