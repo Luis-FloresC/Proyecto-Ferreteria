@@ -432,13 +432,16 @@ WHERE codigo_cliente = @codigo
 END
 Go
 --Agregar factura
-CREATE PROCEDURE Facturar
+create PROCEDURE Facturar
 @codigoEmpleado as int,
 @codigoCliente as int,
 @tipoPago as nvarchar(100),
 @subtotal as money,
 @isv as float,
-@descuento as float
+@descuento as float,
+@cambio money,
+@monto money
+
 AS
 BEGIN
 
@@ -450,7 +453,9 @@ INSERT INTO [Ventas].[venta]
 [tipo_pago],
 [subtotal],
 [isv],
-[descuento]
+[descuento],
+cambio,
+monto_pago
 )
 VALUES
 (
@@ -460,7 +465,9 @@ GETDATE(),
 @tipoPago,
 @subtotal,
 @isv,
-@descuento
+@descuento,
+@cambio,
+@monto
 )
 
 END
@@ -601,3 +608,119 @@ SELECT	@mensaje as N'@mensaje'
 SELECT	'Return Value' = @return_value
 
 GO
+
+create procedure DeatalleProveedores
+(@FromDate nvarchar(50),@ToDate nvarchar(50))
+as begin
+declare @FechaDesde1 datetime = CONVERT (datetime, @FromDate, 103)
+declare @Fechahasta2 datetime = convert(datetime,@ToDate,103)
+
+select P.Nombre_Proveedor 'Nombre',
+sum(DC.Cantidad) 'Cantidad',
+DC.Precio_Unitario,
+SUM(DC.Cantidad*DC.Precio_Unitario)'TotalDeCompras'
+
+from Compras.Compra C
+join Compras.Detalle_Compra DC on C.Codigo_Compra = DC.Codigo_Compra
+join Compras.Proveedor P on P.Codigo_Proveedor = C.Codigo_Proveedor
+where C.Fecha_Compra between @FechaDesde1 and @Fechahasta2
+
+group by P.Nombre_Proveedor,DC.Precio_Unitario
+
+end
+go
+
+create procedure ReporteCompras
+(@FromDate nvarchar(50),@ToDate nvarchar(50))
+as begin
+declare @FechaDesde1 datetime = CONVERT (datetime, @FromDate, 103)
+declare @Fechahasta2 datetime = convert(datetime,@ToDate,103)
+
+
+select 
+row_number() over( order by C.Codigo_Compra desc)'N',
+CONCAT('FACT-',C.Codigo_Compra)'FacturaId',
+C.Fecha_Compra 'Fecha',
+concat(E.Nombre_Empleado,' ',E.Apellido_empleado) 'Empleado',
+P.Nombre_Producto 'Producto',
+Ct.Nombre_Categoria 'Categoria',
+Pr.Nombre_Proveedor 'Proveedor',
+DC.Cantidad,
+DC.Precio_Unitario,
+SUm(DC.Cantidad*DC.Precio_Unitario)'Total',
+CONCAT(@FechaDesde1,' - ',@Fechahasta2) 'Rango'
+from Compras.Compra C
+join Compras.Detalle_Compra DC on C.Codigo_Compra = DC.Codigo_Compra
+join Compras.Proveedor Pr on Pr.Codigo_Proveedor = C.Codigo_Proveedor
+join Productos.Producto P on P.Codigo_Producto = DC.Codigo_Producto
+join Productos.Categoria Ct on Ct.Codigo_Categoria = P.Codigo_Categoria
+join Recursos_humanos.Empleado E on E.Codigo_Empleado = C.Codigo_Empleado
+where C.Fecha_Compra between @FechaDesde1 and @Fechahasta2
+GROUP BY C.Codigo_Compra,C.Fecha_Compra,E.Nombre_Empleado,E.Apellido_empleado,P.Nombre_Producto,Ct.Nombre_Categoria,Pr.Nombre_Proveedor,DC.Cantidad,DC.Precio_Unitario
+
+end
+go
+
+create Procedure ReporteVentas
+@FechaDesde varchar(50),
+@FechaHasta varchar(50)
+As
+begin
+declare @FechaDesde1 datetime = CONVERT (datetime, @FechaDesde, 103)
+declare @Fechahasta2 datetime = convert(datetime,@FechaHasta,103)
+
+SELECT 
+row_number() over( order by DV.codigo_venta desc)'N',
+DV.codigo_venta AS 'VentaID',
+	   V.fecha_venta AS 'FechadeVenta',
+	   CONCAT(C.nombres,' ', C.apellidos) AS 'Cliente',
+	   P.Nombre_Producto AS 'Producto',
+	   DV.precio_unitario AS 'PrecioUnitario',
+	   DV.cantidad AS 'Cantidad',
+	   V.descuento AS 'Descuento',
+	   (V.subtotal-V.descuento) AS 'Total',
+	   CONCAT(@FechaDesde,' - ',@Fechahasta) 'Rango'
+	   FROM Ventas.detalle_venta DV 
+	   INNER JOIN Ventas.venta V       ON V.codigo_venta    = DV.codigo_venta
+	   INNER JOIN Productos.Producto P ON P.Codigo_Producto = DV.codigo_producto
+	   INNER JOIN Ventas.Cliente C     ON C.codigo_cliente  = V.codigo_cliente
+
+Where V.fecha_venta between @FechaDesde1 and  @Fechahasta2
+
+end
+go
+
+create procedure VentasDias
+(
+@FechaDesde varchar(50),
+@FechaHasta varchar(50)
+)
+As
+begin
+declare @FechaDesde1 datetime = CONVERT (datetime, @FechaDesde, 103)
+declare @Fechahasta2 datetime = convert(datetime,@FechaHasta,103)
+
+
+select PP.Dia,PP.Total from
+(select v.fecha_venta 'Fecha',
+case when 
+datename(dw,v.fecha_venta) = 'Monday' then 'Lunes'
+when datename(dw,v.fecha_venta) = 'Tuesday' then 'Martes'  
+when datename(dw,v.fecha_venta) = 'Wednesday' then 'Miercoles' 
+when datename(dw,v.fecha_venta) = 'Thursday' then 'Jueves' 
+when datename(dw,v.fecha_venta) = 'friday' then 'Viernes' 
+when datename(dw,v.fecha_venta) = 'Saturday' then 'Sabado' 
+else
+'Domingo'
+end 'Dia',
+sum(dv.cantidad*dv.precio_unitario)[Total] from ventas.venta v
+join ventas.detalle_venta dv on dv.codigo_venta = v.codigo_venta
+where v.fecha_venta between @FechaDesde1 and @Fechahasta2
+group by datename(dw,v.fecha_venta),v.fecha_venta
+) PP 
+group by PP.Dia,PP.Total,PP.Fecha
+order by Datepart(DW,PP.Fecha)
+
+end
+go
+

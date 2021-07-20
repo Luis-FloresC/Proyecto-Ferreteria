@@ -191,6 +191,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FerreteriaDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FerreteriaDataSet10.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FerreteriaDataSet10.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FerreteriaDataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,6 +244,12 @@
     </Compile>
     <Compile Include="FormInicio.xaml.cs">
       <DependentUpon>FormInicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportCompras.Designer.cs">
+      <DependentUpon>FormReportCompras.cs</DependentUpon>
     </Compile>
     <Compile Include="FormReporteDeVentas.cs">
       <SubType>Form</SubType>
@@ -359,6 +370,9 @@
     <EmbeddedResource Include="FormFacturasVentas.resx">
       <DependentUpon>FormFacturasVentas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportCompras.resx">
+      <DependentUpon>FormReportCompras.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReporteDeVentas.resx">
       <DependentUpon>FormReporteDeVentas.cs</DependentUpon>
     </EmbeddedResource>
@@ -366,6 +380,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteDeCompras.rdlc" />
     <EmbeddedResource Include="ReportVentas.rdlc" />
     <None Include="FerreteriaDataSet.xsc">
       <DependentUpon>FerreteriaDataSet.xsd</DependentUpon>
@@ -388,6 +403,17 @@
     </None>
     <None Include="FerreteriaDataSet1.xss">
       <DependentUpon>FerreteriaDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet10.xsc">
+      <DependentUpon>FerreteriaDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="FerreteriaDataSet10.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FerreteriaDataSet10.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FerreteriaDataSet10.xss">
+      <DependentUpon>FerreteriaDataSet10.xsd</DependentUpon>
     </None>
     <None Include="FerreteriaDataSet2.xsc">
       <DependentUpon>FerreteriaDataSet2.xsd</DependentUpon>
