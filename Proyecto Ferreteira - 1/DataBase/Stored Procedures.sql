@@ -583,7 +583,7 @@ if(not exists(select * from [Productos].[Producto] P where P.Nombre_Producto = @
 begin
 
 INSERT INTO Productos.Producto
-VALUES (@nombre, 0 ,@precio,0, @codigo, 1,GETDATE(),null)
+VALUES (@nombre, 0 ,@precio,0, @codigo, 1,GETDATE(),GETDATE())
 set @msj = 'Se ha insertado correctamente el producto'
 
 end
@@ -724,3 +724,68 @@ order by Datepart(DW,PP.Fecha)
 end
 go
 
+ALTER trigger [Productos].[TPrecioHistorico]
+on [Productos].[Producto]
+instead of update 
+
+as begin
+
+declare @PrecioA money = (select P.Precio_Estandar FROM Productos.Producto P where P.Codigo_Producto = (select Codigo_Producto from inserted))
+declare @PrecioB money = (select Precio_Estandar from inserted)
+declare @Nombre nvarchar(50) = (select Nombre_Producto from inserted)
+declare @PrecioUnitario money = (select Precio_Estandar from inserted)
+declare @codigo_categoria int = (select Codigo_Categoria from inserted)
+declare @existencia int = (select Existencia from inserted)
+declare @estado int = (select cod_estado from inserted)
+
+
+if(@PrecioA <> @PrecioB)
+begin
+
+insert into [Productos].[Precio_historico]
+(
+Codigo_Producto,
+precio_historico,
+fecha_apertura,
+fecha_cierre,
+Descripcion
+)
+select  
+Codigo_Producto,
+@PrecioA,
+fecha_modificacion,
+GETDATE(),
+'Se Modifico el precio del producto'
+from 
+inserted
+
+
+
+end
+
+
+if(@estado = 1)
+begin
+
+update Productos.Producto set 
+Precio_Estandar = @PrecioB ,
+Nombre_Producto = @Nombre,
+Codigo_Categoria= @codigo_categoria,
+Existencia = @existencia,
+cod_estado = @estado,
+fecha_modificacion = Getdate()
+where Codigo_Producto = (select Codigo_Producto from inserted)
+ 
+end
+else
+begin
+
+update Productos.Producto set 
+cod_estado = @estado,
+fecha_modificacion = Getdate()
+where Codigo_Producto = (select Codigo_Producto from inserted)
+
+end
+
+end
+go

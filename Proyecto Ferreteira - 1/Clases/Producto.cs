@@ -118,7 +118,8 @@ namespace Proyecto_Ferreteira___1.Clases
                                 Precio_Estandar = @precio,
                                 Codigo_Categoria = @codigo,
                                 Existencia = @existencia,
-                                cod_estado = 1
+                                cod_estado = 1,
+                                fecha_modificacion = GETDATE()
                                 WHERE Codigo_Producto = @codigoProducto";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
@@ -150,7 +151,8 @@ namespace Proyecto_Ferreteira___1.Clases
             {
                 string query = @"UPDATE Productos.Producto
                                 SET 
-                                cod_estado = 2
+                                cod_estado = 2,
+                                fecha_modificacion= GETDATE()
                                 WHERE Codigo_Producto = @codigoProducto";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
