@@ -118,13 +118,13 @@
                   <Width>2.02375cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.02043cm</Width>
+                  <Width>2.08897cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.00271cm</Width>
+                  <Width>2.65875cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>3.79646cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>4.53791cm</Width>
@@ -139,7 +139,7 @@
                   <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.8052cm</Width>
+                  <Width>1.98499cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -572,7 +572,7 @@
                                 <TextRun>
                                   <Value>=Fields!Fecha.Value</Value>
                                   <Style>
-                                    <Format>dd 'de' MMMM 'de' yyyy</Format>
+                                    <Format>d 'de' MMMM</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -839,9 +839,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSetDetallesCompras</DataSetName>
             <Top>1.28764cm</Top>
-            <Left>0.18458cm</Left>
+            <Left>1.16354cm</Left>
             <Height>1.2cm</Height>
-            <Width>27.96396cm</Width>
+            <Width>26.16479cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -894,7 +894,7 @@
                   <Width>2.60583cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.60583cm</Width>
+                  <Width>3.00272cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>3.71709cm</Width>
@@ -948,7 +948,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Nombre</Value>
+                                  <Value>Proveedor</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
@@ -1018,7 +1018,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Precio Unitario</Value>
+                                  <Value>Precio Promedio</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
@@ -1264,7 +1264,7 @@
             <Top>3.68625cm</Top>
             <Left>0.18458cm</Left>
             <Height>1.2cm</Height>
-            <Width>13.41188cm</Width>
+            <Width>13.80877cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1307,7 +1307,7 @@
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style>
-                          <Format>'L' #,0.00;('L' #,0.00);'-'</Format>
+                          <Format>'L'#,0.00;('L'#,0.00);'-'</Format>
                           <rd:FormatSymbolCulture>es-HN</rd:FormatSymbolCulture>
                         </Style>
                         <UseValueAsLabel>true</UseValueAsLabel>
@@ -1578,6 +1578,7 @@
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>8pt</FontSize>
                 </Style>
+                <DockOutsideChartArea>true</DockOutsideChartArea>
                 <ChartLegendTitle>
                   <Caption />
                   <Style>
@@ -1592,23 +1593,24 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Total de Compras por proveedor</Caption>
+                <Caption>Total de Compras por proveedores</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontWeight>Normal</FontWeight>
                   <TextAlign>Left</TextAlign>
                   <VerticalAlign>Top</VerticalAlign>
                 </Style>
-                <Position>TopLeft</Position>
               </ChartTitle>
             </ChartTitles>
             <Palette>Custom</Palette>
             <ChartCustomPaletteColors>
-              <ChartCustomPaletteColor>#ffc000</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#fed330</ChartCustomPaletteColor>
               <ChartCustomPaletteColor>#ff3e30</ChartCustomPaletteColor>
-              <ChartCustomPaletteColor>#3eff30</ChartCustomPaletteColor>
-              <ChartCustomPaletteColor>#fce04b</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#007acc</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#6ad4ea</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#29aa20</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#e57208</ChartCustomPaletteColor>
             </ChartCustomPaletteColors>
             <ChartBorderSkin>
               <Style>
@@ -1628,9 +1630,9 @@
             </ChartNoDataMessage>
             <DataSetName>DataSetListProveedores</DataSetName>
             <Top>3.68625cm</Top>
-            <Left>13.88813cm</Left>
-            <Height>6.66688cm</Height>
-            <Width>14.2604cm</Width>
+            <Left>14.46953cm</Left>
+            <Height>6.77271cm</Height>
+            <Width>13.67901cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -1642,7 +1644,7 @@
             </Style>
           </Chart>
         </ReportItems>
-        <Height>10.85583cm</Height>
+        <Height>11.14687cm</Height>
         <Style />
       </Body>
       <Width>28.6777cm</Width>
