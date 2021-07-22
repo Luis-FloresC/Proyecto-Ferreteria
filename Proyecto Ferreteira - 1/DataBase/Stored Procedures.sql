@@ -575,6 +575,7 @@ create procedure IngresarProducto
 @nombre nvarchar(100),
 @precio money,
 @codigo int,
+@precio_venta money,
 @msj nvarchar(150) output
 )
 as begin
@@ -583,7 +584,7 @@ if(not exists(select * from [Productos].[Producto] P where P.Nombre_Producto = @
 begin
 
 INSERT INTO Productos.Producto
-VALUES (@nombre, 0 ,@precio,0, @codigo, 1,GETDATE(),GETDATE())
+VALUES (@nombre, 0 ,@precio,@precio_venta, @codigo, 1,GETDATE(),GETDATE())
 set @msj = 'Se ha insertado correctamente el producto'
 
 end
@@ -701,25 +702,22 @@ declare @FechaDesde1 datetime = CONVERT (datetime, @FechaDesde, 103)
 declare @Fechahasta2 datetime = convert(datetime,@FechaHasta,103)
 
 
-select PP.Dia,PP.Total from
-(select v.fecha_venta 'Fecha',
+select 
 case when 
-datename(dw,v.fecha_venta) = 'Monday' then 'Lunes'
-when datename(dw,v.fecha_venta) = 'Tuesday' then 'Martes'  
-when datename(dw,v.fecha_venta) = 'Wednesday' then 'Miercoles' 
-when datename(dw,v.fecha_venta) = 'Thursday' then 'Jueves' 
-when datename(dw,v.fecha_venta) = 'friday' then 'Viernes' 
-when datename(dw,v.fecha_venta) = 'Saturday' then 'Sabado' 
+datename(dw,v.fecha_venta) = 'Monday' then 'lunes'
+when datename(dw,v.fecha_venta) = 'Tuesday' then 'martes'  
+when datename(dw,v.fecha_venta) = 'Wednesday' then 'miercoles' 
+when datename(dw,v.fecha_venta) = 'Thursday' then 'jueves' 
+when datename(dw,v.fecha_venta) = 'friday' then 'viernes' 
+when datename(dw,v.fecha_venta) = 'Saturday' then 'sabado' 
 else
-'Domingo'
+'domingo'
 end 'Dia',
 sum(dv.cantidad*dv.precio_unitario)[Total] from ventas.venta v
 join ventas.detalle_venta dv on dv.codigo_venta = v.codigo_venta
 where v.fecha_venta between @FechaDesde1 and @Fechahasta2
-group by datename(dw,v.fecha_venta),v.fecha_venta
-) PP 
-group by PP.Dia,PP.Total,PP.Fecha
-order by Datepart(DW,PP.Fecha)
+group by DATEpart(dw,v.fecha_venta),DATENAME(dw,v.fecha_venta)
+order by DATEPART(dw,v.fecha_venta)
 
 end
 go
@@ -736,7 +734,7 @@ declare @Nombre nvarchar(50) = (select Nombre_Producto from inserted)
 declare @PrecioUnitario money = (select Precio_Estandar from inserted)
 declare @codigo_categoria int = (select Codigo_Categoria from inserted)
 declare @existencia int = (select Existencia from inserted)
-declare @precio_ventas int = (select Precio_Ventas from inserted)
+declare @precio_v int = (select Precio_Ventas from inserted)
 declare @estado int = (select cod_estado from inserted)
 declare @Fecha datetime = (select P.fecha_modificacion FROM Productos.Producto P where P.Codigo_Producto = (select Codigo_Producto from inserted))
 
@@ -761,7 +759,7 @@ GETDATE(),
 from 
 inserted
 
-
+update Productos.Producto set fecha_modificacion = getdate() where Codigo_Producto = (select Codigo_Producto from inserted)
 
 end
 
@@ -775,8 +773,7 @@ Nombre_Producto = @Nombre,
 Codigo_Categoria= @codigo_categoria,
 Existencia = @existencia,
 cod_estado = @estado,
-Precio_Ventas = @precio_ventas
-fecha_modificacion = Getdate()
+Precio_Ventas = @precio_v
 where Codigo_Producto = (select Codigo_Producto from inserted)
  
 end

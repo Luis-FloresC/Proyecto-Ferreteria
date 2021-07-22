@@ -51,6 +51,7 @@ codigo_venta int not null,
 fecha_entrega datetime not null,
 estado_envio nvarchar(50) not null,
 direccion nvarchar(255) not null,
+telefono nvarchar(30)not null,
 codigo_empleado int not null
 Constraint PK_codigo_envio
 Primary Key Clustered (codigo_envio)
