@@ -724,7 +724,7 @@ order by Datepart(DW,PP.Fecha)
 end
 go
 
-ALTER trigger [Productos].[TPrecioHistorico]
+create trigger [Productos].[TPrecioHistorico]
 on [Productos].[Producto]
 instead of update 
 
@@ -736,7 +736,9 @@ declare @Nombre nvarchar(50) = (select Nombre_Producto from inserted)
 declare @PrecioUnitario money = (select Precio_Estandar from inserted)
 declare @codigo_categoria int = (select Codigo_Categoria from inserted)
 declare @existencia int = (select Existencia from inserted)
+declare @precio_ventas int = (select Precio_Ventas from inserted)
 declare @estado int = (select cod_estado from inserted)
+declare @Fecha datetime = (select P.fecha_modificacion FROM Productos.Producto P where P.Codigo_Producto = (select Codigo_Producto from inserted))
 
 
 if(@PrecioA <> @PrecioB)
@@ -753,7 +755,7 @@ Descripcion
 select  
 Codigo_Producto,
 @PrecioA,
-fecha_modificacion,
+@Fecha,
 GETDATE(),
 'Se Modifico el precio del producto'
 from 
@@ -773,6 +775,7 @@ Nombre_Producto = @Nombre,
 Codigo_Categoria= @codigo_categoria,
 Existencia = @existencia,
 cod_estado = @estado,
+Precio_Ventas = @precio_ventas
 fecha_modificacion = Getdate()
 where Codigo_Producto = (select Codigo_Producto from inserted)
  

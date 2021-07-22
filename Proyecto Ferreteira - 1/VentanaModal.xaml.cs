@@ -55,6 +55,7 @@ namespace Proyecto_Ferreteira___1
                     {
                         Cambio = CalcularCambio();
                         pasar(Cambio,Monto,true);
+                        MessageBox.Show("su pago se realizo exitosamente...", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                         Properties.Settings.Default.OpenVentana = false;
                         Properties.Settings.Default.PagoCorrecto = true;
                         this.Visibility = Visibility.Hidden;
@@ -72,6 +73,7 @@ namespace Proyecto_Ferreteira___1
                     {
                         Cambio = CalcularCambio();
                         pasar(Cambio, Monto, true);
+                        MessageBox.Show("su pago se realizo exitosamente...", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                         Properties.Settings.Default.OpenVentana = false;
                         Properties.Settings.Default.PagoCorrecto = true;
                         this.Visibility = Visibility.Hidden;

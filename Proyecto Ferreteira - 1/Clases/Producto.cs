@@ -64,6 +64,29 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
+
+
+        private decimal PrecioVenta(decimal precio)
+        {
+            try
+            {
+                decimal precioVenta = 0;
+                double porcentajeVenta = 0.3;
+                precioVenta = precio * Convert.ToDecimal(porcentajeVenta);
+                decimal total = precio + precioVenta;
+                return total;
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(ex.Message.ToString());
+                return -1;
+            }
+         
+
+          
+        }
+
         /// <summary>
         /// Inserta productos a la base de datos.
         /// </summary>
@@ -78,12 +101,13 @@ namespace Proyecto_Ferreteira___1.Clases
 
             //Validar que el usuario ingreso los datos necesarios
             try
-            {
+            {   
                 string query = @"IngresarProducto";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@nombre", nombre);
                 sqlCommand.Parameters.AddWithValue("@precio", precio);
+                sqlCommand.Parameters.AddWithValue("@precio_venta", PrecioVenta(precio));
                 sqlCommand.Parameters.AddWithValue("@codigo", codigoCategoria);
                 sqlCommand.Parameters.Add("@msj", SqlDbType.NVarChar, 150).Direction = ParameterDirection.Output;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -119,12 +143,14 @@ namespace Proyecto_Ferreteira___1.Clases
                                 Codigo_Categoria = @codigo,
                                 Existencia = @existencia,
                                 cod_estado = 1,
+                                Precio_Ventas = @precio_ventas,
                                 fecha_modificacion = GETDATE()
                                 WHERE Codigo_Producto = @codigoProducto";
                 connection.Open();
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@nombre", nombre);
                 sqlCommand.Parameters.AddWithValue("@precio", precio);
+                sqlCommand.Parameters.AddWithValue("@precio_ventas", PrecioVenta(Convert.ToDecimal(precio)));
                 sqlCommand.Parameters.AddWithValue("@codigo", codigoCategoria);
                 sqlCommand.Parameters.AddWithValue("@existencia", cantidad);
                 sqlCommand.Parameters.AddWithValue("@codigoProducto", codigo_Producto);

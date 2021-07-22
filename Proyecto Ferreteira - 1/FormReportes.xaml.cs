@@ -32,7 +32,7 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnImprimir_Click(object sender, RoutedEventArgs e)
         {
-            if ((dtpFechaInicioCompra.Text != "" && dtpFechaFinalCompra.Text != ""))
+            if ((dtpFechaInicio.SelectedDate != null && dtpFechaFinal.SelectedDate != null))
             {
 
                 if (Validaciones(dtpFechaInicio.SelectedDate.Value, dtpFechaFinal.SelectedDate.Value))
@@ -68,7 +68,7 @@ namespace Proyecto_Ferreteira___1
         private void btnImprimirCompra_Click(object sender, RoutedEventArgs e)
         {
 
-            if((dtpFechaInicioCompra.Text != "" && dtpFechaFinalCompra.Text != ""))
+            if((dtpFechaInicioCompra.SelectedDate != null && dtpFechaFinalCompra.SelectedDate != null))
             {
                 if (Validaciones(dtpFechaInicioCompra.SelectedDate.Value, dtpFechaFinalCompra.SelectedDate.Value))
                 {

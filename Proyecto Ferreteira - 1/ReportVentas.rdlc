@@ -951,11 +951,6 @@
                       <GroupExpression>=Fields!Dia.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!Dia.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
                   <Label>=Fields!Dia.Value</Label>
                 </ChartMember>
               </ChartMembers>
@@ -989,6 +984,7 @@
                         <Color>Blue</Color>
                       </Style>
                       <ChartMarker>
+                        <Type>Auto</Type>
                         <Style />
                       </ChartMarker>
                       <DataElementOutput>Output</DataElementOutput>
@@ -1137,7 +1133,9 @@
                         <Style>None</Style>
                       </Border>
                       <FontSize>8pt</FontSize>
+                      <Format>'L' #,0.00;('L' #,0.00);'-'</Format>
                       <Color>#5c5c5c</Color>
+                      <rd:FormatSymbolCulture>es-HN</rd:FormatSymbolCulture>
                     </Style>
                     <ChartAxisTitle>
                       <Caption />

@@ -197,6 +197,7 @@ namespace Proyecto_Ferreteira___1
 
                     MessageBox.Show("Factura realizada con exito", "Aviso",MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
+                    Properties.Settings.Default.PagoCorrecto = false;
                     FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
                     ventas.Show();
                     limpiar();
@@ -210,7 +211,7 @@ namespace Proyecto_Ferreteira___1
             {
                 MessageBox.Show("¡Error al facturar!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            Properties.Settings.Default.PagoCorrecto = false;
+     
 
         }
 
@@ -360,9 +361,10 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool validacion()
         {
-            if (!txtIdCliente.Text.Equals("") && cbTipoPago.SelectedIndex > -1 && dgDetalleVenta.Items.Count > 0 && Properties.Settings.Default.PagoCorrecto)
+            if (!txtIdCliente.Text.Equals("") && cbTipoPago.SelectedIndex > -1 && dgDetalleVenta.Items.Count > 0 && Properties.Settings.Default.PagoCorrecto == true)
+            {
                 return true;
-
+            }
             return false;
         }
 
