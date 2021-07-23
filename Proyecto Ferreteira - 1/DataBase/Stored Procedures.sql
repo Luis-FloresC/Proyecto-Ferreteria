@@ -584,7 +584,7 @@ if(not exists(select * from [Productos].[Producto] P where P.Nombre_Producto = @
 begin
 
 INSERT INTO Productos.Producto
-VALUES (@nombre, 0 ,@precio,@precio_venta, @codigo, 1,GETDATE(),GETDATE())
+VALUES (@nombre, 0 ,@precio,@precio_venta, @codigo, 1,GETDATE(),null)
 set @msj = 'Se ha insertado correctamente el producto'
 
 end
@@ -737,10 +737,12 @@ declare @existencia int = (select Existencia from inserted)
 declare @precio_v int = (select Precio_Ventas from inserted)
 declare @estado int = (select cod_estado from inserted)
 declare @Fecha datetime = (select P.fecha_modificacion FROM Productos.Producto P where P.Codigo_Producto = (select Codigo_Producto from inserted))
-
+declare @Fecha1 datetime = (select P.fecha_creacion FROM Productos.Producto P where P.Codigo_Producto = (select Codigo_Producto from inserted))
 
 if(@PrecioA <> @PrecioB)
 begin
+
+update Productos.Precio_Historico set fecha_cierre = GETDATE() where Codigo_Producto =  (select Codigo_Producto from inserted)  and fecha_cierre = null
 
 insert into [Productos].[Precio_historico]
 (
@@ -753,13 +755,13 @@ Descripcion
 select  
 Codigo_Producto,
 @PrecioA,
-@Fecha,
-GETDATE(),
+coalesce(@Fecha,@Fecha1),
+null,
 'Se Modifico el precio del producto'
 from 
 inserted
 
-update Productos.Producto set fecha_modificacion = getdate() where Codigo_Producto = (select Codigo_Producto from inserted)
+update Productos.Producto set fecha_modificacion = getdate() where Codigo_Producto = (select Codigo_Producto from inserted) 
 
 end
 
@@ -787,5 +789,34 @@ where Codigo_Producto = (select Codigo_Producto from inserted)
 
 end
 
+end
+go
+
+create trigger [Productos].[InsertPrecioHistorico]
+on [Productos].[Producto]
+after insert
+
+as begin
+
+if(not exists(select * from Producto where Codigo_Producto = (select Codigo_Producto from inserted)))
+begin
+insert into [Productos].[Precio_historico]
+(
+Codigo_Producto,
+precio_historico,
+fecha_apertura,
+fecha_cierre,
+Descripcion
+)
+select  
+Codigo_Producto,
+Precio_Estandar,
+GETDATE(),
+null,
+'Nuevo Producto Registrado'
+from 
+inserted
+
+end
 end
 go

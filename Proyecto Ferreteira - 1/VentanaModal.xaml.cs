@@ -32,6 +32,11 @@ namespace Proyecto_Ferreteira___1
         public delegate void pasarCambio(double cambio,double monto,bool Resp);
         public event pasarCambio pasar;
 
+        /// <summary>
+        /// Constructor para obtner un descripcion y el total a pagar
+        /// </summary>
+        /// <param name="descripcion">la descripcion puede ser Compra/Venta</param>
+        /// <param name="total"></param>
         public VentanaModal(string descripcion,double total)
         {
             InitializeComponent();
@@ -40,6 +45,11 @@ namespace Proyecto_Ferreteira___1
             Properties.Settings.Default.OpenVentana = true;
         }
 
+        /// <summary>
+        /// Boton Aceptar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -90,39 +100,66 @@ namespace Proyecto_Ferreteira___1
 
         }
 
-
+        /// <summary>
+        /// Permitir solo numeros 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9.]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        /// <summary>
+        /// Metodo para calcular el cambio de compra y venta
+        /// </summary>
+        /// <returns></returns>
         private double CalcularCambio()
         {
-            
-            bool MontoCorrecto = double.TryParse(txtCambio.Text, out double monto);
+            try
+            {
+                bool MontoCorrecto = double.TryParse(txtCambio.Text, out double monto);
 
-            if(MontoCorrecto && monto >= Total)
-            {
-                Monto = monto;
-                return (monto - Total);
+                if(MontoCorrecto && monto >= Total)
+                {
+                    Monto = monto;
+                    return (monto - Total);
+                }
+                else
+                {
+                    return -1;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return -1;
             }
+
            
         }
 
 
-
+        /// <summary>
+        /// Metodo para cancelar el metodo de pago
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.PagoCorrecto = false;
-            Properties.Settings.Default.OpenVentana = false;
-            pasar(Cambio, Monto, false);
-            this.Close();
+            try
+            {
+                Properties.Settings.Default.PagoCorrecto = false;
+                Properties.Settings.Default.OpenVentana = false;
+                pasar(Cambio, Monto, false);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+
         }
     }
 }

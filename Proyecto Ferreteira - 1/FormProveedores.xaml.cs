@@ -44,11 +44,19 @@ namespace Proyecto_Ferreteira___1
         /// </summary>
         private void MostrarDatosDataGridProveedores()
         {
-            DataTableProveedores.Clear();
-            DataTableProveedores = Proveedores.MostrarProveedores();
-            DataGridProveedores.ItemsSource = DataTableProveedores.DefaultView;
-            var TotalRows = DataGridProveedores.Items.Count;
-            txtTotal.Text = "Total: " + TotalRows;
+            try
+            {
+                DataTableProveedores.Clear();
+                DataTableProveedores = Proveedores.MostrarProveedores();
+                DataGridProveedores.ItemsSource = DataTableProveedores.DefaultView;
+                var TotalRows = DataGridProveedores.Items.Count;
+                txtTotal.Text = "Total: " + TotalRows;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+           
         }
 
         /// <summary>
@@ -70,17 +78,26 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool CadenaSoloEspacios(string cadena)
         {
-            String source = cadena; //Original text
-
-            if (source.Trim().Length <= 1)
+            try
             {
+              String source = cadena; //Original text
+
+                if (source.Trim().Length <= 1)
+                {
+                    return true;
+                }
+                else
+                {
+
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return true;
             }
-            else
-            {
-
-                return false;
-            }
+          
 
         }
 
@@ -91,23 +108,32 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private Boolean ValidarEmail(String email)
         {
-            String expresion;
-            expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(email, expresion))
+            try
             {
-                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                String expresion;
+                expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+                if (Regex.IsMatch(email, expresion))
                 {
-                    return true;
+                    if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
                     return false;
                 }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
+           
         }
 
         /// <summary>
@@ -116,40 +142,49 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool Validaciones()
         {
-            bool datosCorrectos = true;
-
-            if ((CadenaSoloEspacios(txtNombre.Text)) || CadenaSoloEspacios(txtEmail.Text) ||
-                (CadenaSoloEspacios(txtDireccion.Text)) || (CadenaSoloEspacios(txtDireccion.Text)))            
+            try
             {
+                bool datosCorrectos = true;
+
+                if ((CadenaSoloEspacios(txtNombre.Text)) || CadenaSoloEspacios(txtEmail.Text) ||
+                    (CadenaSoloEspacios(txtDireccion.Text)) || (CadenaSoloEspacios(txtDireccion.Text)))            
+                {
               
-                MessageBox.Show("Todos los Campos son Obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                datosCorrectos = false;
-            }
+                    MessageBox.Show("Todos los Campos son Obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    datosCorrectos = false;
+                }
 
-            if((CadenaSoloEspacios(txtNombre.Text)))
-            {
+                if((CadenaSoloEspacios(txtNombre.Text)))
+                {
 
-                MessageBox.Show("El Nombre debe tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtNombre.Focus();
-                return false;
-            }
+                    MessageBox.Show("El Nombre debe tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtNombre.Focus();
+                    return false;
+                }
 
-            if (txtTelefono.Text.Length <= 7)
-            {
+                if (txtTelefono.Text.Length <= 7)
+                {
          
-                MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtTelefono.Focus();
-                return  false;
-            }
+                    MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtTelefono.Focus();
+                    return  false;
+                }
 
-            if(!ValidarEmail(txtEmail.Text))
+                if(!ValidarEmail(txtEmail.Text))
+                {
+                    MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtEmail.Focus();
+                    return false;
+                }
+
+                return datosCorrectos;
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtEmail.Focus();
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
-
-            return datosCorrectos;
+    
         }
 
         /// <summary>
@@ -159,13 +194,21 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if(Validaciones())
+            try
             {
-                var Resultado = Proveedores.GuardarDatos(txtNombre.Text,txtTelefono.Text,txtDireccion.Text,txtEmail.Text);
-                MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                LimpiarCampos();
-                MostrarDatosDataGridProveedores();
+               if(Validaciones())
+                {
+                    var Resultado = Proveedores.GuardarDatos(txtNombre.Text,txtTelefono.Text,txtDireccion.Text,txtEmail.Text);
+                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LimpiarCampos();
+                    MostrarDatosDataGridProveedores();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+         
         }
 
         /// <summary>
@@ -175,25 +218,33 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void DataGridProveedores_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string estado = "";
-            if (DataGridProveedores.SelectedIndex != -1)
+            try
             {
-                IdProveedor = Convert.ToInt32((DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
-                txtNombre.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[1].ToString();
-                txtTelefono.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[2].ToString();
-                txtDireccion.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[3].ToString();
-                txtEmail.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[4].ToString();
-                estado = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[5].ToString();
+                string estado = "";
+                if (DataGridProveedores.SelectedIndex != -1)
+                {
+                    IdProveedor = Convert.ToInt32((DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
+                    txtNombre.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[1].ToString();
+                    txtTelefono.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[2].ToString();
+                    txtDireccion.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[3].ToString();
+                    txtEmail.Text = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[4].ToString();
+                    estado = (DataGridProveedores.CurrentItem as DataRowView).Row.ItemArray[5].ToString();
 
-                if(estado =="Activo")
-                {
-                    chEstado.IsChecked = true;
-                }
-                else
-                {
-                    chEstado.IsChecked = false;
+                    if(estado =="Activo")
+                    {
+                        chEstado.IsChecked = true;
+                    }
+                    else
+                    {
+                        chEstado.IsChecked = false;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+           
         }
 
         /// <summary>
@@ -213,13 +264,21 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
+            try
             {
-                var Resultado = Proveedores.ModificarDatos(IdProveedor,txtNombre.Text, txtTelefono.Text, txtDireccion.Text, txtEmail.Text,chEstado.IsChecked.Value);
-                MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                LimpiarCampos();
-                MostrarDatosDataGridProveedores();
+                    if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
+                    {
+                        var Resultado = Proveedores.ModificarDatos(IdProveedor,txtNombre.Text, txtTelefono.Text, txtDireccion.Text, txtEmail.Text,chEstado.IsChecked.Value);
+                        MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                        LimpiarCampos();
+                        MostrarDatosDataGridProveedores();
+                    }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+          
         }
 
         /// <summary>
@@ -229,27 +288,42 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
+            try
             {
-
-                if ((MessageBox.Show("¿Esta Seguro que desea Eliminar el Empleado?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
+                if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
                 {
-                    var Resultado = Proveedores.EliminarDatos(IdProveedor);
-                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LimpiarCampos();
-                    MostrarDatosDataGridProveedores();
-                }
 
+                    if ((MessageBox.Show("¿Esta Seguro que desea Eliminar el Empleado?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
+                    {
+                        var Resultado = Proveedores.EliminarDatos(IdProveedor);
+                        MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                        LimpiarCampos();
+                        MostrarDatosDataGridProveedores();
+                    }
+
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+         
         }
 
         private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DataTableProveedores.Clear();
-            DataTableProveedores = Proveedores.BuscarProveedores(txtBuscar.Text);
-            DataGridProveedores.ItemsSource = DataTableProveedores.DefaultView;
-            var TotalRows = DataGridProveedores.Items.Count;
-            txtTotal.Text = "Total: " + TotalRows;
+            try
+            {
+                DataTableProveedores.Clear();
+                DataTableProveedores = Proveedores.BuscarProveedores(txtBuscar.Text);
+                DataGridProveedores.ItemsSource = DataTableProveedores.DefaultView;
+                var TotalRows = DataGridProveedores.Items.Count;
+                txtTotal.Text = "Total: " + TotalRows;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            } 
         }
 
 

@@ -74,7 +74,7 @@
                 Content="Nombre" Grid.Row="4" Grid.Column="1" 
                 FontSize="17" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
 
-        <DataGrid  Name="dgbInformacion" FontSize="17" FontFamily="Segoe UI" Margin="25" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="6" AutoGenerateColumns="False">
+        <DataGrid  Name="dgbInformacion" FontSize="17" FontFamily="Segoe UI" Height="250" Margin="25" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="6" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Codigo" IsReadOnly="True" Binding="{Binding Path=IdProducto}" Width="100" ></DataGridTextColumn>
                 <DataGridTextColumn Header="Producto" IsReadOnly="True"  Binding="{Binding Path=NombreProducto}" Width="200"></DataGridTextColumn>
@@ -113,7 +113,7 @@
 
             <TextBox Margin="10 0" x:Name="txtFlete" materialDesing:HintAssist.Hint="Flete" 
                              Foreground="White" 
-                             Text="{Binding Path=Flete, Mode=TwoWay}"
+                             Text="0"
                              FontSize="17" FontFamily="Segoe UI"    
                              Width="200" MaxLength="6"      
                              PreviewTextInput="NumberValidationTextBox" MouseEnter="txtFlete_MouseEnter" MouseLeave="txtFlete_MouseLeave" 

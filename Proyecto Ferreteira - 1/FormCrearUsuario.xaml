@@ -31,6 +31,7 @@
                 <TextBox Margin="10 0" x:Name="txtNombreUsuario" materialDesing:HintAssist.Hint="Nombre del Usuario" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Foreground="White" Width="276" 
+                             MaxLength="20"
                               FontSize="17" FontFamily="Segoe UI"
                              BorderBrush="white" 
                              CaretBrush="#FFD94448" 
@@ -43,6 +44,7 @@
                 <materialDesing:PackIcon Kind="Password" VerticalAlignment="Center"  Width="25" Height="25" Foreground="White"/>
                 <PasswordBox Margin="10 0" x:Name="txtPassWord" materialDesing:HintAssist.Hint="Contraseña" 
                              Foreground="White" Width="280" 
+                             MaxLength="25"
                               FontSize="17" FontFamily="Segoe UI"
                               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
@@ -55,6 +57,7 @@
                 <materialDesing:PackIcon Kind="Password" VerticalAlignment="Center" Width="25" Height="25" Foreground="White"/>
                 <PasswordBox Margin="10 0" x:Name="txtConfirmPassWord" materialDesing:HintAssist.Hint="Confirmar Contraseña" 
                              Foreground="White" Width="280" 
+                             MaxLength="25"
                               FontSize="17" FontFamily="Segoe UI"
                                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 

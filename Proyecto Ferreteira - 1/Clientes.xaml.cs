@@ -86,129 +86,154 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool validaciones()
         {
-            bool estado = false;
+            try
+            {
+                bool estado = false;
 
           
-            if (CadenaSoloEspacios(txtNombre.Text) || CadenaSoloEspacios(txtApellido.Text)
-                || CadenaSoloEspacios(txtIdentidad.Text) || CadenaSoloEspacios(txtRtn.Text)
-                || CadenaSoloEspacios(txtTelefono.Text) || tpFechaNacimiento.SelectedDate == null)
-            {
-                estado = false;
-                if ((CadenaSoloEspacios(txtNombre.Text) || CadenaSoloEspacios(txtApellido.Text)))
+                if (CadenaSoloEspacios(txtNombre.Text) || CadenaSoloEspacios(txtApellido.Text)
+                    || CadenaSoloEspacios(txtIdentidad.Text) || CadenaSoloEspacios(txtRtn.Text)
+                    || CadenaSoloEspacios(txtTelefono.Text) || tpFechaNacimiento.SelectedDate == null)
                 {
-                    MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres y es un campo obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    if((CadenaSoloEspacios(txtNombre.Text)))
+                    estado = false;
+                    if ((CadenaSoloEspacios(txtNombre.Text) || CadenaSoloEspacios(txtApellido.Text)))
                     {
-                        txtNombre.Focus();
+                        MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres y es un campo obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        if((CadenaSoloEspacios(txtNombre.Text)))
+                        {
+                            txtNombre.Focus();
+                        }
+                        else
+                        {
+                            txtApellido.Focus();
+                        }
+                    }
+                    else if (CadenaSoloEspacios(txtIdentidad.Text))
+                    {
+                        MessageBox.Show("la identidad es obligatoria", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        txtIdentidad.Focus();
+                    }
+                    else if (CadenaSoloEspacios(txtRtn.Text))
+                    {
+                        MessageBox.Show("el RTN es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        txtRtn.Focus();
                     }
                     else
                     {
-                        txtApellido.Focus();
+                        MessageBox.Show("el telefono es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        txtTelefono.Focus();
                     }
-                }
-                else if (CadenaSoloEspacios(txtIdentidad.Text))
-                {
-                    MessageBox.Show("la identidad es obligatoria", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                    txtIdentidad.Focus();
-                }
-                else if (CadenaSoloEspacios(txtRtn.Text))
-                {
-                    MessageBox.Show("el RTN es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    txtRtn.Focus();
                 }
                 else
                 {
-                    MessageBox.Show("el telefono es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    txtTelefono.Focus();
+                    estado = true;
                 }
+                return estado;
             }
-            else
+            catch (Exception ex)
             {
-                estado = true;
+                MessageBox.Show("Error: " + ex.Message.ToString());
+                return false;
             }
-                
-
-
-
-
-            return estado;
+          
         }
 
 
 
-
+        /// <summary>
+        /// Metodo para obtener la edad
+        /// </summary>
+        /// <returns></returns>
         private bool DiferenciaEdad()
         {
 
-
-            var timeSpan = DateTime.Now - tpFechaNacimiento.DisplayDate;
-            int Edad = new DateTime(timeSpan.Ticks).Year - 1;
-          
-           
-            if(Edad < 18)
+            try
             {
-                return  true;
-            }
-             return false;
+                    var timeSpan = DateTime.Now - tpFechaNacimiento.DisplayDate;
+                    int Edad = new DateTime(timeSpan.Ticks).Year - 1;
 
+                    if(Edad < 18)
+                    {
+                        return  true;
+                    }
+                     return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+                return false;
+            }
+           
         }
 
+        /// <summary>
+        /// Metodo para validar la entrada de los campos
+        /// </summary>
+        /// <returns></returns>
         private bool validaciones2()
         {
-            
-       
-            bool estado = false;
-
-            if (txtNombre.Text.Length <= 1 || txtApellido.Text.Length <= 1
-                || txtIdentidad.Text.Length <= 12 || txtRtn.Text.Length <= 13
-                || txtTelefono.Text.Length <= 7 )
+            try
             {
-                if(txtNombre.Text.Length <= 1)
-                {
-                    MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    txtNombre.Focus();
-                }
-                else if(txtApellido.Text.Length <= 1)
-                {
-                    MessageBox.Show("El Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    txtApellido.Focus();
+               bool estado = false;
 
-                }
-                else if (txtIdentidad.Text.Length <= 12)
-                {
-                    MessageBox.Show("la identidad debe tener 13 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    txtIdentidad.Focus();
-                }
-                else if(txtRtn.Text.Length <= 13)
-                {
-                    MessageBox.Show("el RTN debe tener 14 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    txtRtn.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("el telefono debe tener 8 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    txtTelefono.Focus();
-                }
+                    if (txtNombre.Text.Length <= 1 || txtApellido.Text.Length <= 1
+                        || txtIdentidad.Text.Length <= 12 || txtRtn.Text.Length <= 13
+                        || txtTelefono.Text.Length <= 7 )
+                    {
+                        if(txtNombre.Text.Length <= 1)
+                        {
+                            MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            txtNombre.Focus();
+                        }
+                        else if(txtApellido.Text.Length <= 1)
+                        {
+                            MessageBox.Show("El Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            txtApellido.Focus();
 
-            }  
-            else
-            {
+                        }
+                        else if (txtIdentidad.Text.Length <= 12)
+                        {
+                            MessageBox.Show("la identidad debe tener 13 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            txtIdentidad.Focus();
+                        }
+                        else if(txtRtn.Text.Length <= 13)
+                        {
+                            MessageBox.Show("el RTN debe tener 14 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            txtRtn.Focus();
+                        }
+                        else
+                        {
+                            MessageBox.Show("el telefono debe tener 8 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            txtTelefono.Focus();
+                        }
+
+                    }  
+                    else
+                    {
             
-                if (DiferenciaEdad())
-                {
-                    estado = false;
-                    MessageBox.Show("Tiene que ser mayor de edad o ingresar una fecha valida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                    estado = true;
+                        if (DiferenciaEdad())
+                        {
+                            estado = false;
+                            MessageBox.Show("Tiene que ser mayor de edad o ingresar una fecha valida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else
+                            estado = true;
+                    }
+
+
+
+
+
+                    return estado;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+                return false;
             }
 
-
-
-
-
-            return estado;
+          
         }
         /// <summary>
         /// Carga el listBox de empleados
@@ -257,242 +282,350 @@ namespace Proyecto_Ferreteira___1
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
 
-          
-
-            if (validaciones())
+            try
             {
-                if(validaciones2())
-                {
-                    if (VerificarIdentidad(txtIdentidad.Text))
+
+                    if (validaciones())
                     {
-                        if(VerificarRTN(txtRtn.Text))
+                        if(validaciones2())
                         {
-                            guardarDatos();
-                            cliente.AgregarCliente();
-                            cargarTabla();
-                            limpiar();
+                            if (VerificarIdentidad(txtIdentidad.Text))
+                            {
+                                if(VerificarRTN(txtRtn.Text))
+                                {
+                                    guardarDatos();
+                                    cliente.AgregarCliente();
+                                    cargarTabla();
+                                    limpiar();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    txtRtn.Focus();
+                                }
+                           
+
+                            }
+                            else
+                            {
+                       
+                                    MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    txtIdentidad.Focus();
+                        
+                            }
                         }
-                        else
+                       else
                         {
                             MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            txtRtn.Focus();
                         }
-                           
 
                     }
                     else
                     {
-                       
-                            MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            txtIdentidad.Focus();
-                        
+                        MessageBox.Show("Por favor, llene todos los campos.","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
                     }
-                }
-               else
-                {
-                    MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor, llene todos los campos.","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Error: " + ex.Message.ToString());
+               
             }
+
         }
 
 
-
+        /// <summary>
+        /// Metodo para validar si la cadena de texto solo contiene espacios
+        /// </summary>
+        /// <param name="cadena"></param>
+        /// <returns></returns>
         private bool CadenaSoloEspacios(string cadena)
         {
-            String source = cadena; //Original text
 
-            if (source.Trim().Length <= 1)
+            try
             {
+                       String source = cadena; //Original text
+
+                        if (source.Trim().Length <= 1)
+                        {
 
 
-                return true;
-            }
-            else
-            {
+                            return true;
+                        }
+                        else
+                        {
                 
+                            return false;
+                        }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
-  
+         
         }
 
+        /// <summary>
+        /// Metodo para validar numeros enteros
+        /// </summary>
+        /// <param name="valor">valor que enviamos a verificar</param>
+        /// <param name="li">limite inferior</param>
+        /// <param name="ls">limite superior</param>
         private bool NumerosEnteros(int valor,int li,int ls)
         {
-            if (valor < li || valor > ls)
+            try
             {
+                if (valor < li || valor > ls)
+                {
+                    return false;
+                }
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
-            else
-                return true;
+
         }
 
-
-        private bool NumerosEnteros2(int valor, int li, int ls)
+      
+    /// <summary>
+    /// Metodo para validar numeros enteros
+    /// </summary>
+    /// <param name="valor">valor que enviamos a verificar</param>
+    /// <param name="li">limite inferior</param>
+    /// <param name="ls">limite superior</param>
+    /// <returns></returns>
+    private bool NumerosEnteros2(int valor, int li, int ls)
         {
-            if (valor < li || valor > ls)
+
+            try
             {
-                MessageBox.Show(string.Concat("Los siguientes dos digitos: ",valor," del municipio.","\nSolo se permiten numero del rango: ",li," y ",ls,"."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+             if (valor < li || valor > ls)
+              {
+                MessageBox.Show(string.Concat("Los siguientes dos digitos: ", valor, " del municipio.", "\nSolo se permiten numero del rango: ", li, " y ", ls, "."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
-            }
+              }
             else
                 return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+                return false;
+            }
+          
         }
 
+        /// <summary>
+        /// Declaracion de Diccionario
+        /// </summary>
         public Dictionary<int, string> Departamentos = new Dictionary<int, string>(); 
 
+        /// <summary>
+        /// Metodo para agregar los municipios al diccionario por cada departamento
+        /// </summary>
         private void AggDatosDiccionario()
         {
-            Departamentos.Clear();
-            Departamentos.Add(1, "1-8");
-            Departamentos.Add(2, "1-10");
-            Departamentos.Add(3, "1-21");
-            Departamentos.Add(4, "1-23");
-            Departamentos.Add(5, "1-12");
-            Departamentos.Add(6, "1-16");
-            Departamentos.Add(7, "1-19");
-            Departamentos.Add(8, "1-28");
-            Departamentos.Add(9, "1-6");
-            Departamentos.Add(10, "1-17");
-            Departamentos.Add(11, "1-4");
-            Departamentos.Add(12, "1-19");
-            Departamentos.Add(13, "1-28");
-            Departamentos.Add(14, "1-16");
-            Departamentos.Add(15, "1-23");
-            Departamentos.Add(16, "1-28");
-            Departamentos.Add(17, "1-9");
-            Departamentos.Add(18, "1-11");
+            try
+            {
+                Departamentos.Clear();
+                Departamentos.Add(1, "1-8");
+                Departamentos.Add(2, "1-10");
+                Departamentos.Add(3, "1-21");
+                Departamentos.Add(4, "1-23");
+                Departamentos.Add(5, "1-12");
+                Departamentos.Add(6, "1-16");
+                Departamentos.Add(7, "1-19");
+                Departamentos.Add(8, "1-28");
+                Departamentos.Add(9, "1-6");
+                Departamentos.Add(10, "1-17");
+                Departamentos.Add(11, "1-4");
+                Departamentos.Add(12, "1-19");
+                Departamentos.Add(13, "1-28");
+                Departamentos.Add(14, "1-16");
+                Departamentos.Add(15, "1-23");
+                Departamentos.Add(16, "1-28");
+                Departamentos.Add(17, "1-9");
+                Departamentos.Add(18, "1-11");
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
         }
 
+        /// <summary>
+        /// Metodo para buscar el total de municipios por departamento
+        /// </summary>
+        /// <param name="x">numero de Departamento</param>
+        /// <returns></returns>
         private bool BuscarDiccionario(int x)
         {
-            if(Departamentos.ContainsKey(x))
+
+            try
             {
-                String source = Departamentos[x]; //Original text
-                String[] result = source.Split(new char[] { '-', '-' });
-                Li = int.Parse(result[0]);
-                Ls = int.Parse(result[1]);
-                return true;
+                if (Departamentos.ContainsKey(x))
+                {
+                    String source = Departamentos[x]; //Original text
+                    String[] result = source.Split(new char[] { '-', '-' });
+                    Li = int.Parse(result[0]);
+                    Ls = int.Parse(result[1]);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
+        
         }
 
 
         private int Ls;
         private int Li;
+        /// <summary>
+        /// Metodo para verificar la identidad
+        /// </summary>
+        /// <param name="cadena"></param>
+        /// <returns></returns>
         private bool VerificarIdentidad(string cadena)
         {
-            bool resultado=false;
-            int depto = int.Parse(cadena.Substring(0,2));
-            int muni = int.Parse(cadena.Substring(2,2));
-            int año = int.Parse(cadena.Substring(4,4));
-            int folio = int.Parse(cadena.Substring(8, 5));
 
-            AggDatosDiccionario();
-
-          
-            if (NumerosEnteros(depto,1,18))
+            try
             {
+                bool resultado = false;
+                int depto = int.Parse(cadena.Substring(0, 2));
+                int muni = int.Parse(cadena.Substring(2, 2));
+                int año = int.Parse(cadena.Substring(4, 4));
+                int folio = int.Parse(cadena.Substring(8, 5));
 
-               bool Est = BuscarDiccionario(depto);
-                if (NumerosEnteros2(muni,Li,Ls))
+                AggDatosDiccionario();
+
+
+                if (NumerosEnteros(depto, 1, 18))
                 {
-                    if(NumerosEnteros(año,1900,2100))
-                    {
 
-                        if (NumerosEnteros(folio, 1, 99999))
+                    bool Est = BuscarDiccionario(depto);
+                    if (NumerosEnteros2(muni, Li, Ls))
+                    {
+                        if (NumerosEnteros(año, 1900, 2100))
                         {
-                            resultado = true;
+
+                            if (NumerosEnteros(folio, 1, 99999))
+                            {
+                                resultado = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                txtIdentidad.Focus();
+                            }
+
                         }
                         else
                         {
-                            MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtIdentidad.Focus();
                         }
-
                     }
                     else
                     {
-                        MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        txtIdentidad.Focus();
+
+                        return false;
                     }
                 }
                 else
                 {
-
+                    MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtIdentidad.Focus();
                     return false;
                 }
+
+                return resultado;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtIdentidad.Focus();
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Aviso");
                 return false;
             }
-
-            return resultado;
+           
         }
 
 
-
+        /// <summary>
+        /// Metodo para verificar el Rtn
+        /// </summary>
+        /// <param name="cadena">el valor de Rtn</param>
+        /// <returns></returns>
         private bool VerificarRTN(string cadena)
         {
-            bool resultado = false;
-            int depto = int.Parse(cadena.Substring(0, 2));
-            int muni = int.Parse(cadena.Substring(2, 2));
-            int año = int.Parse(cadena.Substring(4, 4));
-            int folio = int.Parse(cadena.Substring(8, 6));
-
-            AggDatosDiccionario();
-
-
-            if (NumerosEnteros(depto, 1, 18))
+            try
             {
+                bool resultado = false;
+                int depto = int.Parse(cadena.Substring(0, 2));
+                int muni = int.Parse(cadena.Substring(2, 2));
+                int año = int.Parse(cadena.Substring(4, 4));
+                int folio = int.Parse(cadena.Substring(8, 6));
 
-                bool Est = BuscarDiccionario(depto);
-                if (NumerosEnteros2(muni, Li, Ls))
+                AggDatosDiccionario();
+
+
+                if (NumerosEnteros(depto, 1, 18))
                 {
-                    if (NumerosEnteros(año, 1900, 2100))
-                    {
 
-                        if (NumerosEnteros(folio, 1, 999999))
+                    bool Est = BuscarDiccionario(depto);
+                    if (NumerosEnteros2(muni, Li, Ls))
+                    {
+                        if (NumerosEnteros(año, 1900, 2100))
                         {
-                            resultado = true;
+
+                            if (NumerosEnteros(folio, 1, 999999))
+                            {
+                                resultado = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                txtRtn.Focus();
+                            }
+
                         }
                         else
                         {
-                            MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtRtn.Focus();
                         }
-
                     }
                     else
                     {
-                        MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        txtRtn.Focus();
+
+                        return false;
                     }
                 }
                 else
                 {
-
+                    MessageBox.Show("1. Los primeros dos numeros del RTN. \n2.Deben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtRtn.Focus();
                     return false;
                 }
-            }
-            else
-            {
-                MessageBox.Show("1. Los primeros dos numeros del RTN. \n2.Deben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtRtn.Focus();
-                return false;
-            }
 
-            return resultado;
+                return resultado;
+            }
+            catch ( Exception ex)
+            {  
+                MessageBox.Show("Error: " + ex.Message.ToString(),"Aviso");
+                return false;
+            } 
         }
 
         /// <summary>
@@ -590,34 +723,43 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-            if (validaciones())
+            try
             {
-                if(validaciones2())
-                {
-                    if(VerificarIdentidad(txtIdentidad.Text))
-                    {
-                       if(VerificarRTN(txtRtn.Text))
+                        if (validaciones())
                         {
-                            guardarDatos();
-                            cliente.editarCliente();
-                            estadoBotones(Visibility.Visible);
-                            limpiar();
-                            cargarTabla();
-                        }
-                       else
-                            MessageBox.Show("Por favor! Verificar su RTN.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                        MessageBox.Show("Por favor! Verificar su numero de identidad.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                else
-                    MessageBox.Show("Por favor! Verificar todos los campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            if(validaciones2())
+                            {
+                                if(VerificarIdentidad(txtIdentidad.Text))
+                                {
+                                   if(VerificarRTN(txtRtn.Text))
+                                    {
+                                        guardarDatos();
+                                        cliente.editarCliente();
+                                        estadoBotones(Visibility.Visible);
+                                        limpiar();
+                                        cargarTabla();
+                                    }
+                                   else
+                                        MessageBox.Show("Por favor! Verificar su RTN.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                }
+                                else
+                                    MessageBox.Show("Por favor! Verificar su numero de identidad.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
+                            else
+                                MessageBox.Show("Por favor! Verificar todos los campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor! Llene todos los campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor! Llene todos los campos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                MessageBox.Show("Error: " + ex.Message.ToString());
             }
+          
         }
 
         /// <summary>
@@ -627,24 +769,30 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (lbClientes.SelectedValue == null)
+            try
             {
-                MessageBox.Show("Seleccione un cliente a eliminar", "Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
+                 if (lbClientes.SelectedValue == null)
+                 {
+                     MessageBox.Show("Seleccione un cliente a eliminar", "Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
+                 }
+                 else
+                 {
+                     if(MessageBox.Show("¿Seguro que quieres eliminar el cliente?","Eliminar cliente",MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                     {
+                         cliente.eliminarCliente(Convert.ToInt32(lbClientes.SelectedValue));
+                         cargarTabla();
+                     }
+                 }
             }
-            else
+            catch (Exception ex)
             {
-                if(MessageBox.Show("¿Seguro que quieres eliminar el cliente?","Eliminar cliente",MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    cliente.eliminarCliente(Convert.ToInt32(lbClientes.SelectedValue));
-                    cargarTabla();
-                }
+
+                MessageBox.Show("Error: " + ex.Message.ToString());
             }
+           
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+    
 
         private void tpFechaNacimiento_KeyDown(object sender, KeyEventArgs e)
         {

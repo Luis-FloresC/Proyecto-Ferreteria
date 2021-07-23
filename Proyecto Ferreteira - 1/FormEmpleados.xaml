@@ -123,15 +123,15 @@
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="Account" x:Name="iconNombre" Width="25" Height="25" Foreground="White"/>
-                    <TextBox Margin="10 0" x:Name="txtApellidoEmpleado" materialDesing:HintAssist.Hint="Apellido del Empleado" 
+                        <TextBox Margin="10 0" x:Name="txtApellidoEmpleado" materialDesing:HintAssist.Hint="Apellido del Empleado" 
                              Foreground="White" Width="280" Text=""
                              KeyDown="ValidacionLetras"
                              FontSize="14" FontFamily="Segoe UI"
                              MaxLength="38"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             SelectionBrush="#FFD94448" TextChanged="txtApellidoEmpleado_TextChanged"/>
-                </StackPanel>
+                             SelectionBrush="#FFD94448" />
+                    </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesing:PackIcon Kind="Phone" Width="25" Height="25" Foreground="White"/>

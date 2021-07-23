@@ -69,7 +69,8 @@ namespace Proyecto_Ferreteira___1
 
                 sqlDataAdapter.Fill(informacionProductos);
                 dgvInventario.ItemsSource = informacionProductos.DefaultView;
-
+                var TotalRows = dgvInventario.Items.Count;
+                txtTotal.Content = "Total: " + TotalRows;
             }
             catch (Exception ex)
             {

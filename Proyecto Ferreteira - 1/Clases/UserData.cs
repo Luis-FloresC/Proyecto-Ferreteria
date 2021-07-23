@@ -81,32 +81,7 @@ namespace Proyecto_Ferreteira___1.Clases
            
         }
 
-        /// <summary>
-        /// Metodo para los reportes
-        /// </summary>
-        /// <param name="fromDate"></param>
-        /// <param name="toDate"></param>
-        /// <returns></returns>
-        public DataTable getSalesOrder(DateTime fromDate, DateTime toDate)
-        {
-            using (var connection = GetConnection())
-            {
-                connection.Open();
-                using (var command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandText = @"ReporteVentas";
-                    command.Parameters.AddWithValue("@FechaDesde", fromDate);
-                    command.Parameters.AddWithValue("@FechaHasta", toDate);
-                    command.CommandType = CommandType.StoredProcedure;
-                    var reader = command.ExecuteReader();
-                    var table = new DataTable();
-                    table.Load(reader);
-                    reader.Dispose();
-                    return table;
-                }
-            }
-        }
+      
 
 
         /// <summary>

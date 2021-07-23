@@ -57,21 +57,36 @@ namespace Proyecto_Ferreteira___1
         /// </summary>
         private void CargarDatosDataGrid()
         {
-            
-            DataTable = Empleados.MostarDataTableEmpleado();
-            DataGridEmpleados.ItemsSource = DataTable.DefaultView;
-            var TotalRows = DataGridEmpleados.Items.Count;
-            txtTotal.Text = "Total: " + TotalRows;
+            try
+            {
+                DataTable = Empleados.MostarDataTableEmpleado();
+                DataGridEmpleados.ItemsSource = DataTable.DefaultView;
+                var TotalRows = DataGridEmpleados.Items.Count;
+                txtTotal.Text = "Total: " + TotalRows;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+         
         }
         /// <summary>
         /// Obtiene el los valores de los cargos Dsiponibles en nuestra base de datos
         /// </summary>
         private void CargarDatosComboBoxCargo()
         {
-            ListaCargos = Empleados.Cargos();
-            cmbCargo.SelectedValuePath = "Id";
-            cmbCargo.DisplayMemberPath = "Cargo";
-            cmbCargo.ItemsSource = ListaCargos;
+            try
+            {
+                ListaCargos = Empleados.Cargos();
+                cmbCargo.SelectedValuePath = "Id";
+                cmbCargo.DisplayMemberPath = "Cargo";
+                cmbCargo.ItemsSource = ListaCargos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+
         }
 
         /// <summary>
@@ -95,28 +110,32 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if(Validaciones())
+            try
             {
+                if (Validaciones())
+                {
 
-                int codigo = (int)cmbCargo.SelectedValue;
-                var Resultado = Empleados.AñadirNuevoEmpleado(
-                                                               txtNombreEmpleado.Text,
-                                                               txtApellidoEmpleado.Text,
-                                                               codigo,
-                                                               txtTelefono.Text,
-                                                               txtEmail.Text,
-                                                               txtDireccion.Text,
-                                                               true,
-                                                               FechaNac.SelectedDate.Value,
-                                                               txtDNI.Text);
+                    int codigo = (int)cmbCargo.SelectedValue;
+                    var Resultado = Empleados.AñadirNuevoEmpleado(
+                                                                   txtNombreEmpleado.Text,
+                                                                   txtApellidoEmpleado.Text,
+                                                                   codigo,
+                                                                   txtTelefono.Text,
+                                                                   txtEmail.Text,
+                                                                   txtDireccion.Text,
+                                                                   true,
+                                                                   FechaNac.SelectedDate.Value,
+                                                                   txtDNI.Text);
 
-                MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                CargarDatosDataGrid();
-                LimpiarCampos();
+                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                    CargarDatosDataGrid();
+                    LimpiarCampos();
+                }
             }
-           
-
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -124,14 +143,21 @@ namespace Proyecto_Ferreteira___1
         /// </summary>
         private void LlenarCampos()
         {
-            txtDNI.Text = Clases.CacheEmpleado.DNI;
-            txtNombreEmpleado.Text = Clases.CacheEmpleado.NombreEmpleado;
-            txtApellidoEmpleado.Text = Clases.CacheEmpleado.ApellidoEmpleado;
-            txtEmail.Text = Clases.CacheEmpleado.Email;
-            txtTelefono.Text = Clases.CacheEmpleado.Telefono;
-            txtDireccion.Text = Clases.CacheEmpleado.Direccion;
-            cmbCargo.Text = Clases.CacheEmpleado.Cargo;
-            FechaNac.SelectedDate = Clases.CacheEmpleado.FechaNacimiento;
+            try
+            {
+                txtDNI.Text = Clases.CacheEmpleado.DNI;
+                txtNombreEmpleado.Text = Clases.CacheEmpleado.NombreEmpleado;
+                txtApellidoEmpleado.Text = Clases.CacheEmpleado.ApellidoEmpleado;
+                txtEmail.Text = Clases.CacheEmpleado.Email;
+                txtTelefono.Text = Clases.CacheEmpleado.Telefono;
+                txtDireccion.Text = Clases.CacheEmpleado.Direccion;
+                cmbCargo.Text = Clases.CacheEmpleado.Cargo;
+                FechaNac.SelectedDate = Clases.CacheEmpleado.FechaNacimiento;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -141,21 +167,27 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void DataGridEmpleados_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DataGridEmpleados.SelectedIndex != -1)
+            try
             {
-                int id = Convert.ToInt32((DataGridEmpleados.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
-                var BuscarEmpleado = Empleados.BuscarEmpleado(id);
+                if (DataGridEmpleados.SelectedIndex != -1)
+                {
+                    int id = Convert.ToInt32((DataGridEmpleados.CurrentItem as DataRowView).Row.ItemArray[0].ToString());
+                    var BuscarEmpleado = Empleados.BuscarEmpleado(id);
 
-                if(!BuscarEmpleado)
-                {
-                    MessageBox.Show("Error");
-                }
-                else
-                {
-                    LlenarCampos();
+                    if(!BuscarEmpleado)
+                    {
+                        MessageBox.Show("Error");
+                    }
+                    else
+                    {
+                        LlenarCampos();
+                    }
                 }
             }
-          
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
         }
 
        
@@ -166,27 +198,32 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
-            if(DataGridEmpleados.SelectedIndex != -1 && Validaciones())
+            try
             {
+                if (DataGridEmpleados.SelectedIndex != -1 && Validaciones())
+                {
 
-                int codigo = (int)cmbCargo.SelectedValue;
-                var Resultado = Empleados.ModificarDatosPersonales(
-                                                               txtNombreEmpleado.Text,
-                                                               txtApellidoEmpleado.Text,
-                                                               txtDNI.Text,
-                                                               txtEmail.Text,
-                                                               txtDireccion.Text,
-                                                               FechaNac.SelectedDate.Value,
-                                                               codigo,
-                                                               txtTelefono.Text
-                                                               );
+                    int codigo = (int)cmbCargo.SelectedValue;
+                    var Resultado = Empleados.ModificarDatosPersonales(
+                                                                   txtNombreEmpleado.Text,
+                                                                   txtApellidoEmpleado.Text,
+                                                                   txtDNI.Text,
+                                                                   txtEmail.Text,
+                                                                   txtDireccion.Text,
+                                                                   FechaNac.SelectedDate.Value,
+                                                                   codigo,
+                                                                   txtTelefono.Text
+                                                                   );
 
-                MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                CargarDatosDataGrid();
-                LimpiarCampos();
+                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                    CargarDatosDataGrid();
+                    LimpiarCampos();
+                }
             }
-            
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -196,20 +233,23 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if(DataGridEmpleados.SelectedIndex != -1 )
+            try
             {
-
-                if((MessageBox.Show("¿Esta Seguro que desea Eliminar el Empleado?","Advertencia",MessageBoxButton.YesNo,MessageBoxImage.Warning) == MessageBoxResult.Yes))
+                if (DataGridEmpleados.SelectedIndex != -1 )
                 {
-                    var Resultado = Empleados.EliminarUsuario(Clases.CacheEmpleado.IdEmpleado);
-                    MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                    CargarDatosDataGrid();
-                    LimpiarCampos();
+                    if((MessageBox.Show("¿Esta Seguro que desea Eliminar el Empleado?","Advertencia",MessageBoxButton.YesNo,MessageBoxImage.Warning) == MessageBoxResult.Yes))
+                    {
+                        var Resultado = Empleados.EliminarUsuario(Clases.CacheEmpleado.IdEmpleado);
+                        MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CargarDatosDataGrid();
+                        LimpiarCampos();
+                    }
                 }
-
-               
             }
-          
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
         }
 
         /// <summary>
@@ -219,18 +259,24 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool CadenaSoloEspacios(string cadena)
         {
-            String source = cadena; //Original text
-
-            if (source.Trim().Length <= 1)
+            try
             {
+                String source = cadena; //Original text
+
+                if (source.Trim().Length <= 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return true;
             }
-            else
-            {
-
-                return false;
-            }
-
         }
 
         /// <summary>
@@ -240,76 +286,127 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private Boolean ValidarEmail(String email)
         {
-            String expresion;
-            expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(email, expresion))
+            try
             {
-                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                String expresion;
+                expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+                if (Regex.IsMatch(email, expresion))
                 {
-                    return true;
+                    if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
                     return false;
                 }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
+
         }
 
 
-
+        /// <summary>
+        /// Metodo para validar solo numeros enteros en un rango determinado
+        /// </summary>
+        /// <param name="valor">numero a verificar</param>
+        /// <param name="li">limite inferior</param>
+        /// <param name="ls">limite superior</param>
+        /// <returns></returns>
         private bool NumerosEnteros(int valor, int li, int ls)
         {
-            if (valor < li || valor > ls)
+            try
             {
+                if (valor < li || valor > ls)
+                {
+                    return false;
+                }
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
-            else
-                return true;
+
         }
 
-
+        /// <summary>
+        /// Metodo para validar solo numeros enteros en un rango determinado
+        /// </summary>
+        /// <param name="valor">numero a verificar</param>
+        /// <param name="li">limite inferior</param>
+        /// <param name="ls">limite superior</param>
+        /// <returns></returns>
         private bool NumerosEnteros2(int valor, int li, int ls)
         {
-            if (valor < li || valor > ls)
+            try
             {
-                MessageBox.Show(string.Concat("Los siguientes dos digitos: ", valor, " del municipio.", "\nSolo se permiten numero del rango: ", li, " y ", ls, "."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (valor < li || valor > ls)
+                {
+                    MessageBox.Show(string.Concat("Los siguientes dos digitos: ", valor, " del municipio.", "\nSolo se permiten numero del rango: ", li, " y ", ls, "."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
-            else
-                return true;
+
         }
 
-
+        /// <summary>
+        /// Diccionario para los municipios de cada departamento
+        /// </summary>
         public Dictionary<int, string> Departamentos = new Dictionary<int, string>();
 
         private void AggDatosDiccionario()
         {
-            Departamentos.Clear();
-            Departamentos.Add(1, "1-8");
-            Departamentos.Add(2, "1-10");
-            Departamentos.Add(3, "1-21");
-            Departamentos.Add(4, "1-23");
-            Departamentos.Add(5, "1-12");
-            Departamentos.Add(6, "1-16");
-            Departamentos.Add(7, "1-19");
-            Departamentos.Add(8, "1-28");
-            Departamentos.Add(9, "1-6");
-            Departamentos.Add(10, "1-17");
-            Departamentos.Add(11, "1-4");
-            Departamentos.Add(12, "1-19");
-            Departamentos.Add(13, "1-28");
-            Departamentos.Add(14, "1-16");
-            Departamentos.Add(15, "1-23");
-            Departamentos.Add(16, "1-28");
-            Departamentos.Add(17, "1-9");
-            Departamentos.Add(18, "1-11");
+            try
+            {
+                Departamentos.Clear();
+                Departamentos.Add(1, "1-8");
+                Departamentos.Add(2, "1-10");
+                Departamentos.Add(3, "1-21");
+                Departamentos.Add(4, "1-23");
+                Departamentos.Add(5, "1-12");
+                Departamentos.Add(6, "1-16");
+                Departamentos.Add(7, "1-19");
+                Departamentos.Add(8, "1-28");
+                Departamentos.Add(9, "1-6");
+                Departamentos.Add(10, "1-17");
+                Departamentos.Add(11, "1-4");
+                Departamentos.Add(12, "1-19");
+                Departamentos.Add(13, "1-28");
+                Departamentos.Add(14, "1-16");
+                Departamentos.Add(15, "1-23");
+                Departamentos.Add(16, "1-28");
+                Departamentos.Add(17, "1-9");
+                Departamentos.Add(18, "1-11");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
 
         }
 
+        /// <summary>
+        /// Variable de limite inferior y limite superior
+        /// </summary>
         private int Li;
         private int Ls;
 
@@ -320,71 +417,90 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool BuscarDiccionario(int x)
         {
-            if (Departamentos.ContainsKey(x))
+            try
             {
-                String source = Departamentos[x]; //Original text
-                String[] result = source.Split(new char[] { '-', '-' });
-                Li = int.Parse(result[0]);
-                Ls = int.Parse(result[1]);
-                return true;
+                if (Departamentos.ContainsKey(x))
+                {
+                    String source = Departamentos[x]; //Original text
+                    String[] result = source.Split(new char[] { '-', '-' });
+                    Li = int.Parse(result[0]);
+                    Ls = int.Parse(result[1]);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
         }
 
         private bool VerificarIdentidad(string cadena)
         {
-            bool resultado = false;
-            int depto = int.Parse(cadena.Substring(0, 2));
-            int muni = int.Parse(cadena.Substring(2, 2));
-            int año = int.Parse(cadena.Substring(4, 4));
-            int folio = int.Parse(cadena.Substring(8, 5));
 
-            AggDatosDiccionario();
-
-
-            if (NumerosEnteros(depto, 1, 18))
+            try
             {
+                bool resultado = false;
+                int depto = int.Parse(cadena.Substring(0, 2));
+                int muni = int.Parse(cadena.Substring(2, 2));
+                int año = int.Parse(cadena.Substring(4, 4));
+                int folio = int.Parse(cadena.Substring(8, 5));
 
-                bool Est = BuscarDiccionario(depto);
-                if (NumerosEnteros2(muni, Li, Ls))
+                AggDatosDiccionario();
+
+
+                if (NumerosEnteros(depto, 1, 18))
                 {
-                    if (NumerosEnteros(año, 1900, 2100))
+
+                    bool Est = BuscarDiccionario(depto);
+                    if (NumerosEnteros2(muni, Li, Ls))
                     {
-                        if(NumerosEnteros(folio,1,99999))
+                        if (NumerosEnteros(año, 1900, 2100))
                         {
-                            resultado = true;
+                            if(NumerosEnteros(folio,1,99999))
+                            {
+                                resultado = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("el folio debe tener un rango del 00001- 99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                txtDNI.Focus();
+                            }
+                        
+
                         }
                         else
                         {
-                            MessageBox.Show("el folio debe tener un rango del 00001- 99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtDNI.Focus();
                         }
-                        
-
                     }
                     else
                     {
-                        MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        txtDNI.Focus();
+
+                        return false;
                     }
                 }
                 else
                 {
-
+                    MessageBox.Show("1.Los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtDNI.Focus();
                     return false;
                 }
+
+                return resultado;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("1.Los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtDNI.Focus();
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
 
-            return resultado;
+          
         }
 
         /// <summary>
@@ -393,17 +509,23 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool DiferenciaEdad()
         {
-
-            var timeSpan = DateTime.Now - FechaNac.DisplayDate;
-            int Edad = new DateTime(timeSpan.Ticks).Year - 1;
-
-            if (Edad < 18)
+            try
             {
-                return true;
-            }
-            else
-                return false;
+                var timeSpan = DateTime.Now - FechaNac.DisplayDate;
+                int Edad = new DateTime(timeSpan.Ticks).Year - 1;
 
+                if (Edad < 18)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+                return false;
+            }
         }
 
         /// <summary>
@@ -412,70 +534,87 @@ namespace Proyecto_Ferreteira___1
         /// <returns></returns>
         private bool Validaciones()
         {
-            bool datosCorrectos = true;
-           
-            if( CadenaSoloEspacios(txtDNI.Text) || CadenaSoloEspacios(txtNombreEmpleado.Text) ||
-                CadenaSoloEspacios(txtApellidoEmpleado.Text) || CadenaSoloEspacios(txtEmail.Text) ||
-                CadenaSoloEspacios(txtTelefono.Text) || CadenaSoloEspacios(txtDireccion.Text) ||
-                (cmbCargo.SelectedValue == null) || (FechaNac.SelectedDate == null) )
+            try
             {
+                bool datosCorrectos = true;
+                bool telefonoCheck = int.TryParse(txtTelefono.Text, out int Numero);
+                if( CadenaSoloEspacios(txtDNI.Text) || CadenaSoloEspacios(txtNombreEmpleado.Text) ||
+                    CadenaSoloEspacios(txtApellidoEmpleado.Text) || CadenaSoloEspacios(txtEmail.Text) ||
+                    CadenaSoloEspacios(txtTelefono.Text) || CadenaSoloEspacios(txtDireccion.Text) ||
+                    (cmbCargo.SelectedValue == null) || (FechaNac.SelectedDate == null) )
+                {
                
-                MessageBox.Show("Todos los Campos son Obligatorio","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
-                datosCorrectos = false;
+                    MessageBox.Show("Todos los Campos son Obligatorio","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    datosCorrectos = false;
 
-            }
+                }
             
-            if(!VerificarIdentidad(txtDNI.Text))
-            {
-                MessageBox.Show("Verificar su Identidad", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtDNI.Focus();
-                return false;
-            }
-
-            if(CadenaSoloEspacios(txtNombreEmpleado.Text) || CadenaSoloEspacios(txtApellidoEmpleado.Text))
-            {
-                MessageBox.Show("El Nombre o Apellido deben tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                if(CadenaSoloEspacios(txtNombreEmpleado.Text))
+                if(!VerificarIdentidad(txtDNI.Text))
                 {
-                    txtNombreEmpleado.Focus();
+                    MessageBox.Show("Verificar su Identidad", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtDNI.Focus();
+                    return false;
                 }
-                else
+
+                if(CadenaSoloEspacios(txtNombreEmpleado.Text) || CadenaSoloEspacios(txtApellidoEmpleado.Text))
                 {
-                    txtApellidoEmpleado.Focus();
+                    MessageBox.Show("El Nombre o Apellido deben tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    if(CadenaSoloEspacios(txtNombreEmpleado.Text))
+                    {
+                        txtNombreEmpleado.Focus();
+                    }
+                    else
+                    {
+                        txtApellidoEmpleado.Focus();
+                    }
+                    return false;
                 }
+
+                if (txtDNI.Text.Length <=  12 )
+                {
+                    MessageBox.Show("La Identidad tiene que tener entre 13 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtDNI.Focus();
+                    return false;   
+                }
+
+                if(DiferenciaEdad())
+                {
+                    MessageBox.Show("1. Debe ser mayor de Edad\n" +
+                                    "2. Ingrese una Fecha valida", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    FechaNac.Focus();
+                    return false;
+                }
+
+                if (txtTelefono.Text.Length <= 7)
+                {
+                    MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtTelefono.Focus();
+                    return false;
+
+                }
+
+                if (!telefonoCheck)
+                {
+                    MessageBox.Show("Ingrese un numero de telefono valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtTelefono.Focus();
+                    return false;
+
+                }
+
+                if (!ValidarEmail(txtEmail.Text))
+                {
+                    MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtEmail.Focus();
+                    return false;
+                }
+                return datosCorrectos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
-
-            if (txtDNI.Text.Length <=  12 )
-            {
-                MessageBox.Show("La Identidad tiene que tener entre 13 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtDNI.Focus();
-                return false;   
-            }
-
-            if(DiferenciaEdad())
-            {
-                MessageBox.Show("1. Debe ser mayor de Edad\n" +
-                                "2. Ingrese una Fecha valida", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                FechaNac.Focus();
-                return false;
-            }
-
-            if (txtTelefono.Text.Length <= 7)
-            {
-                MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtTelefono.Focus();
-                return false;
-
-            }
-
-            if(!ValidarEmail(txtEmail.Text))
-            {
-                MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtEmail.Focus();
-                return false;
-            }
-            return datosCorrectos;
+          
 
         }
 
@@ -511,10 +650,18 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DataTable = Empleados.BuscarDataTableEmpleado(txtBuscar.Text);
-            DataGridEmpleados.ItemsSource = DataTable.DefaultView;
-            var TotalRows = DataGridEmpleados.Items.Count;
-            txtTotal.Text = "Total: " + TotalRows;
+            try
+            {
+                DataTable = Empleados.BuscarDataTableEmpleado(txtBuscar.Text);
+                DataGridEmpleados.ItemsSource = DataTable.DefaultView;
+                var TotalRows = DataGridEmpleados.Items.Count;
+                txtTotal.Text = "Total: " + TotalRows;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+            }
+
         }
 
         
@@ -555,10 +702,7 @@ namespace Proyecto_Ferreteira___1
             }
         }
 
-        private void txtApellidoEmpleado_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+    
 
         private void FechaNac_KeyDown(object sender, KeyEventArgs e)
         {

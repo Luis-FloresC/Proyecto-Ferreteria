@@ -97,6 +97,10 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Margin="20 0" FontSize="17" Content="Total" Name="txtTotal" FontFamily="Segoe UI" Foreground="White"/>
+                        
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" >
                         <Button Name="btnInsertar" 
                                 Content="Insertar" 

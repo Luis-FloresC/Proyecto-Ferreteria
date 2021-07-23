@@ -12,12 +12,16 @@ Descargar la Rama de Master y Ejecutar en Visual Estudio 2019
 Tener el Gestor de Base de Datos SQL Server Management Studio Express
 Restaurar el Backup de la base de Datos que se encuentra en la Carpeta DataBase/Ferreteria.Bak
 
+despues de ejecutar el backup puede probar iniciando sesion con los datos siguiente:
+* usuario: Luis
+* contraseña: luis1234
+
 si presenta un problema al momento de restaurar el backup por favor ejecute los siguientes archivos
 * DataBase/QueryFerreteria.sql
 * DataBase/Stored Procedures.sql
 
-despues puede probar iniciando sesion con los datos siguiente:
-* usuario: Luis
+despues de ejecutar las dos scripts puede probar iniciando sesion con los datos siguiente:
+* usuario: Admin
 * contraseña: 12345678
 
 Nota:

@@ -204,7 +204,15 @@ namespace Proyecto_Ferreteira___1
                 }
                 else
                 {
-                    MessageBox.Show("Llene todos los campos antes de realizar la venta.","Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
+                    if (Properties.Settings.Default.PagoCorrecto == false)
+                    {
+                        MessageBox.Show("Realizar el pago antes de facturar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else if(txtIdCliente.Text.Equals("") || cbTipoPago.SelectedIndex == -1 || dgDetalleVenta.Items.Count <= 0)
+                    {
+                        MessageBox.Show("Llene todos los campos antes de realizar la venta.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                  
                 }
             }
             catch(Exception)

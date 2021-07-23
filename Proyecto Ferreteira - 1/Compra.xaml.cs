@@ -237,7 +237,6 @@ namespace Proyecto_Ferreteira___1
             txtPrecio.Text = String.Empty;
             txtSubtotal.Text = String.Empty;
             txtTotal.Text = String.Empty;
-            txtFlete.Focus();
         }
         /// <summary>
         /// Hace la validacíon de la entrada de datos
@@ -343,6 +342,7 @@ namespace Proyecto_Ferreteira___1
             IngresarCambio();
             btnRealizarCompra.IsEnabled = true;
             btnRealizarPago.IsEnabled = false;
+            btnAgregarPedido.IsEnabled = false;
 
            
         }
