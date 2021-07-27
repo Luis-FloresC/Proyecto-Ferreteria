@@ -1,0 +1,65 @@
+﻿<Window x:Class="Proyecto_Ferreteira___1.FrmEnvio"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Title="FrmEnvio" Height="316.557" Width="672.049" Background="#242222" >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Envíos" 
+               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="11" 
+               HorizontalAlignment="Center" FontSize="30" Foreground="White" />
+
+        <Label Content="Teléfono" Grid.Row="1" Grid.Column="0" 
+               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,29.2,0,29.4" FontSize="17" Foreground="White"/>
+
+        <TextBox Margin="90,13.2,10.2,29.4" x:Name="txtTelefono"  materialDesign:HintAssist.Hint="Teléfono del Cliente"
+                             Foreground="White" 
+                             Text=""
+                             Grid.Row="1" Grid.Column="0"
+                             FontSize="17" FontFamily="Segoe UI"    
+                             IsReadOnly="True"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448"/>
+
+        <Label Content="Direccion" Grid.Row="2" Grid.Column="0" 
+               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,29.6,0,30" FontSize="17" Foreground="White"/>
+
+        <TextBox Margin="90,13.6,237.6,29" x:Name="txtDireccion"  materialDesign:HintAssist.Hint="Dirección del Cliente"
+                             Foreground="White" 
+                             Text=""
+                             Grid.Row="2" Grid.Column="0"
+                             FontSize="17" FontFamily="Segoe UI"    
+                             IsReadOnly="True"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448" Grid.ColumnSpan="2"/>
+        <Button Name="btnCancelar" 
+                FontFamily="Segoe UI" FontSize="17" 
+                Content="Cancelar" Grid.Column="1" HorizontalAlignment="Left" Margin="154.2,23.6,0,0" 
+                Grid.Row="2" VerticalAlignment="Top" Width="96" Height="42" Click="btnCancelar_Click"/>
+
+
+        <Button Name="btnAceptar" FontFamily="Segoe UI" 
+                FontSize="17" Content="Aceptar" Grid.Column="1" 
+                HorizontalAlignment="Left" Margin="154.2,24.2,0,0" Grid.Row="1" 
+                VerticalAlignment="Top" Width="96" Height="42" Click="btnFactura_Click"/>
+
+
+
+
+    </Grid>
+</Window>

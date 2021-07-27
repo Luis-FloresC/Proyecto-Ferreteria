@@ -260,6 +260,9 @@
     <Compile Include="FormReportes.xaml.cs">
       <DependentUpon>FormReportes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmEnvio.xaml.cs">
+      <DependentUpon>FrmEnvio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="VentanaModal.xaml.cs">
       <DependentUpon>VentanaModal.xaml</DependentUpon>
@@ -280,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Compra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmEnvio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
