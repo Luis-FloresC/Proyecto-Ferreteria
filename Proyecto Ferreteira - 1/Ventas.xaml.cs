@@ -200,6 +200,12 @@ namespace Proyecto_Ferreteira___1
                     Properties.Settings.Default.PagoCorrecto = false;
                     FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
                     ventas.Show();
+                    if (MessageBox.Show("¿Necesita serevicio adomicilio?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        FrmEnvio Envio = new FrmEnvio();
+                        Envio.Show();
+                    }
+
                     limpiar();
                 }
                 else

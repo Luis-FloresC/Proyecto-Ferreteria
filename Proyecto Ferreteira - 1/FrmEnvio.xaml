@@ -25,7 +25,7 @@
         <Label Content="Teléfono" Grid.Row="1" Grid.Column="0" 
                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,29.2,0,29.4" FontSize="17" Foreground="White"/>
 
-        <TextBox Margin="90,13.2,10.2,29.4" x:Name="txtTelefono"  materialDesign:HintAssist.Hint="Teléfono del Cliente"
+        <TextBox Margin="90,13.2,10.2,29.4" x:Name="txtTelefono" MaxLength = "8" materialDesign:HintAssist.Hint="Teléfono del Cliente"
                              Foreground="White" 
                              Text=""
                              Grid.Row="1" Grid.Column="0"
@@ -38,7 +38,7 @@
         <Label Content="Direccion" Grid.Row="2" Grid.Column="0" 
                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,29.6,0,30" FontSize="17" Foreground="White"/>
 
-        <TextBox Margin="90,13.6,237.6,29" x:Name="txtDireccion"  materialDesign:HintAssist.Hint="Dirección del Cliente"
+        <TextBox Margin="90,13.6,237.6,29" x:Name="txtDireccion" MaxLength = "100"  materialDesign:HintAssist.Hint="Dirección del Cliente"
                              Foreground="White" 
                              Text=""
                              Grid.Row="2" Grid.Column="0"
@@ -56,7 +56,7 @@
         <Button Name="btnAceptar" FontFamily="Segoe UI" 
                 FontSize="17" Content="Aceptar" Grid.Column="1" 
                 HorizontalAlignment="Left" Margin="154.2,24.2,0,0" Grid.Row="1" 
-                VerticalAlignment="Top" Width="96" Height="42" Click="btnFactura_Click"/>
+                VerticalAlignment="Top" Width="96" Height="42" Click="btnAceptar_Click"/>
 
 
 

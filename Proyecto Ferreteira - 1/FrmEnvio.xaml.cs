@@ -23,5 +23,63 @@ namespace Proyecto_Ferreteira___1
         {
             InitializeComponent();
         }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (CadenaSoloEspacios(txtTelefono.Text) || CadenaSoloEspacios(txtDireccion.Text))
+                {
+                    //ERROR
+                }
+                else
+                { 
+                  //guardar
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Metodo para validar si la cadena de texto solo contiene espacios
+        /// </summary>
+        /// <param name="cadena"></param>
+        /// <returns></returns>
+        private bool CadenaSoloEspacios(string cadena)
+        {
+
+            try
+            {
+                String source = cadena; //Original text
+
+                if (source.Trim().Length <= 1)
+                {
+
+
+                    return true;
+                }
+                else
+                {
+
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString());
+                return false;
+            }
+
+        }
+
     }
 }
