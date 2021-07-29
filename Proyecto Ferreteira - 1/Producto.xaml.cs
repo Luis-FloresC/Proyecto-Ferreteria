@@ -173,7 +173,7 @@ namespace Proyecto_Ferreteira___1
                         MessageBox.Show("El nombre no puede ser menor o igual a un caracter", "Advertencia",
                             MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-                    else if (precio2 == 0)
+                    else if (precio2 == 0)  
                     {
                         MessageBox.Show("El precio no puede ser 0", "Advertencia",
                             MessageBoxButton.OK, MessageBoxImage.Warning);

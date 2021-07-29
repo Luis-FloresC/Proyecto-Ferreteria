@@ -142,7 +142,7 @@ namespace Proyecto_Ferreteira___1
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                
             }
@@ -195,18 +195,20 @@ namespace Proyecto_Ferreteira___1
                         venta.agregarDetalle();
                     }
 
-                    MessageBox.Show("Factura realizada con exito", "Aviso",MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
-                    Properties.Settings.Default.PagoCorrecto = false;
-                    FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
-                    ventas.Show();
-                    if (MessageBox.Show("¿Necesita serevicio adomicilio?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("¿Necesita servicio adomicilio?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         FrmEnvio Envio = new FrmEnvio();
                         Envio.Show();
                     }
-
-                    limpiar();
+                    else
+                    {
+                        MessageBox.Show("Factura realizada con exito", "Aviso", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
+                        Properties.Settings.Default.PagoCorrecto = false;
+                        FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
+                        ventas.Show();
+                        limpiar();
+                    }
                 }
                 else
                 {

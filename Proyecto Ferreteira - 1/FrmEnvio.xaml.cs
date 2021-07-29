@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -33,53 +22,57 @@ namespace Proyecto_Ferreteira___1
         {
             try
             {
+                string direccion2 = txtDireccion.Text;
                 if (CadenaSoloEspacios(txtTelefono.Text) || CadenaSoloEspacios(txtDireccion.Text))
                 {
-                    //ERROR
+                    MessageBox.Show("No se puede ingresar el nombre de un producto con espacios",
+                           "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (direccion2.Length <= 1)
+                {
+                    MessageBox.Show("La dirección no puede ser menor o igual a un caracter", "Advertencia",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
-                { 
-                  //guardar
+                {
+                    int telefono = Convert.ToInt32(txtTelefono.Text);
+                    string direccion = txtDireccion.Text;
                 }
             }
             catch (Exception)
             {
-
-                throw;
+                MessageBox.Show("Por favor verifique que esta ingresando los valores correctos en los campos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+    }
 
-        /// <summary>
-        /// Metodo para validar si la cadena de texto solo contiene espacios
-        /// </summary>
-        /// <param name="cadena"></param>
-        /// <returns></returns>
-        private bool CadenaSoloEspacios(string cadena)
+    /// <summary>
+    /// Metodo para validar si la cadena de texto solo contiene espacios
+    /// </summary>
+    /// <param name="cadena"></param>
+    /// <returns></returns>
+    private bool CadenaSoloEspacios(string cadena)
+    {
+
+        try
         {
+            String source = cadena; //Original text
 
-            try
+            if (source.Trim().Length <= 1)
             {
-                String source = cadena; //Original text
-
-                if (source.Trim().Length <= 1)
-                {
-
-
-                    return true;
-                }
-                else
-                {
-
-                    return false;
-                }
+                return true;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
                 return false;
             }
-
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error: " + ex.Message.ToString());
+            return false;
         }
 
     }
+
 }

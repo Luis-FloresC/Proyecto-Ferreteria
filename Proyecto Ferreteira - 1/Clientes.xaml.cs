@@ -268,7 +268,7 @@ namespace Proyecto_Ferreteira___1
                     lbClientes.ItemsSource = tablaCliente.DefaultView;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Error en la base de datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
