@@ -67,7 +67,7 @@ namespace Proyecto_Ferreteira___1
         {
             try
             {
-                FormFacturasVentas ventas = new FormFacturasVentas(CodigoVenta, CodigoCliente);
+                
                 string direccion = txtDireccion.Text;
                 string telefono = txtDireccion.Text;
 
@@ -86,7 +86,7 @@ namespace Proyecto_Ferreteira___1
                     envio.envio(txtTelefono.Text,txtDireccion.Text);
                     MessageBox.Show("El envio se registro correctamente", "Aviso",
                        MessageBoxButton.OK, MessageBoxImage.Information);
-                    MessageBox.Show(CodigoVenta.ToString() + CodigoCliente);
+                    FormFacturasVentas ventas = new FormFacturasVentas(CodigoVenta, CodigoCliente);
                     ventas.Show();
                     this.Close();
 

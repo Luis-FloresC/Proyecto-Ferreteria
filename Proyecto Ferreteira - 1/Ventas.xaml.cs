@@ -202,18 +202,19 @@ namespace Proyecto_Ferreteira___1
                     MessageBox.Show("Factura realizada con exito", "Aviso", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
                     Properties.Settings.Default.PagoCorrecto = false;
-                    FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
+                   
 
 
                     if (MessageBox.Show("¿Necesita servicio adomicilio?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         FrmEnvio Envio = new FrmEnvio(venta.CodigoVenta(), venta.CodigoCliente);
-                        MessageBox.Show(venta.CodigoVenta().ToString() + venta.CodigoCliente.ToString());
                         Envio.Show();
                     }
                     else
                     {
+                        FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
                         ventas.Show();
+                        limpiar();
                     }
 
 
