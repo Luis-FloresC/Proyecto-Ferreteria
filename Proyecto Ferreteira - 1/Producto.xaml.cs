@@ -243,24 +243,44 @@ namespace Proyecto_Ferreteira___1
                 }
             }
         }
-
+        /// <summary>
+        /// Validación de para que solo se acepten caracteres numericos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        /// <summary>
+        /// Validación de para que solo se acepten caracteres numericos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberValidationTextBox2(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9.]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        /// <summary>
+        /// Validación de para que solo se acepten caracteres del alfabeto.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextValidation(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^a-zA-Z]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        /// <summary>
+        /// Cadena para validar si solo son espacios
+        /// </summary>
+        /// <param name="cadena"></param>
+        /// <returns></returns>
         private bool CadenaSoloEspacios(string cadena)
         {
             String source = txtNombreProducto.Text; //Original text
