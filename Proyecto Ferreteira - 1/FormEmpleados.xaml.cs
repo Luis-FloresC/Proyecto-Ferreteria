@@ -40,6 +40,9 @@ namespace Proyecto_Ferreteira___1
         /// </summary>
         private DataTable DataTable;
 
+        /// <summary>
+        /// Esta función se encarga de cargar los datos de los cargos en el combobox y mostrar datos en el data grid
+        /// </summary>
         public FormEmpleados()
         {
             InitializeComponent();
@@ -438,7 +441,11 @@ namespace Proyecto_Ferreteira___1
                 return false;
             }
         }
-
+        /// <summary>
+        /// Esta funcion hace la respectiva verificacion o validacion de la identidad
+        /// </summary>
+        /// <param name="cadena">Tiene la cadena de texto la cual trae la identidad</param>
+        /// <returns></returns>
         private bool VerificarIdentidad(string cadena)
         {
 
@@ -703,7 +710,11 @@ namespace Proyecto_Ferreteira___1
         }
 
     
-
+        /// <summary>
+        /// Funcion para fecha de nacimiento activarla o desactivarla
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FechaNac_KeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true;

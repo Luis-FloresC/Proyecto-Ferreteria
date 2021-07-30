@@ -83,7 +83,10 @@ namespace Proyecto_Ferreteira___1.Clases
             }
         }
 
-
+        /// <summary>
+        /// Esta función lo que hace es obtener el ultimo codigo de la venta 
+        /// </summary>
+        /// <returns></returns>
         public int CodigoVenta()
         {
             var connection = GetConnection();
