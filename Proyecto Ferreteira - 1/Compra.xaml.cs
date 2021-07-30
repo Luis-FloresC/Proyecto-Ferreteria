@@ -28,8 +28,6 @@ namespace Proyecto_Ferreteira___1
             MostrarProductos();
             calculos();
             btnRealizarCompra.IsEnabled=false;
-            //Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
-            //this.DataContext = Calculo;
 
         }
         private List<Clases.Compras> Carrito = new List<Clases.Compras>();
@@ -109,7 +107,9 @@ namespace Proyecto_Ferreteira___1
         }
 
       
-
+        /// <summary>
+        /// Es la encargada de ingresar un cambio
+        /// </summary>
       private void IngresarCambio()
         {
             VentanaModal ventanaModal = new VentanaModal("Compra", double.Parse(txtTotal.Text));
@@ -179,7 +179,12 @@ namespace Proyecto_Ferreteira___1
           
         }
 
-
+        /// <summary>
+        /// se encarga de hacer el cambio
+        /// </summary>
+        /// <param name="cambio">Trae el parametro de cambio</param>
+        /// <param name="monto">Trae el parmetro de monto</param>
+        /// <param name="Resp">Trae el parametro de respuesta</param>
         private void Cambio_pasar(double cambio, double monto,bool Resp)
         {
             if(!Resp)
@@ -253,7 +258,9 @@ namespace Proyecto_Ferreteira___1
             return resultado;
         }
 
-
+        /// <summary>
+        /// Funcion encargada de calcular el detalle de la compra
+        /// </summary>
         public void CalcularDetalle()
         {
             try
@@ -278,24 +285,42 @@ namespace Proyecto_Ferreteira___1
 
         }
 
-
+        /// <summary>
+        /// restablecer los valores a  0
+        /// </summary>
         private void calculos()
         {
             Calculo = new Clases.Calculos { Precio = "0", Cantidad = "0", Flete = "0" };
             this.DataContext = Calculo;
         }
 
+        /// <summary>
+        /// Validar el textbox para que solo acepte datos numericos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        /// <summary>
+        /// Validar el textbox para que solo acepte datos numericos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberValidationTextBox2(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9.]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        /// <summary>
+        /// Obtener el precio de dicho producto cuando cambie de producto en el combobox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Clases.UserData data = new Clases.UserData();
@@ -305,6 +330,11 @@ namespace Proyecto_Ferreteira___1
 
         }
 
+        /// <summary>
+        /// Restablece el flete a vacio
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtFlete_MouseEnter(object sender, MouseEventArgs e)
         {
             if(txtFlete.Text == "0")
@@ -336,7 +366,11 @@ namespace Proyecto_Ferreteira___1
                 txtCantidad.Text = "0";
             }
         }
-
+        /// <summary>
+        /// Realizo el pago de la compra
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRealizarPago_Click(object sender, RoutedEventArgs e)
         {
             IngresarCambio();
