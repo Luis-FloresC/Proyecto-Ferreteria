@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -9,7 +15,7 @@ namespace Proyecto_Ferreteira___1
     /// </summary>
     /// 
 
-    
+
     public partial class FrmEnvio : Window
     {
         public int CodigoCliente;
@@ -28,6 +34,8 @@ namespace Proyecto_Ferreteira___1
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            FormFacturasVentas ventas = new FormFacturasVentas(CodigoVenta, CodigoCliente);
+            ventas.Show();
         }
 
         Clases.clsEnvio envio = new Clases.clsEnvio();
@@ -60,38 +68,54 @@ namespace Proyecto_Ferreteira___1
             }
 
         }
+        /// <summary>
+        /// Validación para que solamente se acepten campos numéricos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NumberValidationTextBox1(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
 
-
-
+        /// <summary>
+        /// Insertar los datos solicitados en la BDD
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                
-                string direccion = txtDireccion.Text;
-                string telefono = txtDireccion.Text;
-
-                if (CadenaSoloEspacios(direccion) || CadenaSoloEspacios(telefono))
+                if (txtDireccion.Text == String.Empty || txtTelefono.Text == String.Empty)
                 {
-                    MessageBox.Show("No se puede ingresar el nombre de un producto con espacios",
-                           "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                else if (direccion.Length <= 1)
-                {
-                    MessageBox.Show("La dirección no puede ser menor o igual a un caracter", "Advertencia",
-                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("¡Por favor, llenar todos los campos solicitados!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    envio.envio(txtTelefono.Text,txtDireccion.Text);
-                    MessageBox.Show("El envio se registro correctamente", "Aviso",
-                       MessageBoxButton.OK, MessageBoxImage.Information);
-                    FormFacturasVentas ventas = new FormFacturasVentas(CodigoVenta, CodigoCliente);
-                    ventas.Show();
-                    this.Close();
+                    string direccion = txtDireccion.Text;
+                    string telefono = txtDireccion.Text;
 
-                    
-
+                    if (direccion.Length <= 1)
+                    {
+                        MessageBox.Show("La dirección no puede ser menor o igual a un caracter", "Advertencia",
+                            MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                   else if (CadenaSoloEspacios(direccion) || CadenaSoloEspacios(telefono))
+                    {
+                        MessageBox.Show("No se pueden ingresar solo espacios",
+                               "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        envio.envio(txtTelefono.Text, txtDireccion.Text);
+                        MessageBox.Show("El envio se registro correctamente", "Aviso",
+                           MessageBoxButton.OK, MessageBoxImage.Information);
+                        FormFacturasVentas ventas = new FormFacturasVentas(CodigoVenta, CodigoCliente);
+                        ventas.Show();
+                        this.Close();
+                    }
                 }
             }
             catch (Exception)
@@ -99,7 +123,6 @@ namespace Proyecto_Ferreteira___1
                 MessageBox.Show("Por favor verifique que esta ingresando los valores correctos en los campos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
     }
-
-
 }

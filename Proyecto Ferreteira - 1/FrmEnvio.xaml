@@ -34,8 +34,9 @@
                              Foreground="White" 
                              Text=""
                              Grid.Row="1" Grid.Column="2"
-                             FontSize="17" FontFamily="Segoe UI"    
-                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             FontSize="17" FontFamily="Segoe UI"   
+                             PreviewTextInput="NumberValidationTextBox1"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" Grid.ColumnSpan="2"/>
 
