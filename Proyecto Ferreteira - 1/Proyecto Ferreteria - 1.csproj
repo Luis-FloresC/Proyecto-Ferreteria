@@ -179,6 +179,7 @@
       <DependentUpon>BuscarProducto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clases\ClsCliente.cs" />
+    <Compile Include="Clases\clsEnvio.cs" />
     <Compile Include="Clases\ClsProducto.cs" />
     <Compile Include="Clases\ClsVenta.cs" />
     <Compile Include="FerreteriaDataSet.Designer.cs">

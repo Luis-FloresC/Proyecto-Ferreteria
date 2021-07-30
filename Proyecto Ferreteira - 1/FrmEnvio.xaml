@@ -6,16 +6,17 @@
              xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             Title="FrmEnvio" Height="316.557" Width="672.049" Background="#242222">
+             Title="FrmEnvio" Height="316.557" Width="672.049" Background="#242222" WindowStartupLocation="CenterScreen" >
 
-    <Grid>
+    <Grid Margin="0,0,3.6,0.2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="17*" />
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="175*"/>
             <ColumnDefinition Width="131*"/>
-            <ColumnDefinition Width="287*" />
+            <ColumnDefinition Width="288*" />
             <ColumnDefinition Width="45*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -24,30 +25,28 @@
         </Grid.RowDefinitions>
         <Label Content="Envíos" 
                Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" 
-               HorizontalAlignment="Center" FontSize="30" Foreground="White" Margin="85,0,223,0" Width="110" />
+               HorizontalAlignment="Center" FontSize="30" Foreground="White" Margin="85.2,0,224,0" Width="110" />
 
         <Label Content="Teléfono" Grid.Row="1" Grid.Column="0" 
                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,33,0,33" FontSize="17" Foreground="White" Grid.ColumnSpan="3"/>
 
-        <TextBox Margin="64,13,10,29" x:Name="txtTelefono" MaxLength = "8" materialDesign:HintAssist.Hint="Teléfono del Cliente"
+        <TextBox Margin="64.4,13,9,29" x:Name="txtTelefono" MaxLength = "8" materialDesign:HintAssist.Hint="Teléfono del Cliente"
                              Foreground="White" 
                              Text=""
                              Grid.Row="1" Grid.Column="2"
                              FontSize="17" FontFamily="Segoe UI"    
-                             IsReadOnly="True"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" Grid.ColumnSpan="2"/>
 
         <Label Content="Dirección" Grid.Row="2" Grid.Column="0" 
-               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,32,0,32" FontSize="17" Foreground="White" Grid.ColumnSpan="3"/>
+               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,32,0,32.2" FontSize="17" Foreground="White" Grid.ColumnSpan="3"/>
 
-        <TextBox Margin="64,14,192,28" x:Name="txtDireccion" MaxLength = "100"  materialDesign:HintAssist.Hint="Dirección del Cliente"
+        <TextBox Margin="64.4,14,191,27.2" x:Name="txtDireccion" MaxLength = "100"  materialDesign:HintAssist.Hint="Dirección del Cliente"
                              Foreground="White" 
                              Text=""
                              Grid.Row="2" Grid.Column="2"
                              FontSize="17" FontFamily="Segoe UI"    
-                             IsReadOnly="True"
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448" Grid.ColumnSpan="3"/>

@@ -114,8 +114,12 @@ namespace Proyecto_Ferreteira___1
                 {
                     MessageBox.Show("La existencia de este producto es insuficiente", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-                else
+                else if (cbTipoPago.SelectedItem == null)
                 {
+                    MessageBox.Show("Seleccione un tipo de pago", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                { 
                     if (productos.Count == 0)
                     {
                         AggAlCarrito();
@@ -195,20 +199,24 @@ namespace Proyecto_Ferreteira___1
                         venta.agregarDetalle();
                     }
 
+                    MessageBox.Show("Factura realizada con exito", "Aviso", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
+                    Properties.Settings.Default.PagoCorrecto = false;
+                    FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
+
+
                     if (MessageBox.Show("¿Necesita servicio adomicilio?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        FrmEnvio Envio = new FrmEnvio();
+                        FrmEnvio Envio = new FrmEnvio(venta.CodigoVenta(), venta.CodigoCliente);
+                        MessageBox.Show(venta.CodigoVenta().ToString() + venta.CodigoCliente.ToString());
                         Envio.Show();
                     }
                     else
                     {
-                        MessageBox.Show("Factura realizada con exito", "Aviso", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                        MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
-                        Properties.Settings.Default.PagoCorrecto = false;
-                        FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
                         ventas.Show();
-                        limpiar();
                     }
+
+
                 }
                 else
                 {

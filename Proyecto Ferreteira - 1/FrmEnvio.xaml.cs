@@ -3,14 +3,26 @@ using System.Windows;
 
 namespace Proyecto_Ferreteira___1
 {
+
     /// <summary>
     /// Lógica de interacción para FrmEnvio.xaml
     /// </summary>
+    /// 
+
+    
     public partial class FrmEnvio : Window
     {
+        public int CodigoCliente;
+        public int CodigoVenta;
         public FrmEnvio()
         {
             InitializeComponent();
+        }
+        public FrmEnvio(int codigoVenta, int codigoCliente)
+        {
+            InitializeComponent();
+            CodigoCliente = codigoCliente;
+            CodigoVenta = codigoVenta;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -18,7 +30,7 @@ namespace Proyecto_Ferreteira___1
             this.Close();
         }
 
-
+        Clases.clsEnvio envio = new Clases.clsEnvio();
 
         /// <summary>
         /// Metodo para validar si la cadena de texto solo contiene espacios
@@ -55,23 +67,31 @@ namespace Proyecto_Ferreteira___1
         {
             try
             {
+                FormFacturasVentas ventas = new FormFacturasVentas(CodigoVenta, CodigoCliente);
                 string direccion = txtDireccion.Text;
                 string telefono = txtDireccion.Text;
 
-                string direccion2 = txtDireccion.Text;
                 if (CadenaSoloEspacios(direccion) || CadenaSoloEspacios(telefono))
                 {
                     MessageBox.Show("No se puede ingresar el nombre de un producto con espacios",
                            "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-                else if (direccion2.Length <= 1)
+                else if (direccion.Length <= 1)
                 {
                     MessageBox.Show("La dirección no puede ser menor o igual a un caracter", "Advertencia",
                         MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
-                   
+                    envio.envio(txtTelefono.Text,txtDireccion.Text);
+                    MessageBox.Show("El envio se registro correctamente", "Aviso",
+                       MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(CodigoVenta.ToString() + CodigoCliente);
+                    ventas.Show();
+                    this.Close();
+
+                    
+
                 }
             }
             catch (Exception)
