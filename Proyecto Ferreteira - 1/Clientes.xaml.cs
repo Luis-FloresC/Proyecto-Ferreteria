@@ -527,14 +527,14 @@ namespace Proyecto_Ferreteira___1
                             }
                             else
                             {
-                                MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show("El folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 txtIdentidad.Focus();
                             }
 
                         }
                         else
                         {
-                            MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("El año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtIdentidad.Focus();
                         }
                     }
@@ -546,7 +546,7 @@ namespace Proyecto_Ferreteira___1
                 }
                 else
                 {
-                    MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtIdentidad.Focus();
                     return false;
                 }
@@ -595,14 +595,14 @@ namespace Proyecto_Ferreteira___1
                             }
                             else
                             {
-                                MessageBox.Show("el folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show("El folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 txtRtn.Focus();
                             }
 
                         }
                         else
                         {
-                            MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("El año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtRtn.Focus();
                         }
                     }
@@ -792,7 +792,11 @@ namespace Proyecto_Ferreteira___1
            
         }
 
-    
+    /// <summary>
+    /// Se activa la fecha de nacimiento
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
 
         private void tpFechaNacimiento_KeyDown(object sender, KeyEventArgs e)
         {
