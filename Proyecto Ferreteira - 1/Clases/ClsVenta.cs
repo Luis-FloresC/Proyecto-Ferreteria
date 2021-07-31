@@ -128,7 +128,7 @@ namespace Proyecto_Ferreteira___1.Clases
         /// <summary>
         /// Metodo encargado de agregar el detalle de la factura proviamente ingresada
         /// </summary>
-        public void agregarDetalle()
+        public void AgregarDetalle()
         {
             var conexion = GetConnection();
 

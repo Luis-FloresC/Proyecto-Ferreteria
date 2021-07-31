@@ -192,7 +192,7 @@ namespace Proyecto_Ferreteira___1
                         venta.PrecioProducto = producto.PRECIO;
                         venta.CantidadProducto = producto.CANTIDAD;
 
-                        venta.agregarDetalle();
+                        venta.AgregarDetalle();
                     }
 
                     MessageBox.Show("Factura realizada con exito", "Aviso",MessageBoxButton.OK, MessageBoxImage.Exclamation);
