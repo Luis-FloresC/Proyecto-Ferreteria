@@ -58,14 +58,14 @@ namespace Proyecto_Ferreteira___1
                 {
                     if(CalcularCambio() == -1)
                     {
-                        MessageBox.Show("Por favor ingrese una cantidad mayor o igual al total...","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
+                        MessageBox.Show("Por favor ingrese una cantidad mayor o igual al total...","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
                         Properties.Settings.Default.PagoCorrecto = false;
                     }
                     else
                     {
                         Cambio = CalcularCambio();
                         pasar(Cambio,Monto,true);
-                        MessageBox.Show("su pago se realizo exitosamente...", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Su pago se realizó exitosamente", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                         Properties.Settings.Default.OpenVentana = false;
                         Properties.Settings.Default.PagoCorrecto = true;
                         this.Visibility = Visibility.Hidden;
@@ -76,14 +76,14 @@ namespace Proyecto_Ferreteira___1
                 {
                     if (CalcularCambio() == -1)
                     {
-                        MessageBox.Show("Por favor ingrese una cantidad mayor o igual a " + Total, "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Por favor ingrese una cantidad mayor o igual a " + Total, "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                         Properties.Settings.Default.PagoCorrecto = false;
                     }
                     else
                     {
                         Cambio = CalcularCambio();
                         pasar(Cambio, Monto, true);
-                        MessageBox.Show("su pago se realizo exitosamente...", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Su pago se realizó exitosamente", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                         Properties.Settings.Default.OpenVentana = false;
                         Properties.Settings.Default.PagoCorrecto = true;
                         this.Visibility = Visibility.Hidden;
