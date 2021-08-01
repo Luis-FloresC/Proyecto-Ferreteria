@@ -66,7 +66,7 @@ namespace Proyecto_Ferreteira___1
             bool comprobacion = Comprobacion();
             if (comprobacion == true)
             {
-                MessageBox.Show("Por favor llenar todos los datos requeridos", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor llenar todos los datos requeridos", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -129,7 +129,7 @@ namespace Proyecto_Ferreteira___1
             {
                 if(Carrito.Count == 0)
                 {
-                    MessageBox.Show("La lista de compras no puede estar vacía", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("La lista de compras no puede estar vacía", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
@@ -174,7 +174,7 @@ namespace Proyecto_Ferreteira___1
             catch (Exception)
             {
                 MessageBox.Show("Ten en cuenta que no puedes hacer multiples compras de un producto en un mismo carrito." +
-                    "\nSi ese no es tu problema verifica los datos ingresados", "ADVERTENCIA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    "\nSi ese no es tu problema verifica los datos ingresados", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
           
         }
@@ -191,7 +191,7 @@ namespace Proyecto_Ferreteira___1
             {
                 btnRealizarCompra.IsEnabled = false;
                 btnRealizarPago.IsEnabled = true;
-                MessageBox.Show("Debe Realizar el pago para realizar la compra");
+                MessageBox.Show("Debe hacer el pago para realizar la compra", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -210,7 +210,7 @@ namespace Proyecto_Ferreteira___1
             int index = dgbInformacion.SelectedIndex;
             if (index == -1)
             {
-                MessageBox.Show("Seleccione la compra a eliminar", "AVISO", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Seleccione la compra a eliminar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
