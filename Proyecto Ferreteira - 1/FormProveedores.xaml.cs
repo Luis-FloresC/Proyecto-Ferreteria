@@ -54,7 +54,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
            
         }
@@ -94,7 +94,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return true;
             }
           
@@ -130,7 +130,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
            
@@ -150,14 +150,14 @@ namespace Proyecto_Ferreteira___1
                     (CadenaSoloEspacios(txtDireccion.Text)) || (CadenaSoloEspacios(txtDireccion.Text)))            
                 {
               
-                    MessageBox.Show("Todos los Campos son Obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Todos los Campos son obligatorios", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     datosCorrectos = false;
                 }
 
                 if((CadenaSoloEspacios(txtNombre.Text)))
                 {
 
-                    MessageBox.Show("El Nombre debe tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("El nombre debe tener al menos 2 letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtNombre.Focus();
                     return false;
                 }
@@ -165,14 +165,14 @@ namespace Proyecto_Ferreteira___1
                 if (txtTelefono.Text.Length <= 7)
                 {
          
-                    MessageBox.Show("El telefono debe tener al menos 8 numeros", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("El teléfono debe tener al menos 8 números", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtTelefono.Focus();
                     return  false;
                 }
 
                 if(!ValidarEmail(txtEmail.Text))
                 {
-                    MessageBox.Show("Ingrese un Correo Electronico Valido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Ingrese un correo electronico Válido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtEmail.Focus();
                     return false;
                 }
@@ -181,7 +181,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
     
@@ -206,7 +206,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
          
         }
@@ -242,7 +242,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
            
         }
@@ -276,7 +276,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
           
         }
@@ -293,7 +293,7 @@ namespace Proyecto_Ferreteira___1
                 if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
                 {
 
-                    if ((MessageBox.Show("¿Esta Seguro que desea Eliminar el Empleado?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
+                    if ((MessageBox.Show("¿Esta seguro que desea eliminar el empleado?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
                     {
                         var Resultado = Proveedores.EliminarDatos(IdProveedor);
                         MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -305,7 +305,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
          
         }
@@ -322,7 +322,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             } 
         }
 
@@ -337,7 +337,7 @@ namespace Proyecto_Ferreteira___1
             if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se Permiten Letras", "Aviso");
+                MessageBox.Show("Sólo se permiten letras", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -359,7 +359,7 @@ namespace Proyecto_Ferreteira___1
             else
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se Permiten Numeros", "Aviso");
+                MessageBox.Show("Sólo se permiten números", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -370,7 +370,7 @@ namespace Proyecto_Ferreteira___1
         /// <param name="e"></param>
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            if ((MessageBox.Show("¿Esta Seguro que desea cancelar la operacion?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
+            if ((MessageBox.Show("¿Está seguro que desea cancelar la operación?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
             {
                 LimpiarCampos();
             }
