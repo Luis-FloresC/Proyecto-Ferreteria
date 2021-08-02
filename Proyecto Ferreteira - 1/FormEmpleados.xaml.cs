@@ -354,7 +354,7 @@ namespace Proyecto_Ferreteira___1
             {
                 if (valor < li || valor > ls)
                 {
-                    MessageBox.Show(string.Concat("Los siguientes dos digitos: ", valor, " del municipio.", "\nSolo se permiten numero del rango: ", li, " y ", ls, "."), "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show(string.Concat("Los siguientes dos digitos: ", valor, " del municipio.", "\nSolo se permiten números del rango: ", li, " y ", ls, "."), "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return false;
                 }
                 else

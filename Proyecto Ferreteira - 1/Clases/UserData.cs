@@ -218,7 +218,7 @@ namespace Proyecto_Ferreteira___1.Clases
                                Datediff(YEAR,E.Fecha_Nacimiento,Getdate()) [Edad]
                                from [Recursos_humanos].[Empleado] E
                                join [Recursos_humanos].[Puesto] P  on  E.Codigo_Puesto = P.Codigo_Puesto
-                               where E.Estado = 1
+                               where E.cod_estado = 1
                                and E.Nombre_Empleado like CONCAT('%',@nombre,'%')";
 
                     SqlCommand cmd = new SqlCommand(query, conexion);
@@ -488,10 +488,10 @@ namespace Proyecto_Ferreteira___1.Clases
                     {
                         CMD.Connection = CN;
                         CMD.CommandText = @"UPDATE [Recursos_humanos].[Empleado]
-                                      SET[Estado] = @Estado
+                                      SET [cod_estado] = 2
                                       WHERE Codigo_Empleado = @codigo";
                         CMD.Parameters.AddWithValue("@codigo", codigo);
-                        CMD.Parameters.AddWithValue("@Estado", estado);
+                       
 
 
                         CMD.CommandType = CommandType.Text;

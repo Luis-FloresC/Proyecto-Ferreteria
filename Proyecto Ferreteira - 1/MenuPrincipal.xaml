@@ -46,6 +46,10 @@
                     <Button x:Name="BtnEditarPerfil" Background="{x:Null}" Height="auto" Width="auto" BorderBrush="{x:Null}" Margin="5 0" ToolTip="Editar Usuario" Click="BtnEditarPerfil_Click">
                         <materialDesign:PackIcon Foreground="#0061D2" Kind="Edit" Width="20"  Height="20"/>
                     </Button>
+
+                    <Button x:Name="BtnAyuda" Background="{x:Null}" Height="auto" Width="auto" BorderBrush="{x:Null}" Margin="5 0" ToolTip="¿Necesita ayuda?" Click="BtnAyuda_Click">
+                        <materialDesign:PackIcon Foreground="#0061D2" Kind="HelpCircle" Width="20"  Height="20"/>
+                    </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" >

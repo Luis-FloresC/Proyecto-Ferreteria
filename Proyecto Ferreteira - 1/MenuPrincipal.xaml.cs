@@ -187,5 +187,18 @@ namespace Proyecto_Ferreteira___1
             GridPrincipal.Children.Clear();
             GridPrincipal.Children.Add(new FormUsuarios());
         }
+
+        private void BtnAyuda_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=lAKJL3Crvso&list=PLt4mibpODbtNll-IJC6NKIRKGSl-thfmd&index=15&ab_channel=RJCodeAdvance");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
