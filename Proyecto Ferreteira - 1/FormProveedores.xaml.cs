@@ -293,7 +293,7 @@ namespace Proyecto_Ferreteira___1
                 if (DataGridProveedores.SelectedIndex != -1 && Validaciones())
                 {
 
-                    if ((MessageBox.Show("¿Esta seguro que desea eliminar el empleado?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
+                    if ((MessageBox.Show("¿Esta seguro que desea eliminar el proveedor?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes))
                     {
                         var Resultado = Proveedores.EliminarDatos(IdProveedor);
                         MessageBox.Show(Resultado, "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
