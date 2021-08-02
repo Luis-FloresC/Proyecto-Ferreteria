@@ -35,9 +35,9 @@ namespace Proyecto_Ferreteira___1
             {
                 string txtFechaFinal = FechaFinal.ToString().Replace("00:00:00", "23:59:59");
                 // TODO: esta línea de código carga datos en la tabla 'FerreteriaDataSet10.DeatalleProveedores' Puede moverla o quitarla según sea necesario.
-                this.DeatalleProveedoresTableAdapter.Fill(this.FerreteriaDataSet10.DeatalleProveedores,FechaInicio.ToString(),txtFechaFinal);
+                this.DeatalleProveedoresTableAdapter.Fill(this.FerreteriaDataSet10.DeatalleProveedores,FechaInicio,FechaFinal);
                 // TODO: esta línea de código carga datos en la tabla 'FerreteriaDataSet10.ReporteCompras' Puede moverla o quitarla según sea necesario.
-                this.ReporteComprasTableAdapter.Fill(this.FerreteriaDataSet10.ReporteCompras, FechaInicio.ToString(), txtFechaFinal);
+                this.ReporteComprasTableAdapter.Fill(this.FerreteriaDataSet10.ReporteCompras, FechaInicio, FechaFinal);
 
                 this.reportViewer1.RefreshReport();
             }

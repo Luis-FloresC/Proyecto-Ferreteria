@@ -1746,6 +1746,7 @@
                     <TextRun>
                       <Value>=Globals!ExecutionTime</Value>
                       <Style>
+                        <Format>f</Format>
                         <Color>White</Color>
                       </Style>
                     </TextRun>

@@ -27,7 +27,7 @@
 
                 <Setter Property="Background" Value="#363636"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
-                
+              
                 <Setter Property="Foreground" Value="Black"/>
             </Style>
             
