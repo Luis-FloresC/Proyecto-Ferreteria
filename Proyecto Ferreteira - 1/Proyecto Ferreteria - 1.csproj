@@ -212,6 +212,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FerreteriaDataSet4.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FerreteriaDataSet5.cs">
+      <DependentUpon>FerreteriaDataSet5.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FerreteriaDataSet5.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
