@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -192,7 +193,7 @@ namespace Proyecto_Ferreteira___1
         {
             try
             {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=lAKJL3Crvso&list=PLt4mibpODbtNll-IJC6NKIRKGSl-thfmd&index=15&ab_channel=RJCodeAdvance");
+                Process.Start("https://luis-floresc.github.io/SitioWeb77neiras/");
             }
             catch (Exception ex)
             {

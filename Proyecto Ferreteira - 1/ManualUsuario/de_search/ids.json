@@ -1,0 +1,20 @@
+{
+	"1": ["Página p... ¡Se requiere una licencia Advanced!", "index.htm", []],
+	"2": ["1. Razón princi... ¡Se requiere una licencia Advanced!", "razon_principal_del_sistema.htm", []],
+	"3": ["2. Intr... ¡Se requiere una licencia Advanced!", "introduccion.htm", []],
+	"4": ["3. Obj... ¡Se requiere una licencia Advanced!", "objetivos.htm", []],
+	"5": ["4. Requirimient... ¡Se requiere una licencia Advanced!", "requirimientos_e_instalacion.htm", []],
+	"6": ["5. Inici... ¡Se requiere una licencia Advanced!", "iniciar_sesion.htm", []],
+	"7": ["6. Ventana... ¡Se requiere una licencia Advanced!", "ventana_de_inicio.htm", []],
+	"8": ["7. Mi ... ¡Se requiere una licencia Advanced!", "mi_perfil.htm", []],
+	"9": ["7.1. Edit... ¡Se requiere una licencia Advanced!", "editar_perfil.htm", [7]],
+	"10": ["7.2. Nuev... ¡Se requiere una licencia Advanced!", "nuevo_usuario.htm", [7]],
+	"11": ["7.3. Adminis... ¡Se requiere una licencia Advanced!", "administrar_usuario.htm", [7]],
+	"12": ["8. V... ¡Se requiere una licencia Advanced!", "ventas.htm", []],
+	"13": ["9. Cl... ¡Se requiere una licencia Advanced!", "clientes.htm", []],
+	"14": ["10. Pr... ¡Se requiere una licencia Advanced!", "productos.htm", []],
+	"15": ["11. C... ¡Se requiere una licencia Advanced!", "compras.htm", []],
+	"16": ["12. Em... ¡Se requiere una licencia Advanced!", "empleados.htm", []],
+	"17": ["13. Pro... ¡Se requiere una licencia Advanced!", "proveedores.htm", []],
+	"18": ["14. Re... ¡Se requiere una licencia Advanced!", "reportes.htm", []]
+}

@@ -1,0 +1,14 @@
+[
+	{ "s": "FACTURACIÓN", "p": [12] },
+	{ "s": "FACTURAR", "p": [12] },
+	{ "s": "FECHA", "p": [18, 16, 13, 7] },
+	{ "s": "FERRETERIA", "p": [1] },
+	{ "s": "FERRETERÍA", "p": [2] },
+	{ "s": "FINAL", "p": [18] },
+	{ "s": "FINALMENTE", "p": [17, 16, 15, 14, 13, 12, 5] },
+	{ "s": "FLETE", "p": [15] },
+	{ "s": "FUE", "p": [6] },
+	{ "s": "FUNCIONALIDAD", "p": [18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6] },
+	{ "s": "FUNCIONAMIENTO", "p": [3] },
+	{ "s": "FUNCIÓN", "p": [11] }
+]

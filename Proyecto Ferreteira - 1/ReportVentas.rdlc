@@ -168,7 +168,7 @@
                   <Width>3.14699cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.17345cm</Width>
+                  <Width>2.5cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -422,7 +422,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox89">
+                        <Textbox Name="Textbox4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -440,7 +440,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox89</rd:DefaultName>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -711,6 +711,7 @@
                             <rd:FormatSymbolCulture>es-HN</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -743,7 +744,7 @@
             <Top>1.91467cm</Top>
             <Left>0.52599cm</Left>
             <Height>1.2cm</Height>
-            <Width>24.0862cm</Width>
+            <Width>23.41275cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
