@@ -20,36 +20,39 @@ namespace Proyecto_Ferreteira___1
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Constructor que recibe los parametro de un rango de la fecha para general el reporte
+        /// </summary>
+        /// <param name="fechaInicio"></param>
+        /// <param name="fechaFinal"></param>
         public FormReporteDeVentas(DateTime fechaInicio,DateTime fechaFinal)
         {
             InitializeComponent();
             FechaFinal = fechaFinal;
             FechaInicio = fechaInicio;
-        //    MessageBox.Show(FechaFinal.ToString());
+   
         }
 
+        /// <summary>
+        /// Metodo para cargar el reporte de ventas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormReporteDeVentas_Load(object sender, EventArgs e)
         {
 
-            // TODO: esta línea de código carga datos en la tabla 'FerreteriaDataSet5.ReporteVentas' Puede moverla o quitarla según sea necesario.
-            //     this.ReporteVentasTableAdapter.Fill(this.FerreteriaDataSet8.ReporteVentas, FechaInicio.ToString(), FechaFinal.ToString());
-
             try
-            {
-                string txtFechaFinal = FechaFinal.ToString().Replace("00:00:00", "23:59:59");
-                this.reporteVentasTableAdapter1.Fill(this.ferreteriaDataSet8.ReporteVentas, FechaInicio.ToString(), txtFechaFinal);
-                this.ventasDiasTableAdapter.Fill(this.ferreteriaDataSet9.VentasDias, FechaInicio.ToString(), txtFechaFinal);
-
+            { 
+                this.reporteVentasTableAdapter1.Fill(this.ferreteriaDataSet8.ReporteVentas, FechaInicio,FechaFinal);
+                this.ventasDiasTableAdapter.Fill(this.ferreteriaDataSet9.VentasDias, FechaInicio, FechaFinal);
                 this.reportViewer1.RefreshReport();
             }
             catch ( Exception ex)
             {
 
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(),"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-        
-            
-         
+
         }
     }
 }

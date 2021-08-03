@@ -19,9 +19,7 @@
                     <Button Width="30" x:Name="btnMinimizar" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Click="btnMinimizar_Click" Foreground="#0061D2">
                         <materialDesign:PackIcon Kind="WindowMinimize"/>
                     </Button>
-                    <!--<Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="#0061D2" >
-                        <materialDesign:PackIcon Kind="WindowMaximize"/>
-                    </Button>-->
+               
                     <Button x:Name="btnMaximizar" Click="btnMaximizar_Click"  Width="30" Height="30"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="#0061D2" >
                         <materialDesign:PackIcon Kind="{Binding ElementName=Pantalla ,Path=Text ,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
                     </Button>
@@ -47,6 +45,10 @@
                     <TextBlock x:Name="txtUsuario" Text="Usuario" FontSize="18" Foreground="White" Margin="5"/>
                     <Button x:Name="BtnEditarPerfil" Background="{x:Null}" Height="auto" Width="auto" BorderBrush="{x:Null}" Margin="5 0" ToolTip="Editar Usuario" Click="BtnEditarPerfil_Click">
                         <materialDesign:PackIcon Foreground="#0061D2" Kind="Edit" Width="20"  Height="20"/>
+                    </Button>
+
+                    <Button x:Name="BtnAyuda" Background="{x:Null}" Height="auto" Width="auto" BorderBrush="{x:Null}" Margin="5 0" ToolTip="¿Necesita ayuda?" Click="BtnAyuda_Click">
+                        <materialDesign:PackIcon Foreground="#0061D2" Kind="HelpCircle" Width="20"  Height="20"/>
                     </Button>
                 </StackPanel>
 
@@ -122,7 +124,7 @@
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="SignOut" Foreground="#0061D2" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Cerrar Sesion" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                        <TextBlock Text="Cerrar Sesión" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
 

@@ -39,6 +39,8 @@ namespace Proyecto_Ferreteira___1
                 {
                     FormReporteDeVentas ventas = new FormReporteDeVentas(dtpFechaInicio.SelectedDate.Value, dtpFechaFinal.SelectedDate.Value);
                     ventas.Show();
+                    Limpiar(dtpFechaFinal);
+                    Limpiar(dtpFechaInicio);
                 }
                 else
                     dtpFechaFinal.Focus();
@@ -46,7 +48,7 @@ namespace Proyecto_Ferreteira___1
             }
             else
             {
-                MessageBox.Show("Por Favor seleccione una Fecha", "Aviso");
+                MessageBox.Show("Por favor seleccione una Fecha", "Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
               
           
@@ -74,13 +76,15 @@ namespace Proyecto_Ferreteira___1
                 {
                     FormReportCompras compras = new FormReportCompras(dtpFechaInicioCompra.SelectedDate.Value, dtpFechaFinalCompra.SelectedDate.Value);
                     compras.Show();
+                    Limpiar(dtpFechaFinalCompra);
+                    Limpiar(dtpFechaInicioCompra);
                 }
                 else
                     dtpFechaFinalCompra.Focus();
             }
             else
             {
-                MessageBox.Show("Por Favor seleccione una Fecha","Aviso");
+                MessageBox.Show("Por favor seleccione una Fecha", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         
            
@@ -102,7 +106,7 @@ namespace Proyecto_Ferreteira___1
                 if (dt1.Date > dt2.Date)
                 {
 
-                    MessageBox.Show("Error: La Fecha Final debe ser mayor o igual a la fecha inicial","Aviso");
+                    MessageBox.Show("Error: La Fecha Final debe ser mayor o igual a la fecha inicial","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
                     
                     return false;
                 }
@@ -114,7 +118,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + ex.Message.ToString(),"Aviso");
+                MessageBox.Show("Error:" + ex.Message.ToString(),"Error",MessageBoxButton.OK,MessageBoxImage.Error);
                 return false;
             }
           

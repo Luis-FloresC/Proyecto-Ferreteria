@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace Proyecto_Ferreteira___1
 {
@@ -186,6 +187,19 @@ namespace Proyecto_Ferreteira___1
             MoveCursorMenu(10);
             GridPrincipal.Children.Clear();
             GridPrincipal.Children.Add(new FormUsuarios());
+        }
+
+        private void BtnAyuda_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start("https://luis-floresc.github.io/SitioWeb77neiras/");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

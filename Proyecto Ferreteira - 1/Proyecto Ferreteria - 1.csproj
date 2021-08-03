@@ -179,6 +179,7 @@
       <DependentUpon>BuscarProducto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clases\ClsCliente.cs" />
+    <Compile Include="Clases\clsEnvio.cs" />
     <Compile Include="Clases\ClsProducto.cs" />
     <Compile Include="Clases\ClsVenta.cs" />
     <Compile Include="FerreteriaDataSet.Designer.cs">
@@ -211,6 +212,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FerreteriaDataSet4.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FerreteriaDataSet5.cs">
+      <DependentUpon>FerreteriaDataSet5.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FerreteriaDataSet5.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,6 +234,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FerreteriaDataSet8.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FerreteriaDataSet9.cs">
+      <DependentUpon>FerreteriaDataSet9.xsd</DependentUpon>
     </Compile>
     <Compile Include="FerreteriaDataSet9.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -260,6 +267,9 @@
     <Compile Include="FormReportes.xaml.cs">
       <DependentUpon>FormReportes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrmEnvio.xaml.cs">
+      <DependentUpon>FrmEnvio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="VentanaModal.xaml.cs">
       <DependentUpon>VentanaModal.xaml</DependentUpon>
@@ -280,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Compra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrmEnvio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -50,18 +50,6 @@
         <Label Content="Cliente" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5" FontSize="17" Foreground="White"/>
 
-        <!--<Label Content="ID:" Grid.Row="3" Grid.Column="1" 
-               HorizontalAlignment="Left" VerticalAlignment="Center" 
-               Margin="0,8,0,7" FontSize="17" Foreground="White"/>-->
-        <!--<TextBox Name="txtIdCliente" 
-                 Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
-                 FontSize="17" Margin="0,10"   IsReadOnly="True"
-                    materialDesign:HintAssist.Hint="ID"
-                    Foreground="White" Width="280" 
-                    Text="" FontFamily="Segoe UI"   
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    BorderBrush="white" CaretBrush="#FFD94448" 
-                    SelectionBrush="#FFD94448"/>-->
 
         <TextBox Margin="10 0" x:Name="txtIdCliente"  materialDesign:HintAssist.Hint="Id"
                              Foreground="White" 
@@ -73,11 +61,6 @@
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
 
-        <!--<Label Content="Nombre:" 
-               Grid.Row="3" Grid.Column="3" 
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Center" Margin="2 3" 
-               FontSize="17" Foreground="White"/>-->
 
         <TextBox Margin="10 0" x:Name="txtNombreCliente"  materialDesign:HintAssist.Hint="Nombre del Cliente"
                              Foreground="White" 
@@ -88,11 +71,9 @@
                               Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
-        <!--<TextBox Name="txtNombreCliente" 
-                 Grid.Row="3" Grid.Column="4" FontSize="17" 
-                 Margin="0,10"  Background="White" Height="27" IsReadOnly="True"/>-->
 
-        <Button Name="btnBuscarCliente"  Grid.Row="3" Grid.Column="5" Margin="8 0" Click="btnBuscarCliente_Click" >
+
+        <Button Name="btnBuscarCliente" BorderBrush="#007DB7" Background="#007DB7"  Grid.Row="3" Grid.Column="5" Margin="8 0" Click="btnBuscarCliente_Click" >
             <Image Source="/Recursos/img/lupa.png" />
         </Button>
 
@@ -102,10 +83,6 @@
                VerticalAlignment="Center" Margin="0 5" FontSize="17" Foreground="White"/>
 
 
-        <!--<Label Content="Tipo:" 
-               Grid.Row="3" Grid.Column="6" 
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Center" Margin="0 3" FontSize="17" Foreground="White"/>-->
 
         <ComboBox  x:Name="cbTipoPago" materialDesign:HintAssist.Hint="Tipo" 
                              Foreground="White" 
@@ -114,7 +91,7 @@
                              Width="280"
                               Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3" 
                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                             materialDesign:ColorZoneAssist.Mode="Inverted" Margin="10 0" SelectionChanged="cbTipoPago_SelectionChanged" >
+                             materialDesign:ColorZoneAssist.Mode="Inverted" Margin="10 0"  >
 
             <ComboBoxItem Content="Efectivo" HorizontalAlignment="Left" Width="215" />
             <ComboBoxItem Content="Tarjeta" HorizontalAlignment="Left" Width="215"/>
@@ -122,11 +99,7 @@
 
         </ComboBox>
 
-        <!--<ComboBox Name="cbTipoPago" Grid.ColumnSpan="3" Grid.Column="7" HorizontalAlignment="Left" Margin="0 8" Grid.Row="3" Background="White" Width="217" Height="27" FontSize="17">
-            <ComboBoxItem Content="Efectivo" HorizontalAlignment="Left" Width="215" />
-            <ComboBoxItem Content="Tarjeta" HorizontalAlignment="Left" Width="215"/>
-            <ComboBoxItem Content="Transferencia" HorizontalAlignment="Left" Width="215"/>
-        </ComboBox>-->
+     
 
 
         <Label Content="Producto" 
@@ -135,10 +108,6 @@
                VerticalAlignment="Center" Margin="0 5" 
                FontSize="17" Foreground="White"/>
 
-        <!--<Label Content="ID:" 
-               Grid.Row="5" Grid.Column="1" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               Margin="0 3" FontSize="17" Foreground="White"/>-->
 
         <TextBox Margin="10 0" x:Name="txtIdProducto"  materialDesign:HintAssist.Hint="Id"
                              Foreground="White" 
@@ -150,13 +119,7 @@
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
 
-        <!--<TextBox Name="txtIdProducto" 
-                 Grid.Row="5" Grid.Column="2" 
-                 FontSize="17" Margin="0,10"  Background="White" Height="27" IsReadOnly="True"/>-->
 
-        <!--<Label Content="Nombre:" Grid.Row="5" Grid.Column="3" 
-               HorizontalAlignment="Left" VerticalAlignment="Center" 
-               Margin="2 3" FontSize="17" Foreground="White"/>-->
 
         <TextBox Margin="10 0" x:Name="txtNombreProducto"  materialDesign:HintAssist.Hint="Nombre del Producto"
                              Foreground="White" 
@@ -168,14 +131,6 @@
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
 
-        <!--<TextBox Name="txtNombreProducto" 
-                 Grid.Row="5" Grid.Column="4" FontSize="17" 
-                 Margin="0,10"  Background="White" Height="27" IsReadOnly="True"/>-->
-
-        <!--<Label Content="Precio:" 
-               Grid.Row="5" Grid.Column="5" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" 
-               Margin="0 3" FontSize="17" Foreground="White"/>-->
 
         <TextBox Margin="10 0" x:Name="txtPrecio"  materialDesign:HintAssist.Hint="Precio"
                              Foreground="White" 
@@ -188,15 +143,6 @@
                              SelectionBrush="#FFD94448"/>
 
 
-        <!--<TextBox Name="txtPrecio"
-                 Grid.Row="5" Grid.Column="6" FontSize="17" 
-                 Margin="0,10"  Background="White" Height="27" IsReadOnly="True"/>-->
-
-
-        <!--<Label Content="Cantidad:" 
-               Grid.Row="5" Grid.Column="7" 
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Center" Margin="0 3" FontSize="17" Foreground="White"/>-->
 
         <TextBox Margin="10 0" x:Name="txtCantidad"  materialDesign:HintAssist.Hint="Cantidad"
                              Foreground="White" 
@@ -209,12 +155,7 @@
                              SelectionBrush="#FFD94448"/>
 
 
-
-        <!--<TextBox Name="txtCantidad" 
-                 Grid.Row="5" Grid.Column="8" 
-                 FontSize="17" Margin="0,10"  
-                 Background="White" Height="27" PreviewTextInput="txtCantidad_PreviewTextInput"/>-->
-        <Button Name="btnBuscarProducto" Grid.Row="5" Grid.Column="9" Margin="14,8,2,7" Click="btnBuscarProducto_Click" >
+        <Button Name="btnBuscarProducto" Grid.Row="5"  BorderBrush="#007DB7" Background="#007DB7"  Grid.Column="9" Margin="14,8,2,7" Click="btnBuscarProducto_Click" >
             <Image Source="/Recursos/img/lupa.png" />
         </Button>
 
@@ -230,7 +171,7 @@
 
 
         <Button Name="btnAgregar" 
-                FontFamily="Segoe UI" 
+                FontFamily="Segoe UI"  BorderBrush="#007DB7" Background="#007DB7" 
                 FontSize="17" Grid.ColumnSpan="2" 
                 Content="Agregar" Grid.Column="9" 
                 HorizontalAlignment="Left" Margin="14,10,0,0" 
@@ -238,32 +179,26 @@
                 Width="96" Height="42" Grid.RowSpan="2" Click="btnAgregar_Click"/>
 
         <Button Name="btnEliminar" Grid.ColumnSpan="2" FontFamily="Segoe UI" 
-                FontSize="17" Content="Eliminar" Grid.Column="9"
+                FontSize="17" Content="Eliminar" Grid.Column="9" BorderBrush="#007DB7" Background="#007DB7" 
                 HorizontalAlignment="Left" Margin="14,29,0,0"
                 Grid.Row="7" VerticalAlignment="Top"
                 Width="96" Height="42" Grid.RowSpan="2" Click="btnEliminar_Click"/>
 
-        <Button Name="btnFactura" Grid.ColumnSpan="2" FontFamily="Segoe UI" 
+        <Button Name="btnFactura" Grid.ColumnSpan="2" FontFamily="Segoe UI"  BorderBrush="#007DB7" Background="#007DB7" 
                 FontSize="17" Content="Facturar" Grid.Column="9" 
                 HorizontalAlignment="Left" Margin="14,1,0,0" Grid.Row="9" 
                 VerticalAlignment="Top" Width="96" Height="42" Click="btnFactura_Click"/>
 
         <Button Name="btnCancelar" Grid.ColumnSpan="2" 
-                FontFamily="Segoe UI" FontSize="17" 
+                FontFamily="Segoe UI" FontSize="17"  BorderBrush="#007DB7" Background="#007DB7" 
                 Content="Cancelar" Grid.Column="9" HorizontalAlignment="Left" Margin="14,19,0,0" 
                 Grid.Row="10" VerticalAlignment="Top" Width="96" Height="42" Grid.RowSpan="2" Click="btnCancelar_Click"/>
 
         <Button Name="btnRealizarPago" IsEnabled="False"
-                FontFamily="Segoe UI" FontSize="17" 
+                FontFamily="Segoe UI" FontSize="17"  BorderBrush="#007DB7" Background="#007DB7" 
                 Content="Realizar Pago" Grid.Column="9" HorizontalAlignment="Left" Margin="21,3,0,0" 
                 Grid.Row="3" VerticalAlignment="Top" Width="auto" Height="42" Click="btnRealizarPago_Click" Grid.ColumnSpan="2"/>
 
-        <!--<Label Content="Subtotal:" 
-               Grid.Row="12" FontFamily="Segoe UI" 
-               Grid.Column="1" Grid.ColumnSpan="2" 
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center" 
-               Margin="10,12,13,16" FontSize="17" Foreground="White" />-->
 
         <TextBox Margin="10 0" x:Name="txtSubtotal"  materialDesign:HintAssist.Hint="Sub Total"
                              Foreground="White" 
@@ -275,15 +210,7 @@
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
 
-        <!--<TextBox Name="txtSubtotal" 
-                 Grid.Row="12" Grid.Column="3" 
-                 FontFamily="Segoe UI"  
-                 FontSize="17" Margin="0,10"  
-                 Background="White" Height="27" IsReadOnly="True"/>-->
 
-
-        <!--<Label Content="Descuento:" Grid.Row="12" Grid.Column="4" 
-               Margin="4,12,0,13" FontFamily="Segoe UI"  FontSize="17" Foreground="White" />-->
 
         <TextBox Margin="10 0" x:Name="txtDescuento"  materialDesign:HintAssist.Hint="Descuento"
                              Foreground="White" 
@@ -296,14 +223,7 @@
                              SelectionBrush="#FFD94448"/>
 
 
-        <!--<TextBox Name="txtDescuento" Grid.Row="12" Grid.Column="5" 
-                 FontSize="17" Margin="0,10" 
-                 FontFamily="Segoe UI" Background="White" Height="27" IsReadOnly="True"/>-->
 
-
-        <!--<Label Content="ISV:" Grid.Row="12" 
-               Grid.Column="6" Margin="22,14,10,13" FontSize="17" 
-               FontFamily="Segoe UI"  Foreground="White" HorizontalAlignment="Center" Width="41" />-->
 
         <TextBox Margin="10 0" x:Name="txtIsv"  materialDesign:HintAssist.Hint="Isv"
                              Foreground="White" 
@@ -315,12 +235,6 @@
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
 
-        <!--<TextBox Name="txtIsv" Grid.Row="12" Grid.Column="7" 
-                 FontSize="17" Margin="0,8,0,10" 
-                 FontFamily="Segoe UI"  Background="White" Height="27" IsReadOnly="True"/>-->
-
-        <!--<Label Content="Total:" Grid.Row="12" Grid.Column="8" Margin="12,12,10,13" FontSize="17" 
-               FontFamily="Segoe UI"  Foreground="White" HorizontalAlignment="Center" />-->
 
         <TextBox Margin="10 0" x:Name="txtTotal"  materialDesign:HintAssist.Hint="Total"
                              Foreground="White" 
@@ -332,9 +246,6 @@
                              BorderBrush="white" CaretBrush="#FFD94448" 
                              SelectionBrush="#FFD94448"/>
 
-        <!--<TextBox Name="txtTotal" Grid.Row="12" Grid.Column="9"
-                 FontSize="17" Margin="10,15,40,18"  
-                 Background="White" FontFamily="Segoe UI"  Grid.ColumnSpan="2" Height="27" IsReadOnly="True"/>-->
 
     </Grid>
 </UserControl>

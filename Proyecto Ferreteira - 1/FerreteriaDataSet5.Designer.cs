@@ -297,6 +297,16 @@ namespace Proyecto_Ferreteira___1 {
             
             private global::System.Data.DataColumn columnRango;
             
+            private global::System.Data.DataColumn columnN;
+            
+            private global::System.Data.DataColumn columnVentaID;
+            
+            private global::System.Data.DataColumn columnFechadeVenta;
+            
+            private global::System.Data.DataColumn columnPrecioUnitario;
+            
+            private global::System.Data.DataColumn columnTotal1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ReporteVentasDataTable() {
@@ -404,6 +414,46 @@ namespace Proyecto_Ferreteira___1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn NColumn {
+                get {
+                    return this.columnN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn VentaIDColumn {
+                get {
+                    return this.columnVentaID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn FechadeVentaColumn {
+                get {
+                    return this.columnFechadeVenta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn PrecioUnitarioColumn {
+                get {
+                    return this.columnPrecioUnitario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Total1Column {
+                get {
+                    return this.columnTotal1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +489,7 @@ namespace Proyecto_Ferreteira___1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ReporteVentasRow AddReporteVentasRow(int Venta_ID, System.DateTime Fecha_de_Venta, string Cliente, string Producto, decimal Precio_Unitario, int Cantidad, double Descuento, double Total, string Rango) {
+            public ReporteVentasRow AddReporteVentasRow(int Venta_ID, System.DateTime Fecha_de_Venta, string Cliente, string Producto, decimal Precio_Unitario, int Cantidad, double Descuento, double Total, string Rango, long N, int VentaID, System.DateTime FechadeVenta, decimal PrecioUnitario, decimal Total1) {
                 ReporteVentasRow rowReporteVentasRow = ((ReporteVentasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Venta_ID,
@@ -450,7 +500,12 @@ namespace Proyecto_Ferreteira___1 {
                         Cantidad,
                         Descuento,
                         Total,
-                        Rango};
+                        Rango,
+                        N,
+                        VentaID,
+                        FechadeVenta,
+                        PrecioUnitario,
+                        Total1};
                 rowReporteVentasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowReporteVentasRow);
                 return rowReporteVentasRow;
@@ -482,6 +537,11 @@ namespace Proyecto_Ferreteira___1 {
                 this.columnDescuento = base.Columns["Descuento"];
                 this.columnTotal = base.Columns["Total"];
                 this.columnRango = base.Columns["Rango"];
+                this.columnN = base.Columns["N"];
+                this.columnVentaID = base.Columns["VentaID"];
+                this.columnFechadeVenta = base.Columns["FechadeVenta"];
+                this.columnPrecioUnitario = base.Columns["PrecioUnitario"];
+                this.columnTotal1 = base.Columns["Total1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -505,6 +565,16 @@ namespace Proyecto_Ferreteira___1 {
                 base.Columns.Add(this.columnTotal);
                 this.columnRango = new global::System.Data.DataColumn("Rango", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRango);
+                this.columnN = new global::System.Data.DataColumn("N", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnN);
+                this.columnVentaID = new global::System.Data.DataColumn("VentaID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVentaID);
+                this.columnFechadeVenta = new global::System.Data.DataColumn("FechadeVenta", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechadeVenta);
+                this.columnPrecioUnitario = new global::System.Data.DataColumn("PrecioUnitario", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrecioUnitario);
+                this.columnTotal1 = new global::System.Data.DataColumn("Total1", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal1);
                 this.columnVenta_ID.AllowDBNull = false;
                 this.columnFecha_de_Venta.AllowDBNull = false;
                 this.columnCliente.ReadOnly = true;
@@ -517,6 +587,12 @@ namespace Proyecto_Ferreteira___1 {
                 this.columnTotal.ReadOnly = true;
                 this.columnRango.ReadOnly = true;
                 this.columnRango.MaxLength = 83;
+                this.columnN.ReadOnly = true;
+                this.columnVentaID.AllowDBNull = false;
+                this.columnFechadeVenta.AllowDBNull = false;
+                this.columnPrecioUnitario.AllowDBNull = false;
+                this.columnTotal1.ReadOnly = true;
+                this.columnTotal1.Caption = "Total";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -773,6 +849,71 @@ namespace Proyecto_Ferreteira___1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public long N {
+                get {
+                    try {
+                        return ((long)(this[this.tableReporteVentas.NColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'N\' de la tabla \'ReporteVentas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableReporteVentas.NColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int VentaID {
+                get {
+                    return ((int)(this[this.tableReporteVentas.VentaIDColumn]));
+                }
+                set {
+                    this[this.tableReporteVentas.VentaIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime FechadeVenta {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReporteVentas.FechadeVentaColumn]));
+                }
+                set {
+                    this[this.tableReporteVentas.FechadeVentaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal PrecioUnitario {
+                get {
+                    return ((decimal)(this[this.tableReporteVentas.PrecioUnitarioColumn]));
+                }
+                set {
+                    this[this.tableReporteVentas.PrecioUnitarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal Total1 {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableReporteVentas.Total1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Total1\' de la tabla \'ReporteVentas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableReporteVentas.Total1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsClienteNull() {
                 return this.IsNull(this.tableReporteVentas.ClienteColumn);
             }
@@ -805,6 +946,30 @@ namespace Proyecto_Ferreteira___1 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetRangoNull() {
                 this[this.tableReporteVentas.RangoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsNNull() {
+                return this.IsNull(this.tableReporteVentas.NColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetNNull() {
+                this[this.tableReporteVentas.NColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsTotal1Null() {
+                return this.IsNull(this.tableReporteVentas.Total1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetTotal1Null() {
+                this[this.tableReporteVentas.Total1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -974,8 +1139,12 @@ namespace Proyecto_Ferreteira___1.FerreteriaDataSet5TableAdapters {
             tableMapping.ColumnMappings.Add("Precio Unitario", "Precio Unitario");
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
             tableMapping.ColumnMappings.Add("Descuento", "Descuento");
-            tableMapping.ColumnMappings.Add("Total", "Total");
             tableMapping.ColumnMappings.Add("Rango", "Rango");
+            tableMapping.ColumnMappings.Add("N", "N");
+            tableMapping.ColumnMappings.Add("VentaID", "VentaID");
+            tableMapping.ColumnMappings.Add("FechadeVenta", "FechadeVenta");
+            tableMapping.ColumnMappings.Add("PrecioUnitario", "PrecioUnitario");
+            tableMapping.ColumnMappings.Add("Total", "Total1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1009,8 +1178,8 @@ namespace Proyecto_Ferreteira___1.FerreteriaDataSet5TableAdapters {
             this._commandCollection[2].CommandText = "dbo.ReporteVentas";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaDesde", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaHasta", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaDesde", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaHasta", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1113,19 +1282,19 @@ namespace Proyecto_Ferreteira___1.FerreteriaDataSet5TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy1(FerreteriaDataSet5.ReporteVentasDataTable dataTable, string FechaDesde, string FechaHasta) {
+        public virtual int FillBy1(FerreteriaDataSet5.ReporteVentasDataTable dataTable, global::System.Nullable<global::System.DateTime> FechaDesde, global::System.Nullable<global::System.DateTime> FechaHasta) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((FechaDesde == null)) {
+            if ((FechaDesde.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaDesde.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(FechaDesde));
+            if ((FechaHasta.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaHasta.Value));
             }
-            if ((FechaHasta == null)) {
+            else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(FechaHasta));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1138,19 +1307,19 @@ namespace Proyecto_Ferreteira___1.FerreteriaDataSet5TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual FerreteriaDataSet5.ReporteVentasDataTable GetDataBy1(string FechaDesde, string FechaHasta) {
+        public virtual FerreteriaDataSet5.ReporteVentasDataTable GetDataBy1(global::System.Nullable<global::System.DateTime> FechaDesde, global::System.Nullable<global::System.DateTime> FechaHasta) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((FechaDesde == null)) {
+            if ((FechaDesde.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaDesde.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(FechaDesde));
+            if ((FechaHasta.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaHasta.Value));
             }
-            if ((FechaHasta == null)) {
+            else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(FechaHasta));
             }
             FerreteriaDataSet5.ReporteVentasDataTable dataTable = new FerreteriaDataSet5.ReporteVentasDataTable();
             this.Adapter.Fill(dataTable);

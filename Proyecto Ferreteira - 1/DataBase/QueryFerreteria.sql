@@ -46,7 +46,7 @@ cantidad int not null
 Go
 
 CREATE TABLE Ventas.envio(
-codigo_envio int not null,
+codigo_envio int not null identity(1,1),
 codigo_venta int not null,
 fecha_entrega datetime not null,
 estado_envio nvarchar(50) not null,

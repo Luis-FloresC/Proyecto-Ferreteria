@@ -52,6 +52,38 @@ namespace Proyecto_Ferreteira___1
             cliente.Rtn = txtRtn.Text;
         }
 
+
+        /// <summary>
+        /// Verficacion de Numero de telefono
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns></returns>
+        public bool VerificarNumeroTelefono(string numero)
+        {
+            try
+            {
+
+                if (numero.Length > 8 || numero.Length < 8)
+                {
+                    return false;
+                }
+
+                if (int.Parse(numero.Substring(0, 1)) == 9 || int.Parse(numero.Substring(0, 1)) == 8 || int.Parse(numero.Substring(0, 1)) == 3 || int.Parse(numero.Substring(0, 1)) == 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
         /// <summary>
         /// Limpia los texBox y el time picker del formulario
         /// </summary>
@@ -98,7 +130,7 @@ namespace Proyecto_Ferreteira___1
                     estado = false;
                     if ((CadenaSoloEspacios(txtNombre.Text) || CadenaSoloEspacios(txtApellido.Text)))
                     {
-                        MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres y es un campo obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("El nombre o apellido debe tener al menos 2 caracteres y es un campo obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                         if((CadenaSoloEspacios(txtNombre.Text)))
                         {
                             txtNombre.Focus();
@@ -110,18 +142,18 @@ namespace Proyecto_Ferreteira___1
                     }
                     else if (CadenaSoloEspacios(txtIdentidad.Text))
                     {
-                        MessageBox.Show("la identidad es obligatoria", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("La identidad es obligatoria", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                         txtIdentidad.Focus();
                     }
                     else if (CadenaSoloEspacios(txtRtn.Text))
                     {
-                        MessageBox.Show("el RTN es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("El RTN es obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                         txtRtn.Focus();
                     }
                     else
                     {
-                        MessageBox.Show("el telefono es obligatorio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("El teléfono es obligatorio", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                         txtTelefono.Focus();
                     }
                 }
@@ -133,7 +165,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(),"Error",MessageBoxButton.OK,MessageBoxImage.Error);
                 return false;
             }
           
@@ -161,7 +193,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
            
@@ -183,28 +215,33 @@ namespace Proyecto_Ferreteira___1
                     {
                         if(txtNombre.Text.Length <= 1)
                         {
-                            MessageBox.Show("El Nombre o Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("El nombre o apellido debe tener al menos 2 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtNombre.Focus();
                         }
                         else if(txtApellido.Text.Length <= 1)
                         {
-                            MessageBox.Show("El Apellido debe tener al menos 2 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("El apellido debe tener al menos 2 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtApellido.Focus();
 
                         }
                         else if (txtIdentidad.Text.Length <= 12)
                         {
-                            MessageBox.Show("la identidad debe tener 13 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("La identidad debe tener 13 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtIdentidad.Focus();
                         }
                         else if(txtRtn.Text.Length <= 13)
                         {
-                            MessageBox.Show("el RTN debe tener 14 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("El RTN debe tener 14 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtRtn.Focus();
                         }
-                        else
+                         else if (!VerificarNumeroTelefono(txtTelefono.Text))
                         {
-                            MessageBox.Show("el telefono debe tener 8 caracteres", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                              MessageBox.Show("Ingrese un número de teléfono válido!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                               txtTelefono.Focus();
+                        }
+                    else
+                        {
+                            MessageBox.Show("El teléfono debe tener 8 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtTelefono.Focus();
                         }
 
@@ -215,7 +252,7 @@ namespace Proyecto_Ferreteira___1
                         if (DiferenciaEdad())
                         {
                             estado = false;
-                            MessageBox.Show("Tiene que ser mayor de edad o ingresar una fecha valida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Tiene que ser mayor de edad o ingresar una fecha válida", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                         else
                             estado = true;
@@ -229,7 +266,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(),"Error",MessageBoxButton.OK,MessageBoxImage.Error);
                 return false;
             }
 
@@ -268,7 +305,7 @@ namespace Proyecto_Ferreteira___1
                     lbClientes.ItemsSource = tablaCliente.DefaultView;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Error en la base de datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -300,7 +337,7 @@ namespace Proyecto_Ferreteira___1
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    MessageBox.Show("Por favor, verifique los datos.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                                     txtRtn.Focus();
                                 }
                            
@@ -309,25 +346,25 @@ namespace Proyecto_Ferreteira___1
                             else
                             {
                        
-                                    MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    MessageBox.Show("Por favor, verifique los datos.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                                     txtIdentidad.Focus();
                         
                             }
                         }
                        else
                         {
-                            MessageBox.Show("Por favor, verifique los datos.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Por favor, verifique los datos.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
 
                     }
                     else
                     {
-                        MessageBox.Show("Por favor, llene todos los campos.","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
+                        MessageBox.Show("Por favor, llene todos los campos.","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
                     }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(),"Error",MessageBoxButton.OK,MessageBoxImage.Error);
                
             }
 
@@ -360,7 +397,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
          
@@ -385,7 +422,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -406,7 +443,7 @@ namespace Proyecto_Ferreteira___1
             {
              if (valor < li || valor > ls)
               {
-                MessageBox.Show(string.Concat("Los siguientes dos digitos: ", valor, " del municipio.", "\nSolo se permiten numero del rango: ", li, " y ", ls, "."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(string.Concat("Los siguientes dos dígitos: ", valor, " del municipio.", "\nSolo se permiten números dentro del rango: ", li, " y ", ls, "."), "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
               }
             else
@@ -414,7 +451,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
           
@@ -455,7 +492,7 @@ namespace Proyecto_Ferreteira___1
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -484,7 +521,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         
@@ -527,14 +564,14 @@ namespace Proyecto_Ferreteira___1
                             }
                             else
                             {
-                                MessageBox.Show("El folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show("El folio debe estar en un rango del 00001-99999", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 txtIdentidad.Focus();
                             }
 
                         }
                         else
                         {
-                            MessageBox.Show("El año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("El año debe estar en un rango del 1900-2100", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtIdentidad.Focus();
                         }
                     }
@@ -546,7 +583,7 @@ namespace Proyecto_Ferreteira___1
                 }
                 else
                 {
-                    MessageBox.Show("Los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Los primeros dos números de la identidad \ndeben estar en un rango del 1-18.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtIdentidad.Focus();
                     return false;
                 }
@@ -555,7 +592,7 @@ namespace Proyecto_Ferreteira___1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString(), "Aviso");
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
            
@@ -595,14 +632,14 @@ namespace Proyecto_Ferreteira___1
                             }
                             else
                             {
-                                MessageBox.Show("El folio debe estar en un rango del 00001-99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show("El folio debe estar en un rango del 00001-99999", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 txtRtn.Focus();
                             }
 
                         }
                         else
                         {
-                            MessageBox.Show("El año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("El año debe estar en un rango del 1900-2100", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtRtn.Focus();
                         }
                     }
@@ -614,7 +651,7 @@ namespace Proyecto_Ferreteira___1
                 }
                 else
                 {
-                    MessageBox.Show("1. Los primeros dos numeros del RTN. \n2.Deben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("1. Los primeros dos números del RTN. \n2.Deben estar en un rango de 1-18.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtRtn.Focus();
                     return false;
                 }
@@ -622,8 +659,8 @@ namespace Proyecto_Ferreteira___1
                 return resultado;
             }
             catch ( Exception ex)
-            {  
-                MessageBox.Show("Error: " + ex.Message.ToString(),"Aviso");
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             } 
         }
@@ -637,7 +674,7 @@ namespace Proyecto_Ferreteira___1
         {
             if(lbClientes.SelectedValue == null)
             {
-                MessageBox.Show("Seleccione un cliente","Aviso",MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Seleccione un cliente","Advertencia",MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {

@@ -79,7 +79,7 @@ namespace Proyecto_Ferreteira___1
             {
                 
                 btnRealizarPago.IsEnabled = true;
-                MessageBox.Show("Debe Realizar el pago para realizar la compra");
+                MessageBox.Show("Debe Realizar el pago para realizar la venta","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
             else
             {
@@ -108,14 +108,18 @@ namespace Proyecto_Ferreteira___1
 
                 if (txtCantidad.Text.Equals(string.Empty) || Convert.ToInt32(txtCantidad.Text) <= 0)
                 {
-                    MessageBox.Show("La cantidad que usted ingreso no es valida", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("La cantidad que usted ingreso no es válida", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else if (Convert.ToInt32(txtCantidad.Text) > existenciaProduc)
                 {
-                    MessageBox.Show("La existencia de este producto es insuficiente", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("La existencia de este producto es insuficiente", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (cbTipoPago.SelectedItem == null)
+                {
+                    MessageBox.Show("Seleccione un tipo de pago", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
-                {
+                { 
                     if (productos.Count == 0)
                     {
                         AggAlCarrito();
@@ -129,7 +133,7 @@ namespace Proyecto_Ferreteira___1
 
                             if (int.Parse(txtIdProducto.Text) == Item.ID)
                             {
-                                MessageBox.Show("El Producto ya se encuentra en el detalle de la venta...", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show("El producto ya se encuentra en el detalle de la venta...", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 limpiarProducto();
                             }
                             else
@@ -142,7 +146,7 @@ namespace Proyecto_Ferreteira___1
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                
             }
@@ -160,7 +164,7 @@ namespace Proyecto_Ferreteira___1
 
             if (indice == -1)
             {
-                MessageBox.Show("Seleccione el producto a eliminar","Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Seleccione el producto a eliminar","Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -195,22 +199,36 @@ namespace Proyecto_Ferreteira___1
                         venta.AgregarDetalle();
                     }
 
-                    MessageBox.Show("Factura realizada con exito", "Aviso",MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    MessageBox.Show("Su Cambio es: " + Cambio, "Aviso");
+                    MessageBox.Show("Factura realizada con éxito", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Su Cambio es: " + Cambio, "Aviso",MessageBoxButton.OK,MessageBoxImage.Information);
                     Properties.Settings.Default.PagoCorrecto = false;
-                    FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
-                    ventas.Show();
-                    limpiar();
+                   
+
+
+                    if (MessageBox.Show("¿Necesita servicio adomicilio?", "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        FrmEnvio Envio = new FrmEnvio(venta.CodigoVenta(), venta.CodigoCliente);
+                        Envio.Show();
+                        limpiar();
+                    }
+                    else
+                    {
+                        FormFacturasVentas ventas = new FormFacturasVentas(venta.CodigoVenta(), venta.CodigoCliente);
+                        ventas.Show();
+                        limpiar();
+                    }
+
+
                 }
                 else
                 {
                     if (Properties.Settings.Default.PagoCorrecto == false)
                     {
-                        MessageBox.Show("Realizar el pago antes de facturar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Realizar el pago antes de facturar.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     else if(txtIdCliente.Text.Equals("") || cbTipoPago.SelectedIndex == -1 || dgDetalleVenta.Items.Count <= 0)
                     {
-                        MessageBox.Show("Llene todos los campos antes de realizar la venta.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Llene todos los campos antes de realizar la venta.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                   
                 }
@@ -421,10 +439,6 @@ namespace Proyecto_Ferreteira___1
 
         }
 
-        private void cbTipoPago_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void btnRealizarPago_Click(object sender, RoutedEventArgs e)
         {

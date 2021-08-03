@@ -103,25 +103,24 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" >
                         <Button Name="btnInsertar" 
-                                Content="Insertar" 
+                                Content="Insertar"  BorderBrush="#007DB7" Background="#007DB7" 
                                 Width="150"
                                 Margin="20 0"  
                                 FontSize="17" FontFamily="Segoe UI" 
-                                Background="#2196F3" Foreground="White" Click="btnInsertar_Click"/>
+                                 Foreground="White" Click="btnInsertar_Click"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <Button Name="btnModificar" 
-                                Content="Modificar" 
+                                Content="Modificar"  BorderBrush="#007DB7" Background="#007DB7" 
                                 FontSize="17" FontFamily="Segoe UI" 
-                                Background="#2196F3" 
                                 Width="150"
                                 Margin="20 0" 
                                 Foreground="White" Click="btnModificar_Click"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <Button Name="btnEliminar"
+                        <Button Name="btnEliminar" BorderBrush="#007DB7" Background="#007DB7" 
                                 Content="Eliminar" 
                                 Grid.Column="3" 
                                 Grid.Row="7"
@@ -129,7 +128,6 @@
                                 Margin="20 0" 
                                 FontSize="17" 
                                 FontFamily="Segoe UI" 
-                                Background="#2196F3" 
                                 Foreground="White" Click="btnEliminar_Click"/>
                     </StackPanel>
                     

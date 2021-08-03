@@ -1,0 +1,69 @@
+﻿<Window x:Class="Proyecto_Ferreteira___1.FrmEnvio"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proyecto_Ferreteira___1"
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Title="FrmEnvio" Height="316.557" Width="672.049" Background="#242222" WindowStartupLocation="CenterScreen" >
+
+    <Grid Margin="0,0,3.6,0.2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*" />
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="175*"/>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="288*" />
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Envíos" 
+               Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" 
+               HorizontalAlignment="Center" FontSize="30" Foreground="White" Margin="85.2,0,224,0" Width="110" />
+
+        <Label Content="Teléfono" Grid.Row="1" Grid.Column="0" 
+               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,33,0,33" FontSize="17" Foreground="White" Grid.ColumnSpan="3"/>
+
+        <TextBox Margin="64.4,13,9,29" x:Name="txtTelefono" MaxLength = "8" materialDesign:HintAssist.Hint="Teléfono del Cliente"
+                             Foreground="White" 
+                             Text=""
+                             Grid.Row="1" Grid.Column="2"
+                             FontSize="17" FontFamily="Segoe UI"   
+                             PreviewTextInput="NumberValidationTextBox1"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448" Grid.ColumnSpan="2"/>
+
+        <Label Content="Dirección" Grid.Row="2" Grid.Column="0" 
+               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,32,0,32.2" FontSize="17" Foreground="White" Grid.ColumnSpan="3"/>
+
+        <TextBox Margin="64.4,14,191,27.2" x:Name="txtDireccion" MaxLength = "100"  materialDesign:HintAssist.Hint="Dirección del Cliente"
+                             Foreground="White" 
+                             Text=""
+                             Grid.Row="2" Grid.Column="2"
+                             FontSize="17" FontFamily="Segoe UI"    
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             BorderBrush="white" CaretBrush="#FFD94448" 
+                             SelectionBrush="#FFD94448" Grid.ColumnSpan="3"/>
+        <Button Name="btnCancelar" 
+                FontFamily="Segoe UI" FontSize="17" 
+                Content="Cancelar" Grid.Column="4" HorizontalAlignment="Left" Margin="154,24,0,0" 
+                Grid.Row="2" VerticalAlignment="Top" Width="110" Height="42" Click="btnCancelar_Click"/>
+
+
+        <Button Name="btnAceptar" FontFamily="Segoe UI" 
+                FontSize="17" Content="Aceptar" Grid.Column="4" 
+                HorizontalAlignment="Left" Margin="154,24,0,0" Grid.Row="1" 
+                VerticalAlignment="Top" Width="110" Height="42" Click="btnAceptar_Click"/>
+
+
+
+
+    </Grid>
+</Window>

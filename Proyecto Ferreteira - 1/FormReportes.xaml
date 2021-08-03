@@ -21,17 +21,19 @@
                     <materialDesign:PackIcon Kind="SortCalendarDescending" Foreground="White" Width="49" Height="49"/>
                     <DatePicker Name="dtpFechaInicio" Width="410" Margin="10 0"  
                                 materialDesign:HintAssist.Hint="Fecha Inicial" 
-                                KeyDown="dtpFechaFinal_KeyDown"
-                                Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
-                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White" SelectedDateFormat="Short"/>
+                                KeyDown="dtpFechaFinal_KeyDown" ToolTip="Fecha Inicial"
+                                CalendarStyle="{StaticResource  MaterialDesignDatePickerCalendarPortrait}"
+                                Style="{ StaticResource FondoDate}"
+                                 FontSize="17" FontFamily="segoe UI"  BorderBrush="White" SelectedDateFormat="Short"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="SortCalendarAscending" Foreground="White" Width="49" Height="49"/>
                     <DatePicker Name="dtpFechaFinal" Width="410" Margin="10 0"  
                                 materialDesign:HintAssist.Hint="Fecha Final" 
-                                Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
-                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White" KeyDown="dtpFechaFinal_KeyDown"/>
+                                CalendarStyle="{StaticResource  MaterialDesignDatePickerCalendarPortrait}"
+                                Style="{ StaticResource FondoDate}" ToolTip="Fecha Final"
+                                 FontSize="17" FontFamily="segoe UI"  BorderBrush="White" KeyDown="dtpFechaFinal_KeyDown"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20" >
@@ -72,8 +74,9 @@
                     <DatePicker Name="dtpFechaInicioCompra" Width="410" Margin="10 0"  
                                 materialDesign:HintAssist.Hint="Fecha Inicial" 
                                  KeyDown="dtpFechaFinal_KeyDown"
-                                Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
-                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
+                                 CalendarStyle="{StaticResource  MaterialDesignDatePickerCalendarPortrait}"
+                                Style="{ StaticResource FondoDate}" ToolTip="Fecha Inicio"
+                                FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
@@ -81,8 +84,10 @@
                     <DatePicker Name="dtpFechaFinalCompra" Width="410" Margin="10 0"  
                                 materialDesign:HintAssist.Hint="Fecha Final" 
                                  KeyDown="dtpFechaFinal_KeyDown"
-                                Style="{ StaticResource MaterialDesignFloatingHintDatePicker}"
-                                Foreground="White" FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
+                                 ToolTip="Fecha Final"
+                                 CalendarStyle="{StaticResource  MaterialDesignDatePickerCalendarPortrait}"
+                                Style="{ StaticResource FondoDate}"
+                                FontSize="17" FontFamily="segoe UI"  BorderBrush="White"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20" >

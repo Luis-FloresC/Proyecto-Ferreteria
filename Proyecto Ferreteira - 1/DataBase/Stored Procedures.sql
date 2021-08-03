@@ -820,3 +820,17 @@ inserted
 end
 end
 go
+
+create procedure [dbo].[InsertarEnvio]
+@codigo_venta int,
+@estado_envio nvarchar(30),
+@direccion nvarchar(255),
+@telefono nvarchar(30),
+@codigo_empleado int
+
+AS
+begin
+
+   insert into Ventas.envio values (@codigo_venta,getdate(),@estado_envio,@direccion,@telefono,@codigo_empleado)
+end
+go
