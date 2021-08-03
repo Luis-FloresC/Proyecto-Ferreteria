@@ -58,7 +58,7 @@
                             Background="#007DB7"
                             Foreground="White" 
                             FontSize="17" FontFamily="Segoe UI"
-                            ToolTip="Modificar un Empleado"
+                            ToolTip="Modificar un Proveedor"
                             Click="BtnModificar_Click"
                             x:Name="BtnModificar"
                             Content="Modificar" Margin="20" />
@@ -79,7 +79,7 @@
                             Background="#007DB7"
                             Foreground="White" 
                             FontSize="17" FontFamily="Segoe UI"
-                            ToolTip="Eliminar un Empleado"
+                            ToolTip="Eliminar un Proveedor"
                             x:Name="btnEliminar"
                             Click="btnEliminar_Click"
                             Margin="20"

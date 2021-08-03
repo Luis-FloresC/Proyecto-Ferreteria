@@ -71,6 +71,38 @@ namespace Proyecto_Ferreteira___1
             chEstado.IsChecked = false;
         }
 
+
+        /// <summary>
+        /// Verficacion de Numero de telefono
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns></returns>
+        public bool VerificarNumeroTelefono(string numero)
+        {
+            try
+            {
+
+                if (numero.Length > 8 || numero.Length < 8)
+                {
+                    return false;
+                }
+
+                if (int.Parse(numero.Substring(0, 1)) == 9 || int.Parse(numero.Substring(0, 1)) == 8 || int.Parse(numero.Substring(0, 1)) == 3 || int.Parse(numero.Substring(0, 1)) == 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
         /// <summary>
         /// Validar Cadenas vacias
         /// </summary>
@@ -170,7 +202,16 @@ namespace Proyecto_Ferreteira___1
                     return  false;
                 }
 
-                if(!ValidarEmail(txtEmail.Text))
+                if (!VerificarNumeroTelefono(txtTelefono.Text))
+                {
+
+                    MessageBox.Show("Ingrese un número de teléfono válido!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtTelefono.Focus();
+                    return false;
+                }
+
+
+                if (!ValidarEmail(txtEmail.Text))
                 {
                     MessageBox.Show("Ingrese un correo electronico Válido", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtEmail.Focus();

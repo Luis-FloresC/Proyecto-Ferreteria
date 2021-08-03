@@ -79,6 +79,38 @@ namespace Proyecto_Ferreteira___1
             e.Handled = regex.IsMatch(e.Text);
         }
 
+
+
+        /// <summary>
+        /// Metodo para validar el numero de telefono
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns></returns>
+        public bool VerificarNumeroTelefono(string numero)
+        {
+            try
+            {
+
+                if (numero.Length > 8 || numero.Length < 8)
+                {
+                    return false;
+                }
+
+                if (int.Parse(numero.Substring(0, 1)) == 9 || int.Parse(numero.Substring(0, 1)) == 8 || int.Parse(numero.Substring(0, 1)) == 3 || int.Parse(numero.Substring(0, 1)) == 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Insertar los datos solicitados en la BDD
         /// </summary>
@@ -95,12 +127,17 @@ namespace Proyecto_Ferreteira___1
                 else
                 {
                     string direccion = txtDireccion.Text;
-                    string telefono = txtDireccion.Text;
-
+                    string telefono = txtTelefono.Text;
+               
                     if (direccion.Length <= 1)
                     {
                         MessageBox.Show("La dirección no puede ser menor o igual a un caracter", "Advertencia",
                             MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else if(!VerificarNumeroTelefono(telefono))
+                    {
+                        MessageBox.Show("Ingrese un número de teléfono válido", "Advertencia",
+                           MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                    else if (CadenaSoloEspacios(direccion) || CadenaSoloEspacios(telefono))
                     {
@@ -110,7 +147,7 @@ namespace Proyecto_Ferreteira___1
                     else
                     {
                         envio.envio(txtTelefono.Text, txtDireccion.Text);
-                        MessageBox.Show("El envio se registro correctamente", "Aviso",
+                        MessageBox.Show("El envio se registró correctamente", "Aviso",
                            MessageBoxButton.OK, MessageBoxImage.Information);
                         FormFacturasVentas ventas = new FormFacturasVentas(CodigoVenta, CodigoCliente);
                         ventas.Show();

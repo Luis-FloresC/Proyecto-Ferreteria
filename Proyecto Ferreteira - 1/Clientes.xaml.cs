@@ -52,6 +52,38 @@ namespace Proyecto_Ferreteira___1
             cliente.Rtn = txtRtn.Text;
         }
 
+
+        /// <summary>
+        /// Verficacion de Numero de telefono
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns></returns>
+        public bool VerificarNumeroTelefono(string numero)
+        {
+            try
+            {
+
+                if (numero.Length > 8 || numero.Length < 8)
+                {
+                    return false;
+                }
+
+                if (int.Parse(numero.Substring(0, 1)) == 9 || int.Parse(numero.Substring(0, 1)) == 8 || int.Parse(numero.Substring(0, 1)) == 3 || int.Parse(numero.Substring(0, 1)) == 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
         /// <summary>
         /// Limpia los texBox y el time picker del formulario
         /// </summary>
@@ -202,7 +234,12 @@ namespace Proyecto_Ferreteira___1
                             MessageBox.Show("El RTN debe tener 14 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtRtn.Focus();
                         }
-                        else
+                         else if (!VerificarNumeroTelefono(txtTelefono.Text))
+                        {
+                              MessageBox.Show("Ingrese un número de teléfono válido!", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                               txtTelefono.Focus();
+                        }
+                    else
                         {
                             MessageBox.Show("El teléfono debe tener 8 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtTelefono.Focus();
