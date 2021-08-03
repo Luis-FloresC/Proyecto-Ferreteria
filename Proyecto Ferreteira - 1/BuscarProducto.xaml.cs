@@ -88,7 +88,7 @@ namespace Proyecto_Ferreteira___1
         {
             if (dgProductos.SelectedIndex == -1)
             {
-                MessageBox.Show("Error! seleccione el producto en la tabla");
+                MessageBox.Show("Error! seleccione el producto en la tabla","Error",MessageBoxButton.OK,MessageBoxImage.Error);
             }
             else
             {

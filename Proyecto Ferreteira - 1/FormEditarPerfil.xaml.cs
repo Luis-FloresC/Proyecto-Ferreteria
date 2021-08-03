@@ -110,7 +110,7 @@ namespace Proyecto_Ferreteira___1
             if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se Permiten Letras", "Aviso");
+                MessageBox.Show("Solo se permiten letras", "Advertencia",MessageBoxButton.OK,MessageBoxImage.Information);
             }
             else
             {
@@ -132,7 +132,7 @@ namespace Proyecto_Ferreteira___1
             else
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se Permiten Numeros", "Aviso");
+                MessageBox.Show("Solo se permiten números", "Advertencia",MessageBoxButton.OK,MessageBoxImage.Information);
             }
         }
 
@@ -259,14 +259,14 @@ namespace Proyecto_Ferreteira___1
                         }
                         else
                         {
-                            MessageBox.Show("el folio debe tener un rango del 00001- 99999", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("El folio debe tener un rango del 00001- 99999", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
 
 
                     }
                     else
                     {
-                        MessageBox.Show("el año debe estar en un rango del 1900-2100", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("El año debe estar en un rango del 1900-2100", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else
@@ -277,7 +277,7 @@ namespace Proyecto_Ferreteira___1
             }
             else
             {
-                MessageBox.Show("los primeros dos numero de la identidad. \ndeben estar en un rango de 1-18.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Los primeros dos número de la identidad \ndeben estar en un rango de 1-18.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
@@ -299,7 +299,7 @@ namespace Proyecto_Ferreteira___1
         {
             if (valor < li || valor > ls)
             {
-                MessageBox.Show(string.Concat("Los siguientes dos digitos: ", valor, " del municipio.", "\nSolo se permiten numero del rango: ", li, " y ", ls, "."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(string.Concat("Los siguientes dos dígitos: ", valor, " del municipio", "\nsolo se permiten número del rango: ", li, " y ", ls, "."), "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             else

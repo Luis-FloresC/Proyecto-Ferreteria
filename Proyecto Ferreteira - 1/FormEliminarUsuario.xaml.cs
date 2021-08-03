@@ -32,12 +32,7 @@ namespace Proyecto_Ferreteira___1
         Clases.Usuarios usuarios = new Clases.Usuarios();
         List<Clases.UserData> ListaDeEmpleados;
 
-        //private void MostrarEmpleados()
-        //{
-        //    ListaDeEmpleados = usuarios.ListaEmpleados();
-
-        //    cmbNombreEmpleado.ItemsSource = ListaDeEmpleados;
-        //}
+    
 
         private void MostrarEmpleados()
         {
@@ -47,17 +42,6 @@ namespace Proyecto_Ferreteira___1
             cmbNombreEmpleado.ItemsSource = ListaDeEmpleados;
         }
 
-
-
-        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void cmbNombreEmpleado_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

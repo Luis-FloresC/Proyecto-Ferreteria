@@ -61,7 +61,7 @@ namespace Proyecto_Ferreteira___1
 
             if(cmbNombreEmpleado.SelectedValue == null)
             {
-                MessageBox.Show("Por Favor seleccione un Empleado...","Avisp",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, seleccione un Empleado...","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
                 cmbNombreEmpleado.Focus();
                 datosCorrectos = false;
             }
@@ -81,13 +81,13 @@ namespace Proyecto_Ferreteira___1
                     txtConfirmPassWord.Focus();
                 }
 
-                MessageBox.Show("Todos los Campos son Obligatorios","Aviso",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Todos los Campos son Obligatorios","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
                 datosCorrectos = false;
             }
 
             if(txtPassWord.Password != txtConfirmPassWord.Password)
             {
-                MessageBox.Show("la contraseña no coinciden", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("La contraseña no coinciden", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtPassWord.Password = "";
                 txtConfirmPassWord.Password = "";
                 datosCorrectos = false;
@@ -95,7 +95,7 @@ namespace Proyecto_Ferreteira___1
 
             if(txtPassWord.Password.Length <= 7 && txtConfirmPassWord.Password.Length <= 7)
             {
-                MessageBox.Show("la constraseña debe contener al menos 8 caracteres", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("La constraseña debe contener al menos 8 caracteres", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 datosCorrectos = false;
             }
 

@@ -11,7 +11,7 @@
         <DataGrid Name="dgClientes" HorizontalAlignment="Center" Height="278" Margin="31,73,25,0" VerticalAlignment="Top" Width="736" IsReadOnly="True" FontSize="17"/>
         <Label Content="Buscar:" HorizontalAlignment="Left" Margin="148,28,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
         <Button Name="btnSeleccionar" BorderBrush="#007DB7" Background="#007DB7"  Content="Seleccionar" HorizontalAlignment="Left" Margin="350,367,0,0" VerticalAlignment="Top" Width="154" Click="btnSeleccionar_Click" FontSize="17"/>
-        <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="28" Margin="235,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="414" Background="White" KeyUp="txtBuscar_KeyUp" TextChanged="txtBuscar_TextChanged" FontSize="17"/>
+        <TextBox Name="txtBuscar" HorizontalAlignment="Left" Height="28" Margin="235,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="414" Background="White" KeyUp="txtBuscar_KeyUp"  FontSize="17"/>
 
     </Grid>
 </Window>

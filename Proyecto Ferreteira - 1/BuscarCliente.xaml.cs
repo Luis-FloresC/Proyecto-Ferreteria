@@ -83,7 +83,7 @@ namespace Proyecto_Ferreteira___1
         {
             if(dgClientes.SelectedIndex == -1)
             {
-                MessageBox.Show("Error! seleccione el cliente en la tabla");
+                MessageBox.Show("Error! seleccione el cliente en la tabla","Error",MessageBoxButton.OK,MessageBoxImage.Error);
             }
             else
             {
@@ -110,9 +110,5 @@ namespace Proyecto_Ferreteira___1
             buscarClientes();
         }
 
-        private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

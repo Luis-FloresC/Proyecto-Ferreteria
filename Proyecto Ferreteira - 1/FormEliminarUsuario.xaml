@@ -36,7 +36,7 @@
                           Margin="100,0"
                           x:Name="chEstado"
                            FontSize="17" FontFamily="Segoe UI"
-                          Content="Activo" Checked="CheckBox_Checked" />
+                          Content="Activo"  />
 
             </StackPanel>
 
