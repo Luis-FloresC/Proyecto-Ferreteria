@@ -183,7 +183,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!ISV.Value, "DataSet2")</Value>
+                <Value>=(( (Sum(Fields!SubTotal.Value, "DataSet2")) - (Sum(Fields!SubTotal.Value, "DataSet2")) * (Sum(Fields!Descuento.Value, "DataSet2"))) * (0.15))</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -219,7 +219,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!Descuento.Value, "DataSet2")</Value>
+                <Value>=Sum(Fields!SubTotal.Value, "DataSet2") * Sum(Fields!Descuento.Value, "DataSet2")</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -255,7 +255,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!Total.Value, "DataSet2")</Value>
+                <Value>=( (Sum(Fields!SubTotal.Value, "DataSet2")) - ( Sum(Fields!SubTotal.Value, "DataSet2") * Sum(Fields!Descuento.Value, "DataSet2") ) + ( (( (Sum(Fields!SubTotal.Value, "DataSet2")) - (Sum(Fields!SubTotal.Value, "DataSet2")) * (Sum(Fields!Descuento.Value, "DataSet2"))) * (0.15)) ) )</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
